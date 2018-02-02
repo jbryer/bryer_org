@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Bryer.org</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Bryer.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 -0800</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Conducting Assessments and Surveys with Shiny</title>
+      <link>/post/2016-02-22-assessments_with_shiny/</link>
+      <pubDate>Mon, 22 Feb 2016 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2016-02-22-assessments_with_shiny/</guid>
+      <description>This post describes a framework for using Shiny for conducting, grading, and providing feedback for assessments. This framework supports any multiple choice format including multiple choice tests or Likert type surveys. A demo is available at jbryer.shinyapps.io/ShinyAssessmentTest or can be run locally as a Github Gist:
+runGist(&#39;a6fb5a3b1d5fd56cff64&#39;)  Key features of this framework include:
+ Assessments take over the entire user interface for a distraction free assessment. Creating an assessment requires:  A vector of item stems.</description>
+    </item>
+    
+    <item>
+      <title>Shiny App for Bayes Billiards Problem</title>
+      <link>/post/2016-02-21-bayes_billiards_shiny/</link>
+      <pubDate>Sun, 21 Feb 2016 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2016-02-21-bayes_billiards_shiny/</guid>
+      <description>Consider a pool table of length one. An 8-ball is thrown such that the likelihood of its stopping point is uniform across the entire table (i.e. the table is perfectly level). The location of the 8-ball is recorded, but not known to the observer. Subsequent balls are thrown one at a time and all that is reported is whether the ball stopped to the left or right of the 8-ball. Given only this information, what is the position of the 8-ball?</description>
+    </item>
+    
+    <item>
+      <title>Data Caching</title>
+      <link>/post/2014-07-29-data_caching/</link>
+      <pubDate>Tue, 29 Jul 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-07-29-data_caching/</guid>
+      <description>Data caching is not new. It is often necessary to save intermediate data files when the process of loading and/or manipulating data takes a considerable amount of time. This problem is further complicated when working with dynamic data that changes regularly. In these situations it often sufficient to use data that is current with in some time frame (e.g. hourly, daily, weekly, monthly). One solution is to use a time-based job scheduler such as cron.</description>
+    </item>
+    
+    <item>
+      <title>Women Graduates in Math, Statistics, and Computer Information Systems</title>
+      <link>/post/2014-07-04-women_graduates_in_math_stats_cis/</link>
+      <pubDate>Fri, 04 Jul 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-07-04-women_graduates_in_math_stats_cis/</guid>
+      <description>One of the more interesting talks at this year&amp;rsquo;s useR! Conference was the heR Panel discussing the role of women in the R community. They estimate that fewer than 15% of package authors are women. One of the points brought up was that this is less than the percentage of women in statistics. Perhaps this is more related to the computer science aspect of R that that of statistics. By way of comparison, the United States Department of Labor estimates there are between 7.</description>
+    </item>
+    
+    <item>
+      <title>useR 2014 Slides for PSAboot and version 1.1. on CRAN</title>
+      <link>/post/2014-07-03-user_2014_psaboot_slides/</link>
+      <pubDate>Thu, 03 Jul 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-07-03-user_2014_psaboot_slides/</guid>
+      <description>PSAboot is an R package to assist with bootstrapping propensity score methods. I gave a talk today at the useR! 2014 Conference. The slides can be downloaded from the PSAboot Github page or directly here. The package is described at jason.bryer.org/PSAboot and maintained on Github at github.com/jbryer/PSAboot/.
+Also, version 1.1 of the package was just released to CRAN.</description>
+    </item>
+    
+    <item>
+      <title>str Implementation for Data Frames</title>
+      <link>/post/2014-06-05-str_implementation_for_data_frames/</link>
+      <pubDate>Thu, 05 Jun 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-06-05-str_implementation_for_data_frames/</guid>
+      <description>The str function is perhaps the most useful function in R. It provides great information about the structure of some object. When I teach R, especially for those coming from SPSS, the str function for data frames provides the information they are use to seeing on the variable view tab. However, sometimes I want to display the information str returns in a better format (e.g. as an HTML or LaTeX table).</description>
+    </item>
+    
+    <item>
+      <title>Rgitbook Package for Using R Markdown with Gitbook</title>
+      <link>/post/2014-04-22-rgitbook_package/</link>
+      <pubDate>Tue, 22 Apr 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-04-22-rgitbook_package/</guid>
+      <description>Last week I published an R script to interface with Gitbook. I received some positive feedback and decided to include all the code in an R package. This also allowed me to make some nice additions including default support for MathJax. It is currently available on Github and can be installed using devtools:
+devtools::install_github(&#39;jbryer/Rgitbook&#39;)  I have only tested this on Mac OS X, so please provide suggestions or issues on other systems.</description>
+    </item>
+    
+    <item>
+      <title>Albany, NY R Users Group</title>
+      <link>/post/2014-03-20-albany_r_users_group/</link>
+      <pubDate>Thu, 20 Mar 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-03-20-albany_r_users_group/</guid>
+      <description>I have started an R Users Group for the Albany, NY area. Hopefully we get enough interest that we can host a meeting in the next couple of months. Please feel free to share with your colleagues and friends.
+www.meetup.com/Albany-R-Users-Group
+Feel free to email me or leave comment on this page or on the Meetup page if you are interested in giving a talk or hosting some future meeting.</description>
+    </item>
+    
+    <item>
+      <title>Function to Simplify Loading and Installing Packages</title>
+      <link>/post/2014-02-20-loading_and_installing_packages/</link>
+      <pubDate>Thu, 20 Feb 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-02-20-loading_and_installing_packages/</guid>
+      <description>One of the more tedious parts of working with R is maintaining my R library. To make my R scripts reproducible and sharable, I will install packages if they are not available. For example, the top of my R scripts tend to look something like this:
+if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !require(benchmark)) { install.packages(c(&#39;devtools&#39;,&#39;ggplot2&#39;,&#39;psych&#39;,&#39;lme4&#39;,&#39;benchmark&#39;)) }  This has worked fine for some time, but I felt there was a better approach.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping for Propensity Score Analysis</title>
+      <link>/post/2013-11-26-bootstrapping_for_propensity_score_analysis/</link>
+      <pubDate>Tue, 26 Nov 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-11-26-bootstrapping_for_propensity_score_analysis/</guid>
+      <description>I am happy to announce that version 1.0 of the PSAboot package has been released to CRAN. This package implements bootstrapping for propensity score analysis. This deviates from typical implementations such as boot in that it allows for separate sampling specifications for treatment and control units. For example, in the case where the ratio of treatment-to-control units is large, one can bootstrap only the control units while always using all available treatment units.</description>
+    </item>
+    
+    <item>
+      <title>Workshop and Talk Slides from NEAIR Conference</title>
+      <link>/post/2013-11-12-workshop_and_talk_slides_from_neair/</link>
+      <pubDate>Tue, 12 Nov 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-11-12-workshop_and_talk_slides_from_neair/</guid>
+      <description>I am about to head home from my fifth time attending the North East Association for Institutional Research (NEAIR), this year in Newport, RI, which was just fantastic. Really great people, interesting talks, and good food. I again taught an Introduction to R and LaTeX for Institutional Research pre-conference workshop and also gave a talk on Propensity Score Analysis for Institutional Research which was an brief version of a workshop I taught at the 2013 useR!</description>
+    </item>
+    
+    <item>
+      <title>Gambler&#39;s Run with Shiny</title>
+      <link>/post/2013-05-08-gamblers_run_with_shiny/</link>
+      <pubDate>Wed, 08 May 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-05-08-gamblers_run_with_shiny/</guid>
+      <description>I finally had an opportunity to play with Shiny, and I am very impressed. I have created a Github Project so head over there for the source code. There are a number of ways to distribute Shiny apps. If you are running R (and mostly likely you are if you are reading this), you can download and run Shiny apps using the runApp (if already downloaded), runGitHub, runGist, or runUrl functions.</description>
+    </item>
+    
+    <item>
+      <title>Cut Dates into Quarters</title>
+      <link>/post/2013-04-18-cut_dates_into_quarters/</link>
+      <pubDate>Thu, 18 Apr 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-04-18-cut_dates_into_quarters/</guid>
+      <description>Frequently I need to recode a date column to quarters. For example, at Excelsior College we have continuous enrollment so we report new enrollments per quarter. To complicate things a bit, our fiscal year starts in July so that July, August, and September represent the first quarter, January, February, and March are actually the third quarter. But sometimes we do need need to report out based upon calendar years (i.e. where January is in the first quarter).</description>
+    </item>
+    
+    <item>
+      <title>i Before e Except After c</title>
+      <link>/post/2013-03-26-i_before_e_except_after_c/</link>
+      <pubDate>Tue, 26 Mar 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-03-26-i_before_e_except_after_c/</guid>
+      <description>When I went to school we were always taught the &amp;ldquo;i before e, except after c&amp;rdquo; rule for spelling. But how accurate is this rule? Kevin Marks tweeted today the following:
+»@uberfacts: There are 923 words in the English language that break the “I before E” rule. Only 44 words actually follow that rule.« Science
+&amp;mdash; Kevin Marks (@kevinmarks) March 25, 2013 Not sure where he came up with that result, but seems simple enough to verify.</description>
+    </item>
+    
+    <item>
+      <title>Converting a list to a data frame</title>
+      <link>/post/2013-01-30-converting_a_list_to_a_data_frame/</link>
+      <pubDate>Wed, 30 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-30-converting_a_list_to_a_data_frame/</guid>
+      <description>There are many situations in R where you have a list of vectors that you need to convert to a data.frame. This question has been addressed over at StackOverflow and it turns out there are many different approaches to completing this task. Since I encounter this situation relatively frequently, I wanted my own S3 method for as.data.frame that takes a list as its parameter. I should note that it only works with atomic vectors (i.</description>
+    </item>
+    
+    <item>
+      <title>Comparing two data frames with different number of rows</title>
+      <link>/post/2013-01-24-comparing_two_data_frames/</link>
+      <pubDate>Thu, 24 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-24-comparing_two_data_frames/</guid>
+      <description>I posted a question over on StackOverflow on an efficient way of comparing two data frames with the same column structure, but with different rows. What I would like to end up with is an n x m logical matrix where n and m are the number of rows in the first and second data frames, respectively; and the value at the *i*th row and *j*th column indicates whether all the values from row i from data frame one is equal to row j from data frame two.</description>
+    </item>
+    
+    <item>
+      <title>Version 1.0 of sqlutils available on CRAN</title>
+      <link>/post/2013-01-15-version_1_sqlutils/</link>
+      <pubDate>Tue, 15 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-15-version_1_sqlutils/</guid>
+      <description>Version 1.0 of sqlutils has been released to CRAN. The sqlutils package is designed to manage a library of SQL files. This package grew out of the needs of an Office of Institutional Research where the vast majority of analysis is conducted on data from our Student Information System (SIS) which is stored in an Oracle database. A lot of our analyses and reports are derived from the same types of datasets but from easily extracted parameters (e.</description>
+    </item>
+    
+    <item>
+      <title>Interactive SQL in R</title>
+      <link>/post/2013-01-12-interactive_sql_in_r/</link>
+      <pubDate>Sat, 12 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-12-interactive_sql_in_r/</guid>
+      <description>I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R.</description>
+    </item>
+    
+    <item>
+      <title>Reading Codebook Files in R</title>
+      <link>/post/2013-01-10-function_for_reading_codebooks_in_r/</link>
+      <pubDate>Thu, 10 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-10-function_for_reading_codebooks_in_r/</guid>
+      <description>One issue I continuously encounter when starting to work with a new dataset is that of the codebook. In general, I prefer to load a codebook into R like any other data source, specifically as a data frame. And ideally, one data frame to provides the variable names with descriptions and any other meta data available, and a separate list of named vectors that can be used to recode factors.</description>
+    </item>
+    
+    <item>
+      <title>Function for Generating LaTeX Tables with Decimal Aligned Numbers</title>
+      <link>/post/2013-01-04-xtable_with_aligned_decimals/</link>
+      <pubDate>Fri, 04 Jan 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-01-04-xtable_with_aligned_decimals/</guid>
+      <description>The xtable package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX formatting. The xtable.decimal function will create a LaTeX table where numeric columns will be vertically aligned on the decimal point. In addition to specifying the LaTeX alignment code it will also create appropriate column titles so that the column name spans the two resulting columns.</description>
+    </item>
+    
+    <item>
+      <title>Using (R) Markdown, Jekyll, &amp; Github for a Website</title>
+      <link>/post/2012-12-10-markdown_jekyll_r_for_blogging/</link>
+      <pubDate>Mon, 10 Dec 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-12-10-markdown_jekyll_r_for_blogging/</guid>
+      <description>Introduction Markdown has been growing in popularity for writing documents on the web. With the introduction of R Markdown (see also Jeromy Anglim&amp;rsquo;s post on getting started with R Markdown) and knitr, R Markdown has simplified the publishing of R analysis on the web. I recently converted my website from Wordpress to Jekyll. Jekyll is a &amp;ldquo;static site generator&amp;rdquo; and is the framework used by GitHub Pages. You can view the complete source for this website on Github at https://github.</description>
+    </item>
+    
+    <item>
+      <title>Fifty Shades of Grey in R</title>
+      <link>/post/2012-11-27-fifty_shades_of_grey/</link>
+      <pubDate>Tue, 27 Nov 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-11-27-fifty_shades_of_grey/</guid>
+      <description>My wife went out to her book group tonight and their book of the month was 50 Shades of Grey. Sadly, I could think of is that plotting 50 shades in R would be a neat exercise.
+require(ggplot2) grey50 &amp;lt;- data.frame( x = rep(1:10, 5), y = rep(1:5, each=10), c = unlist(lapply(seq(10,255,5), FUN=function(x) { rgb(x,x,x, max=255) })), t = unlist(lapply(seq(10,255,5), FUN=function(x) { ifelse(x &amp;gt; 255/2, &#39;black&#39;, &#39;white&#39;) })) ) ggplot(grey50, aes(x=x, y=y, fill=c, label=c, color=t)) + geom_tile() + geom_text(size=4) + scale_fill_identity() + scale_color_identity() + ylab(NULL) + xlab(NULL) + theme(axis.</description>
+    </item>
+    
+    <item>
+      <title>Fun with coin flips</title>
+      <link>/post/2012-11-21-fun-with-coins/</link>
+      <pubDate>Wed, 21 Nov 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-11-21-fun-with-coins/</guid>
+      <description>We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this n times and plot it.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing Missing Data</title>
+      <link>/post/2012-11-17-visualizing-missing-data/</link>
+      <pubDate>Sat, 17 Nov 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-11-17-visualizing-missing-data/</guid>
+      <description>There are several graphics available for visualizing missing data including the VIM package. However, I wanted a plot specifically for looking at the nature of missingness across variables and a clustering variable of interest to support data preparation in multilevel propensity score models (see the multilevelPSA package). The following examples uses data from the Programme of International Student Assessment (PISA; see pisa package).
+The required packages can be downloaded from github.</description>
+    </item>
+    
+    <item>
+      <title>User Input using tcl/tk</title>
+      <link>/post/2012-08-13-user-input-using-tcltk/</link>
+      <pubDate>Mon, 13 Aug 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-08-13-user-input-using-tcltk/</guid>
+      <description>I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list.</description>
+    </item>
+    
+    <item>
+      <title>Graphic Parameters (symbols, line types, and colors) for ggplot2</title>
+      <link>/post/2012-04-27-graphic_parameters/</link>
+      <pubDate>Fri, 27 Apr 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-04-27-graphic_parameters/</guid>
+      <description>Following up on John Mount&amp;rsquo;s post on remembering symbol parameters in ggplot2, I decided to give it a try and included symbols, line types, and colors (based upon Earl Glynn&amp;rsquo;s wonderful color chart). Code follows below.
+require(ggplot2) require(grid) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) #Borrowed (i.e. stollen) from http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R getColorHexAndDecimal &amp;lt;- function(color) { if(is.na(color)) { return(NA) } else { c &amp;lt;- col2rgb(color) return(sprintf(&amp;quot;#%02X%02X%02X %3d %3d %3d&amp;quot;, c[1],c[2],c[3], c[1], c[2], c[3])) } }  Symbols ggplot(data=data.</description>
+    </item>
+    
+    <item>
+      <title>Given a room with n people in it, what is the probability any two will have the same birthday?</title>
+      <link>/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/</link>
+      <pubDate>Tue, 31 Jan 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/</guid>
+      <description>Revisiting a fun puzzle I remember first encountering as an undergraduate. Nice example of creating a plot in R using ggplot2. I also plot the probability of someone in the room having the same birthday as you.
+## See http://en.wikipedia.org/wiki/Birthday_problem for an explanation of the problem require(ggplot2) require(reshape) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) birthday &amp;lt;- function(n) { 1 - exp( - n^2 / (2 * 365) ) } myBirthday &amp;lt;- function(n) { 1 - ( (365 - 1) / 365 ) ^ n } d = 200 df = data.</description>
+    </item>
+    
+    <item>
+      <title>Object Oriented Programming in R</title>
+      <link>/post/2012-01-20-object-oriented-programming-in-r/</link>
+      <pubDate>Fri, 20 Jan 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-01-20-object-oriented-programming-in-r/</guid>
+      <description>Constructor Define S3 generic method for the print function. Test code        As someone who was a Java programmer for many years learning R&amp;rsquo;s object oriented programming framework has been frustrating to say the least. I like the simplicity of S3 but find it limiting when you wish to write methods that change the underlying data elements.</description>
+    </item>
+    
+    <item>
+      <title>Retrieving RSS Feeds Using Google Reader</title>
+      <link>/post/2012-01-13-retrieving-rss-feeds-using-google-reader/</link>
+      <pubDate>Fri, 13 Jan 2012 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2012-01-13-retrieving-rss-feeds-using-google-reader/</guid>
+      <description>I have been working on a new package makeR to help manage Sweave projects where you wish to create multiple versions of documents that are based on a single source. For example, I create lots of monthly and quarterly reports using Sweave and the only differences between versions are a few variables. I have used GNU make and Apache ANT but wanted a 100% R solution. I will have more to write about that project in a few weeks.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing Likert Items</title>
+      <link>/post/2011-11-11-visualizing-likert-items/</link>
+      <pubDate>Fri, 11 Nov 2011 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2011-11-11-visualizing-likert-items/</guid>
+      <description>I have become quite a big fan of graphics that combine the features of traditional figures (e.g. bar charts, histograms, etc.) with tables. That is, the combination of numerical results with a visual representation has been quite useful for exploring descriptive statistics. I have wrapped two of my favorites (build around ggplot2) and included them as part of my irutils R package (currently under development). Here is the code and results utilizing two item from the 2009 Programme of International Student Assessment (PISA).</description>
+    </item>
+    
+    <item>
+      <title>Comparing Public and Private Schools</title>
+      <link>/post/2011-04-16-comparing-public-and-private-schools/</link>
+      <pubDate>Sat, 16 Apr 2011 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2011-04-16-comparing-public-and-private-schools/</guid>
+      <description>This a PDF of the poster I will be presenting at the Division of Educational Psychology &amp;amp; Methodology annual poster session on May 2, 2011.
+Comparing Public &amp;amp; Private Schools: An International Perspective using Multilevel Propensity Score Analysis</description>
+    </item>
+    
+    <item>
+      <title>Relationship Between SAT &amp; College Retention</title>
+      <link>/post/2011-01-21-relationship-between-sat-college-retention/</link>
+      <pubDate>Fri, 21 Jan 2011 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2011-01-21-relationship-between-sat-college-retention/</guid>
+      <description>Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post. 
+Here are the results of the regression analysis:    Estimate Std.</description>
+    </item>
+    
+    <item>
+      <title>Recreating Gapminder World Map with R &amp; ggplot2</title>
+      <link>/post/2011-01-11-recreating-gapminder-world-map-with-r-ggplot2/</link>
+      <pubDate>Tue, 11 Jan 2011 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2011-01-11-recreating-gapminder-world-map-with-r-ggplot2/</guid>
+      <description>Gapminder has posted an interesting chart using world development indicators from the World Bank. I thought it would be a good exercise to recreate this chart using R and ggplot2. While playing with the data, not log transforming GDP provides some interesting, and perhaps different, interpretation. The R script and graphics are below.  Google Gadget Version   library(ggplot2) library(reshape) countries = read.csv(&#39;Data/WDI_GDF_Country.csv&#39;, strip.white=TRUE) worldData = read.csv(&#39;Data/WDI_GDF_Data.csv&#39;, strip.white=TRUE) worldData2 = worldData[which(worldData$Series.</description>
+    </item>
+    
+  </channel>
+</rss>

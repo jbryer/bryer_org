@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Bryer.org</title>
+    <link>/project/</link>
+    <description>Recent content in Projects on Bryer.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DAACS</title>
+      <link>/project/daacs/</link>
+      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/daacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PBIS</title>
+      <link>/project/pbis/</link>
+      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/pbis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Likert</title>
+      <link>/project/likert/</link>
+      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/likert/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PSA</title>
+      <link>/project/psa/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/psa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DataCache</title>
+      <link>/project/datacache/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/datacache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PSAboot</title>
+      <link>/project/psaboot/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/psaboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TriMatch</title>
+      <link>/project/trimatch/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/trimatch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipeds</title>
+      <link>/project/ipeds/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/ipeds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multilevelPSA</title>
+      <link>/project/multilevelpsa/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/multilevelpsa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>naep</title>
+      <link>/project/naep/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/naep/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pisa</title>
+      <link>/project/pisa/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/pisa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qualtrics</title>
+      <link>/project/qualtrics/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/qualtrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruca</title>
+      <link>/project/ruca/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/ruca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sqlutils</title>
+      <link>/project/sqlutils/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/sqlutils/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>timeline</title>
+      <link>/project/timeline/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/timeline/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

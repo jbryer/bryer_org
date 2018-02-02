@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent &amp; Upcoming Talks on Bryer.org</title>
+    <link>/talk/</link>
+    <description>Recent content in Recent &amp; Upcoming Talks on Bryer.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
+      <link>/talk/2017-nera/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      
+      <guid>/talk/2017-nera/</guid>
+      <description>The Diagnostic Assessment and Achievement of College Skills (DAACS) is a technology-based, no-stakes diagnostic assessment system on academic and non-academic skills, with fast, actionable feedback. Development and piloting of these assessments at two online colleges is underway. Preliminary validity and reliability evidence of these assessments are reported in this paper.
+Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; Heidi Andrade, Angela Lui, Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY</description>
+    </item>
+    
+    <item>
+      <title>Rethinking Placement Exams: The Diagnostic Assessment and Achievement of College Skills</title>
+      <link>/talk/2018-innovations/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      
+      <guid>/talk/2018-innovations/</guid>
+      <description>This session will introduce a new open source formative assessment developed as an alternative to tradition placement exams that measures self-regulated learning, reading, mathematics, and writing. Results from a pilot study conducted at two large online institutions will be discussed.
+The Diagnostic Assessment and Achievement of College Skills (DAACS) addresses the issues with traditional placement exams and remediation programs by providing students with immediate, detailed, formative feedback. In addition to assessing students in reading, writing, and mathematics, DAACS also assesses non-academic areas such as academic self-regulation, metacognition, strategy use, motivation, self-efficacy, grit, and test anxiety.</description>
+    </item>
+    
+  </channel>
+</rss>

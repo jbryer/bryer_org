@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Teaching on Bryer.org</title>
+    <link>/tags/teaching/</link>
+    <description>Recent content in Teaching on Bryer.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 21 Feb 2016 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/teaching/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shiny App for Bayes Billiards Problem</title>
+      <link>/post/2016-02-21-bayes_billiards_shiny/</link>
+      <pubDate>Sun, 21 Feb 2016 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2016-02-21-bayes_billiards_shiny/</guid>
+      <description>Consider a pool table of length one. An 8-ball is thrown such that the likelihood of its stopping point is uniform across the entire table (i.e. the table is perfectly level). The location of the 8-ball is recorded, but not known to the observer. Subsequent balls are thrown one at a time and all that is reported is whether the ball stopped to the left or right of the 8-ball. Given only this information, what is the position of the 8-ball?</description>
+    </item>
+    
+  </channel>
+</rss>

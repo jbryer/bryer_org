@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.35" />
+  <meta name="author" content="Jason Bryer, Ph.D.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2013-01-12-interactive_sql_in_r/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2013-01-12-interactive_sql_in_r/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@jbryer">
+  <meta property="twitter:creator" content="@jbryer">
+  
+  <meta property="og:site_name" content="Bryer.org">
+  <meta property="og:url" content="/post/2013-01-12-interactive_sql_in_r/">
+  <meta property="og:title" content="Interactive SQL in R | Bryer.org">
+  <meta property="og:description" content="I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2013-01-12T21:13:14-05:00">
+  
+  <meta property="article:modified_time" content="2013-01-12T21:13:14-05:00">
+  
+
+  
+
+  <title>Interactive SQL in R | Bryer.org</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Bryer.org</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+            
+          
+        
+
+        <li class="nav-item">
+          <a href="http://cv.bryer.org" target="_blank" rel="noopener">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Interactive SQL in R</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2013-01-12 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jan 12, 2013
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Interactive%20SQL%20in%20R&amp;url=%2fpost%2f2013-01-12-interactive_sql_in_r%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2013-01-12-interactive_sql_in_r%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2013-01-12-interactive_sql_in_r%2f&amp;title=Interactive%20SQL%20in%20R"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2013-01-12-interactive_sql_in_r%2f&amp;title=Interactive%20SQL%20in%20R"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Interactive%20SQL%20in%20R&amp;body=%2fpost%2f2013-01-12-interactive_sql_in_r%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R. Moreover, I found this to be an interesting exercise in see the power of R as programming language, not just as statistical software. The function described here is part of the <a href="/sqlutils"><code>sqlutils</code></a> package which was created to manage a library of SQL files. More information about that is provided on the <a href="/sqlutils">project page</a> and I will likely have a forthcoming blog post too.</p>
+
+<p>First we need to create a database to interact with. In this example we will use the <code>students</code> data frame from the <a href="/retention"><code>retention</code></a> package. We will save this data frame into a SQLite database using the RSQLite package. The R code to setup the database is provided as a demo in the package. Type <code>demo('isql')</code> to start.</p>
+
+<pre><code>require(sqlutils)
+require(RSQLite)
+require(retention)
+data(students)
+students$CreatedDate = as.character(students$CreatedDate)
+m &lt;- dbDriver(&quot;SQLite&quot;)
+tmpfile &lt;- tempfile('students.db', fileext='.db')
+conn &lt;- dbConnect(m, dbname=tmpfile)
+dbWriteTable(conn, &quot;students&quot;, students[!is.na(students$CreatedDate),])
+</code></pre>
+
+<p>We begin an interactive SQL environment with the <code>isql</code> function. The only required parameter is <code>conn</code> which is the connection to the database that SQL statements will be executed. The <code>sql</code> parameter is optional and sets the initial SQL statement for the session that can be edited or executed.</p>
+
+<pre><code>&gt; hist &lt;- isql(conn=conn, sql=getSQL('StudentSummary'))
+Interactive SQL mode (type quit to exit, help for available commands)...
+SQL&gt;
+help
+   Command      Description
+   ___________  ______________________________________________________
+   quit         quit interactive mode
+   help         display this message
+   sql          enter SQL statement
+   edit         edit SQL in a separate text window
+   print        print the last entered SQL statement
+   exec         execute that last entered SQL statement
+   result       prints the last results
+   save [name]  save the last executed query to the global environment
+SLQ&gt;
+print
+SELECT CreatedDate, count(StudentId) AS count FROM students GROUP BY CreatedDate ORDER BY CreatedDate
+SLQ&gt;
+edit
+</code></pre>
+
+<p><img src="/images/isql-edit-window.png" alt="SQL Edit Window" /></p>
+
+<pre><code>SLQ&gt;
+print
+SELECT CreatedDate, count(StudentId) AS count FROM students GROUP BY CreatedDate ORDER BY CreatedDate
+SLQ&gt;
+exec
+Executing SQL...
+118 rows of 2 variables returned
+SLQ&gt;
+save
+Data frame sql.results saved to global environment
+SLQ&gt;
+quit
+</code></pre>
+
+<p>The <code>isql</code> function returns the history of the session invisibly (that is the results will not be printed but can be assigned to a variable). There are two elements in the returned list, <code>commands</code> is a character vector listing all the commands entered and <code>sql</code> is a character vector containing all the SQL statements entered.</p>
+
+<pre><code>&gt; names(hist)
+[1] &quot;sql&quot;      &quot;commands&quot;
+</code></pre>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r-bloggers">R-Bloggers</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/2013-01-10-function_for_reading_codebooks_in_r/">Reading Codebook Files in R</a></li>
+        
+        <li><a href="/post/2013-01-04-xtable_with_aligned_decimals/">Function for Generating LaTeX Tables with Decimal Aligned Numbers</a></li>
+        
+        <li><a href="/post/2012-12-10-markdown_jekyll_r_for_blogging/">Using (R) Markdown, Jekyll, &amp; Github for a Website</a></li>
+        
+        <li><a href="/post/2012-11-27-fifty_shades_of_grey/">Fifty Shades of Grey in R</a></li>
+        
+        <li><a href="/post/2012-11-21-fun-with-coins/">Fun with coin flips</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jbryer" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

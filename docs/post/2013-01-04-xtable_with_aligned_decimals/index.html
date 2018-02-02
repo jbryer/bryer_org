@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.35" />
+  <meta name="author" content="Jason Bryer, Ph.D.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="The xtable package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX formatting. The xtable.decimal function will create a LaTeX table where numeric columns will be vertically aligned on the decimal point. In addition to specifying the LaTeX alignment code it will also create appropriate column titles so that the column name spans the two resulting columns.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2013-01-04-xtable_with_aligned_decimals/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2013-01-04-xtable_with_aligned_decimals/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@jbryer">
+  <meta property="twitter:creator" content="@jbryer">
+  
+  <meta property="og:site_name" content="Bryer.org">
+  <meta property="og:url" content="/post/2013-01-04-xtable_with_aligned_decimals/">
+  <meta property="og:title" content="Function for Generating LaTeX Tables with Decimal Aligned Numbers | Bryer.org">
+  <meta property="og:description" content="The xtable package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX formatting. The xtable.decimal function will create a LaTeX table where numeric columns will be vertically aligned on the decimal point. In addition to specifying the LaTeX alignment code it will also create appropriate column titles so that the column name spans the two resulting columns.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2013-01-04T21:13:14-05:00">
+  
+  <meta property="article:modified_time" content="2013-01-04T21:13:14-05:00">
+  
+
+  
+
+  <title>Function for Generating LaTeX Tables with Decimal Aligned Numbers | Bryer.org</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Bryer.org</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+            
+          
+        
+
+        <li class="nav-item">
+          <a href="http://cv.bryer.org" target="_blank" rel="noopener">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Function for Generating LaTeX Tables with Decimal Aligned Numbers</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2013-01-04 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jan 4, 2013
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Function%20for%20Generating%20LaTeX%20Tables%20with%20Decimal%20Aligned%20Numbers&amp;url=%2fpost%2f2013-01-04-xtable_with_aligned_decimals%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2013-01-04-xtable_with_aligned_decimals%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2013-01-04-xtable_with_aligned_decimals%2f&amp;title=Function%20for%20Generating%20LaTeX%20Tables%20with%20Decimal%20Aligned%20Numbers"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2013-01-04-xtable_with_aligned_decimals%2f&amp;title=Function%20for%20Generating%20LaTeX%20Tables%20with%20Decimal%20Aligned%20Numbers"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Function%20for%20Generating%20LaTeX%20Tables%20with%20Decimal%20Aligned%20Numbers&amp;body=%2fpost%2f2013-01-04-xtable_with_aligned_decimals%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>The <a href="http://xtable.r-forge.r-project.org/" target="_blank"><code>xtable</code></a> package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX formatting. The <code>xtable.decimal</code> function will create a LaTeX table where  numeric columns will be vertically aligned on the decimal point. In addition to specifying the LaTeX alignment code it will also create appropriate column titles so that the column name spans the two resulting columns. In the following example, we create a data frame with five columns, three of which are <code>numeric</code> that we want to display with aligned decimal places. We also have a column of type <code>character</code> and another of type <code>integer</code>.</p>
+
+<pre><code>&gt; df &lt;- data.frame(Id=letters[1:10],
+        Split1=rnorm(10, mean=0, sd=10),
+        Numbers=1:10,
+        Split2=rnorm(10, mean=-1, sd=.5),
+        Split3=rnorm(10, mean=10, sd=.75))
+#A whole number because prettyNum will not print anything after the decimal point.
+&gt; df[5,'Split1'] = 2
+&gt; df
+    Id      Split1 Numbers     Split2    Split3
+ 1   a -11.4957434       1 -1.0974334 10.895100
+ 2   b  11.5985173       2 -1.6314018  9.539108
+ 3   c   0.1062397       3 -1.1795816 10.788935
+ 4   d   1.1586916       4 -0.4612825 10.462340
+ 5   e   2.0000000       5 -0.5154210  9.279148
+ 6   f  14.1508151       6 -1.1308398 10.001278
+ 7   g  -6.7793246       7  0.3325152 10.026043
+ 8   h   1.4984447       8 -1.3638784 10.373774
+ 9   i   4.1131184       9 -1.2390835 10.996286
+10   j   5.4228637      10 -1.8332372  9.881770
+&gt; str(df)
+'data.frame':   10 obs. of  5 variables:
+ $ Id     : Factor w/ 10 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: 1 2 3 4 5 6 7 8 9 10
+ $ Split1 : num  -0.5072 13.3672 -0.0906 -9.5944 2 ...
+ $ Numbers: int  1 2 3 4 5 6 7 8 9 10
+ $ Split2 : num  -1.359 -0.722 -1.341 -0.359 -1.022 ...
+ $ Split3 : num  9.87 10.29 9.55 8.51 10.36 ...
+</code></pre>
+
+<p>The <code>xtable.decimal</code> function (source code below) has five parameters:</p>
+
+<ul>
+<li><code>x</code> the data frame to convert.</li>
+<li><code>cols</code> the columns to align. This defaults to columns of type <code>numeric</code> but can be specified explicitly as a numeric vector specifying the column position within <code>x</code>.</li>
+<li><code>colAlignment</code> all non-aligned columns will be aligned left (i.e. <code>l</code>) by default. If you wish to align any columns right (<code>r</code>) or centered (<code>c</code>), then create a named vector where the name corresponds to the column name (as identified by <code>names(x)</code>) and the value the new alignment.</li>
+<li><code>tocharFun</code> the function that will be used to convert the column to a character vector. This is <code>prettyNum</code> by default.</li>
+<li><code>...</code> other parameters that are passed to <code>tocharFun</code>, <code>xtable</code>, and <code>print.xtable</code>.</li>
+</ul>
+
+<p>Here we will create the LaTeX table for the data frame created above.</p>
+
+<pre><code> xtable.decimal(df, digits=3,
+     colAlignment=c(Numbers='c'),
+     caption.placement='bottom',
+     caption='Test Data Frame')
+</code></pre>
+
+<p>And the resulting table as it appears in the PDF:</p>
+
+<p><img src="/images/xtable-decimal.png" alt="xtable Output" /></p>
+
+<p>Link to <a href="https://gist.github.com/4458674" target="_blank"><code>xtable.decimal.r</code></a> as a Gist.</p>
+
+<pre><code>require(xtable)
+
+#' Prints a LaTeX table with numeric columns aligned on their decimal points.
+#'
+#' This function wraps the \code{\link{xtable}} and \code{\link{print.xtable}}
+#' functions in the \code{xtable} package so that numeric columns are aligned
+#' on their decimal place.
+#'
+#' See \url{http://jason.bryer.org/posts/2013-01-04/xtable_with_aligned_decimals.html}
+#' for more information.
+#'
+#' @author Jason Bryer &lt;jason@@bryer.org&gt;
+#' @param x a data frame to create a LaTeX table from.
+#' @param cols a numeric vector indicating which columns should be aligned on
+#'        decimal points. It defaults to all columns of type numeric.
+#' @param colAlignment named character vector where each element name corresponds to a
+#         column name and the value is the LaTeX alignment (i.e. l, r, or c).
+#' @param tocharFun the function used to convert the numeric vecotr to a character
+#'        vector. This defaults to \code{\link{prettyNum}}, but other possible
+#'        options are \code{\link{as.character}}, \code{\link{format}},
+#'        \code{\link{formatC}}, or some other custom function.
+#' @param ... other parameters passed to \code{tocharFun}, \code{\link{xtable}},
+#'        and \code{\link{print.xtable}}.
+#' @seealso xtable
+#' @export
+xtable.decimal &lt;- function(x,
+            cols=which(lapply(x, class) == 'numeric'),
+            colAlignment,
+            tocharFun=prettyNum,
+            ...) {
+    splitCol &lt;- function(x, ...) {
+        s &lt;- strsplit(tocharFun(x, ...), split='.', fixed=TRUE)
+        right &lt;- sapply(s, FUN=function(x) { ifelse(length(x) == 2, x[2], '0') })
+        left &lt;- sapply(s, FUN=function(x) { x[1] })
+        data.frame(left=left, right=right, stringsAsFactors=FALSE)
+    }
+
+    cols &lt;- cols[order(cols, decreasing=TRUE)]
+    colnames &lt;- names(x)
+    for(i in cols) {
+        if(i == 1) {
+            tmp &lt;- cbind(splitCol(x[,1], ...), x[,2:ncol(x)])
+            names(tmp)[1:2] &lt;- paste(names(tmp)[1], c('left','right'), sep='.')
+            names(tmp)[3:ncol(x)] &lt;- names(x)[2:ncol(x)]
+            x &lt;- tmp
+        } else if(i == ncol(x)) {
+            tmp &lt;- cbind(x[,1:(ncol(x)-1)], splitCol(x[,ncol(x)], ...))
+            names(tmp)[1:(ncol(tmp)-2)] &lt;- names(x)[1:(ncol(x)-1)]
+            names(tmp)[(ncol(tmp)-1):ncol(tmp)] &lt;- paste(names(x)[ncol(x)],
+                        c('left','right'), sep='.')
+            x &lt;- tmp
+        } else {
+            tmp &lt;- cbind(x[,1:(i-1)], splitCol(x[,i], ...), x[,(i+1):ncol(x)])
+            names(tmp)[1:(i-1)] &lt;- names(x)[1:(i-1)]
+            names(tmp)[i:(i+1)] &lt;- paste(names(x)[i], c('left','right'), sep='.')
+            names(tmp)[(i+2):ncol(tmp)] &lt;- names(x)[(i+1):ncol(x)]
+            x &lt;- tmp
+        }
+    }
+
+    colnames[cols] &lt;- paste('\\multicolumn{2}{c}{', colnames[cols], '}', sep='')
+    colnames &lt;- paste(colnames, collapse=' &amp; ')
+
+    addtorow &lt;- list()
+    addtorow$pos &lt;- list()
+    addtorow$pos[[1]] &lt;- c(0)
+    addtorow$command &lt;- paste( colnames, ' \\\\ ', sep='')
+
+    align &lt;- rep('l', ncol(x))
+    if(!missing(colAlignment)) {
+        for(i in seq_along(colAlignment)) {
+            align[names(x) == names(colAlignment)[i]] &lt;- colAlignment[i]
+        }
+    }
+    align[grep('.left$', names(x), perl=TRUE)] &lt;- 'r@{.}'
+    align &lt;- c('l', align) #Add an alignment for row names
+
+    xtab &lt;- xtable(x, align=align, ...)
+    print(xtab, add.to.row=addtorow, include.rownames=FALSE, include.colnames=FALSE, ...)
+}
+</code></pre>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r-bloggers">R-Bloggers</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/2012-12-10-markdown_jekyll_r_for_blogging/">Using (R) Markdown, Jekyll, &amp; Github for a Website</a></li>
+        
+        <li><a href="/post/2012-11-27-fifty_shades_of_grey/">Fifty Shades of Grey in R</a></li>
+        
+        <li><a href="/post/2012-11-21-fun-with-coins/">Fun with coin flips</a></li>
+        
+        <li><a href="/post/2012-11-17-visualizing-missing-data/">Visualizing Missing Data</a></li>
+        
+        <li><a href="/post/2012-08-13-user-input-using-tcltk/">User Input using tcl/tk</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jbryer" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

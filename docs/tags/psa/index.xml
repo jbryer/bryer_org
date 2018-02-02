@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PSA on Bryer.org</title>
+    <link>/tags/psa/</link>
+    <description>Recent content in PSA on Bryer.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/psa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PSA</title>
+      <link>/project/psa/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/psa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PSAboot</title>
+      <link>/project/psaboot/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/psaboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TriMatch</title>
+      <link>/project/trimatch/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/trimatch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multilevelPSA</title>
+      <link>/project/multilevelpsa/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/multilevelpsa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>useR 2014 Slides for PSAboot and version 1.1. on CRAN</title>
+      <link>/post/2014-07-03-user_2014_psaboot_slides/</link>
+      <pubDate>Thu, 03 Jul 2014 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2014-07-03-user_2014_psaboot_slides/</guid>
+      <description>PSAboot is an R package to assist with bootstrapping propensity score methods. I gave a talk today at the useR! 2014 Conference. The slides can be downloaded from the PSAboot Github page or directly here. The package is described at jason.bryer.org/PSAboot and maintained on Github at github.com/jbryer/PSAboot/.
+Also, version 1.1 of the package was just released to CRAN.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping for Propensity Score Analysis</title>
+      <link>/post/2013-11-26-bootstrapping_for_propensity_score_analysis/</link>
+      <pubDate>Tue, 26 Nov 2013 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2013-11-26-bootstrapping_for_propensity_score_analysis/</guid>
+      <description>I am happy to announce that version 1.0 of the PSAboot package has been released to CRAN. This package implements bootstrapping for propensity score analysis. This deviates from typical implementations such as boot in that it allows for separate sampling specifications for treatment and control units. For example, in the case where the ratio of treatment-to-control units is large, one can bootstrap only the control units while always using all available treatment units.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,72 @@
+---
+title: "Fun with coin flips"
+author: "Jason Bryer"
+date: 2012-11-21T21:13:14-05:00
+categories: ["R"]
+tags: ["R", "R-Bloggers"]
+---
+
+<p>We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this <em>n</em> times and plot it.</p>
+
+<pre><code>probPlot &lt;- function(n=1000) {
+	vals &lt;- rbinom(n=n, size=1, prob=.5)
+	vals[vals==0] &lt;- -1
+	df = data.frame(x=1:length(vals), y=cumsum(vals))
+	range &lt;- c( -max(abs(df$y)), max(abs(df$y)))
+	ggplot(df, aes(x=x, y=y)) +
+		geom_hline(yintercept=0, colour=&#39;blue&#39;) +
+		geom_line() +
+		ylim(range) +
+		ylab(&#39;Cumulative Sum&#39;) +
+		xlab(paste(&#39;Point in sequence 1:n coin flips for n=&#39;,
+			prettyNum(n, big.mark=&#39;,&#39;, scientific=FALSE), sep=&#39;&#39;)) +
+		ggtitle(paste(&#39;Cumulative sums for succession of &#39;,
+			prettyNum(n, big.mark=&#39;,&#39;, scientific=FALSE),
+			&#39; coin flips\nwhere Heads = +1 &amp; Tails = -1&#39;, sep=&#39;&#39;))
+}</code></pre>
+
+<p>The results of <code>probPlot(n=10000)</code> is:</p>
+
+<p><img src='http://jason.bryer.org/coinflip/coin1.png'></p>
+
+<p>But if we run it again we get a different plot:</p>
+
+<p><img src='http://jason.bryer.org/coinflip/coin2.png'></p>
+
+<p>But after 10,000 coin flips, the possible range is 10,000 for all heads or -10,000 for all tails. If we set the range for the y-axis it appears that the cumulative sum is indeed pretty close to 0.</p>
+
+<p><img src='http://jason.bryer.org/coinflip/coin2-2.png'></p>
+
+<!--more-->
+
+<p>Using the <a href='http://animation.yihui.name/'><code>animation</code></a> package, we can quickly create an animation zooming in from the full range to see the variation in the cumulative sum.</p>
+
+<p>
+<pre><code>require(animation)
+set.seed(2112)
+n <- 10000
+nsteps <- 10
+p <- probPlot(n) + ggtitle(NULL)
+steps <- c(n)
+while(steps[length(steps)] / 2 > max(abs(p$data$y))) {
+	steps = c(steps, steps[length(steps)] / 2)
+}
+saveHTML( {
+	for(i in steps) {
+		print( p + ylim(c(-i, i)) )
+	} },
+	interval = 0.5, htmlfile=&#39;cumulativesum.html&#39;, autobrowse=FALSE, outdir=getwd(),
+	title = paste(&#39;Cumulative sums for succession of &#39;,
+		prettyNum(n, big.mark=&#39;,&#39;, scientific=FALSE), &#39; coin flips&#39;, sep=&#39;&#39;),
+	description = paste(&#39;Cumulative sums for succession of &#39;,
+		prettyNum(n, big.mark=',', scientific=FALSE),
+		&#39;coin flips where Heads = +1 and Tails = -1&#39;, sep=&#39;&#39;)
+)</code></pre>
+</p>
+
+<p>
+<iframe src="http://jason.bryer.org/coinflip/cumulativesum.html" width="600" height="600" frameborder="0">
+<a href="http://jason.bryer.org/coinflip/cumulativesum.html">Hmm, you are using a very old browser.
+Click here to go directly to included content.</a>
+</iframe>
+</p>

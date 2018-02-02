@@ -1,0 +1,161 @@
+---
+title: "Relationship Between SAT & College Retention"
+author: "Jason Bryer"
+date: 2011-01-21T21:13:14-05:00
+categories: ["R"]
+tags: ["R", "R-Bloggers"]
+---
+
+
+Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post.
+<p style="text-align: center;"><a href="http://bryer.org/wp-content/uploads/2011/01/SATandRetention.jpeg"><img class="aligncenter size-medium wp-image-122" title="SAT Score Related to Retention" src="http://bryer.org/wp-content/uploads/2011/01/SATandRetention-300x220.jpg" alt="" width="300" height="220" /></a></p>
+Here are the results of the regression analysis:
+<table border="0">
+<tbody>
+<tr>
+<th></th>
+<th>Estimate</th>
+<th>Std. Error</th>
+<th>t value</th>
+<th>Pr(&gt; |t|)</th>
+<th></th>
+</tr>
+<tr>
+<td align="right">(Intercept)</td>
+<td align="right">17.9209</td>
+<td align="right">3.3090</td>
+<td align="right">5.42</td>
+<td align="right">0.0000</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="right">SATWriting</td>
+<td align="right">0.0307</td>
+<td align="right">0.0118</td>
+<td align="right">2.61</td>
+<td align="right">0.0093</td>
+<td align="left">**</td>
+</tr>
+<tr>
+<td align="right">SATMath</td>
+<td align="right">0.0921</td>
+<td align="right">0.0112</td>
+<td align="right">8.19</td>
+<td align="right">0.0000</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="right">AcceptanceTotal</td>
+<td align="right">-0.5566</td>
+<td align="right">1.5400</td>
+<td align="right">-0.36</td>
+<td align="right">0.7179</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right">UseAdmissionTestScoresRecommended</td>
+<td align="right">-8.1989</td>
+<td align="right">2.4935</td>
+<td align="right">-3.29</td>
+<td align="right">0.0011</td>
+<td align="left">**</td>
+</tr>
+<tr>
+<td align="right">UseAdmissionTestScoresRequired</td>
+<td align="right">-4.7632</td>
+<td align="right">2.1289</td>
+<td align="right">-2.24</td>
+<td align="right">0.0256</td>
+<td align="left">*</td>
+</tr>
+<tr>
+<td colspan="5">* p &lt; .05; ** p &lt; .01; *** p &lt; .001</td>
+</tr>
+</tbody>
+</table>
+Residual standard error: 144.5 on 684 degrees of freedom
+(2013 observations deleted due to missingness)
+Multiple R-squared: 0.7376, Adjusted R-squared: 0.7356
+F-statistic: 384.4 on 5 and 684 DF, p-value: &lt; 2.2e-16
+
+&nbsp;
+
+install.packages('ipeds', repos=c('http://R-Forge.R-project.org', 'http://lib.stat.cmu.edu/R/CRAN'), dep=TRUE)
+
+library(ipeds)
+
+library(ggplot2)
+
+#The ipedsHelp function will return the data dictionary for the given surveys.
+
+ipedsHelp('HD', 2008)
+
+ipedsHelp('IC', 2008)
+
+ipedsHelp('EFD', 2008)
+
+directory = getIPEDSSurvey('HD', 2008)
+
+admissions = getIPEDSSurvey('IC', 2008)
+
+retention = getIPEDSSurvey('EFD', 2008)
+
+directory = directory[,c('unitid', 'instnm', 'sector', 'control')]
+
+admissions = admissions[,c('unitid', 'admcon1', 'admcon2', 'admcon7', 'applcnm', 'applcnw', 'applcn', 'admssnm', 'admssnw', 'admssn', 'enrlftm', 'enrlftw', 'enrlptm', 'enrlptw', 'enrlt', 'satnum', 'satpct', 'actnum', 'actpct', 'satvr25', 'satvr75', 'satmt25', 'satmt75', 'satwr25', 'satwr75', 'actcm25', 'actcm75', 'acten25', 'acten75', 'actmt25', 'actmt75', 'actwr25', 'actwr75')]
+
+admissions$admcon1 = factor(admissions$admcon1, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+admissions$admcon2 = factor(admissions$admcon2, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+
+admissions$admcon7 = factor(admissions$admcon7, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+
+names(admissions) = c('unitid', 'UseHSGPA', 'UseHSRank', 'UseAdmissionTestScores', 'ApplicantsMen', 'ApplicantsWomen', 'ApplicantsTotal', 'AdmissionsMen', 'AdmissionsWomen', 'AdmissionsTotal', 'EnrolledFullTimeMen', 'EnrolledFullTimeWomen', 'EnrolledPartTimeMen', 'EnrolledPartTimeWomen', 'EnrolledTotal', 'NumSATScores', 'PercentSATScores', 'NumACTScores', 'PercentACTScores', 'SATReading25', 'SATReading75', 'SATMath25', 'SATMath75', 'SATWriting25', 'SATWriting75', 'ACTComposite25', 'ACTComposite75', 'ACTEnglish25', 'ACTEnglish75', 'ACTMath25', 'ACTMath75', 'ACTWriting25', 'ACTWriting75')
+
+retention = retention[,c('unitid', 'ret_pcf', 'ret_pcp')]
+
+names(retention) = c('unitid', 'FullTimeRetentionRate', 'PartTimeRetentionRate')
+
+#Merge the data frames. Note that schools that do not appear in all three data frames will not be included in the final analysis.
+
+ret = merge(directory, admissions, by='unitid')
+
+ret = merge(ret, retention, by='unitid')
+
+ret2 = ret[ret$UseAdmissionTestScores %in% c('Required', 'Recommended', 'Neither requiered nor recommended'),] #Use schools that require or recommend admission tests
+
+ret2 = ret2[-which(ret2$FullTimeRetentionRate &lt; 20),] #Remove schools with low retention rates. Are these errors in the data?
+
+ret2$SATMath = (ret2$SATMath75 + ret2$SATMath25) / 2
+
+ret2$SATWriting = (ret2$SATWriting75 + ret2$SATWriting25) / 2
+
+ret2$SATTotal = ret2$SATMath + ret2$SATWriting
+
+ret2$AcceptanceTotal = ret2$AdmissionsTotal / ret2$ApplicantsTotal
+
+ret2$UseAdmissionTestScores = as.factor(as.character(ret2$UseAdmissionTestScores))
+
+ggplot(ret2, aes(x=FullTimeRetentionRate)) + geom_histogram(binwidth=1, alpha=.6)
+
+ggplot(ret2, aes(x=SATMath)) + geom_histogram(binwidth=10, alpha=.6)
+
+ggplot(ret2, aes(x=SATWriting)) + geom_histogram(binwidth=10, alpha=.6)
+
+retMath = ret2[,c('unitid', 'SATMath25', 'SATMath75', 'SATMath')]
+
+retMath = melt(retMath, id='unitid')
+
+ggplot(retMath, aes(x=value)) + geom_histogram(binwidth=10, alpha=.6) + facet_wrap(~ variable, ncol=1)
+
+retWriting = ret2[,c('unitid', 'SATWriting25', 'SATWriting75', 'SATWriting')]
+
+retWriting = melt(retWriting, id='unitid')
+
+ggplot(retWriting, aes(x=value)) + geom_histogram(binwidth=10, alpha=.6) + facet_wrap(~ variable, ncol=1)
+
+ggplot(ret2, aes(x=SATTotal, y=FullTimeRetentionRate, size=NumSATScores, color=UseAdmissionTestScores)) + geom_point()
+
+#Regression
+
+fit = lm(FullTimeRetentionRate ~ SATWriting + SATMath + AcceptanceTotal + UseAdmissionTestScores, data=ret2, weights=NumSATScores)
+summary(fit)

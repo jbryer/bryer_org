@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.35" />
+  <meta name="author" content="Jason Bryer, Ph.D.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post. 
+Here are the results of the regression analysis:    Estimate Std.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2011-01-21-relationship-between-sat-college-retention/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Bryer.org">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2011-01-21-relationship-between-sat-college-retention/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@jbryer">
+  <meta property="twitter:creator" content="@jbryer">
+  
+  <meta property="og:site_name" content="Bryer.org">
+  <meta property="og:url" content="/post/2011-01-21-relationship-between-sat-college-retention/">
+  <meta property="og:title" content="Relationship Between SAT &amp; College Retention | Bryer.org">
+  <meta property="og:description" content="Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post. 
+Here are the results of the regression analysis:    Estimate Std.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2011-01-21T21:13:14-05:00">
+  
+  <meta property="article:modified_time" content="2011-01-21T21:13:14-05:00">
+  
+
+  
+
+  <title>Relationship Between SAT &amp; College Retention | Bryer.org</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Bryer.org</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+            
+          
+        
+
+        <li class="nav-item">
+          <a href="http://cv.bryer.org" target="_blank" rel="noopener">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Relationship Between SAT &amp; College Retention</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2011-01-21 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jan 21, 2011
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Relationship%20Between%20SAT%20%26%20College%20Retention&amp;url=%2fpost%2f2011-01-21-relationship-between-sat-college-retention%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2011-01-21-relationship-between-sat-college-retention%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2011-01-21-relationship-between-sat-college-retention%2f&amp;title=Relationship%20Between%20SAT%20%26%20College%20Retention"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2011-01-21-relationship-between-sat-college-retention%2f&amp;title=Relationship%20Between%20SAT%20%26%20College%20Retention"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Relationship%20Between%20SAT%20%26%20College%20Retention&amp;body=%2fpost%2f2011-01-21-relationship-between-sat-college-retention%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post.
+<p style="text-align: center;"><a href="http://bryer.org/wp-content/uploads/2011/01/SATandRetention.jpeg"><img class="aligncenter size-medium wp-image-122" title="SAT Score Related to Retention" src="http://bryer.org/wp-content/uploads/2011/01/SATandRetention-300x220.jpg" alt="" width="300" height="220" /></a></p>
+Here are the results of the regression analysis:
+<table border="0">
+<tbody>
+<tr>
+<th></th>
+<th>Estimate</th>
+<th>Std. Error</th>
+<th>t value</th>
+<th>Pr(&gt; |t|)</th>
+<th></th>
+</tr>
+<tr>
+<td align="right">(Intercept)</td>
+<td align="right">17.9209</td>
+<td align="right">3.3090</td>
+<td align="right">5.42</td>
+<td align="right">0.0000</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="right">SATWriting</td>
+<td align="right">0.0307</td>
+<td align="right">0.0118</td>
+<td align="right">2.61</td>
+<td align="right">0.0093</td>
+<td align="left">**</td>
+</tr>
+<tr>
+<td align="right">SATMath</td>
+<td align="right">0.0921</td>
+<td align="right">0.0112</td>
+<td align="right">8.19</td>
+<td align="right">0.0000</td>
+<td align="left">***</td>
+</tr>
+<tr>
+<td align="right">AcceptanceTotal</td>
+<td align="right">-0.5566</td>
+<td align="right">1.5400</td>
+<td align="right">-0.36</td>
+<td align="right">0.7179</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="right">UseAdmissionTestScoresRecommended</td>
+<td align="right">-8.1989</td>
+<td align="right">2.4935</td>
+<td align="right">-3.29</td>
+<td align="right">0.0011</td>
+<td align="left">**</td>
+</tr>
+<tr>
+<td align="right">UseAdmissionTestScoresRequired</td>
+<td align="right">-4.7632</td>
+<td align="right">2.1289</td>
+<td align="right">-2.24</td>
+<td align="right">0.0256</td>
+<td align="left">*</td>
+</tr>
+<tr>
+<td colspan="5">* p &lt; .05; ** p &lt; .01; *** p &lt; .001</td>
+</tr>
+</tbody>
+</table>
+Residual standard error: 144.5 on 684 degrees of freedom
+(2013 observations deleted due to missingness)
+Multiple R-squared: 0.7376, Adjusted R-squared: 0.7356
+F-statistic: 384.4 on 5 and 684 DF, p-value: &lt; 2.2e-16
+
+&nbsp;
+
+install.packages('ipeds', repos=c('http://R-Forge.R-project.org', 'http://lib.stat.cmu.edu/R/CRAN'), dep=TRUE)
+
+library(ipeds)
+
+library(ggplot2)
+
+#The ipedsHelp function will return the data dictionary for the given surveys.
+
+ipedsHelp('HD', 2008)
+
+ipedsHelp('IC', 2008)
+
+ipedsHelp('EFD', 2008)
+
+directory = getIPEDSSurvey('HD', 2008)
+
+admissions = getIPEDSSurvey('IC', 2008)
+
+retention = getIPEDSSurvey('EFD', 2008)
+
+directory = directory[,c('unitid', 'instnm', 'sector', 'control')]
+
+admissions = admissions[,c('unitid', 'admcon1', 'admcon2', 'admcon7', 'applcnm', 'applcnw', 'applcn', 'admssnm', 'admssnw', 'admssn', 'enrlftm', 'enrlftw', 'enrlptm', 'enrlptw', 'enrlt', 'satnum', 'satpct', 'actnum', 'actpct', 'satvr25', 'satvr75', 'satmt25', 'satmt75', 'satwr25', 'satwr75', 'actcm25', 'actcm75', 'acten25', 'acten75', 'actmt25', 'actmt75', 'actwr25', 'actwr75')]
+
+admissions$admcon1 = factor(admissions$admcon1, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+admissions$admcon2 = factor(admissions$admcon2, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+
+admissions$admcon7 = factor(admissions$admcon7, levels=c(1,2,3,4,-1,-2), labels=c('Required', 'Recommended', 'Neither requiered nor recommended', 'Do not know', 'Not reported', 'Not applicable'))
+
+names(admissions) = c('unitid', 'UseHSGPA', 'UseHSRank', 'UseAdmissionTestScores', 'ApplicantsMen', 'ApplicantsWomen', 'ApplicantsTotal', 'AdmissionsMen', 'AdmissionsWomen', 'AdmissionsTotal', 'EnrolledFullTimeMen', 'EnrolledFullTimeWomen', 'EnrolledPartTimeMen', 'EnrolledPartTimeWomen', 'EnrolledTotal', 'NumSATScores', 'PercentSATScores', 'NumACTScores', 'PercentACTScores', 'SATReading25', 'SATReading75', 'SATMath25', 'SATMath75', 'SATWriting25', 'SATWriting75', 'ACTComposite25', 'ACTComposite75', 'ACTEnglish25', 'ACTEnglish75', 'ACTMath25', 'ACTMath75', 'ACTWriting25', 'ACTWriting75')
+
+retention = retention[,c('unitid', 'ret_pcf', 'ret_pcp')]
+
+names(retention) = c('unitid', 'FullTimeRetentionRate', 'PartTimeRetentionRate')
+
+#Merge the data frames. Note that schools that do not appear in all three data frames will not be included in the final analysis.
+
+ret = merge(directory, admissions, by='unitid')
+
+ret = merge(ret, retention, by='unitid')
+
+ret2 = ret[ret$UseAdmissionTestScores %in% c('Required', 'Recommended', 'Neither requiered nor recommended'),] #Use schools that require or recommend admission tests
+
+ret2 = ret2[-which(ret2$FullTimeRetentionRate &lt; 20),] #Remove schools with low retention rates. Are these errors in the data?
+
+ret2$SATMath = (ret2$SATMath75 + ret2$SATMath25) / 2
+
+ret2$SATWriting = (ret2$SATWriting75 + ret2$SATWriting25) / 2
+
+ret2$SATTotal = ret2$SATMath + ret2$SATWriting
+
+ret2$AcceptanceTotal = ret2$AdmissionsTotal / ret2$ApplicantsTotal
+
+ret2$UseAdmissionTestScores = as.factor(as.character(ret2$UseAdmissionTestScores))
+
+ggplot(ret2, aes(x=FullTimeRetentionRate)) + geom_histogram(binwidth=1, alpha=.6)
+
+ggplot(ret2, aes(x=SATMath)) + geom_histogram(binwidth=10, alpha=.6)
+
+ggplot(ret2, aes(x=SATWriting)) + geom_histogram(binwidth=10, alpha=.6)
+
+retMath = ret2[,c('unitid', 'SATMath25', 'SATMath75', 'SATMath')]
+
+retMath = melt(retMath, id='unitid')
+
+ggplot(retMath, aes(x=value)) + geom_histogram(binwidth=10, alpha=.6) + facet_wrap(~ variable, ncol=1)
+
+retWriting = ret2[,c('unitid', 'SATWriting25', 'SATWriting75', 'SATWriting')]
+
+retWriting = melt(retWriting, id='unitid')
+
+ggplot(retWriting, aes(x=value)) + geom_histogram(binwidth=10, alpha=.6) + facet_wrap(~ variable, ncol=1)
+
+ggplot(ret2, aes(x=SATTotal, y=FullTimeRetentionRate, size=NumSATScores, color=UseAdmissionTestScores)) + geom_point()
+
+#Regression
+
+fit = lm(FullTimeRetentionRate ~ SATWriting + SATMath + AcceptanceTotal + UseAdmissionTestScores, data=ret2, weights=NumSATScores)
+summary(fit)
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r-bloggers">R-Bloggers</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/2011-01-11-recreating-gapminder-world-map-with-r-ggplot2/">Recreating Gapminder World Map with R &amp; ggplot2</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jbryer" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+
