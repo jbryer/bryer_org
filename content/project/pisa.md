@@ -6,7 +6,7 @@ date = "2016-04-27"
 title = "pisa"
 
 # Project summary to display on homepage.
-summary = "	A data-only R package for the 2009 Programme of International Student Assessment (PISA) conducted by Organisation for Economic Co-operation and Development (OECD)."
+summary = "A data-only R package for the 2009 Programme of International Student Assessment (PISA) conducted by Organisation for Economic Co-operation and Development (OECD)."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "bubbles.jpg"

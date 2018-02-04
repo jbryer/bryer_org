@@ -30,7 +30,7 @@ weight = 5
   year = 2009
 
 [[education.courses]]
-  course = "B.S.. in Mathematics"
+  course = "B.S. in Mathematics"
   institution = "The College of Saint Rose"
   year = 1999
  
