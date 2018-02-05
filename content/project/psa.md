@@ -6,7 +6,7 @@ date = "2017-01-31"
 title = "PSA"
 
 # Project summary to display on homepage.
-summary = "Propensity Score Analysis (PSA) is a statistical approach for estimating causal effects from observational studies. This project includes materials from workshops taught, an Shiny application for conduction PSA, and an early draft of a PSA book."
+summary = "Propensity Score Analysis (PSA) is a statistical approach for estimating causal effects from observational studies. This project includes materials from workshops taught, an Shiny application for conducting PSA, and an early draft of a PSA book."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "DAACSHex.png"
