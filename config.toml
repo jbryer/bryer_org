@@ -8,7 +8,7 @@ baseurl = "/"
 publishDir = "docs/"
 
 # Title of your site
-title = "Bryer.org"
+title = "Jason Bryer"
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
