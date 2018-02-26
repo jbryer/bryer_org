@@ -38,6 +38,23 @@
     </item>
     
     <item>
+      <title>Introduction to Shiny</title>
+      <link>/talk/2018-03-03-open_data_day/</link>
+      <pubDate>Fri, 03 Mar 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2018-03-03-open_data_day/</guid>
+      <description>&lt;p&gt;I will be teaching a short Introduction to Shiny as part of the Open Data Day.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Open Data Day is a collection of local gatherings of open government advocates, developers, programmers, statisticians, and citizens who want to build things with and promote the use of open data through project hacking. The next Open Data Day is March 3, 2018. The event welcomes participants from all backgrounds, interests, and skill sets with a common enthusiasm for transparency. In addition to project hacking, participants can learn about some of the tools in the open data toolkit by joining in the training workshops.&lt;/p&gt;
+
+&lt;p&gt;Event website: &lt;a href=&#34;http://opendataalbany.org/&#34; target=&#34;_blank&#34;&gt;http://opendataalbany.org/&lt;/a&gt;
+Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34; target=&#34;_blank&#34;&gt;https://opendatadayalbany.splashthat.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>PSA</title>
       <link>/project/psa/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
@@ -149,15 +166,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/project/pisa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>qualtrics</title>
-      <link>/project/qualtrics/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/qualtrics/</guid>
       <description></description>
     </item>
     

@@ -41,6 +41,15 @@
     
     <url>
     
+      <loc>/talk/2018-03-03-open_data_day/</loc>
+      <lastmod>2017-03-03T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/project/psa/</loc>
       <lastmod>2017-01-31T00:00:00+00:00</lastmod>
     </url>
@@ -608,7 +617,7 @@
     
     <url>
     
-      <loc>/categories/r/</loc>
+      <loc>/tags/r/</loc>
       <lastmod>2016-02-22T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -618,7 +627,7 @@
     
     <url>
     
-      <loc>/tags/r/</loc>
+      <loc>/categories/r/</loc>
       <lastmod>2016-02-22T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
