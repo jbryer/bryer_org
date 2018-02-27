@@ -278,6 +278,11 @@ defaultContentLanguageInSubdir = false
   weight = 5
 
 [[menu.main]]
+  name = "Talks"
+  url = "/talk"
+  weight = 5
+
+[[menu.main]]
   name = "CV"
   url = "http://cv.bryer.org"
   #url = "https://github.com/jbryer/CV/blob/master/Bryer.CV.pdf?raw=true"
