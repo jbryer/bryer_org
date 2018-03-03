@@ -63,10 +63,10 @@ defaultContentLanguageInSubdir = false
 
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "jason@bryer.org"
+  email = "jason.bryer@gmail.com"
   address = "7 Columbia Circle, Albany, NY 12203"
   #office_hours = "Monday 10:00 to 13:00 or email for appointment"
-  phone = "518-542-0375"
+  phone = "518-464-8594"
   #skype = "echo123"
   #telegram = ""
 
