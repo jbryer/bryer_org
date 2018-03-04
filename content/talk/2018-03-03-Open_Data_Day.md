@@ -20,9 +20,9 @@ selected = false
 
 # Links (optional).
 url_pdf = ""
-url_slides = ""
+url_slides = "https://github.com/jbryer/ShinyApps/blob/master/Slides/2018-03-01-IntroShiny.pdf"
 url_video = ""
-url_code = ""
+url_code = "https://github.com/jbryer/ShinyApps"
 
 # Does the content use math formatting?
 math = true
