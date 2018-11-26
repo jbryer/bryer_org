@@ -1,0 +1,70 @@
+---
+layout: default	
+title: multilevelPSA
+subtitle: Propensity Score Ranges
+published: false
+status: process
+submenu: multilevelPSA
+---
+
+Note: The following is included as a demo in the `multilevelPSA` package. Type `demo(pisa)` to start.
+
+In this example we will explore the differences between private and public schools using the Programme of International Student Assessment (PISA). Since there are international differences in how private and public schools operate, propensity scores will be estimated separately for each country.
+
+```{r setup, message=FALSE, results='hide'}
+require(multilevelPSA)
+require(party)
+data(pisana)
+data(pisa.colnames)
+data(pisa.psa.cols)
+```
+
+Proportion of private and public school students in each country.
+
+```{r proptable}
+prop.table(table(pisana$CNT, pisana$PUBPRIV, useNA='ifany'), 1) * 100
+```
+
+### Phase I: Estimate Propensity Scores
+
+We will use the `ctree` function in the `party` package to stratify students.
+
+```{r ctree,cache=TRUE}
+mlctree = mlpsa.ctree(pisana[,c('CNT','PUBPRIV',pisa.psa.cols)], 
+					  formula=PUBPRIV ~ ., level2='CNT')
+student.party = getStrata(mlctree, pisana, level2='CNT')
+```
+
+```{r treeplot}
+tree.plot(mlctree, level2Col=pisana$CNT)
+```
+
+```{r mathscore}
+#NOTE: This is not entirely correct but is sufficient for visualization purposes.
+#See mitools package for combining multiple plausible values.
+student.party$mathscore = apply(student.party[,paste0('PV', 1:5, 'MATH')], 1, sum) / 5
+```
+
+### Phase II: Estimate effects of math score
+
+```{r phase2,cache=TRUE}
+results.psa.math = mlpsa(response=student.party$mathscore, 
+						 treatment=student.party$PUBPRIV, 
+						 strata=student.party$strata, 
+						 level2=student.party$CNT, minN=5)
+summary(results.psa.math)
+```
+
+#### Multilevel PSA Assessment Plot
+
+```{r pisapsaplot}
+plot(results.psa.math)
+```
+
+#### Multilevel Difference Plot
+
+```{r diffplot}
+mlpsa.difference.plot(results.psa.math,  sd=mean(student.party$mathscore, na.rm=TRUE))
+```
+
+

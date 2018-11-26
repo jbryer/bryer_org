@@ -82,6 +82,42 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
     </item>
     
     <item>
+      <title>Efficacy of the Diagnostic Assessment and Achievement of College Students on Multiple Success Indicators</title>
+      <link>/talk/2019-aera-efficacy/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-aera-efficacy/</guid>
+      <description>&lt;p&gt;The purpose of this study is to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a no-stakes, open-source, formative assessment tool designed to measure newly enrolled college students’ reading, writing, mathematics, and self-regulated learning (SRL) skills, and provide them with feedback and resources to enhance their functioning and success. A randomized control trial was performed at two online colleges (n = 17,687) to measure the effects in terms of academic achievement and credit acquisition. Predictive power of DAACS on student success were also examined. Results highlights the importance of using DAACS as a suite of assessments and supports, and not as isolated components.&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Feedback on Writing for College Success: Machine Scoring of Essays on Self-Regulated Learning</title>
+      <link>/talk/2018-sigwriting/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2018-sigwriting/</guid>
+      <description>&lt;p&gt;This paper describes an ongoing project in which on-demand writing is used as part of a diagnostic evaluation of newly admitted college students. The authors will present preliminary evidence of the validity and reliability of human and machine scored essays and the usefulness of the feedback provided to students on their writing and their self-regulated learning. The purpose of the project, the Diagnostic Assessment and Achievement of College Skills (DAACS), is to develop a no-stakes diagnostic assessment designed to help students transition to college. Research suggests that mindset, self-regulation, and grit are predictors of college success (Duckworth, Peterson, Matthews, &amp;amp; Kelly, 2007; Zimmerman &amp;amp; Schunk, 2011). DAACS provides feedback to students about their strengths and weaknesses in mathematics, reading, and writing, as well as their self-regulated learning (SRL) skills, and links students to appropriate resources and support. For the writing assessment, students write an essay reflecting on the results of a survey about their self-regulated learning skills. In addition to encouraging students to reflect on their SRL, the writing assessment provides feedback about their writing and directs them towards relevant writing resources. Although this approach is similar to Directed Self-Placement (Gere et al., 2010), DAACS is not intended to be used for placement; rather, it helps students determine whether they need support as writers. The scoring rubric developed for this assessment includes five criteria: content, organization, paragraphs, sentences, and conventions. An open source, automated program called Lightside was trained with hundreds of essays scored by human raters. Preliminary results indicate acceptable agreement between human and machine scores, and high rates of student and advisor satisfaction. These results and implications for uses of machine scoring of essays will be presented.&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Relationship Between Intraclass Correlation (ICC) and Percent Agreement</title>
+      <link>/talk/2019-ncme-irrsim/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-ncme-irrsim/</guid>
+      <description>&lt;p&gt;Inter-rater reliability (IRR) is a critical component of establishing the reliability of measures when more than one rater is necessary. There are numerous IRR statistics available to researchers including percent rater agreement, Cohen&amp;rsquo;s Kappa, and several types of intraclass correlations (ICC). Several methodologists suggest using ICC over percent rater agreement (Hallgren, 2012; Koo &amp;amp; Li, 2016; McGraw &amp;amp; Wong, 1996; Shrout &amp;amp; Fleiss, 1979). However, the literature provides little guidance on the interpretation of ICC results. This article explores the relationship between ICC and percent rater agreement using simulations. Results suggest that ICC and percent rater agreement are highly correlated ($R^2 &amp;gt; 0.9$) for most designs.&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Rethinking Placement Exams: The Diagnostic Assessment and Achievement of College Skills</title>
       <link>/talk/2018-innovations/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
@@ -112,6 +148,18 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
     </item>
     
     <item>
+      <title>Validity and Reliability of the DAACS Writing Assessment</title>
+      <link>/talk/2019-ncme-writing/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-ncme-writing/</guid>
+      <description>&lt;p&gt;The DAACS system assesses incoming college students’ readiness in reading, writing, mathematics, and self-regulated learning. The purpose of this study is to examine validity and reliability evidence for the internal structure of the writing assessment. The evidence suggests that our conceptual framework holds for both human and machine scored essays.&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
       <title>DTedit</title>
       <link>/project/dtedit/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
@@ -135,42 +183,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/project/psaboot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>TriMatch</title>
-      <link>/project/trimatch/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/trimatch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipeds</title>
-      <link>/project/ipeds/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/ipeds/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>multilevelPSA</title>
-      <link>/project/multilevelpsa/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/multilevelpsa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>naep</title>
-      <link>/project/naep/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/naep/</guid>
       <description></description>
     </item>
     

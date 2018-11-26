@@ -68,6 +68,33 @@
     
     <url>
     
+      <loc>/talk/2019-aera-efficacy/</loc>
+      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/talk/2018-sigwriting/</loc>
+      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/talk/2019-ncme-irrsim/</loc>
+      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/talk/2018-innovations/</loc>
       <lastmod>2017-01-01T00:00:00-05:00</lastmod>
     </url>
@@ -78,6 +105,15 @@
     <url>
     
       <loc>/talk/2018-dtl/</loc>
+      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/talk/2019-ncme-writing/</loc>
       <lastmod>2017-01-01T00:00:00-05:00</lastmod>
     </url>
     
@@ -546,36 +582,6 @@
     
     <url>
     
-      <loc>/tags/daacs/</loc>
-      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/data/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/education/</loc>
-      <lastmod>2014-07-04T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>/tags/education/</loc>
       <lastmod>2014-07-04T21:13:14-05:00</lastmod>
       <priority>0</priority>
@@ -626,7 +632,7 @@
     
     <url>
     
-      <loc>/tags/r/</loc>
+      <loc>/categories/r/</loc>
       <lastmod>2016-02-22T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -636,7 +642,7 @@
     
     <url>
     
-      <loc>/categories/r/</loc>
+      <loc>/tags/r/</loc>
       <lastmod>2016-02-22T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -648,26 +654,6 @@
     
       <loc>/tags/r-bloggers/</loc>
       <lastmod>2016-02-22T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/r-packages/</loc>
-      <lastmod>2018-01-07T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/shiny/</loc>
-      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -688,6 +674,56 @@
     
       <loc>/tags/teaching/</loc>
       <lastmod>2016-02-21T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/daacs/</loc>
+      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/data/</loc>
+      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/education/</loc>
+      <lastmod>2014-07-04T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/r-packages/</loc>
+      <lastmod>2018-01-07T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/shiny/</loc>
+      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

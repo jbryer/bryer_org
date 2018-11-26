@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shiny on Jason Bryer</title>
+    <title>shiny on Jason Bryer</title>
     <link>/tags/shiny/</link>
-    <description>Recent content in Shiny on Jason Bryer</description>
+    <description>Recent content in shiny on Jason Bryer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
