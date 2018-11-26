@@ -17,12 +17,10 @@
       
     
   
-  <meta name="description" content="I have started an R Users Group for the Albany, NY area. Hopefully we get enough interest that we can host a meeting in the next couple of months. Please feel free to share with your colleagues and friends.
-www.meetup.com/Albany-R-Users-Group
-Feel free to email me or leave comment on this page or on the Meetup page if you are interested in giving a talk or hosting some future meeting.">
+  <meta name="description" content="RStudio recently updated Shiny to allow for editable DataTables. Their implementations allows for editing cells direclty with in the DataTable view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2014-03-20-albany_r_users_group/">
+  <link rel="alternate" hreflang="en-us" href="/post/2018-22-26-dtedit/">
 
   
 
@@ -69,7 +67,7 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2014-03-20-albany_r_users_group/">
+  <link rel="canonical" href="/post/2018-22-26-dtedit/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -77,21 +75,19 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
   <meta property="twitter:creator" content="@jbryer">
   
   <meta property="og:site_name" content="Jason Bryer">
-  <meta property="og:url" content="/post/2014-03-20-albany_r_users_group/">
-  <meta property="og:title" content="Albany, NY R Users Group | Jason Bryer">
-  <meta property="og:description" content="I have started an R Users Group for the Albany, NY area. Hopefully we get enough interest that we can host a meeting in the next couple of months. Please feel free to share with your colleagues and friends.
-www.meetup.com/Albany-R-Users-Group
-Feel free to email me or leave comment on this page or on the Meetup page if you are interested in giving a talk or hosting some future meeting.">
+  <meta property="og:url" content="/post/2018-22-26-dtedit/">
+  <meta property="og:title" content="Editable DataTables for Shiny Applications | Jason Bryer">
+  <meta property="og:description" content="RStudio recently updated Shiny to allow for editable DataTables. Their implementations allows for editing cells direclty with in the DataTable view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2014-03-20T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-11-26T21:13:14-05:00">
   
-  <meta property="article:modified_time" content="2014-03-20T21:13:14-05:00">
-  
-
+  <meta property="article:modified_time" content="2018-11-26T21:13:14-05:00">
   
 
-  <title>Albany, NY R Users Group | Jason Bryer</title>
+  
+
+  <title>Editable DataTables for Shiny Applications | Jason Bryer</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -252,7 +248,7 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
 
 
   <div class="article-container">
-    <h1 itemprop="name">Albany, NY R Users Group</h1>
+    <h1 itemprop="name">Editable DataTables for Shiny Applications</h1>
 
     
 
@@ -260,8 +256,8 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
 
   <span class="article-date">
     
-    <time datetime="2014-03-20 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      March 20, 2014
+    <time datetime="2018-11-26 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+      November 26, 2018
     </time>
   </span>
   <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
@@ -293,35 +289,35 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Albany%2c%20NY%20R%20Users%20Group&amp;url=%2fpost%2f2014-03-20-albany_r_users_group%2f"
+         href="https://twitter.com/intent/tweet?text=Editable%20DataTables%20for%20Shiny%20Applications&amp;url=%2fpost%2f2018-22-26-dtedit%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2014-03-20-albany_r_users_group%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-22-26-dtedit%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2014-03-20-albany_r_users_group%2f&amp;title=Albany%2c%20NY%20R%20Users%20Group"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-22-26-dtedit%2f&amp;title=Editable%20DataTables%20for%20Shiny%20Applications"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2014-03-20-albany_r_users_group%2f&amp;title=Albany%2c%20NY%20R%20Users%20Group"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-22-26-dtedit%2f&amp;title=Editable%20DataTables%20for%20Shiny%20Applications"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Albany%2c%20NY%20R%20Users%20Group&amp;body=%2fpost%2f2014-03-20-albany_r_users_group%2f">
+         href="mailto:?subject=Editable%20DataTables%20for%20Shiny%20Applications&amp;body=%2fpost%2f2018-22-26-dtedit%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -335,11 +331,70 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
 
 
     <div class="article-style" itemprop="articleBody">
-      <p>I have started an <a href="http://www.meetup.com/Albany-R-Users-Group" target="_blank">R Users Group</a> for the Albany, NY area. Hopefully we get enough interest that we can host a meeting in the next couple of months. Please feel free to share with your colleagues and friends.</p>
+      
 
-<p><a href="http://www.meetup.com/Albany-R-Users-Group" target="_blank">www.meetup.com/Albany-R-Users-Group</a></p>
+<p><a href="https://rstudio.com" target="_blank">RStudio</a> recently updated <a href="https://shiny.rstudio.com" target="_blank">Shiny</a> to allow for <a href="https://blog.rstudio.com/2018/03/29/dt-0-4/" target="_blank">editable <code>DataTables</code></a>. Their implementations allows for editing cells direclty with in the <code>DataTable</code> view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable. The <code>DTedit</code> package takes the editing out of the table view and instead presents the user with a <a href="https://shiny.rstudio.com/articles/modal-dialogs.html" target="_blank">modal dialog</a> for editing table contents (see screenshot below).</p>
 
-<p>Feel free to <a href="mailto:jason@bryer.org" target="_blank">email me</a> or leave comment on this page or on the Meetup page if you are interested in giving a talk or hosting some future meeting.</p>
+<p>To get started, use the <code>devtools</code> package to install the latest development version of <code>DTedit</code>:</p>
+
+<pre><code>devtools::install_github('jbryer/DTedit')
+</code></pre>
+
+<p>The <code>dtedit_demo</code> will run a sample <code>shiny</code> app with to editable data tables.</p>
+
+<pre><code>DTedit::dtedit_demo()
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/jbryer/DTedit/master/inst/screens/dtedit_books_edit.png" alt="DTedit Screen Shot" /></p>
+
+<h2 id="getting-started-with-dtedit">Getting Started with <code>DTedit</code></h2>
+
+<p>You can download a simple shiny app using <code>DTedit</code> <a href="https://github.com/jbryer/DTedit/blob/master/inst/template/app.R" target="_blank">from Github</a>.</p>
+
+<p>There are three steps to using <code>DTedit</code> in your shiny application.</p>
+
+<h4 id="1-define-callback-function-for-inserting-updating-and-deleting-data">1. Define callback function for inserting, updating, and deleting data.</h4>
+
+<pre><code>my.insert.callback &lt;- function(data, row) {
+	mydata &lt;- rbind(data, mydata)
+	return(mydata)
+}
+
+my.update.callback &lt;- function(data, olddata, row) {
+	mydata[row,] &lt;- data[1,]
+	return(mydata)
+}
+
+my.delete.callback &lt;- function(data, row) {
+	mydata[row,] &lt;- NULL
+	return(mydata)
+}
+</code></pre>
+
+<p>Typically these functions would interact with a database. As written here, the data would be lost between shiny sessions.</p>
+
+<h4 id="2-create-the-dtedit-object-within-your-server-function">2. Create the <code>dtedit</code> object within your <code>server</code> function.</h4>
+
+<pre><code>DTedit::dtedit(input, output,
+	   name = 'mycontacts',
+	   thedata = mydata,
+	   edit.cols = c('name', 'email', 'useR', 'notes'),
+	   edit.label.cols = c('Name', 'Email Address', 'Are they an R user?', 'Additional notes'),
+	   input.types = c(notes='textAreaInput'),
+	   view.cols = c('name', 'email', 'useR'),
+	   callback.update = my.update.callback,
+	   callback.insert = my.insert.callback,
+	   callback.delete = my.delete.callback)
+</code></pre>
+
+<p>The <code>input</code> and <code>output</code> are passed from the <code>server</code> function. The <code>name</code> parameter will define the name of the object available to the <code>uiOutput</code>. The <code>thedata</code> is a <code>data.frame</code> for the initial view of the data table. This can be an empty (i.e. no rows) <code>data.frame</code>. The structure of the <code>data.frame</code> will define the inputs (e.g. <code>factor</code>s will be drop down, <code>Date</code> will use <code>dateInput</code>, <code>numeric</code>s will use <code>numericInput</code>, etc.). There are many other parameters to custom the behavior of <code>dtedit</code>, see <code>?dtedit</code> for the full list.</p>
+
+<h4 id="3-use-uioutput-in-your-ui-to-display-the-editable-data-table">3. Use <code>uiOutput</code> in your UI to display the editable data table.</h4>
+
+<p>The <code>name</code> you will pass to <code>uiOutput</code> is the name you passed to the <code>dtedit</code> created on the server side.</p>
+
+<pre><code>uiOutput('mycontacts')
+</code></pre>
 
     </div>
 
@@ -364,15 +419,15 @@ Feel free to email me or leave comment on this page or on the Meetup page if you
       <h3>Related</h3>
       <ul>
         
-        <li><a href="/post/2014-02-20-loading_and_installing_packages/">Function to Simplify Loading and Installing Packages</a></li>
+        <li><a href="/post/2016-02-22-assessments_with_shiny/">Conducting Assessments and Surveys with Shiny</a></li>
         
-        <li><a href="/post/2013-11-26-bootstrapping_for_propensity_score_analysis/">Bootstrapping for Propensity Score Analysis</a></li>
+        <li><a href="/post/2016-02-21-bayes_billiards_shiny/">Shiny App for Bayes Billiards Problem</a></li>
         
-        <li><a href="/post/2013-11-12-workshop_and_talk_slides_from_neair/">Workshop and Talk Slides from NEAIR Conference</a></li>
+        <li><a href="/post/2014-07-29-data_caching/">Data Caching</a></li>
         
-        <li><a href="/post/2013-05-08-gamblers_run_with_shiny/">Gambler&#39;s Run with Shiny</a></li>
+        <li><a href="/post/2014-07-04-women_graduates_in_math_stats_cis/">Women Graduates in Math, Statistics, and Computer Information Systems</a></li>
         
-        <li><a href="/post/2013-04-18-cut_dates_into_quarters/">Cut Dates into Quarters</a></li>
+        <li><a href="/post/2014-07-03-user_2014_psaboot_slides/">useR 2014 Slides for PSAboot and version 1.1. on CRAN</a></li>
         
       </ul>
     </div>
