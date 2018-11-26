@@ -78,7 +78,7 @@
   <meta property="og:description" content="Executive Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-11-12T21:13:14-05:00">
+  <meta property="og:updated_time" content="2013-11-26T21:13:14-05:00">
   
 
   
@@ -250,6 +250,15 @@
   
   
   <div>
+    <h2><a href="/post/2013-11-26-bootstrapping_for_propensity_score_analysis/">Bootstrapping for Propensity Score Analysis</a></h2>
+    <div class="article-style">
+      
+      I am happy to announce that version 1.0 of the PSAboot package has been released to CRAN. This package implements bootstrapping for propensity score analysis. This deviates from typical implementations such as boot in that it allows for separate sampling specifications for treatment and control units. For example, in the case where the ratio of treatment-to-control units is large, one can bootstrap only the control units while always using all available treatment units.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-11-12-workshop_and_talk_slides_from_neair/">Workshop and Talk Slides from NEAIR Conference</a></h2>
     <div class="article-style">
       
@@ -328,15 +337,6 @@
     <div class="article-style">
       
       One issue I continuously encounter when starting to work with a new dataset is that of the codebook. In general, I prefer to load a codebook into R like any other data source, specifically as a data frame. And ideally, one data frame to provides the variable names with descriptions and any other meta data available, and a separate list of named vectors that can be used to recode factors.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2013-01-04-xtable_with_aligned_decimals/">Function for Generating LaTeX Tables with Decimal Aligned Numbers</a></h2>
-    <div class="article-style">
-      
-      The xtable package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX formatting. The xtable.decimal function will create a LaTeX table where numeric columns will be vertically aligned on the decimal point. In addition to specifying the LaTeX alignment code it will also create appropriate column titles so that the column name spans the two resulting columns.
       
     </div>
   </div>

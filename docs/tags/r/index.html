@@ -78,7 +78,7 @@
   <meta property="og:description" content="Executive Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2016-02-22T21:13:14-05:00">
+  <meta property="og:updated_time" content="2018-11-26T21:13:14-05:00">
   
 
   
@@ -250,6 +250,15 @@
   
   
   <div>
+    <h2><a href="/post/2018-22-26-dtedit/">Editable DataTables for Shiny Applications</a></h2>
+    <div class="article-style">
+      
+      RStudio recently updated Shiny to allow for editable DataTables. Their implementations allows for editing cells direclty with in the DataTable view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2016-02-22-assessments_with_shiny/">Conducting Assessments and Surveys with Shiny</a></h2>
     <div class="article-style">
       
@@ -326,15 +335,6 @@ devtools::install_github(&lsquo;jbryer/Rgitbook&rsquo;)  I have only tested this
       
       One of the more tedious parts of working with R is maintaining my R library. To make my R scripts reproducible and sharable, I will install packages if they are not available. For example, the top of my R scripts tend to look something like this:
 if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !require(benchmark)) { install.packages(c(&lsquo;devtools&rsquo;,&lsquo;ggplot2&rsquo;,&lsquo;psych&rsquo;,&lsquo;lme4&rsquo;,&lsquo;benchmark&rsquo;)) }  This has worked fine for some time, but I felt there was a better approach.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2013-11-26-bootstrapping_for_propensity_score_analysis/">Bootstrapping for Propensity Score Analysis</a></h2>
-    <div class="article-style">
-      
-      I am happy to announce that version 1.0 of the PSAboot package has been released to CRAN. This package implements bootstrapping for propensity score analysis. This deviates from typical implementations such as boot in that it allows for separate sampling specifications for treatment and control units. For example, in the case where the ratio of treatment-to-control units is large, one can bootstrap only the control units while always using all available treatment units.
       
     </div>
   </div>

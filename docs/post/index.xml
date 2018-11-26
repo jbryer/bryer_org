@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Editable DataTables for Shiny Applications</title>
+      <link>/post/2018-22-26-dtedit/</link>
+      <pubDate>Mon, 26 Nov 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-22-26-dtedit/</guid>
+      <description>RStudio recently updated Shiny to allow for editable DataTables. Their implementations allows for editing cells direclty with in the DataTable view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable.</description>
+    </item>
+    
+    <item>
       <title>Conducting Assessments and Surveys with Shiny</title>
       <link>/post/2016-02-22-assessments_with_shiny/</link>
       <pubDate>Mon, 22 Feb 2016 21:13:14 -0500</pubDate>

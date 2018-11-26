@@ -11,6 +11,79 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Editable DataTables for Shiny Applications</title>
+      <link>/post/2018-22-26-dtedit/</link>
+      <pubDate>Mon, 26 Nov 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-22-26-dtedit/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://rstudio.com&#34; target=&#34;_blank&#34;&gt;RStudio&lt;/a&gt; recently updated &lt;a href=&#34;https://shiny.rstudio.com&#34; target=&#34;_blank&#34;&gt;Shiny&lt;/a&gt; to allow for &lt;a href=&#34;https://blog.rstudio.com/2018/03/29/dt-0-4/&#34; target=&#34;_blank&#34;&gt;editable &lt;code&gt;DataTables&lt;/code&gt;&lt;/a&gt;. Their implementations allows for editing cells direclty with in the &lt;code&gt;DataTable&lt;/code&gt; view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable. The &lt;code&gt;DTedit&lt;/code&gt; package takes the editing out of the table view and instead presents the user with a &lt;a href=&#34;https://shiny.rstudio.com/articles/modal-dialogs.html&#34; target=&#34;_blank&#34;&gt;modal dialog&lt;/a&gt; for editing table contents (see screenshot below).&lt;/p&gt;
+
+&lt;p&gt;To get started, use the &lt;code&gt;devtools&lt;/code&gt; package to install the latest development version of &lt;code&gt;DTedit&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&#39;jbryer/DTedit&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;dtedit_demo&lt;/code&gt; will run a sample &lt;code&gt;shiny&lt;/code&gt; app with to editable data tables.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DTedit::dtedit_demo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/jbryer/DTedit/master/inst/screens/dtedit_books_edit.png&#34; alt=&#34;DTedit Screen Shot&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;getting-started-with-dtedit&#34;&gt;Getting Started with &lt;code&gt;DTedit&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;You can download a simple shiny app using &lt;code&gt;DTedit&lt;/code&gt; &lt;a href=&#34;https://github.com/jbryer/DTedit/blob/master/inst/template/app.R&#34; target=&#34;_blank&#34;&gt;from Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are three steps to using &lt;code&gt;DTedit&lt;/code&gt; in your shiny application.&lt;/p&gt;
+
+&lt;h4 id=&#34;1-define-callback-function-for-inserting-updating-and-deleting-data&#34;&gt;1. Define callback function for inserting, updating, and deleting data.&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;my.insert.callback &amp;lt;- function(data, row) {
+	mydata &amp;lt;- rbind(data, mydata)
+	return(mydata)
+}
+
+my.update.callback &amp;lt;- function(data, olddata, row) {
+	mydata[row,] &amp;lt;- data[1,]
+	return(mydata)
+}
+
+my.delete.callback &amp;lt;- function(data, row) {
+	mydata[row,] &amp;lt;- NULL
+	return(mydata)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Typically these functions would interact with a database. As written here, the data would be lost between shiny sessions.&lt;/p&gt;
+
+&lt;h4 id=&#34;2-create-the-dtedit-object-within-your-server-function&#34;&gt;2. Create the &lt;code&gt;dtedit&lt;/code&gt; object within your &lt;code&gt;server&lt;/code&gt; function.&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;DTedit::dtedit(input, output,
+	   name = &#39;mycontacts&#39;,
+	   thedata = mydata,
+	   edit.cols = c(&#39;name&#39;, &#39;email&#39;, &#39;useR&#39;, &#39;notes&#39;),
+	   edit.label.cols = c(&#39;Name&#39;, &#39;Email Address&#39;, &#39;Are they an R user?&#39;, &#39;Additional notes&#39;),
+	   input.types = c(notes=&#39;textAreaInput&#39;),
+	   view.cols = c(&#39;name&#39;, &#39;email&#39;, &#39;useR&#39;),
+	   callback.update = my.update.callback,
+	   callback.insert = my.insert.callback,
+	   callback.delete = my.delete.callback)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;input&lt;/code&gt; and &lt;code&gt;output&lt;/code&gt; are passed from the &lt;code&gt;server&lt;/code&gt; function. The &lt;code&gt;name&lt;/code&gt; parameter will define the name of the object available to the &lt;code&gt;uiOutput&lt;/code&gt;. The &lt;code&gt;thedata&lt;/code&gt; is a &lt;code&gt;data.frame&lt;/code&gt; for the initial view of the data table. This can be an empty (i.e. no rows) &lt;code&gt;data.frame&lt;/code&gt;. The structure of the &lt;code&gt;data.frame&lt;/code&gt; will define the inputs (e.g. &lt;code&gt;factor&lt;/code&gt;s will be drop down, &lt;code&gt;Date&lt;/code&gt; will use &lt;code&gt;dateInput&lt;/code&gt;, &lt;code&gt;numeric&lt;/code&gt;s will use &lt;code&gt;numericInput&lt;/code&gt;, etc.). There are many other parameters to custom the behavior of &lt;code&gt;dtedit&lt;/code&gt;, see &lt;code&gt;?dtedit&lt;/code&gt; for the full list.&lt;/p&gt;
+
+&lt;h4 id=&#34;3-use-uioutput-in-your-ui-to-display-the-editable-data-table&#34;&gt;3. Use &lt;code&gt;uiOutput&lt;/code&gt; in your UI to display the editable data table.&lt;/h4&gt;
+
+&lt;p&gt;The &lt;code&gt;name&lt;/code&gt; you will pass to &lt;code&gt;uiOutput&lt;/code&gt; is the name you passed to the &lt;code&gt;dtedit&lt;/code&gt; created on the server side.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uiOutput(&#39;mycontacts&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>DAACS</title>
       <link>/project/daacs/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
@@ -174,15 +247,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/project/datacache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PSAboot</title>
-      <link>/project/psaboot/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/psaboot/</guid>
       <description></description>
     </item>
     
