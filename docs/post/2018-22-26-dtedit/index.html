@@ -355,6 +355,8 @@
 
 <h4 id="1-define-callback-function-for-inserting-updating-and-deleting-data">1. Define callback function for inserting, updating, and deleting data.</h4>
 
+<p><em>NOTE: These callback functions assume that <code>mydata</code> is already defined somewhere outside the callback functions. See the <a href="https://github.com/jbryer/DTedit/blob/master/inst/template/app.R" target="_blank">template</a> for the complete example using <code>data.frames</code>, or <a href="https://github.com/jbryer/DTedit/tree/master/inst/shiny_demo" target="_blank">this demo</a> for an example using <code>RSQLite</code>.</em></p>
+
 <pre><code>my.insert.callback &lt;- function(data, row) {
 	mydata &lt;- rbind(data, mydata)
 	return(mydata)
@@ -366,7 +368,7 @@ my.update.callback &lt;- function(data, olddata, row) {
 }
 
 my.delete.callback &lt;- function(data, row) {
-	mydata[row,] &lt;- NULL
+	mydata &lt;- mydata[-row,]
 	return(mydata)
 }
 </code></pre>
