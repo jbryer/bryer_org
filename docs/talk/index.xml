@@ -23,6 +23,16 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     </item>
     
     <item>
+      <title>Intro to Predictive Modeling</title>
+      <link>/talk/2019-01-22-intro_to_predictive_modeling/</link>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-01-22-intro_to_predictive_modeling/</guid>
+      <description>This workshop will introduce the basic concepts and procedures for predictive modeling in R including:
+ How to evaluate the quality of predictive models using confusion matrices and ROC curves Classification and regression trees (CART methods) Ensemble methods (e.g. random forests, boosting, bagging) Discussion of issues and limitations of &amp;ldquo;black box&amp;rdquo; predictive modeling  </description>
+    </item>
+    
+    <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>

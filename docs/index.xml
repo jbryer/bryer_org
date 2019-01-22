@@ -139,6 +139,25 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     </item>
     
     <item>
+      <title>Intro to Predictive Modeling</title>
+      <link>/talk/2019-01-22-intro_to_predictive_modeling/</link>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-01-22-intro_to_predictive_modeling/</guid>
+      <description>&lt;p&gt;This workshop will introduce the basic concepts and procedures for predictive modeling in R including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to evaluate the quality of predictive models using confusion matrices and ROC curves&lt;/li&gt;
+&lt;li&gt;Classification and regression trees (CART methods)&lt;/li&gt;
+&lt;li&gt;Ensemble methods (e.g. random forests, boosting, bagging)&lt;/li&gt;
+&lt;li&gt;Discussion of issues and limitations of &amp;ldquo;black box&amp;rdquo; predictive modeling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
@@ -240,15 +259,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/project/dtedit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DataCache</title>
-      <link>/project/datacache/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/datacache/</guid>
       <description></description>
     </item>
     

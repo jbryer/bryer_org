@@ -1,1 +1,1 @@
-Personal Website: http://bryer.org
+Personal Website: http://www.bryer.org
