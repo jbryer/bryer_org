@@ -2076,8 +2076,7 @@ ggplot(grey50, aes(x=x, y=y, fill=c, label=c, color=t)) +
       <pubDate>Wed, 21 Nov 2012 21:13:14 -0500</pubDate>
       
       <guid>/post/2012-11-21-fun-with-coins/</guid>
-      <description>
-&lt;p&gt;We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this &lt;em&gt;n&lt;/em&gt; times and plot it.&lt;/p&gt;
+      <description>&lt;p&gt;We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this &lt;em&gt;n&lt;/em&gt; times and plot it.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;probPlot &amp;lt;- function(n=1000) {
 	vals &amp;lt;- rbinom(n=n, size=1, prob=.5)
@@ -2108,7 +2107,7 @@ ggplot(grey50, aes(x=x, y=y, fill=c, label=c, color=t)) +
 
 &lt;p&gt;&lt;img src=&#39;http://jason.bryer.org/coinflip/coin2-2.png&#39;&gt;&lt;/p&gt;
 
-HUGOMORE42
+&lt;!--more--&gt;
 
 &lt;p&gt;Using the &lt;a href=&#39;http://animation.yihui.name/&#39;&gt;&lt;code&gt;animation&lt;/code&gt;&lt;/a&gt; package, we can quickly create an animation zooming in from the full range to see the variation in the cumulative sum.&lt;/p&gt;
 
@@ -2702,9 +2701,7 @@ plotBarchartTable(items28, low.color=&#39;maroon&#39;, high.color=&#39;burlywood
       <pubDate>Sat, 16 Apr 2011 21:13:14 -0500</pubDate>
       
       <guid>/post/2011-04-16-comparing-public-and-private-schools/</guid>
-      <description>
-
-&lt;p&gt;This a PDF of the poster I will be presenting at the Division of Educational Psychology &amp;amp; Methodology annual poster session on May 2, 2011.&lt;/p&gt;
+      <description>&lt;p&gt;This a PDF of the poster I will be presenting at the Division of Educational Psychology &amp;amp; Methodology annual poster session on May 2, 2011.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://bryer.org/wp-content/uploads/2011/04/PISA.24x36.pdf&#34;&gt;Comparing Public &amp;amp; Private Schools: An International Perspective using Multilevel Propensity Score Analysis&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -2715,9 +2712,7 @@ plotBarchartTable(items28, low.color=&#39;maroon&#39;, high.color=&#39;burlywood
       <pubDate>Fri, 21 Jan 2011 21:13:14 -0500</pubDate>
       
       <guid>/post/2011-01-21-relationship-between-sat-college-retention/</guid>
-      <description>
-
-Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post.
+      <description>Here is a quick analysis of the relationship between SAT score and student retention. The data is from the Integrated Postsecondary Education Data System (IPEDS) and analyzed using R. This was a quick analysis and would be careful about making any strong conclusions. The source for running this analysis along with some additional graphics that are not included in this post.
 &lt;p style=&#34;text-align: center;&#34;&gt;&lt;a href=&#34;http://bryer.org/wp-content/uploads/2011/01/SATandRetention.jpeg&#34;&gt;&lt;img class=&#34;aligncenter size-medium wp-image-122&#34; title=&#34;SAT Score Related to Retention&#34; src=&#34;http://bryer.org/wp-content/uploads/2011/01/SATandRetention-300x220.jpg&#34; alt=&#34;&#34; width=&#34;300&#34; height=&#34;220&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 Here are the results of the regression analysis:
 &lt;table border=&#34;0&#34;&gt;
@@ -2878,8 +2873,7 @@ summary(fit)
       <pubDate>Tue, 11 Jan 2011 21:13:14 -0500</pubDate>
       
       <guid>/post/2011-01-11-recreating-gapminder-world-map-with-r-ggplot2/</guid>
-      <description>
-&lt;a href=&#34;http://bryer.org/wp-content/uploads/2011/01/Gapminder_ggplot_lowGDP1.jpeg&#34;&gt;
+      <description>&lt;a href=&#34;http://bryer.org/wp-content/uploads/2011/01/Gapminder_ggplot_lowGDP1.jpeg&#34;&gt;
 &lt;/a&gt;Gapminder has posted an interesting &lt;a href=&#34;http://www.gapminder.org/downloads/gapminder-world-map/&#34; target=&#34;_blank&#34;&gt;chart&lt;/a&gt; using &lt;a href=&#34;http://data.worldbank.org/data-catalog/world-development-indicators&#34; target=&#34;_blank&#34;&gt;world development indicators&lt;/a&gt; from the World Bank. I thought it would be a good exercise to recreate this chart using R and ggplot2. While playing with the data, not log transforming GDP provides some interesting, and perhaps different, interpretation. The R script and graphics are below.
 
 &lt;img class=&#34;alignnone&#34; title=&#34;Gapminder&#34; src=&#34;http://www.gapminder.org/GapminderMedia/wp-uploads/images/gw_chart_2010.jpg&#34; alt=&#34;&#34; width=&#34;660&#34; height=&#34;466&#34; /&gt;

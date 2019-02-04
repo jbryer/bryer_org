@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.50" />
+  <meta name="generator" content="Hugo 0.49.2" />
   <meta name="author" content="Jason Bryer, Ph.D.">
 
   
@@ -331,8 +331,7 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      
-<p>We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this <em>n</em> times and plot it.</p>
+      <p>We all know that the odds of flipping an unbiased coin is 50% heads, 50% tails. But what happens if you do this a lot of times. Do you expect the same number of heads and tails? What if we took a cumulative sum where heads = +1 and tails = -1. What would that sum be? Here is a function that will do this <em>n</em> times and plot it.</p>
 
 <pre><code>probPlot &lt;- function(n=1000) {
 	vals &lt;- rbinom(n=n, size=1, prob=.5)
@@ -363,7 +362,7 @@
 
 <p><img src='http://jason.bryer.org/coinflip/coin2-2.png'></p>
 
-HUGOMORE42
+<!--more-->
 
 <p>Using the <a href='http://animation.yihui.name/'><code>animation</code></a> package, we can quickly create an animation zooming in from the full range to see the variation in the cumulative sum.</p>
 

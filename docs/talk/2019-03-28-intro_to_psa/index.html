@@ -17,10 +17,10 @@
       
     
   
-  <meta name="description" content="I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list.">
+  <meta name="description" content="The use of propensity score methods (Rosenbaum &amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2012-08-13-user-input-using-tcltk/">
+  <link rel="alternate" hreflang="en-us" href="/talk/2019-03-28-intro_to_psa/">
 
   
 
@@ -67,7 +67,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2012-08-13-user-input-using-tcltk/">
+  <link rel="canonical" href="/talk/2019-03-28-intro_to_psa/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -75,19 +75,19 @@
   <meta property="twitter:creator" content="@jbryer">
   
   <meta property="og:site_name" content="Jason Bryer">
-  <meta property="og:url" content="/post/2012-08-13-user-input-using-tcltk/">
-  <meta property="og:title" content="User Input using tcl/tk | Jason Bryer">
-  <meta property="og:description" content="I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list.">
+  <meta property="og:url" content="/talk/2019-03-28-intro_to_psa/">
+  <meta property="og:title" content="Intro to Propensity Score Analysis | Jason Bryer">
+  <meta property="og:description" content="The use of propensity score methods (Rosenbaum &amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2012-08-13T21:13:14-05:00">
+  <meta property="article:published_time" content="2017-01-01T18:00:00-05:00">
   
-  <meta property="article:modified_time" content="2012-08-13T21:13:14-05:00">
-  
-
+  <meta property="article:modified_time" content="2017-01-01T18:00:00-05:00">
   
 
-  <title>User Input using tcl/tk | Jason Bryer</title>
+  
+
+  <title>Intro to Propensity Score Analysis | Jason Bryer</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -241,83 +241,53 @@
   </div>
 </nav>
 
-
-<article class="article" itemscope itemtype="http://schema.org/Article">
+<div class="pub" itemscope itemtype="http://schema.org/Event">
 
   
 
 
   <div class="article-container">
-    <h1 itemprop="name">User Input using tcl/tk</h1>
 
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2012-08-13 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      August 13, 2012
-    </time>
-  </span>
-  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Bryer, Ph.D.">
-  </span>
-
-  
-
-  
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="/categories/r">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-  
+    <div class="pub-title">
+      <h1 itemprop="name">Intro to Propensity Score Analysis</h1>
+      <span class="pub-authors" itemprop="author">
+        
+      </span>
+      <span class="pull-right">
+        
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=User%20Input%20using%20tcl%2ftk&amp;url=%2fpost%2f2012-08-13-user-input-using-tcltk%2f"
+         href="https://twitter.com/intent/tweet?text=Intro%20to%20Propensity%20Score%20Analysis&amp;url=%2ftalk%2f2019-03-28-intro_to_psa%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2012-08-13-user-input-using-tcltk%2f"
+         href="https://www.facebook.com/sharer.php?u=%2ftalk%2f2019-03-28-intro_to_psa%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2012-08-13-user-input-using-tcltk%2f&amp;title=User%20Input%20using%20tcl%2ftk"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2ftalk%2f2019-03-28-intro_to_psa%2f&amp;title=Intro%20to%20Propensity%20Score%20Analysis"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2012-08-13-user-input-using-tcltk%2f&amp;title=User%20Input%20using%20tcl%2ftk"
+         href="http://service.weibo.com/share/share.php?url=%2ftalk%2f2019-03-28-intro_to_psa%2f&amp;title=Intro%20to%20Propensity%20Score%20Analysis"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=User%20Input%20using%20tcl%2ftk&amp;body=%2fpost%2f2012-08-13-user-input-using-tcltk%2f">
+         href="mailto:?subject=Intro%20to%20Propensity%20Score%20Analysis&amp;body=%2ftalk%2f2019-03-28-intro_to_psa%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -325,151 +295,81 @@
 </div>
 
 
-  
+      </span>
+    </div>
 
-</div>
+    
+      <br>
+    
 
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
+          <div class="col-xs-12 col-sm-9" itemprop="datePublished">
+            
+            March 28, 2019
+            <div class="talk-time">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
 
-    <div class="article-style" itemprop="articleBody">
-      <p>I was inspired by Kay Cichini  recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list. While I was at it I also provided an optional separate vector for the labels (defaults to the variable names) that the user will see and a vector of functions used to convert the text input into another data format (e.g. convert characters to numeric values). Obviously using built in functions works great but one could also easily exploit this feature to write custom data validation functions. The function is hosted on Gist and embedded bellow. Here are some very basic examples:</p>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Event</div>
+          <div class="col-xs-12 col-sm-9">
+            <a href="https://www.meetup.com/Albany-R-Users-Group/events/258674208/" target="_blank" rel="noopener">
+            Albany R Users&rsquo; Group
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
 
-<p>Dialog box with two variables.</p>
+    
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Location</div>
+          <div class="col-xs-12 col-sm-9">Albany, NY</div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
+    
 
-<pre><code>&gt; vals &lt;- varEntryDialog(vars=c('Variable1', 'Variable2'))
-</code></pre>
+    
 
-<p><img src="http://jason.bryer.org/images/VariableUI1.jpg" alt="" /></p>
+    <div class="space-below"></div>
 
-<pre><code>&gt; str(vals)
-List of 2
-$ Variable1: chr &quot;value 1&quot;
-$ Variable2: chr &quot;value 2&quot;
-</code></pre>
+    <div class="article-style">
+      <p>The use of propensity score methods (Rosenbaum &amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters. R (R Core Team, 2012) is ideal for conducting PSA given its wide availability of the most current statistical methods vis-à-vis add-on packages as well as its superior graphics capabilities.</p>
 
-<p>Dialog box with two variables, custom labels, and converts one to an integer.</p>
+<p>This talk will provide a theoretical overview of propensity score methods as well as illustrations and discussion of PSA applications. Methods used in phase I of PSA (i.e. models or methods for estimating propensity scores) include logistic regression, classification trees, and matching. Discussions on appropriate comparisons and estimations of effect size and confidence intervals in phase II will also be covered. The use of graphics for diagnosing covariate balance as well as summarizing overall results will be emphasized.</p>
 
-<pre><code>&gt; vals &lt;- varEntryDialog(vars=c('Var1', 'Var2'), labels=c('Enter an integer:', 'Enter a string:'), fun=c(as.integer, as.character))
-</code></pre>
-
-<p><img src="http://jason.bryer.org/images/VariableUI2.jpg" alt="" /></p>
-
-<pre><code>&gt; str(vals)
-List of 2
-$ Var1: int 5
-$ Var2: chr &quot;abc&quot;
-</code></pre>
-
-<p>Dialog box with validation.</p>
-
-<pre><code>&gt; vals &lt;- varEntryDialog(vars=c('Var1'), labels=c('Enter an integer between 0 and 10:'), fun=c(
-function(x) {
-     x &lt;- as.integer(x)
-     if(x &gt;= 0 &amp; x &lt;= 10) {
-         return(x)
-     } else {
-         stop(&quot;Why didn't you follow instruction!\nPlease enter a number between 0 and 10.&quot;)
-     }
- } ))
-</code></pre>
-
-<p><img src="http://jason.bryer.org/images/VariableUI3.jpg" alt="" /></p>
-
-<p><img src="http://jason.bryer.org/images/VariableUI4.jpg" alt="" /></p>
-
-<p><img src="http://jason.bryer.org/images/VariableUI5.jpg" alt="" /></p>
-
-<pre><code>&gt; str(vals)
-List of 1
-$ Var1: int 2
-</code></pre>
-
-<p>User inputs a comma separated list that is split into a character vector.</p>
-
-<pre><code>&gt; vals &lt;- varEntryDialog(vars=c('Var1'),
-     labels=c('Enter a comma separated list of something:'),
-     fun=c(function(x) {
-         return(strsplit(x, split=','))
- }))
-</code></pre>
-
-<p><img src="http://jason.bryer.org/images/VariableUI6.jpg" alt="" /></p>
-
-<pre><code>&gt; vals$Var1
-[[1]]
-[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
-&gt; str(vals)
-List of 1
-$ Var1:List of 1
-..$ : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
-</code></pre>
+<hr />
 
     </div>
 
     
-
-
-<div class="article-tags">
-  
-  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
-  
-  <a class="btn btn-primary btn-outline" href="/tags/r-bloggers">R-Bloggers</a>
-  
-</div>
-
-
-
-
-    
-    
-    <div class="article-widget">
-      <div class="hr-light"></div>
-      <h3>Related</h3>
-      <ul>
-        
-        <li><a href="/post/2012-04-27-graphic_parameters/">Graphic Parameters (symbols, line types, and colors) for ggplot2</a></li>
-        
-        <li><a href="/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/">Given a room with n people in it, what is the probability any two will have the same birthday?</a></li>
-        
-        <li><a href="/post/2012-01-20-object-oriented-programming-in-r/">Object Oriented Programming in R</a></li>
-        
-        <li><a href="/post/2012-01-13-retrieving-rss-feeds-using-google-reader/">Retrieving RSS Feeds Using Google Reader</a></li>
-        
-        <li><a href="/post/2011-11-11-visualizing-likert-items/">Visualizing Likert Items</a></li>
-        
-      </ul>
-    </div>
-    
-
-    
-
-    
-<section id="comments">
-  <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "jbryer" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</section>
-
 
 
   </div>
-</article>
+</div>
+
+
 
 <footer class="site-footer">
   <div class="container">
@@ -550,6 +450,13 @@ $ Var1:List of 1
       <script>hljs.initHighlightingOnLoad();</script>
     
 
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
     
     
 

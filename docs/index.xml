@@ -158,6 +158,20 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     </item>
     
     <item>
+      <title>Intro to Propensity Score Analysis</title>
+      <link>/talk/2019-03-28-intro_to_psa/</link>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-03-28-intro_to_psa/</guid>
+      <description>&lt;p&gt;The use of propensity score methods (Rosenbaum &amp;amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp;amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters. R (R Core Team, 2012) is ideal for conducting PSA given its wide availability of the most current statistical methods vis-à-vis add-on packages as well as its superior graphics capabilities.&lt;/p&gt;
+
+&lt;p&gt;This talk will provide a theoretical overview of propensity score methods as well as illustrations and discussion of PSA applications. Methods used in phase I of PSA (i.e. models or methods for estimating propensity scores) include logistic regression, classification trees, and matching. Discussions on appropriate comparisons and estimations of effect size and confidence intervals in phase II will also be covered. The use of graphics for diagnosing covariate balance as well as summarizing overall results will be emphasized.&lt;/p&gt;
+
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
@@ -251,15 +265,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
 
 &lt;hr /&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>DTedit</title>
-      <link>/project/dtedit/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/dtedit/</guid>
-      <description></description>
     </item>
     
   </channel>

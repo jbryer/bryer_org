@@ -33,6 +33,15 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     </item>
     
     <item>
+      <title>Intro to Propensity Score Analysis</title>
+      <link>/talk/2019-03-28-intro_to_psa/</link>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
+      
+      <guid>/talk/2019-03-28-intro_to_psa/</guid>
+      <description>The use of propensity score methods (Rosenbaum &amp;amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp;amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters.</description>
+    </item>
+    
+    <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>

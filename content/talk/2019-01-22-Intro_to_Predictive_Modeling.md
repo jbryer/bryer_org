@@ -20,9 +20,9 @@ selected = false
 
 # Links (optional).
 url_pdf = ""
-url_slides = ""
+url_slides = "https://github.com/jbryer/talks/raw/master/2018-01-IntroPredictiveModeling/IntroPredictiveModeling.pdf"
 url_video = ""
-url_code = ""
+url_code = "https://github.com/jbryer/talks/tree/master/2018-01-IntroPredictiveModeling"
 
 # Does the content use math formatting?
 math = true
