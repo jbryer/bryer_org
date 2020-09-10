@@ -12,7 +12,7 @@ title = "Jason Bryer"
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy; 2018"
+copyright = "&copy; 2020"
 
 theme = "hugo-academic"
 enableEmoji = true
@@ -55,18 +55,18 @@ defaultContentLanguageInSubdir = false
 
   # Your details.
   name = "Jason Bryer, Ph.D."
-  role = "Executive Director"
+  role = "Assistant Professor"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Excelsior College", url = "https://excelsior.edu" }, {name = "DAACS", url = "https://daacs.net"} ]
+  organizations = [ { name = "CUNY", url = "https://sps.cuny.edu" }, {name = "DAACS", url = "https://daacs.net"} ]
 
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "jason.bryer@gmail.com"
-  address = "7 Columbia Circle, Albany, NY 12203"
+  email = "jason@bryer.org"
+  address = "119 W 31st St, New York, NY 10001"
   #office_hours = "Monday 10:00 to 13:00 or email for appointment"
-  phone = "518-464-8594"
+  phone = ""
   #skype = "echo123"
   #telegram = ""
 
