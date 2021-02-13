@@ -90,7 +90,7 @@ The one disadvantage of this approach is that it is more difficult to run the Sh
 
 
 ```{r, eval=FALSE}
-#' Save the Shiny App to an app.R file.
+#' Save the Shiny App to ui.R, server.R, and global.R file.
 #'
 #' This function will create three files in the \code{out_dir}: \code{server.R},
 #' \code{ui.R}, and \code{global.R}. The contents of \code{server.R} and
