@@ -78,7 +78,17 @@ shiny_ui &amp;lt;- function() {
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_shiny_app()
 my_shiny_app(thedata = iris)
 my_shiny_app(thedata = mtcars)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. To address this issue the &lt;code&gt;save_shiny_app&lt;/code&gt; function will save the server and ui functions in the package to a &lt;code&gt;server.R&lt;/code&gt; and &lt;code&gt;ui.R&lt;/code&gt; script files in the specified directory. Additionally, it will create a &lt;code&gt;global.R&lt;/code&gt; file that loads the &lt;code&gt;shiny&lt;/code&gt; package and any other required packages as specified in the &lt;code&gt;pkgs&lt;/code&gt; parameter.&lt;/p&gt;
+&lt;div id=&#34;running-on-a-shiny-server&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Running on a Shiny server&lt;/h4&gt;
+&lt;p&gt;The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. There are two approaches to this:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option 1: A simple &lt;code&gt;app.R&lt;/code&gt; script&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When using a single R script for shiny (i.e. &lt;code&gt;app.R&lt;/code&gt;) the key is that teh script must call &lt;code&gt;shiny::shinyApp&lt;/code&gt;. Similar to the &lt;code&gt;my_shiny_app&lt;/code&gt; function above, we can simply call the function with our UI and server functions. In this script we are sourcing the &lt;code&gt;shiny_param_test.R&lt;/code&gt; script but when in a package you would replace that with loading the package and references the UI and shiny functions in the package when calling &lt;code&gt;shinyApp&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(shiny)
+source(&amp;#39;shiny_param_test.R&amp;#39;)
+shiny::shinyApp(ui = shiny_ui,
+                server = shiny_server)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Option 2: Generate R scripts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;save_shiny_app&lt;/code&gt; function below will save the server and ui functions in the package to a &lt;code&gt;server.R&lt;/code&gt; and &lt;code&gt;ui.R&lt;/code&gt; script files in the specified directory. Additionally, it will create a &lt;code&gt;global.R&lt;/code&gt; file that loads the &lt;code&gt;shiny&lt;/code&gt; package and any other required packages as specified in the &lt;code&gt;pkgs&lt;/code&gt; parameter.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; Save the Shiny App to ui.R, server.R, and global.R file.
 #&amp;#39;
 #&amp;#39; This function will create three files in the \code{out_dir}: \code{server.R},
@@ -124,6 +134,7 @@ save_shiny_app &amp;lt;- function(ui_function,
         runApp(appDir = out_dir)
     }
 }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
     </item>
     

@@ -6,10 +6,10 @@ date = "2021-02-11"
 title = "brickset"
 
 # Project summary to display on homepage.
-summary = "An R package to interface with the Brickset.com API for getting data about LEGO sets"
+summary = "<img src='img/brickset.png' align='right' width='125' />An R package to interface with the Brickset.com API for getting data about LEGO sets"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
-# image_preview = "bubbles.jpg"
+#image_preview = "brickset.png"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`

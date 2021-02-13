@@ -86,7 +86,25 @@ my_shiny_app(thedata = iris)
 my_shiny_app(thedata = mtcars)
 ```
 
-The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. To address this issue the `save_shiny_app` function will save the server and ui functions in the package to a `server.R` and `ui.R` script files in the specified directory. Additionally, it will create a `global.R` file that loads the `shiny` package and any other required packages as specified in the `pkgs` parameter.
+#### Running on a Shiny server
+
+The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. There are two approaches to this:
+
+**Option 1: A simple `app.R` script**
+
+When using a single R script for shiny (i.e. `app.R`) the key is that teh script must call `shiny::shinyApp`. Similar to the `my_shiny_app` function above, we can simply call the function with our UI and server functions. In this script we are sourcing the `shiny_param_test.R` script but when in a package you would replace that with loading the package and references the UI and shiny functions in the package when calling `shinyApp`.
+
+```{r, eval=FALSE}
+library(shiny)
+source('shiny_param_test.R')
+shiny::shinyApp(ui = shiny_ui,
+                server = shiny_server)
+```
+
+
+**Option 2: Generate R scripts**
+
+The `save_shiny_app` function below will save the server and ui functions in the package to a `server.R` and `ui.R` script files in the specified directory. Additionally, it will create a `global.R` file that loads the `shiny` package and any other required packages as specified in the `pkgs` parameter.
 
 
 ```{r, eval=FALSE}
