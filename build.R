@@ -14,7 +14,7 @@ options(blogdown.hugo.version = "0.54.0")
 
 blogdown::serve_site(port = 2112)
 blogdown::stop_server()
-blogdown::build_site()
+blogdown::build_site(build_rmd = TRUE)
 
 # When updating stops, try running `hugo` in the terminal.
 
