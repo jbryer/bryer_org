@@ -12,6 +12,141 @@
     
     <item>
       <title>Editable DataTables for Shiny Applications</title>
+      <link>/post/2021-02-12-shiny_apps_in_r_packages/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-02-12-shiny_apps_in_r_packages/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; You can test this approach using this &lt;a href=&#34;https://gist.github.com/jbryer/fc8834279189196ead710e89b56d7f88&#34;&gt;Github Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://shiny.rstudio.com&#34;&gt;R Shiny Apps&lt;/a&gt; have become a popular way of creating web applications in R. There are many ways of running Shiny Apps including locally in &lt;a href=&#34;https://rstudio.com/products/rstudio/&#34;&gt;RStudio&lt;/a&gt;, on &lt;a href=&#34;http://www.shinyapps.io/&#34;&gt;Shinyapps.io&lt;/a&gt; or &lt;a href=&#34;https://www.rstudio.com/products/shiny/shiny-server/&#34;&gt;installing the server software&lt;/a&gt; on your own host. I have been increasingly using Shiny apps as a way to demonstrate and interact with R Packages, especially packages I write for teaching purposes. Adding a Shiny app to an R package is relatively easy. In my use cases, I first put the application files (&lt;code&gt;server.R&lt;/code&gt;, &lt;code&gt;ui.R&lt;/code&gt;, and &lt;code&gt;global.R&lt;/code&gt;) in the &lt;code&gt;inst/shiny&lt;/code&gt; directory of my R package. I can then write a package function to run the Shiny app from the installed package directory using a function like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; My Shiny App
+#&amp;#39; @export
+my_shiny_app &amp;lt;- function() {
+    shiny::runApp(appDir = system.file(&amp;#39;shiny&amp;#39;, package=&amp;#39;MY_PACKAGE_NAME&amp;#39;))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This works very well when the entire app is self-contained. However, this does not work if you want to pass parameters to the Shiny app. In my situation, I want to be able to pass different data frames that I can interact with, but still have the Shiny app work if not parameters are passed. The first step to get this to work is to convert the &lt;code&gt;server.R&lt;/code&gt; and &lt;code&gt;ui.R&lt;/code&gt; scripts to functions within the R package. The code is largely the same, but instead of calling the functions we are going to assign them to &lt;code&gt;shiny_server&lt;/code&gt; and &lt;code&gt;shiny_ui&lt;/code&gt;, respectively. I have also included some minimal &lt;a href=&#34;https://github.com/r-lib/roxygen2&#34;&gt;roxygen2&lt;/a&gt; documentation. In particular, the functions need to be in the package’s export file.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; The Shiny App Server.
+#&amp;#39; @param input input set by Shiny.
+#&amp;#39; @param output output set by Shiny.
+#&amp;#39; @param session session set by Shiny.
+#&amp;#39; @export
+shiny_server &amp;lt;- function(input, output, session) {
+    if(!exists(&amp;#39;thedata&amp;#39;, envir = parent.env(environment()), inherits = FALSE)) {
+        message(&amp;#39;thedata not available, using default faithful...&amp;#39;)
+        data(faithful, envir = environment())
+        thedata &amp;lt;- faithful
+    }
+
+    output$environment &amp;lt;- renderPrint(
+        print(ls(envir = parent.env(environment())))
+    )
+
+    output$thedata &amp;lt;- renderTable({
+        return(thedata)
+    })
+}
+
+#&amp;#39; The Shiny App UI.
+#&amp;#39; @export
+shiny_ui &amp;lt;- function() {
+    fluidPage(
+        titlePanel(&amp;#39;Shiny Parameter Test&amp;#39;),
+        verbatimTextOutput(&amp;#39;environment&amp;#39;),
+        tableOutput(&amp;#39;thedata&amp;#39;)
+    )
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This Shiny App doesn’t do a lot. It has one user variable, &lt;code&gt;thedata&lt;/code&gt;, and the user interface includes the output of &lt;code&gt;ls&lt;/code&gt; (i.e. what is in the executing environment) and the contents of &lt;code&gt;thedata&lt;/code&gt; (presumed to be a data frame). The important feature here is the first five lines of the &lt;code&gt;shiny_server&lt;/code&gt;. I first check to see if &lt;code&gt;thedata&lt;/code&gt; exists using the &lt;code&gt;!exists(&#39;thedata&#39;, envir = parent.env(environment()), inherits = FALSE)&lt;/code&gt; command. In short, if &lt;code&gt;thedata&lt;/code&gt; is not present, I want to set it to a reasonable default value.&lt;/p&gt;
+&lt;p&gt;When encapsulating the Shiny app in R scripts, using the &lt;code&gt;runApp&lt;/code&gt; function with the &lt;code&gt;appDir&lt;/code&gt; parameter is sufficient. In order to pass variables to the Shiny app, we need to control the environment the app is started in. Below, is a rewrite of the &lt;code&gt;my_shiny_app&lt;/code&gt; app. First, we create a new environment that will contain all of our parameters. Since specifying the parameter is optional, we use the &lt;code&gt;missing&lt;/code&gt; function to check to see if it has a value, and if so assign it to the new environment. We then set the environment to our server and ui functions the newly created environment that now contains our parameters. The rest is similar to creating Shiny apps in a single &lt;code&gt;app.R&lt;/code&gt; file; create the app with the &lt;code&gt;shinyApp&lt;/code&gt; function and start it with the &lt;code&gt;runApp&lt;/code&gt; function, but with the app instead of a directory.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_shiny_app &amp;lt;- function(thedata, ...) {
+    shiny_env &amp;lt;- new.env()
+    if(!missing(thedata)) {
+        print(&amp;#39;Setting parameters&amp;#39;)
+        assign(&amp;#39;thedata&amp;#39;, thedata, shiny_env)
+    }
+    environment(shiny_ui) &amp;lt;- shiny_env
+    environment(shiny_server) &amp;lt;- shiny_env
+    app &amp;lt;- shiny::shinyApp(
+        ui = shiny_ui,
+        server = shiny_server
+    )
+    runApp(app, ...)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now start the Shiny app with the &lt;code&gt;my_shiny_app()&lt;/code&gt; function call. In the first instance, no parameters are passed to the app so the &lt;code&gt;faithful&lt;/code&gt; data frame will be printed. The second and third calls will use the &lt;code&gt;iris&lt;/code&gt; and &lt;code&gt;mtcars&lt;/code&gt; data frames, respectively.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_shiny_app()
+my_shiny_app(thedata = iris)
+my_shiny_app(thedata = mtcars)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. To address this issue the &lt;code&gt;save_shiny_app&lt;/code&gt; function will save the server and ui functions in the package to a &lt;code&gt;server.R&lt;/code&gt; and &lt;code&gt;ui.R&lt;/code&gt; script files in the specified directory. Additionally, it will create a &lt;code&gt;global.R&lt;/code&gt; file that loads the &lt;code&gt;shiny&lt;/code&gt; package and any other required packages as specified in the &lt;code&gt;pkgs&lt;/code&gt; parameter.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; Save the Shiny App to an app.R file.
+#&amp;#39;
+#&amp;#39; This function will create three files in the \code{out_dir}: \code{server.R},
+#&amp;#39; \code{ui.R}, and \code{global.R}. The contents of \code{server.R} and
+#&amp;#39; \code{ui.R} will be the source code of the \code{server_function} and
+#&amp;#39; \code{ui_function}, respectively. The \code{global.R} file will only contain
+#&amp;#39; \code{library} calls for \code{shiny} and any other packages specified in
+#&amp;#39; the \code{pkgs} parameter.
+#&amp;#39;
+#&amp;#39; If \code{run_app = TRUE} the function will start the Shiny app once the
+#&amp;#39; files are written. This is recommended to ensure all the necessary packages
+#&amp;#39; are loaded for the Shiny app to run.
+#&amp;#39;
+#&amp;#39; @param ui_function the function for the UI.
+#&amp;#39; @param server_function the function for the server.
+#&amp;#39; @param pkgs any packages that need to be loaded for the app to work. At
+#&amp;#39;        minimum the package containing the shiny app should be included.
+#&amp;#39; @param out_dir the directory to save the shiny app files.
+#&amp;#39; @param run_app whether to run the app once the files are saved.
+save_shiny_app &amp;lt;- function(ui_function,
+                           server_function,
+                           pkgs,
+                           out_dir = &amp;#39;shiny&amp;#39;,
+                           run_app = interactive()) {
+    server_txt &amp;lt;- capture.output(server_function)
+    ui_txt &amp;lt;- capture.output(ui_function)
+    # Remove the bytecode and environment info
+    server_txt &amp;lt;- server_txt[1:(length(server_txt)-2)]
+    ui_txt &amp;lt;- ui_txt[3:(length(ui_txt)-3)]
+    # Fix the function assignment
+    server_txt[1] &amp;lt;- &amp;#39;shinyServer(function(input, output, session)&amp;#39;
+    server_txt[length(server_txt)] &amp;lt;- &amp;#39;})&amp;#39;
+    global_txt &amp;lt;- c(&amp;quot;library(&amp;#39;shiny&amp;#39;)&amp;quot;)
+    if(!missing(pkgs)) {
+        global_txt &amp;lt;- c(global_txt, paste0(&amp;quot;library(&amp;#39;&amp;quot;, pkgs, &amp;quot;&amp;#39;)&amp;quot;))
+    }
+    # Save the shiny app files
+    cat(server_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/server.R&amp;#39;))
+    cat(ui_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/ui.R&amp;#39;))
+    cat(global_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/global.R&amp;#39;))
+    # Start the app
+    if(run_app) {
+        runApp(appDir = out_dir)
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>brickset</title>
+      <link>/project/brickset/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/project/brickset/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualMLE</title>
+      <link>/project/visualmle/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/project/visualmle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Editable DataTables for Shiny Applications</title>
       <link>/post/2018-22-26-dtedit/</link>
       <pubDate>Mon, 26 Nov 2018 21:13:14 -0500</pubDate>
       
@@ -220,48 +355,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       
       <guid>/talk/2019-ncme-irrsim/</guid>
       <description>&lt;p&gt;Inter-rater reliability (IRR) is a critical component of establishing the reliability of measures when more than one rater is necessary. There are numerous IRR statistics available to researchers including percent rater agreement, Cohen&amp;rsquo;s Kappa, and several types of intraclass correlations (ICC). Several methodologists suggest using ICC over percent rater agreement (Hallgren, 2012; Koo &amp;amp; Li, 2016; McGraw &amp;amp; Wong, 1996; Shrout &amp;amp; Fleiss, 1979). However, the literature provides little guidance on the interpretation of ICC results. This article explores the relationship between ICC and percent rater agreement using simulations. Results suggest that ICC and percent rater agreement are highly correlated ($R^2 &amp;gt; 0.9$) for most designs.&lt;/p&gt;
-
-&lt;hr /&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Rethinking Placement Exams: The Diagnostic Assessment and Achievement of College Skills</title>
-      <link>/talk/2018-innovations/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>/talk/2018-innovations/</guid>
-      <description>&lt;p&gt;This session will introduce a new open source formative assessment developed as an alternative to tradition placement exams that measures self-regulated learning, reading, mathematics, and writing. Results from a pilot study conducted at two large online institutions will be discussed.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The Diagnostic Assessment and Achievement of College Skills (DAACS) addresses the issues with traditional placement exams and remediation programs by providing students with immediate, detailed, formative feedback. In addition to assessing students in reading, writing, and mathematics, DAACS also assesses non-academic areas such as academic self-regulation, metacognition, strategy use, motivation, self-efficacy, grit, and test anxiety. Once students complete a DAACS assessment, they are directed to open education resources (OERs) to address any potential gaps in their academic skills while emphasizing their strengths. Student results are used by Student Success Coaches to inform targeted interventions based upon student&amp;rsquo;s individual feedback report and performance. Additionally, these data contribute to the College&amp;rsquo;s predictive analytics efforts with a goal of increasing the accuracy of predicting &amp;ldquo;at-risk&amp;rdquo; students.&lt;/p&gt;
-
-&lt;p&gt;This forum will introduce DAACS including the theoretical reasoning for this approach. Participants will have the opportunity to complete DAACS for themselves to review the assessments and feedback available to students (&lt;a href=&#34;https://demo.DAACS.net&#34; target=&#34;_blank&#34;&gt;https://demo.DAACS.net&lt;/a&gt;). An overview of training for Academic Advisors will also be provided. Results from a study conducted at two large online institutions will be provided which provide evidence of the psychometric qualities of the assessments and the impact on student success.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Diagnostic Assessment and Achievement of College Skills</title>
-      <link>/talk/2018-dtl/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>/talk/2018-dtl/</guid>
-      <description>&lt;p&gt;Although the issues of placement exams impact most less selective or open enrollment colleges, the efficacy of DAACS as an alternative to traditional placement exams was conducted at two large online distance education colleges: Excelsior College and Western Governors University. DAACS is an assessment framework that provides students with a formative view of their skills in self-regulation, reading, writing, and math. For administrators, DAACS provides valuable information to inform personalized interventions and more accurate risk modeling.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;This session will cover to aspects of the Diagnostic Assessment and Achievement of College Skills (DAACS): Instrument development the efficacy study. Results suggest that DAACS is a valid and reliable assessment of self-regulated learning, reading, mathematics, and writing. We will discuss the development process and psychometric qualities of these assessments. Part two will cover the efficacy study being conducted at two online institutions (Western Governors University and Excelsior College). Specifically, a large randomized control trial is being conducted (n &amp;gt; 10,000) to address the two research questions above. Preliminary results suggest there is no statistical difference in student outcomes, but there is a statistically significant increase in the accuracy of models predicting term-to-term retention (~ 5%). The implications for the null result to question one and the planned changes to the intervention will be discussed. It should be noted that some research suggest that placement exams and remediation programs have a negative effect on student retention and therefore a null result could be viewed as an improvement. However, follow-up analyses of the prediction models reveal important interactions between self-regulation domains and academic measures that will inform modifications to the intervention, specifically vis-à-vis targeted interventions, or nudges, for both students and academic advisors/mentors.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Validity and Reliability of the DAACS Writing Assessment</title>
-      <link>/talk/2019-ncme-writing/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>/talk/2019-ncme-writing/</guid>
-      <description>&lt;p&gt;The DAACS system assesses incoming college students’ readiness in reading, writing, mathematics, and self-regulated learning. The purpose of this study is to examine validity and reliability evidence for the internal structure of the writing assessment. The evidence suggests that our conceptual framework holds for both human and machine scored essays.&lt;/p&gt;
 
 &lt;hr /&gt;
 </description>

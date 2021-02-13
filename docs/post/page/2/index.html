@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <meta name="author" content="Jason Bryer, Ph.D.">
 
   
@@ -71,7 +71,7 @@
   <meta property="og:description" content="Assistant Professor">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-11-26T21:13:14-05:00">
+  <meta property="og:updated_time" content="2014-02-20T21:13:14-05:00">
   
 
   
@@ -241,6 +241,67 @@
   
 
   
+  
+    
+    
+
+<div class="card-simple" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+  
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2014-02-20 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+      February 20, 2014
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+
+  
+  
+  <h3 class="article-title" itemprop="headline">
+    <a href="/post/2014-02-20-loading_and_installing_packages/" itemprop="url">Function to Simplify Loading and Installing Packages</a>
+  </h3>
+  <div class="article-style" itemprop="articleBody">
+    
+    One of the more tedious parts of working with R is maintaining my R library. To make my R scripts reproducible and sharable, I will install packages if they are not available. For example, the top of my R scripts tend to look something like this:
+if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !require(benchmark)) { install.packages(c('devtools','ggplot2','psych','lme4','benchmark')) }  This has worked fine for some time, but I felt there was a better approach.
+    
+  </div>
+  <p class="read-more" itemprop="mainEntityOfPage">
+    <a href="/post/2014-02-20-loading_and_installing_packages/" class="btn btn-primary btn-outline">
+      CONTINUE READING
+    </a>
+  </p>
+</div>
+
   
     
     
@@ -778,66 +839,6 @@
   </div>
   <p class="read-more" itemprop="mainEntityOfPage">
     <a href="/post/2013-01-12-interactive_sql_in_r/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-  
-    
-    
-
-<div class="card-simple" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2013-01-10 21:13:14 -0500 EST" itemprop="datePublished dateModified">
-      January 10, 2013
-    </time>
-  </span>
-  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Bryer, Ph.D.">
-  </span>
-
-  
-
-  
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="/categories/r">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-
-  
-  
-  <h3 class="article-title" itemprop="headline">
-    <a href="/post/2013-01-10-function_for_reading_codebooks_in_r/" itemprop="url">Reading Codebook Files in R</a>
-  </h3>
-  <div class="article-style" itemprop="articleBody">
-    
-    One issue I continuously encounter when starting to work with a new dataset is that of the codebook. In general, I prefer to load a codebook into R like any other data source, specifically as a data frame. And ideally, one data frame to provides the variable names with descriptions and any other meta data available, and a separate list of named vectors that can be used to recode factors.
-    
-  </div>
-  <p class="read-more" itemprop="mainEntityOfPage">
-    <a href="/post/2013-01-10-function_for_reading_codebooks_in_r/" class="btn btn-primary btn-outline">
       CONTINUE READING
     </a>
   </p>

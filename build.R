@@ -10,12 +10,23 @@ blogdown::new_post(title = 'Test Post',
 				   file = NULL,
 				   date = Sys.Date())
 
+options(blogdown.hugo.version = "0.54.0")
+
 blogdown::serve_site(port = 2112)
 blogdown::stop_server()
 blogdown::build_site()
 
 # When updating stops, try running `hugo` in the terminal.
 
+blogdown::find_hugo('all')
+blogdown::install_hugo(version = '0.54.0', use_brew = FALSE, extended = TRUE)
+
 blogdown::hugo_version()
 devtools::install_github('rstudio/blogdown')
 blogdown::update_hugo()
+
+# blogdown::install_theme('wowchemy/starter-academic')
+
+
+blogdown::check_site()
+

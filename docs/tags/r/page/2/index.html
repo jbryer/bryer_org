@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <meta name="author" content="Jason Bryer, Ph.D.">
 
   
@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-11-26T21:13:14-05:00">
+  <meta property="og:updated_time" content="2014-02-20T21:13:14-05:00">
   
 
   
@@ -250,6 +250,16 @@
   
   
   <div>
+    <h2><a href="/post/2014-02-20-loading_and_installing_packages/">Function to Simplify Loading and Installing Packages</a></h2>
+    <div class="article-style">
+      
+      One of the more tedious parts of working with R is maintaining my R library. To make my R scripts reproducible and sharable, I will install packages if they are not available. For example, the top of my R scripts tend to look something like this:
+if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !require(benchmark)) { install.packages(c(&lsquo;devtools&rsquo;,&lsquo;ggplot2&rsquo;,&lsquo;psych&rsquo;,&lsquo;lme4&rsquo;,&lsquo;benchmark&rsquo;)) }  This has worked fine for some time, but I felt there was a better approach.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-11-26-bootstrapping_for_propensity_score_analysis/">Bootstrapping for Propensity Score Analysis</a></h2>
     <div class="article-style">
       
@@ -328,15 +338,6 @@
     <div class="article-style">
       
       I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2013-01-10-function_for_reading_codebooks_in_r/">Reading Codebook Files in R</a></h2>
-    <div class="article-style">
-      
-      One issue I continuously encounter when starting to work with a new dataset is that of the codebook. In general, I prefer to load a codebook into R like any other data source, specifically as a data frame. And ideally, one data frame to provides the variable names with descriptions and any other meta data available, and a separate list of named vectors that can be used to recode factors.
       
     </div>
   </div>

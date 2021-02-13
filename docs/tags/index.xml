@@ -42,18 +42,36 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Mon, 26 Nov 2018 21:13:14 -0500</pubDate>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>R Packages</title>
+      <link>/tags/r-packages/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-packages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R-Bloggers</title>
       <link>/tags/r-bloggers/</link>
-      <pubDate>Mon, 26 Nov 2018 21:13:14 -0500</pubDate>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-bloggers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
       <description></description>
     </item>
     
@@ -96,7 +114,7 @@
     <item>
       <title>r-packages</title>
       <link>/tags/r-packages/</link>
-      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-packages/</guid>
       <description></description>
