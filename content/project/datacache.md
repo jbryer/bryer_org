@@ -6,7 +6,7 @@ date = "2016-04-27"
 title = "DataCache"
 
 # Project summary to display on homepage.
-summary = "An R package to maintain data caches."
+summary = "<img src='img/DataCache.png' align='right' width='125' />An R package to maintain data caches."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "DataCache.png"

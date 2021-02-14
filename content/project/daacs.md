@@ -6,7 +6,7 @@ date = "2018-01-31"
 title = "DAACS"
 
 # Project summary to display on homepage.
-summary = "The Diagnostic Assessment and Achievement of College Skills is a diagnostic assessment designed to help students transition to college. DAACS provides personalized feedback about students’ strengths and weaknesses in terms of key academic and self-regulated learning skills, linking them to the resources to help them be successful students."
+summary = "<img src='img/DAACSHex.png' align='right' width='125' />The Diagnostic Assessment and Achievement of College Skills is a diagnostic assessment designed to help students transition to college. DAACS provides personalized feedback about students’ strengths and weaknesses in terms of key academic and self-regulated learning skills, linking them to the resources to help them be successful students."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "DAACSHex.png"

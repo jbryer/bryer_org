@@ -6,7 +6,7 @@ date = "2016-04-27"
 title = "TriMatch"
 
 # Project summary to display on homepage.
-summary = "Propensity score matching for non-binary treatments. <img src='http://www.r-pkg.org/badges/version/TriMatch' alt='CRAN Version' />"
+summary = "<img src='img/TriMatch.png' align='right' width='125' />Propensity score matching for non-binary treatments. <img src='http://www.r-pkg.org/badges/version/TriMatch' alt='CRAN Version' />"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 # image_preview = "bubbles.jpg"

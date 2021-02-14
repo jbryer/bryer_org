@@ -6,7 +6,7 @@ date = "2018-01-07"
 title = "Likert"
 
 # Project summary to display on homepage.
-summary = "An R package designed to help analyzing and visualizing Likert type items. <img src='http://www.r-pkg.org/badges/version/likert' alt='CRAN Version' />"
+summary = "<img src='img/likert.png' align='right' width='125' />An R package designed to help analyzing and visualizing Likert type items. <img src='http://www.r-pkg.org/badges/version/likert' alt='CRAN Version' />"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "bubbles.jpg"
