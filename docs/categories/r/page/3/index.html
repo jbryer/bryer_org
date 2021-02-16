@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-01-10T21:13:14-05:00">
+  <meta property="og:updated_time" content="2013-01-12T21:13:14-05:00">
   
 
   
@@ -250,6 +250,15 @@
   
   
   <div>
+    <h2><a href="/post/2013-01-12-interactive_sql_in_r/">Interactive SQL in R</a></h2>
+    <div class="article-style">
+      
+      I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to interface with a database, but since we are all R users I thought it would be nice to be able interact without leaving R. Although this interface is fairly basic, the fact that we can type in a SQL statement and get the results as an R data frame provides all the advantages of having data in R.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-01-10-function_for_reading_codebooks_in_r/">Reading Codebook Files in R</a></h2>
     <div class="article-style">
       
@@ -332,15 +341,6 @@ require(ggplot2) require(grid) theme_update(panel.background=theme_blank(), pane
 
 <h2 id="see-http-en-wikipedia-org-wiki-birthday-problem-for-an-explanation-of-the-problem-require-ggplot2-require-reshape-theme-update-panel-background-theme-blank-panel-grid-major-theme-blank-panel-border-theme-blank-birthday-lt-function-n-1-exp-n-2-2-365-mybirthday-lt-function-n-1-365-1-365-n-d-200-df-data">See <a href="http://en.wikipedia.org/wiki/Birthday_problem" target="_blank">http://en.wikipedia.org/wiki/Birthday_problem</a> for an explanation of the problem require(ggplot2) require(reshape) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) birthday &lt;- function(n) { 1 - exp( - n^2 / (2 * 365) ) } myBirthday &lt;- function(n) { 1 - ( (365 - 1) / 365 ) ^ n } d = 200 df = data.</h2>
 
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2012-01-20-object-oriented-programming-in-r/">Object Oriented Programming in R</a></h2>
-    <div class="article-style">
-      
-      Constructor Define S3 generic method for the print function. Test code        As someone who was a Java programmer for many years learning R&rsquo;s object oriented programming framework has been frustrating to say the least. I like the simplicity of S3 but find it limiting when you wish to write methods that change the underlying data elements.
       
     </div>
   </div>

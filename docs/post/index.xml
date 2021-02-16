@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>Map my run in R</title>
+      <link>/post/2021-02-15-map_my_run_in_r/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-02-15-map_my_run_in_r/</guid>
+      <description>First, I want to give a plug to the RStats Strava Running Club. If you are into running, it is a great group that provides lots of support.
+This post is inspired by this streetmaps tutorial over at ggplot2tutor.com on creating map artwork/posters. This post shows how to overlay running (which could be biking) routes.
+The key for this to work is to get access to GPX (GPS Exchange format) files.</description>
+    </item>
+    
+    <item>
       <title>Framework for Shiny Apps in R Packages</title>
       <link>/post/2021-02-12-shiny_apps_in_r_packages/</link>
       <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>

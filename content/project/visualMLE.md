@@ -6,14 +6,14 @@ date = "2021-02-11"
 title = "visualMLE"
 
 # Project summary to display on homepage.
-summary = "Visual Introduction to Maximum Likelihood Estimation"
+summary = "<img src='img/visualMLE.png' align='right' width='125' />Visual Introduction to Maximum Likelihood Estimation"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 # image_preview = "bubbles.jpg"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`
-tags = ["r-packages"]
+tags = ["r-packages", "shiny"]
 
 # Optional external URL for project (replaces project detail page).
 external_link = "https://github.com/jbryer/visualMLE"

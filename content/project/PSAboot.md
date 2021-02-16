@@ -6,7 +6,7 @@ date = "2016-04-27"
 title = "PSAboot"
 
 # Project summary to display on homepage.
-summary = "An R Package for Bootstrapping Propnesity Score Analysis. <img src='http://www.r-pkg.org/badges/version/PSAboot' alt='CRAN Version' />"
+summary = "An R Package for Bootstrapping Propensity Score Analysis."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 # image_preview = "bubbles.jpg"
