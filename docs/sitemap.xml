@@ -86,6 +86,15 @@
     
     <url>
     
+      <loc>/stickmenplay/</loc>
+      <lastmod>2018-01-01T00:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/talk/2018-03-03-open_data_day/</loc>
       <lastmod>2017-03-03T00:00:00-05:00</lastmod>
     </url>
@@ -695,7 +704,7 @@
     
     <url>
     
-      <loc>/tags/r/</loc>
+      <loc>/categories/r/</loc>
       <lastmod>2021-02-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -705,7 +714,7 @@
     
     <url>
     
-      <loc>/categories/r/</loc>
+      <loc>/tags/r/</loc>
       <lastmod>2021-02-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
