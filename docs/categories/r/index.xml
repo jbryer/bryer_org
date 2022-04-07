@@ -7,10 +7,93 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SFTP in R on a Mac</title>
+      <link>/post/2022-04-07-sftp_in_r_on_mac/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-07-sftp_in_r_on_mac/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I am working on a project where I need to upload PDFs generated from Rmarkdown to a SFTP server. The &lt;a href=&#34;https://github.com/stenevang/sftp&#34;&gt;&lt;code&gt;sftp&lt;/code&gt;&lt;/a&gt; R package is a nice wrapper to the &lt;code&gt;RCurl&lt;/code&gt; package for handling SFTP access. But to my surprise, SFTP support is not included on Macs by default through the &lt;code&gt;curl&lt;/code&gt; command. After some research I found the &lt;a href=&#34;https://stackoverflow.com/questions/34914473/how-do-i-enable-curl-ssl-on-mac-os-x&#34;&gt;&lt;code&gt;curl-openssl&lt;/code&gt;&lt;/a&gt; formula that includes SFTP support. However, since &lt;code&gt;curl&lt;/code&gt; is a build-in program for Mac OS &lt;code&gt;brew install&lt;/code&gt; will not install it into the &lt;code&gt;PATH&lt;/code&gt; environment, therefore not being directly available. This function will help configure &lt;code&gt;RCurl&lt;/code&gt; on a Mac to use the curl-openssl version so we can have SFTP access.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# First, need to install a version of CURL that supports SFTP
+# brew install curl-openssl
+# Verify that SFTP is a supported protocol
+# /opt/homebrew/Cellar/curl/7.82.0/bin/curl -V
+
+#&amp;#39; Configures CURL with openSSL support for Macs.
+#&amp;#39;
+#&amp;#39; This function will try the following:
+#&amp;#39; 1. Verify that this is being called on a Mac.
+#&amp;#39; 2. Check to see if sftp is already available (returns gracefully so to be
+#&amp;#39;  integrated in setup scripts).
+#&amp;#39; 3. Checks to see if Homebrew is installed even if not currently on the PATH.
+#&amp;#39; 4. Install curl-openssl if not already installed.
+#&amp;#39; 5. Modify the PATH to include the openssl version of curl.
+#&amp;#39; 6. Install RCurl from source.
+#&amp;#39; 7. Verify sftp is available.
+#&amp;#39;
+#&amp;#39; @param path the path where Homebrew packages are installed.
+#&amp;#39; @return TRUE if sftp is available.
+configure_curl_openssl &amp;lt;- function(
+    path = &amp;#39;/opt/homebrew/Cellar&amp;#39;
+) {
+    if(Sys.info()[&amp;#39;sysname&amp;#39;] != &amp;#39;Darwin&amp;#39;) {
+        warning(&amp;#39;This funtion only works on Mac OS.&amp;#39;)
+        return(FALSE)
+    }
+    if(system(&amp;#39;which brew&amp;#39;) == 1) {
+        if(file.exists(&amp;#39;/opt/homebrew/bin/brew&amp;#39;)) {
+            # Homebrew is installed but not on the PATH
+            PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+            Sys.setenv(PATH = paste(&amp;quot;/opt/homebrew/bin&amp;quot;, PATH, sep = &amp;quot;:&amp;quot;))
+        } else {
+            stop(&amp;#39;Could not find brew. Try installing from https://brew.sh&amp;#39;)
+        }
+    }
+    if(&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+        return(TRUE)
+    }
+
+    curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+                               recursive = FALSE,
+                               full.names = FALSE)
+    if(length(curl.versions) == 0) { # Try install curl
+        message(&amp;#39;curl-openssl not found, trying to install using Homebrew...&amp;#39;)
+        system(&amp;#39;brew install curl-openssl&amp;#39;)
+        curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+                                   recursive = FALSE,
+                                   full.names = FALSE)
+    }
+    if(length(curl.versions) == 0) {
+        stop(&amp;#39;Could not find or install curl-openssl.&amp;#39;)
+    }
+    version &amp;lt;- curl.versions[length(curl.versions)] # Use the latest version
+    if(&amp;#39;package:RCurl&amp;#39; %in% search()) { # Detach the RCurl package first
+        detach(&amp;#39;package:RCurl&amp;#39;, character.only = TRUE)
+    }
+    PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+    Sys.setenv(PATH = paste0(&amp;quot;/opt/homebrew/Cellar/curl/&amp;quot;, version, &amp;quot;/bin:&amp;quot;, PATH))
+    message(&amp;#39;Resinstalling RCurl from source...&amp;#39;)
+    install.packages(&amp;#39;RCurl&amp;#39;, type = &amp;#39;source&amp;#39;)
+    if(!&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+        stop(&amp;#39;Could not configure RCurl with openssl, sorry.&amp;#39;)
+    }
+    return(TRUE)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Simply running the command should do the setup. However, if things go wrong I tried to indicate where in the process something went wrong. You should only need to run this once per R installation since once &lt;code&gt;RCurl&lt;/code&gt; has been installed from source built against the &lt;code&gt;curl-openssl&lt;/code&gt; version of CURL, it should remember to use that version.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;configure_curl_openssl()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once done, we can verify that SFTP access is available.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols # Verify sftp is available&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Map my run in R</title>
@@ -82,9 +165,15 @@ markers &amp;lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),
     add_osm_feature(key = &amp;quot;highway&amp;quot;, 
                     value = c(&amp;quot;motorway&amp;quot;, &amp;quot;primary&amp;quot;, &amp;quot;trunk&amp;quot;,
                               &amp;quot;secondary&amp;quot;, &amp;quot;tertiary&amp;quot;)) %&amp;gt;%
-    osmdata_sf()
-
-small_streets &amp;lt;- bb %&amp;gt;%
+    osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.8 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 2.6 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.2 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Request failed [504]. Retrying in 3.9 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;small_streets &amp;lt;- bb %&amp;gt;%
     opq() %&amp;gt;%
     add_osm_feature(key = &amp;quot;highway&amp;quot;,
                     value = c(&amp;quot;residential&amp;quot;, &amp;quot;living_street&amp;quot;,

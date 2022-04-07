@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2014-03-20T21:13:14-05:00">
+  <meta property="og:updated_time" content="2014-04-22T21:13:14-05:00">
   
 
   
@@ -250,6 +250,16 @@
   
   
   <div>
+    <h2><a href="/post/2014-04-22-rgitbook_package/">Rgitbook Package for Using R Markdown with Gitbook</a></h2>
+    <div class="article-style">
+      
+      Last week I published an R script to interface with Gitbook. I received some positive feedback and decided to include all the code in an R package. This also allowed me to make some nice additions including default support for MathJax. It is currently available on Github and can be installed using devtools:
+devtools::install_github(&lsquo;jbryer/Rgitbook&rsquo;)  I have only tested this on Mac OS X, so please provide suggestions or issues on other systems.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2014-03-20-albany_r_users_group/">Albany, NY R Users Group</a></h2>
     <div class="article-style">
       
@@ -327,15 +337,6 @@ if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !
     <div class="article-style">
       
       I posted a question over on StackOverflow on an efficient way of comparing two data frames with the same column structure, but with different rows. What I would like to end up with is an n x m logical matrix where n and m are the number of rows in the first and second data frames, respectively; and the value at the *i*th row and *j*th column indicates whether all the values from row i from data frame one is equal to row j from data frame two.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2013-01-15-version_1_sqlutils/">Version 1.0 of sqlutils available on CRAN</a></h2>
-    <div class="article-style">
-      
-      Version 1.0 of sqlutils has been released to CRAN. The sqlutils package is designed to manage a library of SQL files. This package grew out of the needs of an Office of Institutional Research where the vast majority of analysis is conducted on data from our Student Information System (SIS) which is stored in an Oracle database. A lot of our analyses and reports are derived from the same types of datasets but from easily extracted parameters (e.
       
     </div>
   </div>

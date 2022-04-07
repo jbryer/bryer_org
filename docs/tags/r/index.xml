@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SFTP in R on a Mac</title>
+      <link>/post/2022-04-07-sftp_in_r_on_mac/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-07-sftp_in_r_on_mac/</guid>
+      <description>I am working on a project where I need to upload PDFs generated from Rmarkdown to a SFTP server. The sftp R package is a nice wrapper to the RCurl package for handling SFTP access. But to my surprise, SFTP support is not included on Macs by default through the curl command. After some research I found the curl-openssl formula that includes SFTP support. However, since curl is a build-in program for Mac OS brew install will not install it into the PATH environment, therefore not being directly available.</description>
+    </item>
     
     <item>
       <title>Map my run in R</title>

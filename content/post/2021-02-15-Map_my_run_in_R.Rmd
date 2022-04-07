@@ -60,7 +60,7 @@ bb
 
 The next chunk calculates the distance between each coordinate and the cumulative sum/distance. Note that this is an inefficient chunk since I used a for loop to calculate the distances.
 
-```{r, message = FALSE, cache=TRUE}
+```{r, message = FALSE, warning=FALSE, cache=TRUE}
 path$distance <- 0
 for(i in 2:nrow(path)) { 
 	# Probably shouldn't use a loop, this is slow. Not sure what to use instead.

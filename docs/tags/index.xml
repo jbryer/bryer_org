@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>CURL</title>
+      <link>/tags/curl/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/curl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Education</title>
       <link>/tags/education/</link>
       <pubDate>Fri, 04 Jul 2014 21:13:14 -0500</pubDate>
@@ -42,7 +51,7 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>
@@ -60,7 +69,7 @@
     <item>
       <title>R-Bloggers</title>
       <link>/tags/r-bloggers/</link>
-      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-bloggers/</guid>
       <description></description>

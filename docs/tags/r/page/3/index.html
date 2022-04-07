@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-01-12T21:13:14-05:00">
+  <meta property="og:updated_time" content="2013-01-15T21:13:14-05:00">
   
 
   
@@ -250,6 +250,15 @@
   
   
   <div>
+    <h2><a href="/post/2013-01-15-version_1_sqlutils/">Version 1.0 of sqlutils available on CRAN</a></h2>
+    <div class="article-style">
+      
+      Version 1.0 of sqlutils has been released to CRAN. The sqlutils package is designed to manage a library of SQL files. This package grew out of the needs of an Office of Institutional Research where the vast majority of analysis is conducted on data from our Student Information System (SIS) which is stored in an Oracle database. A lot of our analyses and reports are derived from the same types of datasets but from easily extracted parameters (e.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-01-12-interactive_sql_in_r/">Interactive SQL in R</a></h2>
     <div class="article-style">
       
@@ -329,18 +338,6 @@ The required packages can be downloaded from github.
       
       Following up on John Mount&rsquo;s post on remembering symbol parameters in ggplot2, I decided to give it a try and included symbols, line types, and colors (based upon Earl Glynn&rsquo;s wonderful color chart). Code follows below.
 require(ggplot2) require(grid) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) #Borrowed (i.e. stollen) from <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R" target="_blank">http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R</a> getColorHexAndDecimal &lt;- function(color) { if(is.na(color)) { return(NA) } else { c &lt;- col2rgb(color) return(sprintf(&quot;#%02X%02X%02X %3d %3d %3d&quot;, c[1],c[2],c[3], c[1], c[2], c[3])) } }  Symbols ggplot(data=data.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/">Given a room with n people in it, what is the probability any two will have the same birthday?</a></h2>
-    <div class="article-style">
-      
-      Revisiting a fun puzzle I remember first encountering as an undergraduate. Nice example of creating a plot in R using ggplot2. I also plot the probability of someone in the room having the same birthday as you.</p>
-
-<h2 id="see-http-en-wikipedia-org-wiki-birthday-problem-for-an-explanation-of-the-problem-require-ggplot2-require-reshape-theme-update-panel-background-theme-blank-panel-grid-major-theme-blank-panel-border-theme-blank-birthday-lt-function-n-1-exp-n-2-2-365-mybirthday-lt-function-n-1-365-1-365-n-d-200-df-data">See <a href="http://en.wikipedia.org/wiki/Birthday_problem" target="_blank">http://en.wikipedia.org/wiki/Birthday_problem</a> for an explanation of the problem require(ggplot2) require(reshape) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) birthday &lt;- function(n) { 1 - exp( - n^2 / (2 * 365) ) } myBirthday &lt;- function(n) { 1 - ( (365 - 1) / 365 ) ^ n } d = 200 df = data.</h2>
-
       
     </div>
   </div>

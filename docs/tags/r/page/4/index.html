@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2012-01-20T21:13:14-05:00">
+  <meta property="og:updated_time" content="2012-01-31T21:13:14-05:00">
   
 
   
@@ -248,6 +248,18 @@
   
 
   
+  
+  <div>
+    <h2><a href="/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/">Given a room with n people in it, what is the probability any two will have the same birthday?</a></h2>
+    <div class="article-style">
+      
+      Revisiting a fun puzzle I remember first encountering as an undergraduate. Nice example of creating a plot in R using ggplot2. I also plot the probability of someone in the room having the same birthday as you.</p>
+
+<h2 id="see-http-en-wikipedia-org-wiki-birthday-problem-for-an-explanation-of-the-problem-require-ggplot2-require-reshape-theme-update-panel-background-theme-blank-panel-grid-major-theme-blank-panel-border-theme-blank-birthday-lt-function-n-1-exp-n-2-2-365-mybirthday-lt-function-n-1-365-1-365-n-d-200-df-data">See <a href="http://en.wikipedia.org/wiki/Birthday_problem" target="_blank">http://en.wikipedia.org/wiki/Birthday_problem</a> for an explanation of the problem require(ggplot2) require(reshape) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) birthday &lt;- function(n) { 1 - exp( - n^2 / (2 * 365) ) } myBirthday &lt;- function(n) { 1 - ( (365 - 1) / 365 ) ^ n } d = 200 df = data.</h2>
+
+      
+    </div>
+  </div>
   
   <div>
     <h2><a href="/post/2012-01-20-object-oriented-programming-in-r/">Object Oriented Programming in R</a></h2>

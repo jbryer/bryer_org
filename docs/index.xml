@@ -11,6 +11,89 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>SFTP in R on a Mac</title>
+      <link>/post/2022-04-07-sftp_in_r_on_mac/</link>
+      <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-07-sftp_in_r_on_mac/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I am working on a project where I need to upload PDFs generated from Rmarkdown to a SFTP server. The &lt;a href=&#34;https://github.com/stenevang/sftp&#34;&gt;&lt;code&gt;sftp&lt;/code&gt;&lt;/a&gt; R package is a nice wrapper to the &lt;code&gt;RCurl&lt;/code&gt; package for handling SFTP access. But to my surprise, SFTP support is not included on Macs by default through the &lt;code&gt;curl&lt;/code&gt; command. After some research I found the &lt;a href=&#34;https://stackoverflow.com/questions/34914473/how-do-i-enable-curl-ssl-on-mac-os-x&#34;&gt;&lt;code&gt;curl-openssl&lt;/code&gt;&lt;/a&gt; formula that includes SFTP support. However, since &lt;code&gt;curl&lt;/code&gt; is a build-in program for Mac OS &lt;code&gt;brew install&lt;/code&gt; will not install it into the &lt;code&gt;PATH&lt;/code&gt; environment, therefore not being directly available. This function will help configure &lt;code&gt;RCurl&lt;/code&gt; on a Mac to use the curl-openssl version so we can have SFTP access.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# First, need to install a version of CURL that supports SFTP
+# brew install curl-openssl
+# Verify that SFTP is a supported protocol
+# /opt/homebrew/Cellar/curl/7.82.0/bin/curl -V
+
+#&amp;#39; Configures CURL with openSSL support for Macs.
+#&amp;#39;
+#&amp;#39; This function will try the following:
+#&amp;#39; 1. Verify that this is being called on a Mac.
+#&amp;#39; 2. Check to see if sftp is already available (returns gracefully so to be
+#&amp;#39;  integrated in setup scripts).
+#&amp;#39; 3. Checks to see if Homebrew is installed even if not currently on the PATH.
+#&amp;#39; 4. Install curl-openssl if not already installed.
+#&amp;#39; 5. Modify the PATH to include the openssl version of curl.
+#&amp;#39; 6. Install RCurl from source.
+#&amp;#39; 7. Verify sftp is available.
+#&amp;#39;
+#&amp;#39; @param path the path where Homebrew packages are installed.
+#&amp;#39; @return TRUE if sftp is available.
+configure_curl_openssl &amp;lt;- function(
+    path = &amp;#39;/opt/homebrew/Cellar&amp;#39;
+) {
+    if(Sys.info()[&amp;#39;sysname&amp;#39;] != &amp;#39;Darwin&amp;#39;) {
+        warning(&amp;#39;This funtion only works on Mac OS.&amp;#39;)
+        return(FALSE)
+    }
+    if(system(&amp;#39;which brew&amp;#39;) == 1) {
+        if(file.exists(&amp;#39;/opt/homebrew/bin/brew&amp;#39;)) {
+            # Homebrew is installed but not on the PATH
+            PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+            Sys.setenv(PATH = paste(&amp;quot;/opt/homebrew/bin&amp;quot;, PATH, sep = &amp;quot;:&amp;quot;))
+        } else {
+            stop(&amp;#39;Could not find brew. Try installing from https://brew.sh&amp;#39;)
+        }
+    }
+    if(&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+        return(TRUE)
+    }
+
+    curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+                               recursive = FALSE,
+                               full.names = FALSE)
+    if(length(curl.versions) == 0) { # Try install curl
+        message(&amp;#39;curl-openssl not found, trying to install using Homebrew...&amp;#39;)
+        system(&amp;#39;brew install curl-openssl&amp;#39;)
+        curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+                                   recursive = FALSE,
+                                   full.names = FALSE)
+    }
+    if(length(curl.versions) == 0) {
+        stop(&amp;#39;Could not find or install curl-openssl.&amp;#39;)
+    }
+    version &amp;lt;- curl.versions[length(curl.versions)] # Use the latest version
+    if(&amp;#39;package:RCurl&amp;#39; %in% search()) { # Detach the RCurl package first
+        detach(&amp;#39;package:RCurl&amp;#39;, character.only = TRUE)
+    }
+    PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+    Sys.setenv(PATH = paste0(&amp;quot;/opt/homebrew/Cellar/curl/&amp;quot;, version, &amp;quot;/bin:&amp;quot;, PATH))
+    message(&amp;#39;Resinstalling RCurl from source...&amp;#39;)
+    install.packages(&amp;#39;RCurl&amp;#39;, type = &amp;#39;source&amp;#39;)
+    if(!&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+        stop(&amp;#39;Could not configure RCurl with openssl, sorry.&amp;#39;)
+    }
+    return(TRUE)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Simply running the command should do the setup. However, if things go wrong I tried to indicate where in the process something went wrong. You should only need to run this once per R installation since once &lt;code&gt;RCurl&lt;/code&gt; has been installed from source built against the &lt;code&gt;curl-openssl&lt;/code&gt; version of CURL, it should remember to use that version.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;configure_curl_openssl()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once done, we can verify that SFTP access is available.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols # Verify sftp is available&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Map my run in R</title>
       <link>/post/2021-02-15-map_my_run_in_r/</link>
       <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
@@ -80,9 +163,15 @@ markers &amp;lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),
     add_osm_feature(key = &amp;quot;highway&amp;quot;, 
                     value = c(&amp;quot;motorway&amp;quot;, &amp;quot;primary&amp;quot;, &amp;quot;trunk&amp;quot;,
                               &amp;quot;secondary&amp;quot;, &amp;quot;tertiary&amp;quot;)) %&amp;gt;%
-    osmdata_sf()
-
-small_streets &amp;lt;- bb %&amp;gt;%
+    osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.8 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 2.6 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.2 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Request failed [504]. Retrying in 3.9 seconds...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;small_streets &amp;lt;- bb %&amp;gt;%
     opq() %&amp;gt;%
     add_osm_feature(key = &amp;quot;highway&amp;quot;,
                     value = c(&amp;quot;residential&amp;quot;, &amp;quot;living_street&amp;quot;,
@@ -518,18 +607,6 @@ Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&g
       
       <guid>/talk/2019-aera-efficacy/</guid>
       <description>&lt;p&gt;The purpose of this study is to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a no-stakes, open-source, formative assessment tool designed to measure newly enrolled college students’ reading, writing, mathematics, and self-regulated learning (SRL) skills, and provide them with feedback and resources to enhance their functioning and success. A randomized control trial was performed at two online colleges (n = 17,687) to measure the effects in terms of academic achievement and credit acquisition. Predictive power of DAACS on student success were also examined. Results highlights the importance of using DAACS as a suite of assessments and supports, and not as isolated components.&lt;/p&gt;
-
-&lt;hr /&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Feedback on Writing for College Success: Machine Scoring of Essays on Self-Regulated Learning</title>
-      <link>/talk/2018-sigwriting/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>/talk/2018-sigwriting/</guid>
-      <description>&lt;p&gt;This paper describes an ongoing project in which on-demand writing is used as part of a diagnostic evaluation of newly admitted college students. The authors will present preliminary evidence of the validity and reliability of human and machine scored essays and the usefulness of the feedback provided to students on their writing and their self-regulated learning. The purpose of the project, the Diagnostic Assessment and Achievement of College Skills (DAACS), is to develop a no-stakes diagnostic assessment designed to help students transition to college. Research suggests that mindset, self-regulation, and grit are predictors of college success (Duckworth, Peterson, Matthews, &amp;amp; Kelly, 2007; Zimmerman &amp;amp; Schunk, 2011). DAACS provides feedback to students about their strengths and weaknesses in mathematics, reading, and writing, as well as their self-regulated learning (SRL) skills, and links students to appropriate resources and support. For the writing assessment, students write an essay reflecting on the results of a survey about their self-regulated learning skills. In addition to encouraging students to reflect on their SRL, the writing assessment provides feedback about their writing and directs them towards relevant writing resources. Although this approach is similar to Directed Self-Placement (Gere et al., 2010), DAACS is not intended to be used for placement; rather, it helps students determine whether they need support as writers. The scoring rubric developed for this assessment includes five criteria: content, organization, paragraphs, sentences, and conventions. An open source, automated program called Lightside was trained with hundreds of essays scored by human raters. Preliminary results indicate acceptable agreement between human and machine scores, and high rates of student and advisor satisfaction. These results and implications for uses of machine scoring of essays will be presented.&lt;/p&gt;
 
 &lt;hr /&gt;
 </description>

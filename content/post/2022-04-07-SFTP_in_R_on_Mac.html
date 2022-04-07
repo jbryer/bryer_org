@@ -1,0 +1,83 @@
+---
+title: "SFTP in R on a Mac"
+author: "Jason Bryer"
+date: 2022-04-07
+categories: ["R"]
+tags: ["R", "R-Bloggers", "CURL"]
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I am working on a project where I need to upload PDFs generated from Rmarkdown to a SFTP server. The <a href="https://github.com/stenevang/sftp"><code>sftp</code></a> R package is a nice wrapper to the <code>RCurl</code> package for handling SFTP access. But to my surprise, SFTP support is not included on Macs by default through the <code>curl</code> command. After some research I found the <a href="https://stackoverflow.com/questions/34914473/how-do-i-enable-curl-ssl-on-mac-os-x"><code>curl-openssl</code></a> formula that includes SFTP support. However, since <code>curl</code> is a build-in program for Mac OS <code>brew install</code> will not install it into the <code>PATH</code> environment, therefore not being directly available. This function will help configure <code>RCurl</code> on a Mac to use the curl-openssl version so we can have SFTP access.</p>
+<pre class="r"><code># First, need to install a version of CURL that supports SFTP
+# brew install curl-openssl
+# Verify that SFTP is a supported protocol
+# /opt/homebrew/Cellar/curl/7.82.0/bin/curl -V
+
+#&#39; Configures CURL with openSSL support for Macs.
+#&#39;
+#&#39; This function will try the following:
+#&#39; 1. Verify that this is being called on a Mac.
+#&#39; 2. Check to see if sftp is already available (returns gracefully so to be
+#&#39;  integrated in setup scripts).
+#&#39; 3. Checks to see if Homebrew is installed even if not currently on the PATH.
+#&#39; 4. Install curl-openssl if not already installed.
+#&#39; 5. Modify the PATH to include the openssl version of curl.
+#&#39; 6. Install RCurl from source.
+#&#39; 7. Verify sftp is available.
+#&#39;
+#&#39; @param path the path where Homebrew packages are installed.
+#&#39; @return TRUE if sftp is available.
+configure_curl_openssl &lt;- function(
+    path = &#39;/opt/homebrew/Cellar&#39;
+) {
+    if(Sys.info()[&#39;sysname&#39;] != &#39;Darwin&#39;) {
+        warning(&#39;This funtion only works on Mac OS.&#39;)
+        return(FALSE)
+    }
+    if(system(&#39;which brew&#39;) == 1) {
+        if(file.exists(&#39;/opt/homebrew/bin/brew&#39;)) {
+            # Homebrew is installed but not on the PATH
+            PATH &lt;- Sys.getenv(&quot;PATH&quot;)
+            Sys.setenv(PATH = paste(&quot;/opt/homebrew/bin&quot;, PATH, sep = &quot;:&quot;))
+        } else {
+            stop(&#39;Could not find brew. Try installing from https://brew.sh&#39;)
+        }
+    }
+    if(&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
+        return(TRUE)
+    }
+
+    curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
+                               recursive = FALSE,
+                               full.names = FALSE)
+    if(length(curl.versions) == 0) { # Try install curl
+        message(&#39;curl-openssl not found, trying to install using Homebrew...&#39;)
+        system(&#39;brew install curl-openssl&#39;)
+        curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
+                                   recursive = FALSE,
+                                   full.names = FALSE)
+    }
+    if(length(curl.versions) == 0) {
+        stop(&#39;Could not find or install curl-openssl.&#39;)
+    }
+    version &lt;- curl.versions[length(curl.versions)] # Use the latest version
+    if(&#39;package:RCurl&#39; %in% search()) { # Detach the RCurl package first
+        detach(&#39;package:RCurl&#39;, character.only = TRUE)
+    }
+    PATH &lt;- Sys.getenv(&quot;PATH&quot;)
+    Sys.setenv(PATH = paste0(&quot;/opt/homebrew/Cellar/curl/&quot;, version, &quot;/bin:&quot;, PATH))
+    message(&#39;Resinstalling RCurl from source...&#39;)
+    install.packages(&#39;RCurl&#39;, type = &#39;source&#39;)
+    if(!&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
+        stop(&#39;Could not configure RCurl with openssl, sorry.&#39;)
+    }
+    return(TRUE)
+}</code></pre>
+<p>Simply running the command should do the setup. However, if things go wrong I tried to indicate where in the process something went wrong. You should only need to run this once per R installation since once <code>RCurl</code> has been installed from source built against the <code>curl-openssl</code> version of CURL, it should remember to use that version.</p>
+<pre class="r"><code>configure_curl_openssl()</code></pre>
+<p>Once done, we can verify that SFTP access is available.</p>
+<pre class="r"><code>&#39;sftp&#39; %in% RCurl::curlVersion()$protocols # Verify sftp is available</code></pre>

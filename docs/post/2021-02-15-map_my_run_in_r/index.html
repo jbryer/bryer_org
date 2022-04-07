@@ -399,9 +399,15 @@ markers &lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),][-1
     add_osm_feature(key = &quot;highway&quot;, 
                     value = c(&quot;motorway&quot;, &quot;primary&quot;, &quot;trunk&quot;,
                               &quot;secondary&quot;, &quot;tertiary&quot;)) %&gt;%
-    osmdata_sf()
-
-small_streets &lt;- bb %&gt;%
+    osmdata_sf()</code></pre>
+<pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.8 seconds...</code></pre>
+<pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 2.6 seconds...</code></pre>
+<pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
+## Request failed [ERROR]. Retrying in 1.2 seconds...</code></pre>
+<pre><code>## Request failed [504]. Retrying in 3.9 seconds...</code></pre>
+<pre class="r"><code>small_streets &lt;- bb %&gt;%
     opq() %&gt;%
     add_osm_feature(key = &quot;highway&quot;,
                     value = c(&quot;residential&quot;, &quot;living_street&quot;,
