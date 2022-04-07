@@ -52,6 +52,15 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     </item>
     
     <item>
+      <title>Efficacy of the Diagnostic Assessment and Achievement of College Students for Traditional-Age College Students</title>
+      <link>/talk/2022-04-aera/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2022-04-aera/</guid>
+      <description>The purpose of this study was to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a diagnostic assessment tool designed to measure college students’ reading, writing, mathematics, and self-regulated learning skills and provide them with feedback and resources to enhance their success. DAACS was embedded into new student orientation in Fall 2020 at a brick-and-mortar university. Of 2,389 enrolled students, 465 students completed the DAACS.</description>
+    </item>
+    
+    <item>
       <title>Efficacy of the Diagnostic Assessment and Achievement of College Students on Multiple Success Indicators</title>
       <link>/talk/2019-aera-efficacy/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
@@ -67,6 +76,33 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
       
       <guid>/talk/2018-sigwriting/</guid>
       <description>This paper describes an ongoing project in which on-demand writing is used as part of a diagnostic evaluation of newly admitted college students. The authors will present preliminary evidence of the validity and reliability of human and machine scored essays and the usefulness of the feedback provided to students on their writing and their self-regulated learning. The purpose of the project, the Diagnostic Assessment and Achievement of College Skills (DAACS), is to develop a no-stakes diagnostic assessment designed to help students transition to college.</description>
+    </item>
+    
+    <item>
+      <title>Intro to Shiny</title>
+      <link>/talk/2021-11-intro_to_shiny/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2021-11-intro_to_shiny/</guid>
+      <description>Shiny is an R package designed to create web based applications using the R programming language. This talk will introduce the basic framework for creating interactive Shiny applications including user inputs, dynamic plots and tables, reactive programming, and creating data dashboards.</description>
+    </item>
+    
+    <item>
+      <title>Optimizing Student Learning with the Diagnostic Assessment and Achievement of College Skills</title>
+      <link>/talk/2022-06-learning_ideas_conference/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2022-06-learning_ideas_conference/</guid>
+      <description>The purpose of this study was to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a no-stakes, open-source, diagnostic assessment tool designed to measure newly enrolled college students’ reading, writing, mathematics, and self-regulated learning (SRL) skills, and provide them with feedback and resources to enhance their functioning and success. A randomized control trial was performed at two online colleges (n = 23,728) to measure the effects of DAACS on academic achievement and credit acquisition.</description>
+    </item>
+    
+    <item>
+      <title>R Package Development</title>
+      <link>/talk/2022-03-r_package_development/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2022-03-r_package_development/</guid>
+      <description>R packages are the primary mechanism to share R code, data, and documentation with other useRs. This talk walk through the process of creating a new R package including the use of the devtools package, roxygon2 package for documentation, and the pkgdown package for creating websites. We will also discuss how to share packages through Github and/or CRAN.</description>
     </item>
     
     <item>
