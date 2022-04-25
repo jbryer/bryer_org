@@ -71,7 +71,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2014-04-22T21:13:14-05:00">
+  <meta property="og:updated_time" content="2014-06-05T21:13:14-05:00">
   
 
   
@@ -252,6 +252,66 @@
 
   <span class="article-date">
     
+    <time datetime="2014-06-05 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      June 5, 2014
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+
+  
+  
+  <h3 class="article-title" itemprop="headline">
+    <a href="/post/2014-06-05-str_implementation_for_data_frames/" itemprop="url">str Implementation for Data Frames</a>
+  </h3>
+  <div class="article-style" itemprop="articleBody">
+    
+    The str function is perhaps the most useful function in R. It provides great information about the structure of some object. When I teach R, especially for those coming from SPSS, the str function for data frames provides the information they are use to seeing on the variable view tab. However, sometimes I want to display the information str returns in a better format (e.g. as an HTML or LaTeX table).
+    
+  </div>
+  <p class="read-more" itemprop="mainEntityOfPage">
+    <a href="/post/2014-06-05-str_implementation_for_data_frames/" class="btn btn-primary btn-outline">
+      CONTINUE READING
+    </a>
+  </p>
+</div>
+
+  
+    
+    
+
+<div class="card-simple" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+  
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
     <time datetime="2014-04-22 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
       April 22, 2014
     </time>
@@ -378,7 +438,7 @@ devtools::install_github('jbryer/Rgitbook')  I have only tested this on Mac OS X
 
   <span class="article-date">
     
-    <time datetime="2014-02-20 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+    <time datetime="2014-02-20 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
       February 20, 2014
     </time>
   </span>
@@ -439,7 +499,7 @@ if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !
 
   <span class="article-date">
     
-    <time datetime="2013-11-26 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+    <time datetime="2013-11-26 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
       November 26, 2013
     </time>
   </span>
@@ -499,7 +559,7 @@ if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !
 
   <span class="article-date">
     
-    <time datetime="2013-11-12 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+    <time datetime="2013-11-12 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
       November 12, 2013
     </time>
   </span>
@@ -741,7 +801,7 @@ if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !
 
   <span class="article-date">
     
-    <time datetime="2013-01-30 21:13:14 -0500 EST" itemprop="datePublished dateModified">
+    <time datetime="2013-01-30 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
       January 30, 2013
     </time>
   </span>
@@ -785,66 +845,6 @@ if(!require(devtools) | !require(ggplot2) | !require(psych) | !require(lme4) | !
   </div>
   <p class="read-more" itemprop="mainEntityOfPage">
     <a href="/post/2013-01-30-converting_a_list_to_a_data_frame/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-  
-    
-    
-
-<div class="card-simple" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2013-01-24 21:13:14 -0500 EST" itemprop="datePublished dateModified">
-      January 24, 2013
-    </time>
-  </span>
-  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jason Bryer, Ph.D.">
-  </span>
-
-  
-
-  
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="/categories/r">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-
-  
-  
-  <h3 class="article-title" itemprop="headline">
-    <a href="/post/2013-01-24-comparing_two_data_frames/" itemprop="url">Comparing two data frames with different number of rows</a>
-  </h3>
-  <div class="article-style" itemprop="articleBody">
-    
-    I posted a question over on StackOverflow on an efficient way of comparing two data frames with the same column structure, but with different rows. What I would like to end up with is an n x m logical matrix where n and m are the number of rows in the first and second data frames, respectively; and the value at the *i*th row and *j*th column indicates whether all the values from row i from data frame one is equal to row j from data frame two.
-    
-  </div>
-  <p class="read-more" itemprop="mainEntityOfPage">
-    <a href="/post/2013-01-24-comparing_two_data_frames/" class="btn btn-primary btn-outline">
       CONTINUE READING
     </a>
   </p>

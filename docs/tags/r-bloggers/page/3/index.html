@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-01-15T21:13:14-05:00">
+  <meta property="og:updated_time" content="2013-01-24T21:13:14-05:00">
   
 
   
@@ -250,6 +250,15 @@
   
   
   <div>
+    <h2><a href="/post/2013-01-24-comparing_two_data_frames/">Comparing two data frames with different number of rows</a></h2>
+    <div class="article-style">
+      
+      I posted a question over on StackOverflow on an efficient way of comparing two data frames with the same column structure, but with different rows. What I would like to end up with is an n x m logical matrix where n and m are the number of rows in the first and second data frames, respectively; and the value at the *i*th row and *j*th column indicates whether all the values from row i from data frame one is equal to row j from data frame two.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-01-15-version_1_sqlutils/">Version 1.0 of sqlutils available on CRAN</a></h2>
     <div class="article-style">
       
@@ -328,16 +337,6 @@ The required packages can be downloaded from github.
     <div class="article-style">
       
       I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2012-04-27-graphic_parameters/">Graphic Parameters (symbols, line types, and colors) for ggplot2</a></h2>
-    <div class="article-style">
-      
-      Following up on John Mount&rsquo;s post on remembering symbol parameters in ggplot2, I decided to give it a try and included symbols, line types, and colors (based upon Earl Glynn&rsquo;s wonderful color chart). Code follows below.
-require(ggplot2) require(grid) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) #Borrowed (i.e. stollen) from <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R" target="_blank">http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R</a> getColorHexAndDecimal &lt;- function(color) { if(is.na(color)) { return(NA) } else { c &lt;- col2rgb(color) return(sprintf(&quot;#%02X%02X%02X %3d %3d %3d&quot;, c[1],c[2],c[3], c[1], c[2], c[3])) } }  Symbols ggplot(data=data.
       
     </div>
   </div>

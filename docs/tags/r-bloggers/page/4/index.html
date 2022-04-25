@@ -78,7 +78,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2012-01-31T21:13:14-05:00">
+  <meta property="og:updated_time" content="2012-04-27T21:13:14-05:00">
   
 
   
@@ -248,6 +248,16 @@
   
 
   
+  
+  <div>
+    <h2><a href="/post/2012-04-27-graphic_parameters/">Graphic Parameters (symbols, line types, and colors) for ggplot2</a></h2>
+    <div class="article-style">
+      
+      Following up on John Mount&rsquo;s post on remembering symbol parameters in ggplot2, I decided to give it a try and included symbols, line types, and colors (based upon Earl Glynn&rsquo;s wonderful color chart). Code follows below.
+require(ggplot2) require(grid) theme_update(panel.background=theme_blank(), panel.grid.major=theme_blank(), panel.border=theme_blank()) #Borrowed (i.e. stollen) from <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R" target="_blank">http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.R</a> getColorHexAndDecimal &lt;- function(color) { if(is.na(color)) { return(NA) } else { c &lt;- col2rgb(color) return(sprintf(&quot;#%02X%02X%02X %3d %3d %3d&quot;, c[1],c[2],c[3], c[1], c[2], c[3])) } }  Symbols ggplot(data=data.
+      
+    </div>
+  </div>
   
   <div>
     <h2><a href="/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/">Given a room with n people in it, what is the probability any two will have the same birthday?</a></h2>

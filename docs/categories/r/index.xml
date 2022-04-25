@@ -7,10 +7,66 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Apr 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Shiny to Create an Academic Poster</title>
+      <link>/post/2022-04-25-shiny_posters/</link>
+      <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-25-shiny_posters/</guid>
+      <description>
+
+
+&lt;div id=&#34;tldr&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;Run &lt;code&gt;shiny::runGitHub(&#39;jbryer/ShinyPoster&#39;)&lt;/code&gt; see an example poster.&lt;/p&gt;
+&lt;p&gt;Go to &lt;a href=&#34;https://github.com/jbryer/ShinyPoster&#34; class=&#34;uri&#34;&gt;https://github.com/jbryer/ShinyPoster&lt;/a&gt; to download the template&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In the past several years academic conferences have begun to display poster presentations electronically. This provides an opportunity for authors to include interactivity into their posters. Shiny has become a popular and powerful framework for researchers to create interactive web applications. This poster and paper presents a framework for creating traditional two or three column posters using Shiny. This provides the opportunity for the inclusion of interactive and live components in the poster.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;A template for the Shiny Poster is available on Github here: &lt;a href=&#34;https://github.com/jbryer/ShinyPoster&#34; class=&#34;uri&#34;&gt;https://github.com/jbryer/ShinyPoster&lt;/a&gt;. The template provides a framework to quickly build a poster in Shiny. The template utilizes the &lt;code&gt;navbarPage&lt;/code&gt; layout along with certain elements from the &lt;code&gt;shinydashboard&lt;/code&gt; package. This allows for multiple views of the poster. Additionally, there is a “View Full Screen” button provided in the top right corner (Tip: you can scale the web browser to fit the screen resolution).&lt;/p&gt;
+&lt;div id=&#34;global-settings&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Global Settings&lt;/h3&gt;
+&lt;p&gt;To get started, modify key variables in the &lt;code&gt;global.R&lt;/code&gt; file, namely:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;navbar_title&lt;/code&gt; - The content in the upper left hand side of the navbar.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;poster_title&lt;/code&gt; - The title of the poster.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;poster_authors&lt;/code&gt; - The poster’s author(s).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;background_color&lt;/code&gt; - The background color of the poster.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tabs_with_white_background&lt;/code&gt; - Any tabs that should have a white background instead of &lt;code&gt;background_color&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, any data should be loaded within the &lt;code&gt;global.R&lt;/code&gt; script and the &lt;code&gt;poster_data&lt;/code&gt; variable should be set to the &lt;code&gt;data.frame&lt;/code&gt; from which descriptive statistics are presented.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;poster-boxes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Poster Boxes&lt;/h3&gt;
+&lt;p&gt;To get you started, there are six boxes to hold content across two rows where row one had three columns and row two had two columns. To simplify the process of populating content in your poster, the &lt;code&gt;includeMarkdown&lt;/code&gt; function is used with individual markdown files located in the &lt;code&gt;docs/&lt;/code&gt; folder.&lt;/p&gt;
+&lt;p&gt;If you wish to use RMarkdown you can use the &lt;code&gt;renderRmd&lt;/code&gt; function (included in the &lt;code&gt;R/&lt;/code&gt; direcotry). This requires two steps: 1. Create an object on the &lt;code&gt;output&lt;/code&gt; object that is the results of &lt;code&gt;renderRmd&lt;/code&gt;; 2. Use the &lt;code&gt;htmlOutput&lt;/code&gt; in the &lt;code&gt;ui.R&lt;/code&gt; script to include the output of the Rmarkdown file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;descriptive-statistics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Descriptive Statistics&lt;/h3&gt;
+&lt;p&gt;To leverage the interactive descriptive statistics set the &lt;code&gt;poster_data&lt;/code&gt; variable in &lt;code&gt;global.R&lt;/code&gt; to your data frame. There are functions in the &lt;code&gt;server.R&lt;/code&gt; that will create &lt;code&gt;ggplot2&lt;/code&gt; figures for variables users select from your data frame. These are located on the “Desciptive Statistics” tab. If you wish to exclude this feature you can delete &lt;code&gt;tabPanel&lt;/code&gt; from the &lt;code&gt;ui.R&lt;/code&gt; file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I hope this framework is useful for those who are presenting an electronic academic poster. You can see a poster we created for AERA 2022 here: &lt;a href=&#34;https://r.bryer.org/shiny/AERA2022/&#34; class=&#34;uri&#34;&gt;https://r.bryer.org/shiny/AERA2022/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL &lt;a href=&#34;https://www.R-project.org/&#34; class=&#34;uri&#34;&gt;https://www.R-project.org/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Winston Chang, Joe Cheng, JJ Allaire, Carson Sievert, Barret Schloerke, Yihui Xie, Jeff Allen, Jonathan McPherson, Alan Dipert and Barbara Borges (2021). shiny: Web Application Framework for R. R package version 1.7.1. &lt;a href=&#34;https://CRAN.R-project.org/package=shiny&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=shiny&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Winston Chang and Barbara Borges Ribeiro (2021). shinydashboard: Create Dashboards with ‘Shiny’. R package version 0.7.2. &lt;a href=&#34;https://CRAN.R-project.org/package=shinydashboard&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=shinydashboard&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>SFTP in R on a Mac</title>
@@ -19,7 +75,6 @@
       
       <guid>/post/2022-04-07-sftp_in_r_on_mac/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I am working on a project where I need to upload PDFs generated from Rmarkdown to a SFTP server. The &lt;a href=&#34;https://github.com/stenevang/sftp&#34;&gt;&lt;code&gt;sftp&lt;/code&gt;&lt;/a&gt; R package is a nice wrapper to the &lt;code&gt;RCurl&lt;/code&gt; package for handling SFTP access. But to my surprise, SFTP support is not included on Macs by default through the &lt;code&gt;curl&lt;/code&gt; command. After some research I found the &lt;a href=&#34;https://stackoverflow.com/questions/34914473/how-do-i-enable-curl-ssl-on-mac-os-x&#34;&gt;&lt;code&gt;curl-openssl&lt;/code&gt;&lt;/a&gt; formula that includes SFTP support. However, since &lt;code&gt;curl&lt;/code&gt; is a build-in program for Mac OS &lt;code&gt;brew install&lt;/code&gt; will not install it into the &lt;code&gt;PATH&lt;/code&gt; environment, therefore not being directly available. This function will help configure &lt;code&gt;RCurl&lt;/code&gt; on a Mac to use the curl-openssl version so we can have SFTP access.&lt;/p&gt;
@@ -102,7 +157,6 @@ configure_curl_openssl &amp;lt;- function(
       
       <guid>/post/2021-02-15-map_my_run_in_r/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;First, I want to give a plug to the &lt;a href=&#34;https://www.strava.com/clubs/rstats&#34;&gt;RStats Strava Running Club&lt;/a&gt;. If you are into running, it is a great group that provides lots of support.&lt;/p&gt;
@@ -284,7 +338,6 @@ distance &amp;lt;- &amp;quot;mi&amp;quot; # Distance unit, one of: &amp;quot;m&a
       
       <guid>/post/2021-02-12-shiny_apps_in_r_packages/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; You can test this approach using this &lt;a href=&#34;https://gist.github.com/jbryer/fc8834279189196ead710e89b56d7f88&#34;&gt;Github Gist&lt;/a&gt;.&lt;/p&gt;
