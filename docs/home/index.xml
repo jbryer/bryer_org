@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="/home/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Bryer.org</title>
       <link>/home/hero/</link>
-      <pubDate>Wed, 31 Jan 2018 00:00:00 -0800</pubDate>
+      <pubDate>Wed, 31 Jan 2018 00:00:00 -0500</pubDate>
       
       <guid>/home/hero/</guid>
       <description>R Packages and Resources by Jason Bryer, Ph.D.</description>
@@ -33,7 +33,7 @@
     <item>
       <title>Selected Publications</title>
       <link>/home/publications_selected/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 -0700</pubDate>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 -0400</pubDate>
       
       <guid>/home/publications_selected/</guid>
       <description></description>
@@ -42,7 +42,7 @@
     <item>
       <title>Recent Publications</title>
       <link>/home/publications/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 -0700</pubDate>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 -0400</pubDate>
       
       <guid>/home/publications/</guid>
       <description></description>
@@ -88,7 +88,7 @@
     <item>
       <title>Tags</title>
       <link>/home/tags/</link>
-      <pubDate>Wed, 20 Sep 2017 00:00:00 -0700</pubDate>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 -0400</pubDate>
       
       <guid>/home/tags/</guid>
       <description></description>

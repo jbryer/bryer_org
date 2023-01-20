@@ -292,6 +292,8 @@ water &amp;lt;- bb %&amp;gt;%
              ylim = bb[2,]) +
     theme_void() +
     theme(plot.background = element_rect(fill = palette[&amp;#39;background&amp;#39;]))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map + ggtitle(title,   
               subtitle = subtitle) +

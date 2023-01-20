@@ -15,7 +15,7 @@
     <item>
       <title>Introduction to Shiny</title>
       <link>/talk/2018-03-03-open_data_day/</link>
-      <pubDate>Fri, 03 Mar 2017 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 03 Mar 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2018-03-03-open_data_day/</guid>
       <description>I will be teaching a short Introduction to Shiny as part of the Open Data Day.
@@ -25,7 +25,7 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     <item>
       <title>Intro to Predictive Modeling</title>
       <link>/talk/2019-01-22-intro_to_predictive_modeling/</link>
-      <pubDate>Sun, 01 Jan 2017 18:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
       
       <guid>/talk/2019-01-22-intro_to_predictive_modeling/</guid>
       <description>This workshop will introduce the basic concepts and procedures for predictive modeling in R including:
@@ -35,7 +35,7 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     <item>
       <title>Intro to Propensity Score Analysis</title>
       <link>/talk/2019-03-28-intro_to_psa/</link>
-      <pubDate>Sun, 01 Jan 2017 18:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
       
       <guid>/talk/2019-03-28-intro_to_psa/</guid>
       <description>The use of propensity score methods (Rosenbaum &amp;amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp;amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters.</description>
@@ -44,7 +44,7 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2017-nera/</guid>
       <description>The Diagnostic Assessment and Achievement of College Skills (DAACS) is a technology-based, no-stakes diagnostic assessment system on academic and non-academic skills, with fast, actionable feedback. Development and piloting of these assessments at two online colleges is underway. Preliminary validity and reliability evidence of these assessments are reported in this paper.
@@ -54,7 +54,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Efficacy of the Diagnostic Assessment and Achievement of College Students for Traditional-Age College Students</title>
       <link>/talk/2022-04-aera/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2022-04-aera/</guid>
       <description>The purpose of this study was to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a diagnostic assessment tool designed to measure college students’ reading, writing, mathematics, and self-regulated learning skills and provide them with feedback and resources to enhance their success. DAACS was embedded into new student orientation in Fall 2020 at a brick-and-mortar university. Of 2,389 enrolled students, 465 students completed the DAACS.</description>
@@ -63,7 +63,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Efficacy of the Diagnostic Assessment and Achievement of College Students on Multiple Success Indicators</title>
       <link>/talk/2019-aera-efficacy/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2019-aera-efficacy/</guid>
       <description>The purpose of this study is to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a no-stakes, open-source, formative assessment tool designed to measure newly enrolled college students’ reading, writing, mathematics, and self-regulated learning (SRL) skills, and provide them with feedback and resources to enhance their functioning and success. A randomized control trial was performed at two online colleges (n = 17,687) to measure the effects in terms of academic achievement and credit acquisition.</description>
@@ -72,7 +72,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Feedback on Writing for College Success: Machine Scoring of Essays on Self-Regulated Learning</title>
       <link>/talk/2018-sigwriting/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2018-sigwriting/</guid>
       <description>This paper describes an ongoing project in which on-demand writing is used as part of a diagnostic evaluation of newly admitted college students. The authors will present preliminary evidence of the validity and reliability of human and machine scored essays and the usefulness of the feedback provided to students on their writing and their self-regulated learning. The purpose of the project, the Diagnostic Assessment and Achievement of College Skills (DAACS), is to develop a no-stakes diagnostic assessment designed to help students transition to college.</description>
@@ -81,7 +81,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Intro to Shiny</title>
       <link>/talk/2021-11-intro_to_shiny/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2021-11-intro_to_shiny/</guid>
       <description>Shiny is an R package designed to create web based applications using the R programming language. This talk will introduce the basic framework for creating interactive Shiny applications including user inputs, dynamic plots and tables, reactive programming, and creating data dashboards.</description>
@@ -90,7 +90,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Optimizing Student Learning with the Diagnostic Assessment and Achievement of College Skills</title>
       <link>/talk/2022-06-learning_ideas_conference/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2022-06-learning_ideas_conference/</guid>
       <description>The purpose of this study was to examine the effects and predictive power of the Diagnostic Assessment and Achievement of College Skills (DAACS) on student success. DAACS is a no-stakes, open-source, diagnostic assessment tool designed to measure newly enrolled college students’ reading, writing, mathematics, and self-regulated learning (SRL) skills, and provide them with feedback and resources to enhance their functioning and success. A randomized control trial was performed at two online colleges (n = 23,728) to measure the effects of DAACS on academic achievement and credit acquisition.</description>
@@ -99,7 +99,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>R Package Development</title>
       <link>/talk/2022-03-r_package_development/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2022-03-r_package_development/</guid>
       <description>R packages are the primary mechanism to share R code, data, and documentation with other useRs. This talk walk through the process of creating a new R package including the use of the devtools package, roxygon2 package for documentation, and the pkgdown package for creating websites. We will also discuss how to share packages through Github and/or CRAN.</description>
@@ -108,7 +108,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Relationship Between Intraclass Correlation (ICC) and Percent Agreement</title>
       <link>/talk/2019-ncme-irrsim/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2019-ncme-irrsim/</guid>
       <description>Inter-rater reliability (IRR) is a critical component of establishing the reliability of measures when more than one rater is necessary. There are numerous IRR statistics available to researchers including percent rater agreement, Cohen&amp;rsquo;s Kappa, and several types of intraclass correlations (ICC). Several methodologists suggest using ICC over percent rater agreement (Hallgren, 2012; Koo &amp;amp; Li, 2016; McGraw &amp;amp; Wong, 1996; Shrout &amp;amp; Fleiss, 1979). However, the literature provides little guidance on the interpretation of ICC results.</description>
@@ -117,7 +117,7 @@ Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; H
     <item>
       <title>Rethinking Placement Exams: The Diagnostic Assessment and Achievement of College Skills</title>
       <link>/talk/2018-innovations/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2018-innovations/</guid>
       <description>This session will introduce a new open source formative assessment developed as an alternative to tradition placement exams that measures self-regulated learning, reading, mathematics, and writing. Results from a pilot study conducted at two large online institutions will be discussed.
@@ -127,7 +127,7 @@ The Diagnostic Assessment and Achievement of College Skills (DAACS) addresses th
     <item>
       <title>The Diagnostic Assessment and Achievement of College Skills</title>
       <link>/talk/2018-dtl/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2018-dtl/</guid>
       <description>Although the issues of placement exams impact most less selective or open enrollment colleges, the efficacy of DAACS as an alternative to traditional placement exams was conducted at two large online distance education colleges: Excelsior College and Western Governors University. DAACS is an assessment framework that provides students with a formative view of their skills in self-regulation, reading, writing, and math. For administrators, DAACS provides valuable information to inform personalized interventions and more accurate risk modeling.</description>
@@ -136,7 +136,7 @@ The Diagnostic Assessment and Achievement of College Skills (DAACS) addresses th
     <item>
       <title>Validity and Reliability of the DAACS Writing Assessment</title>
       <link>/talk/2019-ncme-writing/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2019-ncme-writing/</guid>
       <description>The DAACS system assesses incoming college students’ readiness in reading, writing, mathematics, and self-regulated learning. The purpose of this study is to examine validity and reliability evidence for the internal structure of the writing assessment. The evidence suggests that our conceptual framework holds for both human and machine scored essays.</description>

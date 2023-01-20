@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-
+  <a rel="me" href="https://vis.social/@jbryer">Mastodon</a>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,9 +72,6 @@ The key for this to work is to get access to GPX (GPS Exchange format) files.">
   <link rel="canonical" href="/post/2021-02-15-map_my_run_in_r/">
 
   <meta property="twitter:card" content="summary_large_image">
-  
-  <meta property="twitter:site" content="@jbryer">
-  <meta property="twitter:creator" content="@jbryer">
   
   <meta property="og:site_name" content="Jason Bryer">
   <meta property="og:url" content="/post/2021-02-15-map_my_run_in_r/">
@@ -471,6 +468,8 @@ water &lt;- bb %&gt;%
              ylim = bb[2,]) +
     theme_void() +
     theme(plot.background = element_rect(fill = palette[&#39;background&#39;]))</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.</code></pre>
 <p>The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.</p>
 <pre class="r"><code>map + ggtitle(title,   
               subtitle = subtitle) +

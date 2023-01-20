@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 -0500</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
@@ -290,6 +290,8 @@ water &amp;lt;- bb %&amp;gt;%
              ylim = bb[2,]) +
     theme_void() +
     theme(plot.background = element_rect(fill = palette[&amp;#39;background&amp;#39;]))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map + ggtitle(title,   
               subtitle = subtitle) +
@@ -579,7 +581,7 @@ my.delete.callback &amp;lt;- function(data, row) {
     <item>
       <title>Introduction to Shiny</title>
       <link>/talk/2018-03-03-open_data_day/</link>
-      <pubDate>Fri, 03 Mar 2017 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 03 Mar 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2018-03-03-open_data_day/</guid>
       <description>&lt;p&gt;I will be teaching a short Introduction to Shiny as part of the Open Data Day.&lt;/p&gt;
@@ -605,7 +607,7 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     <item>
       <title>Intro to Predictive Modeling</title>
       <link>/talk/2019-01-22-intro_to_predictive_modeling/</link>
-      <pubDate>Sun, 01 Jan 2017 18:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
       
       <guid>/talk/2019-01-22-intro_to_predictive_modeling/</guid>
       <description>&lt;p&gt;This workshop will introduce the basic concepts and procedures for predictive modeling in R including:&lt;/p&gt;
@@ -624,7 +626,7 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     <item>
       <title>Intro to Propensity Score Analysis</title>
       <link>/talk/2019-03-28-intro_to_psa/</link>
-      <pubDate>Sun, 01 Jan 2017 18:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
       
       <guid>/talk/2019-03-28-intro_to_psa/</guid>
       <description>&lt;p&gt;The use of propensity score methods (Rosenbaum &amp;amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp;amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in two phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters. R (R Core Team, 2012) is ideal for conducting PSA given its wide availability of the most current statistical methods vis-à-vis add-on packages as well as its superior graphics capabilities.&lt;/p&gt;
@@ -638,7 +640,7 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0800</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
       
       <guid>/talk/2017-nera/</guid>
       <description>&lt;p&gt;The Diagnostic Assessment and Achievement of College Skills (DAACS) is a technology-based, no-stakes

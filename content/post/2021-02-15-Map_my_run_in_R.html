@@ -143,6 +143,8 @@ water &lt;- bb %&gt;%
              ylim = bb[2,]) +
     theme_void() +
     theme(plot.background = element_rect(fill = palette[&#39;background&#39;]))</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.</code></pre>
 <p>The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.</p>
 <pre class="r"><code>map + ggtitle(title,   
               subtitle = subtitle) +

@@ -224,9 +224,14 @@ defaultContentLanguageInSubdir = false
     link = "mailto:jason@bryer.org"
 
   [[params.social]]
-    icon = "twitter"
+    icon = "mastodon"
     icon_pack = "fa"
-    link = "//twitter.com/jbryer"
+    link = "//vis.social/@jbryer"
+
+#  [[params.social]]
+#    icon = "twitter"
+#    icon_pack = "fa"
+#    link = "//twitter.com/jbryer"
 
 #  [[params.social]]
 #    icon = "google-scholar"
