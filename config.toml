@@ -219,33 +219,33 @@ defaultContentLanguageInSubdir = false
   #   Full list: https://jpswalsh.github.io/academicons/
 
   [[params.social]]
-    icon = "envelope"
+    icon = "fa-envelope"
     icon_pack = "fa"
     link = "mailto:jason@bryer.org"
 
   [[params.social]]
-    icon = "mastodon"
-    icon_pack = "fa"
+    icon = "fa-mastodon"
+    icon_pack = "fa-brands"
     link = "//vis.social/@jbryer"
 
 #  [[params.social]]
-#    icon = "twitter"
-#    icon_pack = "fa"
+#    icon = "fa-twitter"
+#    icon_pack = "fa-brands"
 #    link = "//twitter.com/jbryer"
 
 #  [[params.social]]
-#    icon = "google-scholar"
+#    icon = "fa-google-scholar"
 #    icon_pack = "ai"
 #    link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
 
   [[params.social]]
-    icon = "github"
-    icon_pack = "fa"
+    icon = "fa-github"
+    icon_pack = "fa-brands"
     link = "//github.com/jbryer"
 
   [[params.social]]
-    icon = "linkedin"
-    icon_pack = "fa"
+    icon = "fa-linkedin"
+    icon_pack = "fa-brands"
     link = "//www.linkedin.com/in/jasonbryer/"
 
 
