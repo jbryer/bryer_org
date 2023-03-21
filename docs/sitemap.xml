@@ -122,6 +122,15 @@
     
     <url>
     
+      <loc>/project/shinyqda/</loc>
+      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/project/psa/</loc>
       <lastmod>2017-01-31T00:00:00+00:00</lastmod>
     </url>
@@ -142,6 +151,15 @@
     
       <loc>/talk/2019-03-28-intro_to_psa/</loc>
       <lastmod>2017-01-01T18:00:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/talk/2023-05-society_for_causal_inference/</loc>
+      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
     </url>
     
   
@@ -293,6 +311,15 @@
     
     <url>
     
+      <loc>/project/psagraphics/</loc>
+      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/project/psaboot/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     </url>
@@ -312,6 +339,15 @@
     <url>
     
       <loc>/project/ipeds/</loc>
+      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/project/mldash/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -768,7 +804,7 @@
     
     <url>
     
-      <loc>/categories/r/</loc>
+      <loc>/tags/r/</loc>
       <lastmod>2022-04-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -778,7 +814,7 @@
     
     <url>
     
-      <loc>/tags/r/</loc>
+      <loc>/categories/r/</loc>
       <lastmod>2022-04-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -860,6 +896,16 @@
     
       <loc>/tags/education/</loc>
       <lastmod>2014-07-04T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/machine-learning/</loc>
+      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

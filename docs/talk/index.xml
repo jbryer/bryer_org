@@ -42,6 +42,15 @@ Open Data Day is a collection of local gatherings of open government advocates, 
     </item>
     
     <item>
+      <title>Bootstrapping for Propensity Score Analysis</title>
+      <link>/talk/2023-05-society_for_causal_inference/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2023-05-society_for_causal_inference/</guid>
+      <description>As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution.</description>
+    </item>
+    
+    <item>
       <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
       <link>/talk/2017-nera/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>

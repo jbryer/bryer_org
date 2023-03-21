@@ -352,50 +352,50 @@
 #&#39; @param path the path where Homebrew packages are installed.
 #&#39; @return TRUE if sftp is available.
 configure_curl_openssl &lt;- function(
-    path = &#39;/opt/homebrew/Cellar&#39;
+	path = &#39;/opt/homebrew/Cellar&#39;
 ) {
-    if(Sys.info()[&#39;sysname&#39;] != &#39;Darwin&#39;) {
-        warning(&#39;This funtion only works on Mac OS.&#39;)
-        return(FALSE)
-    }
-    if(system(&#39;which brew&#39;) == 1) {
-        if(file.exists(&#39;/opt/homebrew/bin/brew&#39;)) {
-            # Homebrew is installed but not on the PATH
-            PATH &lt;- Sys.getenv(&quot;PATH&quot;)
-            Sys.setenv(PATH = paste(&quot;/opt/homebrew/bin&quot;, PATH, sep = &quot;:&quot;))
-        } else {
-            stop(&#39;Could not find brew. Try installing from https://brew.sh&#39;)
-        }
-    }
-    if(&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
-        return(TRUE)
-    }
+	if(Sys.info()[&#39;sysname&#39;] != &#39;Darwin&#39;) {
+		warning(&#39;This funtion only works on Mac OS.&#39;)
+		return(FALSE)
+	}
+	if(system(&#39;which brew&#39;) == 1) {
+		if(file.exists(&#39;/opt/homebrew/bin/brew&#39;)) {
+			# Homebrew is installed but not on the PATH
+			PATH &lt;- Sys.getenv(&quot;PATH&quot;)
+			Sys.setenv(PATH = paste(&quot;/opt/homebrew/bin&quot;, PATH, sep = &quot;:&quot;))
+		} else {
+			stop(&#39;Could not find brew. Try installing from https://brew.sh&#39;)
+		}
+	}
+	if(&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
+		return(TRUE)
+	}
 
-    curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
-                               recursive = FALSE,
-                               full.names = FALSE)
-    if(length(curl.versions) == 0) { # Try install curl
-        message(&#39;curl-openssl not found, trying to install using Homebrew...&#39;)
-        system(&#39;brew install curl-openssl&#39;)
-        curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
-                                   recursive = FALSE,
-                                   full.names = FALSE)
-    }
-    if(length(curl.versions) == 0) {
-        stop(&#39;Could not find or install curl-openssl.&#39;)
-    }
-    version &lt;- curl.versions[length(curl.versions)] # Use the latest version
-    if(&#39;package:RCurl&#39; %in% search()) { # Detach the RCurl package first
-        detach(&#39;package:RCurl&#39;, character.only = TRUE)
-    }
-    PATH &lt;- Sys.getenv(&quot;PATH&quot;)
-    Sys.setenv(PATH = paste0(&quot;/opt/homebrew/Cellar/curl/&quot;, version, &quot;/bin:&quot;, PATH))
-    message(&#39;Resinstalling RCurl from source...&#39;)
-    install.packages(&#39;RCurl&#39;, type = &#39;source&#39;)
-    if(!&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
-        stop(&#39;Could not configure RCurl with openssl, sorry.&#39;)
-    }
-    return(TRUE)
+	curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
+							   recursive = FALSE,
+							   full.names = FALSE)
+	if(length(curl.versions) == 0) { # Try install curl
+		message(&#39;curl-openssl not found, trying to install using Homebrew...&#39;)
+		system(&#39;brew install curl-openssl&#39;)
+		curl.versions &lt;- list.dirs(path = paste0(path, &#39;/curl/&#39;),
+								   recursive = FALSE,
+								   full.names = FALSE)
+	}
+	if(length(curl.versions) == 0) {
+		stop(&#39;Could not find or install curl-openssl.&#39;)
+	}
+	version &lt;- curl.versions[length(curl.versions)] # Use the latest version
+	if(&#39;package:RCurl&#39; %in% search()) { # Detach the RCurl package first
+		detach(&#39;package:RCurl&#39;, character.only = TRUE)
+	}
+	PATH &lt;- Sys.getenv(&quot;PATH&quot;)
+	Sys.setenv(PATH = paste0(&quot;/opt/homebrew/Cellar/curl/&quot;, version, &quot;/bin:&quot;, PATH))
+	message(&#39;Resinstalling RCurl from source...&#39;)
+	install.packages(&#39;RCurl&#39;, type = &#39;source&#39;)
+	if(!&#39;sftp&#39; %in% RCurl::curlVersion()$protocols) {
+		stop(&#39;Could not configure RCurl with openssl, sorry.&#39;)
+	}
+	return(TRUE)
 }</code></pre>
 <p>Simply running the command should do the setup. However, if things go wrong I tried to indicate where in the process something went wrong. You should only need to run this once per R installation since once <code>RCurl</code> has been installed from source built against the <code>curl-openssl</code> version of CURL, it should remember to use that version.</p>
 <pre class="r"><code>configure_curl_openssl()</code></pre>

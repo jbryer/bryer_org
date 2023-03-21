@@ -41,6 +41,15 @@
     
     <item>
       <title>PSA</title>
+      <link>/project/shinyqda/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/shinyqda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PSA</title>
       <link>/project/psa/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
       
@@ -67,7 +76,16 @@
     </item>
     
     <item>
-      <title>PSAboot</title>
+      <title>PSAgraphics</title>
+      <link>/project/psagraphics/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/psagraphics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ShinyQDA</title>
       <link>/project/psaboot/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
@@ -90,6 +108,15 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/project/ipeds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mldash</title>
+      <link>/project/mldash/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/mldash/</guid>
       <description></description>
     </item>
     

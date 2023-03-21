@@ -17,10 +17,10 @@
       
     
   
-  <meta name="description" content="">
+  <meta name="description" content="As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the PSAboot package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/project/psaboot/">
+  <link rel="alternate" hreflang="en-us" href="/talk/2023-05-society_for_causal_inference/">
 
   
 
@@ -67,24 +67,24 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/project/psaboot/">
+  <link rel="canonical" href="/talk/2023-05-society_for_causal_inference/">
 
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="Jason Bryer">
-  <meta property="og:url" content="/project/psaboot/">
-  <meta property="og:title" content="ShinyQDA | Jason Bryer">
-  <meta property="og:description" content="">
+  <meta property="og:url" content="/talk/2023-05-society_for_causal_inference/">
+  <meta property="og:title" content="Bootstrapping for Propensity Score Analysis | Jason Bryer">
+  <meta property="og:description" content="As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the PSAboot package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2016-04-27T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2017-01-01T00:00:00-05:00">
   
-  <meta property="article:modified_time" content="2016-04-27T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2017-01-01T00:00:00-05:00">
   
 
-  <title>ShinyQDA | Jason Bryer</title>
+  
+
+  <title>Bootstrapping for Propensity Score Analysis | Jason Bryer</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -238,8 +238,7 @@
   </div>
 </nav>
 
-
-<article class="article article-project" itemscope itemtype="http://schema.org/Article">
+<div class="pub" itemscope itemtype="http://schema.org/Event">
 
   
 
@@ -247,43 +246,45 @@
   <div class="article-container">
 
     <div class="pub-title">
-      <h1 itemprop="name">ShinyQDA</h1>
-      <span class="pub-authors" itemprop="author">&nbsp;</span>
+      <h1 itemprop="name">Bootstrapping for Propensity Score Analysis</h1>
+      <span class="pub-authors" itemprop="author">
+        
+      </span>
       <span class="pull-right">
         
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=ShinyQDA&amp;url=%2fproject%2fpsaboot%2f"
+         href="https://twitter.com/intent/tweet?text=Bootstrapping%20for%20Propensity%20Score%20Analysis&amp;url=%2ftalk%2f2023-05-society_for_causal_inference%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fproject%2fpsaboot%2f"
+         href="https://www.facebook.com/sharer.php?u=%2ftalk%2f2023-05-society_for_causal_inference%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fproject%2fpsaboot%2f&amp;title=ShinyQDA"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2ftalk%2f2023-05-society_for_causal_inference%2f&amp;title=Bootstrapping%20for%20Propensity%20Score%20Analysis"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fproject%2fpsaboot%2f&amp;title=ShinyQDA"
+         href="http://service.weibo.com/share/share.php?url=%2ftalk%2f2023-05-society_for_causal_inference%2f&amp;title=Bootstrapping%20for%20Propensity%20Score%20Analysis"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=ShinyQDA&amp;body=%2fproject%2fpsaboot%2f">
+         href="mailto:?subject=Bootstrapping%20for%20Propensity%20Score%20Analysis&amp;body=%2ftalk%2f2023-05-society_for_causal_inference%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -295,45 +296,74 @@
     </div>
 
     
-    <a class="btn btn-primary btn-outline" href="https://github.com/jbryer/ShinyQDA" target="_blank" rel="noopener">Go to Project Site</a>
+      <h3>Abstract</h3>
+      <p class="pub-abstract" itemprop="text">As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the PSAboot package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.</p>
     
 
-    <div class="article-style" itemprop="articleBody">
-      
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
+          <div class="col-xs-12 col-sm-9" itemprop="datePublished">
+            
+            May 24, 2023
+            <div class="talk-time">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
+
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Event</div>
+          <div class="col-xs-12 col-sm-9">
+            <a href="https://sci-info.org/annual-meeting/" target="_blank" rel="noopener">
+            Society for Causal Inference Annual Meeting
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
+
+    
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 pub-row-heading">Location</div>
+          <div class="col-xs-12 col-sm-9">Austin, TX</div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="visible-xs space-below"></div>
+    
+
+    
+
+    <div class="space-below"></div>
+
+    <div class="article-style">
+      <p>As the popularity of propensity score methods for estimating causal effects in observational studies increase, the choices researchers have for which methods to use has also increased. Rosenbaum (2012) suggested that there are benefits for testing the null hypothesis more than once in observational studies. With the wide availability of high power computers resampling methods such as bootstrapping (Efron, 1979) have become popular for providing more stable estimates of the sampling distribution. This paper introduces the PSAboot package for R that provides functions for bootstrapping propensity score methods. It deviates from traditional bootstrapping methods by allowing for different sampling specifications for treatment and control groups, mainly to ensure the ratio of treatment-to-control observations are maintained. Additionally, this framework will provide estimates using multiple methods for each bootstrap sample. Two examples are discussed: the classic National Work Demonstration and PSID (Lalonde, 1986) study and a study on tutoring effects on student grades.</p>
+
+<hr />
+
     </div>
 
     
 
 
-<div class="article-tags">
-  
-  <a class="btn btn-primary btn-outline" href="/tags/r-packages">r-packages</a>
-  
-  <a class="btn btn-primary btn-outline" href="/tags/psa">PSA</a>
-  
-</div>
-
-
-
-
-    
-    
-    
-
-    
-      
-      
-      
-      
-
-      
-      
-      
-      
-    
-
   </div>
-</article>
+</div>
 
 
 
@@ -416,6 +446,13 @@
       <script>hljs.initHighlightingOnLoad();</script>
     
 
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
     
     
 

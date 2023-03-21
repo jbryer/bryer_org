@@ -96,50 +96,50 @@
 #&amp;#39; @param path the path where Homebrew packages are installed.
 #&amp;#39; @return TRUE if sftp is available.
 configure_curl_openssl &amp;lt;- function(
-    path = &amp;#39;/opt/homebrew/Cellar&amp;#39;
+	path = &amp;#39;/opt/homebrew/Cellar&amp;#39;
 ) {
-    if(Sys.info()[&amp;#39;sysname&amp;#39;] != &amp;#39;Darwin&amp;#39;) {
-        warning(&amp;#39;This funtion only works on Mac OS.&amp;#39;)
-        return(FALSE)
-    }
-    if(system(&amp;#39;which brew&amp;#39;) == 1) {
-        if(file.exists(&amp;#39;/opt/homebrew/bin/brew&amp;#39;)) {
-            # Homebrew is installed but not on the PATH
-            PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
-            Sys.setenv(PATH = paste(&amp;quot;/opt/homebrew/bin&amp;quot;, PATH, sep = &amp;quot;:&amp;quot;))
-        } else {
-            stop(&amp;#39;Could not find brew. Try installing from https://brew.sh&amp;#39;)
-        }
-    }
-    if(&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
-        return(TRUE)
-    }
+	if(Sys.info()[&amp;#39;sysname&amp;#39;] != &amp;#39;Darwin&amp;#39;) {
+		warning(&amp;#39;This funtion only works on Mac OS.&amp;#39;)
+		return(FALSE)
+	}
+	if(system(&amp;#39;which brew&amp;#39;) == 1) {
+		if(file.exists(&amp;#39;/opt/homebrew/bin/brew&amp;#39;)) {
+			# Homebrew is installed but not on the PATH
+			PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+			Sys.setenv(PATH = paste(&amp;quot;/opt/homebrew/bin&amp;quot;, PATH, sep = &amp;quot;:&amp;quot;))
+		} else {
+			stop(&amp;#39;Could not find brew. Try installing from https://brew.sh&amp;#39;)
+		}
+	}
+	if(&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+		return(TRUE)
+	}
 
-    curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
-                               recursive = FALSE,
-                               full.names = FALSE)
-    if(length(curl.versions) == 0) { # Try install curl
-        message(&amp;#39;curl-openssl not found, trying to install using Homebrew...&amp;#39;)
-        system(&amp;#39;brew install curl-openssl&amp;#39;)
-        curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
-                                   recursive = FALSE,
-                                   full.names = FALSE)
-    }
-    if(length(curl.versions) == 0) {
-        stop(&amp;#39;Could not find or install curl-openssl.&amp;#39;)
-    }
-    version &amp;lt;- curl.versions[length(curl.versions)] # Use the latest version
-    if(&amp;#39;package:RCurl&amp;#39; %in% search()) { # Detach the RCurl package first
-        detach(&amp;#39;package:RCurl&amp;#39;, character.only = TRUE)
-    }
-    PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
-    Sys.setenv(PATH = paste0(&amp;quot;/opt/homebrew/Cellar/curl/&amp;quot;, version, &amp;quot;/bin:&amp;quot;, PATH))
-    message(&amp;#39;Resinstalling RCurl from source...&amp;#39;)
-    install.packages(&amp;#39;RCurl&amp;#39;, type = &amp;#39;source&amp;#39;)
-    if(!&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
-        stop(&amp;#39;Could not configure RCurl with openssl, sorry.&amp;#39;)
-    }
-    return(TRUE)
+	curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+							   recursive = FALSE,
+							   full.names = FALSE)
+	if(length(curl.versions) == 0) { # Try install curl
+		message(&amp;#39;curl-openssl not found, trying to install using Homebrew...&amp;#39;)
+		system(&amp;#39;brew install curl-openssl&amp;#39;)
+		curl.versions &amp;lt;- list.dirs(path = paste0(path, &amp;#39;/curl/&amp;#39;),
+								   recursive = FALSE,
+								   full.names = FALSE)
+	}
+	if(length(curl.versions) == 0) {
+		stop(&amp;#39;Could not find or install curl-openssl.&amp;#39;)
+	}
+	version &amp;lt;- curl.versions[length(curl.versions)] # Use the latest version
+	if(&amp;#39;package:RCurl&amp;#39; %in% search()) { # Detach the RCurl package first
+		detach(&amp;#39;package:RCurl&amp;#39;, character.only = TRUE)
+	}
+	PATH &amp;lt;- Sys.getenv(&amp;quot;PATH&amp;quot;)
+	Sys.setenv(PATH = paste0(&amp;quot;/opt/homebrew/Cellar/curl/&amp;quot;, version, &amp;quot;/bin:&amp;quot;, PATH))
+	message(&amp;#39;Resinstalling RCurl from source...&amp;#39;)
+	install.packages(&amp;#39;RCurl&amp;#39;, type = &amp;#39;source&amp;#39;)
+	if(!&amp;#39;sftp&amp;#39; %in% RCurl::curlVersion()$protocols) {
+		stop(&amp;#39;Could not configure RCurl with openssl, sorry.&amp;#39;)
+	}
+	return(TRUE)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Simply running the command should do the setup. However, if things go wrong I tried to indicate where in the process something went wrong. You should only need to run this once per R installation since once &lt;code&gt;RCurl&lt;/code&gt; has been installed from source built against the &lt;code&gt;curl-openssl&lt;/code&gt; version of CURL, it should remember to use that version.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;configure_curl_openssl()&lt;/code&gt;&lt;/pre&gt;
@@ -167,14 +167,14 @@ library(tmaptools)
 library(XML)
 
 palette.nyc &amp;lt;- c(
-    background = &amp;#39;#0850A4&amp;#39;,
-    water = &amp;#39;#0850A4&amp;#39;,
-    streets = &amp;#39;#3D88C7&amp;#39;,
-    small_streets = &amp;#39;#3D88C7&amp;#39;,
-    rivers = &amp;#39;#0850A4&amp;#39;,
-    route = &amp;#39;#1B295A&amp;#39;,
-    labels = &amp;#39;#3D88C7&amp;#39;,
-    title = &amp;#39;#A8BACA&amp;#39;
+	background = &amp;#39;#0850A4&amp;#39;,
+	water = &amp;#39;#0850A4&amp;#39;,
+	streets = &amp;#39;#3D88C7&amp;#39;,
+	small_streets = &amp;#39;#3D88C7&amp;#39;,
+	rivers = &amp;#39;#0850A4&amp;#39;,
+	route = &amp;#39;#1B295A&amp;#39;,
+	labels = &amp;#39;#3D88C7&amp;#39;,
+	title = &amp;#39;#A8BACA&amp;#39;
 )
 
 gpx.file &amp;lt;- &amp;#39;2019-11-03-NYC-Marathon.gpx&amp;#39;
@@ -185,15 +185,15 @@ title.hjust &amp;lt;- 0 # 0 = left align; 1 = right aling
 distance &amp;lt;- &amp;quot;mi&amp;quot; # Distance unit, one of: &amp;quot;m&amp;quot;, &amp;quot;km&amp;quot;, &amp;quot;mi&amp;quot;, and &amp;quot;ft&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following R code reads in the GPX file (which is an XML file) and converts it to a matrix of longitude and latitude coordinates. The &lt;code&gt;bb&lt;/code&gt; variable defines the minimum bounding rectangle that encompasses the entire route. This will define the bounds of the street data we will download.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gpx &amp;lt;- XML::htmlTreeParse(gpx.file, 
-                     error = function (...) {}, useInternalNodes = T)
+					 error = function (...) {}, useInternalNodes = T)
 
 coords &amp;lt;- xpathSApply(gpx, path = &amp;quot;//trkpt&amp;quot;, xmlAttrs)
 lats &amp;lt;- as.numeric(coords[&amp;quot;lat&amp;quot;,])
 lons &amp;lt;- as.numeric(coords[&amp;quot;lon&amp;quot;,])
 path &amp;lt;- data.frame(x = lons, y = lats)
 bb &amp;lt;- matrix(c(min(path$x), min(path$y), max(path$x), max(path$y)),
-             nrow = 2, ncol = 2,
-             dimnames = list(c(&amp;#39;x&amp;#39;,&amp;#39;y&amp;#39;), c(&amp;#39;min&amp;#39;, &amp;#39;max&amp;#39;)))
+			 nrow = 2, ncol = 2,
+			 dimnames = list(c(&amp;#39;x&amp;#39;,&amp;#39;y&amp;#39;), c(&amp;#39;min&amp;#39;, &amp;#39;max&amp;#39;)))
 bb&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         min       max
 ## x -74.06163 -73.92439
@@ -201,11 +201,11 @@ bb&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The next chunk calculates the distance between each coordinate and the cumulative sum/distance. Note that this is an inefficient chunk since I used a for loop to calculate the distances.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;path$distance &amp;lt;- 0
 for(i in 2:nrow(path)) { 
-    # Probably shouldn&amp;#39;t use a loop, this is slow. Not sure what to use instead.
-    path[i,]$distance &amp;lt;- as.numeric(
-        approx_distances(unlist(path[i - 1,,drop=TRUE]), unlist(path[i,,drop=TRUE]), 
-                         target = distance, projection = 4326)
-    )
+	# Probably shouldn&amp;#39;t use a loop, this is slow. Not sure what to use instead.
+	path[i,]$distance &amp;lt;- as.numeric(
+		approx_distances(unlist(path[i - 1,,drop=TRUE]), unlist(path[i,,drop=TRUE]), 
+						 target = distance, projection = 4326)
+	)
 }
 path$cum_distance &amp;lt;- cumsum(path$distance)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Next, we create a separate data frame for the mile markers. We could round up or down here. For NYC, my watch registered just under 26 miles so to ensure a 26 mile marker is shown, we will round up here. I presume the GPS lost accuracy when running on the lower level of bridges and/or through the buildings.&lt;/p&gt;
@@ -213,11 +213,11 @@ path$cum_distance &amp;lt;- cumsum(path$distance)&lt;/code&gt;&lt;/pre&gt;
 markers &amp;lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),][-1,]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The next block of R code (which is largely copied from the ggplot2tutor tutorial) downloads map data from OpenStreet Map.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;streets &amp;lt;- bb %&amp;gt;%
-    opq() %&amp;gt;%
-    add_osm_feature(key = &amp;quot;highway&amp;quot;, 
-                    value = c(&amp;quot;motorway&amp;quot;, &amp;quot;primary&amp;quot;, &amp;quot;trunk&amp;quot;,
-                              &amp;quot;secondary&amp;quot;, &amp;quot;tertiary&amp;quot;)) %&amp;gt;%
-    osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
+	opq() %&amp;gt;%
+	add_osm_feature(key = &amp;quot;highway&amp;quot;, 
+					value = c(&amp;quot;motorway&amp;quot;, &amp;quot;primary&amp;quot;, &amp;quot;trunk&amp;quot;,
+							  &amp;quot;secondary&amp;quot;, &amp;quot;tertiary&amp;quot;)) %&amp;gt;%
+	osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
 ## Request failed [ERROR]. Retrying in 1.8 seconds...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
@@ -226,99 +226,102 @@ markers &amp;lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),
 ## Request failed [ERROR]. Retrying in 1.2 seconds...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Request failed [504]. Retrying in 3.9 seconds...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;small_streets &amp;lt;- bb %&amp;gt;%
-    opq() %&amp;gt;%
-    add_osm_feature(key = &amp;quot;highway&amp;quot;,
-                    value = c(&amp;quot;residential&amp;quot;, &amp;quot;living_street&amp;quot;,
-                              &amp;quot;unclassified&amp;quot;,
-                              &amp;quot;service&amp;quot;, &amp;quot;footway&amp;quot;)) %&amp;gt;%
-    osmdata_sf()
+	opq() %&amp;gt;%
+	add_osm_feature(key = &amp;quot;highway&amp;quot;,
+					value = c(&amp;quot;residential&amp;quot;, &amp;quot;living_street&amp;quot;,
+							  &amp;quot;unclassified&amp;quot;,
+							  &amp;quot;service&amp;quot;, &amp;quot;footway&amp;quot;)) %&amp;gt;%
+	osmdata_sf()
 
 river &amp;lt;- bb %&amp;gt;%
-    opq() %&amp;gt;%
-    add_osm_feature(key = &amp;quot;waterway&amp;quot;, value = &amp;quot;river&amp;quot;) %&amp;gt;%
-    osmdata_sf()
+	opq() %&amp;gt;%
+	add_osm_feature(key = &amp;quot;waterway&amp;quot;, value = &amp;quot;river&amp;quot;) %&amp;gt;%
+	osmdata_sf()
 
 water &amp;lt;- bb %&amp;gt;%
-    opq() %&amp;gt;%
-    add_osm_feature(key = &amp;quot;natural&amp;quot;, value = c(&amp;#39;water&amp;#39;)) %&amp;gt;%
-    osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
+	opq() %&amp;gt;%
+	add_osm_feature(key = &amp;quot;natural&amp;quot;, value = c(&amp;#39;water&amp;#39;)) %&amp;gt;%
+	osmdata_sf()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now that the data is downloaded, we can begin building the map using &lt;code&gt;ggplot2&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- ggplot() +
-    geom_sf(data = water$osm_multipolygons,
-            inherit.aes = FALSE,
-            fill = palette[&amp;#39;water&amp;#39;],
-            color = NA,
-            alpha = .3) +
-    geom_sf(data = streets$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&amp;#39;streets&amp;#39;],
-            size = .3,
-            alpha = .6) +
-    geom_sf(data = small_streets$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&amp;#39;small_streets&amp;#39;],
-            size = .1,
-            alpha = .5) +
-    geom_sf(data = river$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&amp;#39;rivers&amp;#39;],
-            size = .2,
-            alpha = .3) +
-    geom_path(data = path, aes(x = x, y = y),
-              color = palette[&amp;#39;route&amp;#39;],
-              size = 1) +
-    geom_point(data = markers, aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&amp;#39;labels&amp;#39;],
-               fill = palette[&amp;#39;route&amp;#39;],
-               shape = 21, stroke = 1, size = 5) +
-    geom_point(data = path[1,], aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&amp;#39;labels&amp;#39;],
-               fill = &amp;#39;green&amp;#39;,
-               shape = 21, stroke = 1, size = 5) +
-    geom_point(data = path[nrow(path),], aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&amp;#39;labels&amp;#39;],
-               fill = &amp;#39;red&amp;#39;,
-               shape = 21, stroke = 1, size = 5) +
-    geom_text(data = markers, aes(x = x, y = y, label = ceiling(cum_distance)),
-              inherit.aes = FALSE,
-              color = palette[&amp;#39;labels&amp;#39;],
-              size = 2) +
-    coord_sf(xlim = bb[1,],
-             ylim = bb[2,]) +
-    theme_void() +
-    theme(plot.background = element_rect(fill = palette[&amp;#39;background&amp;#39;]))&lt;/code&gt;&lt;/pre&gt;
+	geom_sf(data = water$osm_multipolygons,
+			inherit.aes = FALSE,
+			fill = palette[&amp;#39;water&amp;#39;],
+			color = NA,
+			alpha = .3) +
+	geom_sf(data = streets$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&amp;#39;streets&amp;#39;],
+			size = .3,
+			alpha = .6) +
+	geom_sf(data = small_streets$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&amp;#39;small_streets&amp;#39;],
+			size = .1,
+			alpha = .5) +
+	geom_sf(data = river$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&amp;#39;rivers&amp;#39;],
+			size = .2,
+			alpha = .3) +
+	geom_path(data = path, aes(x = x, y = y),
+			  color = palette[&amp;#39;route&amp;#39;],
+			  size = 1) +
+	geom_point(data = markers, aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&amp;#39;labels&amp;#39;],
+			   fill = palette[&amp;#39;route&amp;#39;],
+			   shape = 21, stroke = 1, size = 5) +
+	geom_point(data = path[1,], aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&amp;#39;labels&amp;#39;],
+			   fill = &amp;#39;green&amp;#39;,
+			   shape = 21, stroke = 1, size = 5) +
+	geom_point(data = path[nrow(path),], aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&amp;#39;labels&amp;#39;],
+			   fill = &amp;#39;red&amp;#39;,
+			   shape = 21, stroke = 1, size = 5) +
+	geom_text(data = markers, aes(x = x, y = y, label = ceiling(cum_distance)),
+			  inherit.aes = FALSE,
+			  color = palette[&amp;#39;labels&amp;#39;],
+			  size = 2) +
+	coord_sf(xlim = bb[1,],
+			 ylim = bb[2,]) +
+	theme_void() +
+	theme(plot.background = element_rect(fill = palette[&amp;#39;background&amp;#39;]))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map + ggtitle(title,   
-              subtitle = subtitle) +
-    theme(panel.background = element_rect(fill = palette[&amp;#39;background&amp;#39;], color = palette[&amp;#39;background&amp;#39;]),
-          panel.spacing = margin(0,0,0,0),
-          plot.margin = margin(-45,10,10,10),
-          plot.title = element_text(color = palette[&amp;#39;title&amp;#39;],
-                                  size = 20,
-                                  hjust = title.hjust, vjust = -10,
-                                  family = &amp;#39;Helvetica&amp;#39;),
-          plot.subtitle = element_text(color = palette[&amp;#39;title&amp;#39;],
-                                     size = 16,
-                                     hjust = title.hjust, vjust = -12,
-                                     family = &amp;#39;Helvetica&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+			  subtitle = subtitle) +
+	theme(panel.background = element_rect(fill = palette[&amp;#39;background&amp;#39;], color = palette[&amp;#39;background&amp;#39;]),
+		  panel.spacing = margin(0,0,0,0),
+		  plot.margin = margin(-45,10,10,10),
+		  plot.title = element_text(color = palette[&amp;#39;title&amp;#39;],
+		  						  size = 20,
+		  						  hjust = title.hjust, vjust = -10,
+		  						  family = &amp;#39;Helvetica&amp;#39;),
+		  plot.subtitle = element_text(color = palette[&amp;#39;title&amp;#39;],
+		  							 size = 16,
+		  							 hjust = title.hjust, vjust = -12,
+		  							 family = &amp;#39;Helvetica&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2021-02-15-Map_my_run_in_R_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;ggsave&lt;/code&gt; will save the map to a file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(filename = paste0(gsub(&amp;#39; &amp;#39;, &amp;#39;_&amp;#39;, title), &amp;#39;.png&amp;#39;), width = 8)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;With a few modifications to the variables set above, we can easily create another map for another race.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;palette.disney &amp;lt;- c(
-    background = &amp;#39;#2775AE&amp;#39;,
-    water = &amp;#39;#92C0E6&amp;#39;,
-    streets = &amp;#39;#1A365D&amp;#39;,
-    small_streets = &amp;#39;#1A365D&amp;#39;,
-    rivers = &amp;#39;#92C0E6&amp;#39;,
-    route = &amp;#39;#E6A356&amp;#39;,
-    labels = &amp;#39;#1A365D&amp;#39;,
-    title = &amp;#39;#1A365D&amp;#39;
+	background = &amp;#39;#2775AE&amp;#39;,
+	water = &amp;#39;#92C0E6&amp;#39;,
+	streets = &amp;#39;#1A365D&amp;#39;,
+	small_streets = &amp;#39;#1A365D&amp;#39;,
+	rivers = &amp;#39;#92C0E6&amp;#39;,
+	route = &amp;#39;#E6A356&amp;#39;,
+	labels = &amp;#39;#1A365D&amp;#39;,
+	title = &amp;#39;#1A365D&amp;#39;
 )
 
 gpx.file &amp;lt;- &amp;#39;2020-01-12-Disney-Marathon.gpx&amp;#39;
@@ -345,7 +348,7 @@ distance &amp;lt;- &amp;quot;mi&amp;quot; # Distance unit, one of: &amp;quot;m&a
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; My Shiny App
 #&amp;#39; @export
 my_shiny_app &amp;lt;- function() {
-    shiny::runApp(appDir = system.file(&amp;#39;shiny&amp;#39;, package=&amp;#39;MY_PACKAGE_NAME&amp;#39;))
+	shiny::runApp(appDir = system.file(&amp;#39;shiny&amp;#39;, package=&amp;#39;MY_PACKAGE_NAME&amp;#39;))
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This works very well when the entire app is self-contained. However, this does not work if you want to pass parameters to the Shiny app. In my situation, I want to be able to pass different data frames that I can interact with, but still have the Shiny app work if not parameters are passed. The first step to get this to work is to convert the &lt;code&gt;server.R&lt;/code&gt; and &lt;code&gt;ui.R&lt;/code&gt; scripts to functions within the R package. The code is largely the same, but instead of calling the functions we are going to assign them to &lt;code&gt;shiny_server&lt;/code&gt; and &lt;code&gt;shiny_ui&lt;/code&gt;, respectively. I have also included some minimal &lt;a href=&#34;https://github.com/r-lib/roxygen2&#34;&gt;roxygen2&lt;/a&gt; documentation. In particular, the functions need to be in the package’s export file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; The Shiny App Server.
@@ -354,45 +357,45 @@ my_shiny_app &amp;lt;- function() {
 #&amp;#39; @param session session set by Shiny.
 #&amp;#39; @export
 shiny_server &amp;lt;- function(input, output, session) {
-    if(!exists(&amp;#39;thedata&amp;#39;, envir = parent.env(environment()), inherits = FALSE)) {
-        message(&amp;#39;thedata not available, using default faithful...&amp;#39;)
-        data(faithful, envir = environment())
-        thedata &amp;lt;- faithful
-    }
+	if(!exists(&amp;#39;thedata&amp;#39;, envir = parent.env(environment()), inherits = FALSE)) {
+		message(&amp;#39;thedata not available, using default faithful...&amp;#39;)
+		data(faithful, envir = environment())
+		thedata &amp;lt;- faithful
+	}
 
-    output$environment &amp;lt;- renderPrint(
-        print(ls(envir = parent.env(environment())))
-    )
+	output$environment &amp;lt;- renderPrint(
+		print(ls(envir = parent.env(environment())))
+	)
 
-    output$thedata &amp;lt;- renderTable({
-        return(thedata)
-    })
+	output$thedata &amp;lt;- renderTable({
+		return(thedata)
+	})
 }
 
 #&amp;#39; The Shiny App UI.
 #&amp;#39; @export
 shiny_ui &amp;lt;- function() {
-    fluidPage(
-        titlePanel(&amp;#39;Shiny Parameter Test&amp;#39;),
-        verbatimTextOutput(&amp;#39;environment&amp;#39;),
-        tableOutput(&amp;#39;thedata&amp;#39;)
-    )
+	fluidPage(
+		titlePanel(&amp;#39;Shiny Parameter Test&amp;#39;),
+		verbatimTextOutput(&amp;#39;environment&amp;#39;),
+		tableOutput(&amp;#39;thedata&amp;#39;)
+	)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This Shiny App doesn’t do a lot. It has one user variable, &lt;code&gt;thedata&lt;/code&gt;, and the user interface includes the output of &lt;code&gt;ls&lt;/code&gt; (i.e. what is in the executing environment) and the contents of &lt;code&gt;thedata&lt;/code&gt; (presumed to be a data frame). The important feature here is the first five lines of the &lt;code&gt;shiny_server&lt;/code&gt;. I first check to see if &lt;code&gt;thedata&lt;/code&gt; exists using the &lt;code&gt;!exists(&#39;thedata&#39;, envir = parent.env(environment()), inherits = FALSE)&lt;/code&gt; command. In short, if &lt;code&gt;thedata&lt;/code&gt; is not present, I want to set it to a reasonable default value.&lt;/p&gt;
 &lt;p&gt;When encapsulating the Shiny app in R scripts, using the &lt;code&gt;runApp&lt;/code&gt; function with the &lt;code&gt;appDir&lt;/code&gt; parameter is sufficient. In order to pass variables to the Shiny app, we need to control the environment the app is started in. Below, is a rewrite of the &lt;code&gt;my_shiny_app&lt;/code&gt; app. First, we create a new environment that will contain all of our parameters. Since specifying the parameter is optional, we use the &lt;code&gt;missing&lt;/code&gt; function to check to see if it has a value, and if so assign it to the new environment. We then set the environment to our server and ui functions the newly created environment that now contains our parameters. The rest is similar to creating Shiny apps in a single &lt;code&gt;app.R&lt;/code&gt; file; create the app with the &lt;code&gt;shinyApp&lt;/code&gt; function and start it with the &lt;code&gt;runApp&lt;/code&gt; function, but with the app instead of a directory.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_shiny_app &amp;lt;- function(thedata, ...) {
-    shiny_env &amp;lt;- new.env()
-    if(!missing(thedata)) {
-        print(&amp;#39;Setting parameters&amp;#39;)
-        assign(&amp;#39;thedata&amp;#39;, thedata, shiny_env)
-    }
-    environment(shiny_ui) &amp;lt;- shiny_env
-    environment(shiny_server) &amp;lt;- shiny_env
-    app &amp;lt;- shiny::shinyApp(
-        ui = shiny_ui,
-        server = shiny_server
-    )
-    runApp(app, ...)
+	shiny_env &amp;lt;- new.env()
+	if(!missing(thedata)) {
+		print(&amp;#39;Setting parameters&amp;#39;)
+		assign(&amp;#39;thedata&amp;#39;, thedata, shiny_env)
+	}
+	environment(shiny_ui) &amp;lt;- shiny_env
+	environment(shiny_server) &amp;lt;- shiny_env
+	app &amp;lt;- shiny::shinyApp(
+		ui = shiny_ui,
+		server = shiny_server
+	)
+	runApp(app, ...)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can now start the Shiny app with the &lt;code&gt;my_shiny_app()&lt;/code&gt; function call. In the first instance, no parameters are passed to the app so the &lt;code&gt;faithful&lt;/code&gt; data frame will be printed. The second and third calls will use the &lt;code&gt;iris&lt;/code&gt; and &lt;code&gt;mtcars&lt;/code&gt; data frames, respectively.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_shiny_app()
@@ -429,30 +432,30 @@ shiny::shinyApp(ui = shiny_ui,
 #&amp;#39; @param out_dir the directory to save the shiny app files.
 #&amp;#39; @param run_app whether to run the app once the files are saved.
 save_shiny_app &amp;lt;- function(ui_function,
-                           server_function,
-                           pkgs,
-                           out_dir = &amp;#39;shiny&amp;#39;,
-                           run_app = interactive()) {
-    server_txt &amp;lt;- capture.output(server_function)
-    ui_txt &amp;lt;- capture.output(ui_function)
-    # Remove the bytecode and environment info
-    server_txt &amp;lt;- server_txt[1:(length(server_txt)-2)]
-    ui_txt &amp;lt;- ui_txt[3:(length(ui_txt)-3)]
-    # Fix the function assignment
-    server_txt[1] &amp;lt;- &amp;#39;shinyServer(function(input, output, session)&amp;#39;
-    server_txt[length(server_txt)] &amp;lt;- &amp;#39;})&amp;#39;
-    global_txt &amp;lt;- c(&amp;quot;library(&amp;#39;shiny&amp;#39;)&amp;quot;)
-    if(!missing(pkgs)) {
-        global_txt &amp;lt;- c(global_txt, paste0(&amp;quot;library(&amp;#39;&amp;quot;, pkgs, &amp;quot;&amp;#39;)&amp;quot;))
-    }
-    # Save the shiny app files
-    cat(server_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/server.R&amp;#39;))
-    cat(ui_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/ui.R&amp;#39;))
-    cat(global_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/global.R&amp;#39;))
-    # Start the app
-    if(run_app) {
-        runApp(appDir = out_dir)
-    }
+						   server_function,
+						   pkgs,
+						   out_dir = &amp;#39;shiny&amp;#39;,
+						   run_app = interactive()) {
+	server_txt &amp;lt;- capture.output(server_function)
+	ui_txt &amp;lt;- capture.output(ui_function)
+	# Remove the bytecode and environment info
+	server_txt &amp;lt;- server_txt[1:(length(server_txt)-2)]
+	ui_txt &amp;lt;- ui_txt[3:(length(ui_txt)-3)]
+	# Fix the function assignment
+	server_txt[1] &amp;lt;- &amp;#39;shinyServer(function(input, output, session)&amp;#39;
+	server_txt[length(server_txt)] &amp;lt;- &amp;#39;})&amp;#39;
+	global_txt &amp;lt;- c(&amp;quot;library(&amp;#39;shiny&amp;#39;)&amp;quot;)
+	if(!missing(pkgs)) {
+		global_txt &amp;lt;- c(global_txt, paste0(&amp;quot;library(&amp;#39;&amp;quot;, pkgs, &amp;quot;&amp;#39;)&amp;quot;))
+	}
+	# Save the shiny app files
+	cat(server_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/server.R&amp;#39;))
+	cat(ui_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/ui.R&amp;#39;))
+	cat(global_txt, sep = &amp;#39;\n&amp;#39;, file = paste0(out_dir, &amp;#39;/global.R&amp;#39;))
+	# Start the app
+	if(run_app) {
+		runApp(appDir = out_dir)
+	}
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
@@ -597,6 +600,15 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     
     <item>
       <title>PSA</title>
+      <link>/project/shinyqda/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/shinyqda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PSA</title>
       <link>/project/psa/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
       
@@ -634,24 +646,6 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
 &lt;p&gt;This talk will provide a theoretical overview of propensity score methods as well as illustrations and discussion of PSA applications. Methods used in phase I of PSA (i.e. models or methods for estimating propensity scores) include logistic regression, classification trees, and matching. Discussions on appropriate comparisons and estimations of effect size and confidence intervals in phase II will also be covered. The use of graphics for diagnosing covariate balance as well as summarizing overall results will be emphasized.&lt;/p&gt;
 
 &lt;hr /&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Development Of The Large Scale Diagnostic Assessments Of College Skills</title>
-      <link>/talk/2017-nera/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>/talk/2017-nera/</guid>
-      <description>&lt;p&gt;The Diagnostic Assessment and Achievement of College Skills (DAACS) is a technology-based, no-stakes
-diagnostic assessment system on academic and non-academic skills, with fast, actionable feedback.
-Development and piloting of these assessments at two online colleges is underway. Preliminary validity
-and reliability evidence of these assessments are reported in this paper.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Jason Bryer, Excelsior College; Fusun Sahin, American Institutes for Research; Heidi Andrade, Angela Lui,
-Diana Akhmedjanova, &amp;amp; David Franklin, University at Albany, SUNY&lt;/p&gt;
 </description>
     </item>
     

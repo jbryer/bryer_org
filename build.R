@@ -4,11 +4,11 @@ library(blogdown)
 # blogdown::install_theme(theme = "gcushen/hugo-academic")
 # blogdown::new_site(theme = "gcushen/hugo-academic")
 
-blogdown::new_post(title = 'Test Post',
-				   author = 'Jason Bryer', kind = 'post',
-				   slug = NULL,
-				   file = NULL,
-				   date = Sys.Date())
+# blogdown::new_post(title = 'Test Post',
+# 				   author = 'Jason Bryer', kind = 'post',
+# 				   slug = NULL,
+# 				   file = NULL,
+# 				   date = Sys.Date())
 
 options(blogdown.hugo.version = "0.54.0")
 

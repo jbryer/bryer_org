@@ -338,7 +338,7 @@ R Shiny Apps have become a popular way of creating web applications in R. There 
 <pre class="r"><code>#&#39; My Shiny App
 #&#39; @export
 my_shiny_app &lt;- function() {
-    shiny::runApp(appDir = system.file(&#39;shiny&#39;, package=&#39;MY_PACKAGE_NAME&#39;))
+	shiny::runApp(appDir = system.file(&#39;shiny&#39;, package=&#39;MY_PACKAGE_NAME&#39;))
 }</code></pre>
 <p>This works very well when the entire app is self-contained. However, this does not work if you want to pass parameters to the Shiny app. In my situation, I want to be able to pass different data frames that I can interact with, but still have the Shiny app work if not parameters are passed. The first step to get this to work is to convert the <code>server.R</code> and <code>ui.R</code> scripts to functions within the R package. The code is largely the same, but instead of calling the functions we are going to assign them to <code>shiny_server</code> and <code>shiny_ui</code>, respectively. I have also included some minimal <a href="https://github.com/r-lib/roxygen2">roxygen2</a> documentation. In particular, the functions need to be in the package’s export file.</p>
 <pre class="r"><code>#&#39; The Shiny App Server.
@@ -347,45 +347,45 @@ my_shiny_app &lt;- function() {
 #&#39; @param session session set by Shiny.
 #&#39; @export
 shiny_server &lt;- function(input, output, session) {
-    if(!exists(&#39;thedata&#39;, envir = parent.env(environment()), inherits = FALSE)) {
-        message(&#39;thedata not available, using default faithful...&#39;)
-        data(faithful, envir = environment())
-        thedata &lt;- faithful
-    }
+	if(!exists(&#39;thedata&#39;, envir = parent.env(environment()), inherits = FALSE)) {
+		message(&#39;thedata not available, using default faithful...&#39;)
+		data(faithful, envir = environment())
+		thedata &lt;- faithful
+	}
 
-    output$environment &lt;- renderPrint(
-        print(ls(envir = parent.env(environment())))
-    )
+	output$environment &lt;- renderPrint(
+		print(ls(envir = parent.env(environment())))
+	)
 
-    output$thedata &lt;- renderTable({
-        return(thedata)
-    })
+	output$thedata &lt;- renderTable({
+		return(thedata)
+	})
 }
 
 #&#39; The Shiny App UI.
 #&#39; @export
 shiny_ui &lt;- function() {
-    fluidPage(
-        titlePanel(&#39;Shiny Parameter Test&#39;),
-        verbatimTextOutput(&#39;environment&#39;),
-        tableOutput(&#39;thedata&#39;)
-    )
+	fluidPage(
+		titlePanel(&#39;Shiny Parameter Test&#39;),
+		verbatimTextOutput(&#39;environment&#39;),
+		tableOutput(&#39;thedata&#39;)
+	)
 }</code></pre>
 <p>This Shiny App doesn’t do a lot. It has one user variable, <code>thedata</code>, and the user interface includes the output of <code>ls</code> (i.e. what is in the executing environment) and the contents of <code>thedata</code> (presumed to be a data frame). The important feature here is the first five lines of the <code>shiny_server</code>. I first check to see if <code>thedata</code> exists using the <code>!exists('thedata', envir = parent.env(environment()), inherits = FALSE)</code> command. In short, if <code>thedata</code> is not present, I want to set it to a reasonable default value.</p>
 <p>When encapsulating the Shiny app in R scripts, using the <code>runApp</code> function with the <code>appDir</code> parameter is sufficient. In order to pass variables to the Shiny app, we need to control the environment the app is started in. Below, is a rewrite of the <code>my_shiny_app</code> app. First, we create a new environment that will contain all of our parameters. Since specifying the parameter is optional, we use the <code>missing</code> function to check to see if it has a value, and if so assign it to the new environment. We then set the environment to our server and ui functions the newly created environment that now contains our parameters. The rest is similar to creating Shiny apps in a single <code>app.R</code> file; create the app with the <code>shinyApp</code> function and start it with the <code>runApp</code> function, but with the app instead of a directory.</p>
 <pre class="r"><code>my_shiny_app &lt;- function(thedata, ...) {
-    shiny_env &lt;- new.env()
-    if(!missing(thedata)) {
-        print(&#39;Setting parameters&#39;)
-        assign(&#39;thedata&#39;, thedata, shiny_env)
-    }
-    environment(shiny_ui) &lt;- shiny_env
-    environment(shiny_server) &lt;- shiny_env
-    app &lt;- shiny::shinyApp(
-        ui = shiny_ui,
-        server = shiny_server
-    )
-    runApp(app, ...)
+	shiny_env &lt;- new.env()
+	if(!missing(thedata)) {
+		print(&#39;Setting parameters&#39;)
+		assign(&#39;thedata&#39;, thedata, shiny_env)
+	}
+	environment(shiny_ui) &lt;- shiny_env
+	environment(shiny_server) &lt;- shiny_env
+	app &lt;- shiny::shinyApp(
+		ui = shiny_ui,
+		server = shiny_server
+	)
+	runApp(app, ...)
 }</code></pre>
 <p>We can now start the Shiny app with the <code>my_shiny_app()</code> function call. In the first instance, no parameters are passed to the app so the <code>faithful</code> data frame will be printed. The second and third calls will use the <code>iris</code> and <code>mtcars</code> data frames, respectively.</p>
 <pre class="r"><code>my_shiny_app()
@@ -422,30 +422,30 @@ shiny::shinyApp(ui = shiny_ui,
 #&#39; @param out_dir the directory to save the shiny app files.
 #&#39; @param run_app whether to run the app once the files are saved.
 save_shiny_app &lt;- function(ui_function,
-                           server_function,
-                           pkgs,
-                           out_dir = &#39;shiny&#39;,
-                           run_app = interactive()) {
-    server_txt &lt;- capture.output(server_function)
-    ui_txt &lt;- capture.output(ui_function)
-    # Remove the bytecode and environment info
-    server_txt &lt;- server_txt[1:(length(server_txt)-2)]
-    ui_txt &lt;- ui_txt[3:(length(ui_txt)-3)]
-    # Fix the function assignment
-    server_txt[1] &lt;- &#39;shinyServer(function(input, output, session)&#39;
-    server_txt[length(server_txt)] &lt;- &#39;})&#39;
-    global_txt &lt;- c(&quot;library(&#39;shiny&#39;)&quot;)
-    if(!missing(pkgs)) {
-        global_txt &lt;- c(global_txt, paste0(&quot;library(&#39;&quot;, pkgs, &quot;&#39;)&quot;))
-    }
-    # Save the shiny app files
-    cat(server_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/server.R&#39;))
-    cat(ui_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/ui.R&#39;))
-    cat(global_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/global.R&#39;))
-    # Start the app
-    if(run_app) {
-        runApp(appDir = out_dir)
-    }
+						   server_function,
+						   pkgs,
+						   out_dir = &#39;shiny&#39;,
+						   run_app = interactive()) {
+	server_txt &lt;- capture.output(server_function)
+	ui_txt &lt;- capture.output(ui_function)
+	# Remove the bytecode and environment info
+	server_txt &lt;- server_txt[1:(length(server_txt)-2)]
+	ui_txt &lt;- ui_txt[3:(length(ui_txt)-3)]
+	# Fix the function assignment
+	server_txt[1] &lt;- &#39;shinyServer(function(input, output, session)&#39;
+	server_txt[length(server_txt)] &lt;- &#39;})&#39;
+	global_txt &lt;- c(&quot;library(&#39;shiny&#39;)&quot;)
+	if(!missing(pkgs)) {
+		global_txt &lt;- c(global_txt, paste0(&quot;library(&#39;&quot;, pkgs, &quot;&#39;)&quot;))
+	}
+	# Save the shiny app files
+	cat(server_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/server.R&#39;))
+	cat(ui_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/ui.R&#39;))
+	cat(global_txt, sep = &#39;\n&#39;, file = paste0(out_dir, &#39;/global.R&#39;))
+	# Start the app
+	if(run_app) {
+		runApp(appDir = out_dir)
+	}
 }</code></pre>
 </div>
 

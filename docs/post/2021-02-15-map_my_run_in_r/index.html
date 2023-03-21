@@ -345,14 +345,14 @@ library(tmaptools)
 library(XML)
 
 palette.nyc &lt;- c(
-    background = &#39;#0850A4&#39;,
-    water = &#39;#0850A4&#39;,
-    streets = &#39;#3D88C7&#39;,
-    small_streets = &#39;#3D88C7&#39;,
-    rivers = &#39;#0850A4&#39;,
-    route = &#39;#1B295A&#39;,
-    labels = &#39;#3D88C7&#39;,
-    title = &#39;#A8BACA&#39;
+	background = &#39;#0850A4&#39;,
+	water = &#39;#0850A4&#39;,
+	streets = &#39;#3D88C7&#39;,
+	small_streets = &#39;#3D88C7&#39;,
+	rivers = &#39;#0850A4&#39;,
+	route = &#39;#1B295A&#39;,
+	labels = &#39;#3D88C7&#39;,
+	title = &#39;#A8BACA&#39;
 )
 
 gpx.file &lt;- &#39;2019-11-03-NYC-Marathon.gpx&#39;
@@ -363,15 +363,15 @@ title.hjust &lt;- 0 # 0 = left align; 1 = right aling
 distance &lt;- &quot;mi&quot; # Distance unit, one of: &quot;m&quot;, &quot;km&quot;, &quot;mi&quot;, and &quot;ft&quot;</code></pre>
 <p>The following R code reads in the GPX file (which is an XML file) and converts it to a matrix of longitude and latitude coordinates. The <code>bb</code> variable defines the minimum bounding rectangle that encompasses the entire route. This will define the bounds of the street data we will download.</p>
 <pre class="r"><code>gpx &lt;- XML::htmlTreeParse(gpx.file, 
-                     error = function (...) {}, useInternalNodes = T)
+					 error = function (...) {}, useInternalNodes = T)
 
 coords &lt;- xpathSApply(gpx, path = &quot;//trkpt&quot;, xmlAttrs)
 lats &lt;- as.numeric(coords[&quot;lat&quot;,])
 lons &lt;- as.numeric(coords[&quot;lon&quot;,])
 path &lt;- data.frame(x = lons, y = lats)
 bb &lt;- matrix(c(min(path$x), min(path$y), max(path$x), max(path$y)),
-             nrow = 2, ncol = 2,
-             dimnames = list(c(&#39;x&#39;,&#39;y&#39;), c(&#39;min&#39;, &#39;max&#39;)))
+			 nrow = 2, ncol = 2,
+			 dimnames = list(c(&#39;x&#39;,&#39;y&#39;), c(&#39;min&#39;, &#39;max&#39;)))
 bb</code></pre>
 <pre><code>##         min       max
 ## x -74.06163 -73.92439
@@ -379,11 +379,11 @@ bb</code></pre>
 <p>The next chunk calculates the distance between each coordinate and the cumulative sum/distance. Note that this is an inefficient chunk since I used a for loop to calculate the distances.</p>
 <pre class="r"><code>path$distance &lt;- 0
 for(i in 2:nrow(path)) { 
-    # Probably shouldn&#39;t use a loop, this is slow. Not sure what to use instead.
-    path[i,]$distance &lt;- as.numeric(
-        approx_distances(unlist(path[i - 1,,drop=TRUE]), unlist(path[i,,drop=TRUE]), 
-                         target = distance, projection = 4326)
-    )
+	# Probably shouldn&#39;t use a loop, this is slow. Not sure what to use instead.
+	path[i,]$distance &lt;- as.numeric(
+		approx_distances(unlist(path[i - 1,,drop=TRUE]), unlist(path[i,,drop=TRUE]), 
+						 target = distance, projection = 4326)
+	)
 }
 path$cum_distance &lt;- cumsum(path$distance)</code></pre>
 <p>Next, we create a separate data frame for the mile markers. We could round up or down here. For NYC, my watch registered just under 26 miles so to ensure a 26 mile marker is shown, we will round up here. I presume the GPS lost accuracy when running on the lower level of bridges and/or through the buildings.</p>
@@ -391,11 +391,11 @@ path$cum_distance &lt;- cumsum(path$distance)</code></pre>
 markers &lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),][-1,]</code></pre>
 <p>The next block of R code (which is largely copied from the ggplot2tutor tutorial) downloads map data from OpenStreet Map.</p>
 <pre class="r"><code>streets &lt;- bb %&gt;%
-    opq() %&gt;%
-    add_osm_feature(key = &quot;highway&quot;, 
-                    value = c(&quot;motorway&quot;, &quot;primary&quot;, &quot;trunk&quot;,
-                              &quot;secondary&quot;, &quot;tertiary&quot;)) %&gt;%
-    osmdata_sf()</code></pre>
+	opq() %&gt;%
+	add_osm_feature(key = &quot;highway&quot;, 
+					value = c(&quot;motorway&quot;, &quot;primary&quot;, &quot;trunk&quot;,
+							  &quot;secondary&quot;, &quot;tertiary&quot;)) %&gt;%
+	osmdata_sf()</code></pre>
 <pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
 ## Request failed [ERROR]. Retrying in 1.8 seconds...</code></pre>
 <pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): HTTP/2 stream 0 was not closed cleanly: PROTOCOL_ERROR (err 1)
@@ -404,99 +404,102 @@ markers &lt;- path[!duplicated(ceiling(path$cum_distance), fromLast = TRUE),][-1
 ## Request failed [ERROR]. Retrying in 1.2 seconds...</code></pre>
 <pre><code>## Request failed [504]. Retrying in 3.9 seconds...</code></pre>
 <pre class="r"><code>small_streets &lt;- bb %&gt;%
-    opq() %&gt;%
-    add_osm_feature(key = &quot;highway&quot;,
-                    value = c(&quot;residential&quot;, &quot;living_street&quot;,
-                              &quot;unclassified&quot;,
-                              &quot;service&quot;, &quot;footway&quot;)) %&gt;%
-    osmdata_sf()
+	opq() %&gt;%
+	add_osm_feature(key = &quot;highway&quot;,
+					value = c(&quot;residential&quot;, &quot;living_street&quot;,
+							  &quot;unclassified&quot;,
+							  &quot;service&quot;, &quot;footway&quot;)) %&gt;%
+	osmdata_sf()
 
 river &lt;- bb %&gt;%
-    opq() %&gt;%
-    add_osm_feature(key = &quot;waterway&quot;, value = &quot;river&quot;) %&gt;%
-    osmdata_sf()
+	opq() %&gt;%
+	add_osm_feature(key = &quot;waterway&quot;, value = &quot;river&quot;) %&gt;%
+	osmdata_sf()
 
 water &lt;- bb %&gt;%
-    opq() %&gt;%
-    add_osm_feature(key = &quot;natural&quot;, value = c(&#39;water&#39;)) %&gt;%
-    osmdata_sf()</code></pre>
+	opq() %&gt;%
+	add_osm_feature(key = &quot;natural&quot;, value = c(&#39;water&#39;)) %&gt;%
+	osmdata_sf()</code></pre>
 <p>Now that the data is downloaded, we can begin building the map using <code>ggplot2</code>.</p>
 <pre class="r"><code>map &lt;- ggplot() +
-    geom_sf(data = water$osm_multipolygons,
-            inherit.aes = FALSE,
-            fill = palette[&#39;water&#39;],
-            color = NA,
-            alpha = .3) +
-    geom_sf(data = streets$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&#39;streets&#39;],
-            size = .3,
-            alpha = .6) +
-    geom_sf(data = small_streets$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&#39;small_streets&#39;],
-            size = .1,
-            alpha = .5) +
-    geom_sf(data = river$osm_lines,
-            inherit.aes = FALSE,
-            color = palette[&#39;rivers&#39;],
-            size = .2,
-            alpha = .3) +
-    geom_path(data = path, aes(x = x, y = y),
-              color = palette[&#39;route&#39;],
-              size = 1) +
-    geom_point(data = markers, aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&#39;labels&#39;],
-               fill = palette[&#39;route&#39;],
-               shape = 21, stroke = 1, size = 5) +
-    geom_point(data = path[1,], aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&#39;labels&#39;],
-               fill = &#39;green&#39;,
-               shape = 21, stroke = 1, size = 5) +
-    geom_point(data = path[nrow(path),], aes(x = x, y = y),
-               inherit.aes = FALSE,
-               color = palette[&#39;labels&#39;],
-               fill = &#39;red&#39;,
-               shape = 21, stroke = 1, size = 5) +
-    geom_text(data = markers, aes(x = x, y = y, label = ceiling(cum_distance)),
-              inherit.aes = FALSE,
-              color = palette[&#39;labels&#39;],
-              size = 2) +
-    coord_sf(xlim = bb[1,],
-             ylim = bb[2,]) +
-    theme_void() +
-    theme(plot.background = element_rect(fill = palette[&#39;background&#39;]))</code></pre>
+	geom_sf(data = water$osm_multipolygons,
+			inherit.aes = FALSE,
+			fill = palette[&#39;water&#39;],
+			color = NA,
+			alpha = .3) +
+	geom_sf(data = streets$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&#39;streets&#39;],
+			size = .3,
+			alpha = .6) +
+	geom_sf(data = small_streets$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&#39;small_streets&#39;],
+			size = .1,
+			alpha = .5) +
+	geom_sf(data = river$osm_lines,
+			inherit.aes = FALSE,
+			color = palette[&#39;rivers&#39;],
+			size = .2,
+			alpha = .3) +
+	geom_path(data = path, aes(x = x, y = y),
+			  color = palette[&#39;route&#39;],
+			  size = 1) +
+	geom_point(data = markers, aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&#39;labels&#39;],
+			   fill = palette[&#39;route&#39;],
+			   shape = 21, stroke = 1, size = 5) +
+	geom_point(data = path[1,], aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&#39;labels&#39;],
+			   fill = &#39;green&#39;,
+			   shape = 21, stroke = 1, size = 5) +
+	geom_point(data = path[nrow(path),], aes(x = x, y = y),
+			   inherit.aes = FALSE,
+			   color = palette[&#39;labels&#39;],
+			   fill = &#39;red&#39;,
+			   shape = 21, stroke = 1, size = 5) +
+	geom_text(data = markers, aes(x = x, y = y, label = ceiling(cum_distance)),
+			  inherit.aes = FALSE,
+			  color = palette[&#39;labels&#39;],
+			  size = 2) +
+	coord_sf(xlim = bb[1,],
+			 ylim = bb[2,]) +
+	theme_void() +
+	theme(plot.background = element_rect(fill = palette[&#39;background&#39;]))</code></pre>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.</code></pre>
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <p>The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.</p>
 <pre class="r"><code>map + ggtitle(title,   
-              subtitle = subtitle) +
-    theme(panel.background = element_rect(fill = palette[&#39;background&#39;], color = palette[&#39;background&#39;]),
-          panel.spacing = margin(0,0,0,0),
-          plot.margin = margin(-45,10,10,10),
-          plot.title = element_text(color = palette[&#39;title&#39;],
-                                  size = 20,
-                                  hjust = title.hjust, vjust = -10,
-                                  family = &#39;Helvetica&#39;),
-          plot.subtitle = element_text(color = palette[&#39;title&#39;],
-                                     size = 16,
-                                     hjust = title.hjust, vjust = -12,
-                                     family = &#39;Helvetica&#39;))</code></pre>
+			  subtitle = subtitle) +
+	theme(panel.background = element_rect(fill = palette[&#39;background&#39;], color = palette[&#39;background&#39;]),
+		  panel.spacing = margin(0,0,0,0),
+		  plot.margin = margin(-45,10,10,10),
+		  plot.title = element_text(color = palette[&#39;title&#39;],
+		  						  size = 20,
+		  						  hjust = title.hjust, vjust = -10,
+		  						  family = &#39;Helvetica&#39;),
+		  plot.subtitle = element_text(color = palette[&#39;title&#39;],
+		  							 size = 16,
+		  							 hjust = title.hjust, vjust = -12,
+		  							 family = &#39;Helvetica&#39;))</code></pre>
 <p><img src="/post/2021-02-15-Map_my_run_in_R_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>The <code>ggsave</code> will save the map to a file.</p>
 <pre class="r"><code>ggsave(filename = paste0(gsub(&#39; &#39;, &#39;_&#39;, title), &#39;.png&#39;), width = 8)</code></pre>
 <p>With a few modifications to the variables set above, we can easily create another map for another race.</p>
 <pre class="r"><code>palette.disney &lt;- c(
-    background = &#39;#2775AE&#39;,
-    water = &#39;#92C0E6&#39;,
-    streets = &#39;#1A365D&#39;,
-    small_streets = &#39;#1A365D&#39;,
-    rivers = &#39;#92C0E6&#39;,
-    route = &#39;#E6A356&#39;,
-    labels = &#39;#1A365D&#39;,
-    title = &#39;#1A365D&#39;
+	background = &#39;#2775AE&#39;,
+	water = &#39;#92C0E6&#39;,
+	streets = &#39;#1A365D&#39;,
+	small_streets = &#39;#1A365D&#39;,
+	rivers = &#39;#92C0E6&#39;,
+	route = &#39;#E6A356&#39;,
+	labels = &#39;#1A365D&#39;,
+	title = &#39;#1A365D&#39;
 )
 
 gpx.file &lt;- &#39;2020-01-12-Disney-Marathon.gpx&#39;
