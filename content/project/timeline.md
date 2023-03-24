@@ -16,7 +16,7 @@ image_preview = "bubbles.jpg"
 tags = ["r-packages"]
 
 # Optional external URL for project (replaces project detail page).
-external_link = "https://github.com/jbryer/ruca"
+external_link = "https://github.com/jbryer/timeline"
 
 # Does the project detail page use math formatting?
 math = false

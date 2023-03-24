@@ -6,7 +6,7 @@ date = "2016-04-27"
 title = "ipeds"
 
 # Project summary to display on homepage.
-summary = "An R package to interface with the Integraded Postsecondary Education Data System."
+summary = "An R package to interface with the Integrated Postsecondary Education Data System."
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 image_preview = "bubbles.jpg"

@@ -6,7 +6,7 @@ date = "2021-02-11"
 title = "brickset"
 
 # Project summary to display on homepage.
-summary = "<img src='img/brickset.png' align='right' width='125' />An R package to interface with the Brickset.com API for getting data about LEGO sets"
+summary = "<img src='img/brickset.png' align='right' width='125' />An R package to interface with the Brickset.com API for getting data about LEGO sets <img src='http://www.r-pkg.org/badges/version/brickset' alt='CRAN Version' />"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
 #image_preview = "brickset.png"
