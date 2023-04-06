@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Mon, 25 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Apr 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-bloggers/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How Long Does it Take to Win War?</title>
+      <link>/post/2023-04-06-winning_war/</link>
+      <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2023-04-06-winning_war/</guid>
+      <description>My son has been learning Python and wanted to know how many rounds does it take, on average, for someone to win the game of war. If you are not familar with the game, it is a two player game where each player gets half a deck of cards (26). For each round the player puts down their top card. Whoever has the higher card gets both cards. In the instance where there is a tie, each player puts down three more cards and flips the fourth card.</description>
+    </item>
     
     <item>
       <title>Using Shiny to Create an Academic Poster</title>

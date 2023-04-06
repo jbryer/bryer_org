@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <a rel="me" href="https://vis.social/@jbryer"></a>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="author" content="Jason Bryer, Ph.D.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="My son has been learning Python and wanted to know how many rounds does it take, on average, for someone to win the game of war. If you are not familar with the game, it is a two player game where each player gets half a deck of cards (26). For each round the player puts down their top card. Whoever has the higher card gets both cards. In the instance where there is a tie, each player puts down three more cards and flips the fourth card.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2023-04-06-winning_war/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Jason Bryer">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Jason Bryer">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2023-04-06-winning_war/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Jason Bryer">
+  <meta property="og:url" content="/post/2023-04-06-winning_war/">
+  <meta property="og:title" content="How Long Does it Take to Win War? | Jason Bryer">
+  <meta property="og:description" content="My son has been learning Python and wanted to know how many rounds does it take, on average, for someone to win the game of war. If you are not familar with the game, it is a two player game where each player gets half a deck of cards (26). For each round the player puts down their top card. Whoever has the higher card gets both cards. In the instance where there is a tie, each player puts down three more cards and flips the fourth card.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2023-04-06T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2023-04-06T00:00:00&#43;00:00">
+  
+
+  
+
+  <title>How Long Does it Take to Win War? | Jason Bryer</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Jason Bryer</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/talk">
+            
+            <span>Talks</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+            
+          
+        
+
+        <li class="nav-item">
+          <a href="http://cv.bryer.org" target="_blank" rel="noopener">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">How Long Does it Take to Win War?</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2023-04-06 00:00:00 &#43;0000 UTC" itemprop="datePublished dateModified">
+      April 6, 2023
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Bryer, Ph.D.">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=How%20Long%20Does%20it%20Take%20to%20Win%20War%3f&amp;url=%2fpost%2f2023-04-06-winning_war%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2023-04-06-winning_war%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2023-04-06-winning_war%2f&amp;title=How%20Long%20Does%20it%20Take%20to%20Win%20War%3f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2023-04-06-winning_war%2f&amp;title=How%20Long%20Does%20it%20Take%20to%20Win%20War%3f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=How%20Long%20Does%20it%20Take%20to%20Win%20War%3f&amp;body=%2fpost%2f2023-04-06-winning_war%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>My son has been learning Python and wanted to know how many rounds does it take, on average, for someone to win the <a href="https://en.wikipedia.org/wiki/War_(card_game)">game of war</a>. If you are not familar with the game, it is a two player game where each player gets half a deck of cards (26). For each round the player puts down their top card. Whoever has the higher card gets both cards. In the instance where there is a tie, each player puts down three more cards and flips the fourth card. The player with the higher card gets all the cards put down (a total 10). If by chance there is a tie, they put down another three cards flipping the fourth. This is my attempt to solve this problem in R.</p>
+<p>First I defined a function that performs a single round. Note that this function can be called recursively in the case there is a tie. The players cards are kept track in an integer vector <code>p1</code> and <code>p2</code> for player 1 and 2, respectively. It also returns an integer indicating who won that round.</p>
+<pre class="r"><code>#&#39; Checks to see who wins the current round.
+#&#39;
+#&#39; This will compare the cards at position one. The winner gets both cards. If
+#&#39; there is a tie then the next three cards are put down and the fourth card
+#&#39; is compared. This is technically done recursively. The winner gets the
+#&#39; loosers five cards (the original, three put down, and the fourth is checked).
+#&#39;
+#&#39; The game ends when either of the players have no cards remaining.
+#&#39;
+#&#39; @param p1 cards for player 1.
+#&#39; @param p2 cards for player 2.
+#&#39; @return a list with three elements:
+#&#39; * `winner` - either a 1 or 2 for who won the round.
+#&#39; * `player1` - cards remaining for player 1.
+#&#39; * `player2` - cards remaining for player 2.
+check_cards &lt;- function(p1, p2) {
+	winner &lt;- 0
+	if(length(p1) == 0) {
+		winner &lt;- 2
+	} else if(length(p2) == 0) {
+		winner &lt;- 1
+	} else {
+		if(p1[1] == p2[1]) {
+			# print(&#39;Entering a war!&#39;)
+			if(length(p1) &lt; 5) {
+				p1 &lt;- integer()
+				p2 &lt;- c(p2, p1)
+				winner &lt;- 2
+			} else if(length(p2) &lt; 5) {
+				p1 &lt;- c(p1, p2)
+				p2 &lt;- integer()
+				winner &lt;- 1
+			} else {
+				winners_cards &lt;- c(p1[1:min(length(p1), 4)],
+								   p2[1:min(length(p2), 4)])
+				result &lt;- check_cards(p1[min(length(p1), 5):length(p1)],
+									  p2[min(length(p2), 5):length(p2)])
+				if(result$winner == 1) {
+					p1 &lt;- c(result$player1, winners_cards)
+					p2 &lt;- result$player2
+					winner &lt;- 1
+				} else if(result$winner == 2) {
+					p1 &lt;- result$player1
+					p2 &lt;- c(result$player2, winners_cards)
+					winner &lt;- 2
+				}
+			}
+		} else if(p1[1] &gt; p2[1]) {
+			p1 &lt;- c(p1[-1], p1[1], p2[1])
+			p2 &lt;- p2[-1]
+			winner &lt;- 1
+		} else if(p2[1] &gt; p1[1]) {
+			p2 &lt;- c(p2[-1], p2[1], p1[1])
+			p1 &lt;- p1[-1]
+			winner &lt;- 2
+		} else {
+			stop(&#39;Should not be here. What happend?!&#39;)
+		}
+	}
+	return(list(
+		player1 = p1,
+		player2 = p2,
+		winner = winner
+	))
+}</code></pre>
+<p>Next I defined a function that will initiate a game of war. It has a while loop calling <code>check_cards</code> until one player has no more cards or <code>max_games</code> is reached therefore calling a draw.</p>
+<pre class="r"><code>#&#39; Initiate a game of war.
+#&#39;
+#&#39; @param cards a vector representing the cards. The default assumes a typical
+#&#39;        deck of 52 cards.
+#&#39; @param print how often should the function print the status of how many
+#&#39;        cards each player has. Set to 0 to don&#39;t print any updates.
+#&#39; @param max_games the maximum number of games to try before it is considered
+#&#39;        a draw.
+#&#39; @return a list with four elements:
+#&#39; * `games` - number of rounds it took for a player to win.
+#&#39; * `winner` - 0 for a draw, 1 if player 1 won, 2 if player 2 won.
+#&#39; * `p1_cards` - a numeric vector with the number of cards player 1 had after each round.
+#&#39; * `p2_cards` - a numeric vector with the number of cards player 2 had after each round.
+play_war &lt;- function(cards = rep(1:13, 4),
+					 print = 0,
+					 max_games = 2000) {
+	deal &lt;- sample(length(cards), length(cards) / 2, replace = FALSE)
+	player1 &lt;- cards[deal]
+	player2 &lt;- cards[-deal]
+
+	games &lt;- 0
+	p1_cards &lt;- integer(max_games)
+	while(length(player1) &gt; 0 &amp; length(player2) &gt; 0 &amp; games &lt; max_games) {
+		result &lt;- check_cards(player1, player2)
+		player1 &lt;- result$player1
+		player2 &lt;- result$player2
+		p1_cards[games + 1] &lt;- length(player1)
+		if(length(player1) == 0 | length(player2) == 0) {
+			break;
+		}
+		if(length(player1) + length(player2) != length(cards)) {
+			stop(paste0(&#39;No longer `have &#39;, length(cards), &#39; cards! &#39;,
+						(length(player1) + length(player2))))
+		}
+		games &lt;- games + 1
+		if(print &gt; 0) {
+			if(games %% print == 0) {
+				print(paste0(&#39;Game &#39;, games, &#39;:&#39;,
+							 &#39; Player 1 cards: &#39;, length(player1), &#39;; &#39;,
+							 &#39; Player 2 cards: &#39;, length(player2)))
+			}
+		}
+	}
+	winner &lt;- 0
+	if(length(player1) == 0) {
+		winner &lt;- 2
+	} else if(length(player2) == 0) {
+		winner &lt;- 1
+	}
+	return(list(games = games,
+				winner = winner,
+				p1_cards = p1_cards,
+				p2_cards = length(cards) - p1_cards))
+}</code></pre>
+<p>We can now play a single game of war. Here <code>print = 25</code> so the function will print the card status every 25 rounds.</p>
+<pre class="r"><code>play_war(print = 25)$games</code></pre>
+<pre><code>## [1] &quot;Game 25: Player 1 cards: 25;  Player 2 cards: 27&quot;
+## [1] &quot;Game 50: Player 1 cards: 26;  Player 2 cards: 26&quot;
+## [1] &quot;Game 75: Player 1 cards: 35;  Player 2 cards: 17&quot;
+## [1] &quot;Game 100: Player 1 cards: 28;  Player 2 cards: 24&quot;
+## [1] &quot;Game 125: Player 1 cards: 31;  Player 2 cards: 21&quot;</code></pre>
+<pre><code>## [1] 143</code></pre>
+<p>Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.</p>
+<pre class="r"><code>	n_games &lt;- 10000
+	war_games &lt;- list()
+	for(i in seq_len(n_games)) {
+		# set.seed(i) # Used to track down issues and debug
+		war_games[[i]] &lt;- play_war(print = 0)
+	}
+	plays_to_win &lt;- sapply(war_games, FUN = function(x) { x$games })</code></pre>
+<p>First we’ll see if there are any draws (unlikely with <code>max_games = 2000</code>).</p>
+<pre class="r"><code>draws &lt;- which(plays_to_win == 2000)
+sum(plays_to_win == 2000)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>Now let’s see what the mean, median, and distrubtion of rounds is.</p>
+<pre class="r"><code>hist(plays_to_win,
+	 main = &#39;Histogram of Number of Plays to Win Game of War&#39;,
+	 xlab = &#39;Number of Plays&#39;)</code></pre>
+<p><img src="/post/2023-04-06-Winning_War_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>mean(plays_to_win)</code></pre>
+<pre><code>## [1] 173.6619</code></pre>
+<pre class="r"><code>median(plays_to_win)</code></pre>
+<pre><code>## [1] 135</code></pre>
+<pre class="r"><code>min(plays_to_win)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="r"><code>max(plays_to_win)</code></pre>
+<pre><code>## [1] 1381</code></pre>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r-bloggers">R-Bloggers</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/shiny">Shiny</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/2022-04-25-shiny_posters/">Using Shiny to Create an Academic Poster</a></li>
+        
+        <li><a href="/post/2021-02-12-shiny_apps_in_r_packages/">Framework for Shiny Apps in R Packages</a></li>
+        
+        <li><a href="/post/2022-04-07-sftp_in_r_on_mac/">SFTP in R on a Mac</a></li>
+        
+        <li><a href="/post/2021-02-15-map_my_run_in_r/">Map my run in R</a></li>
+        
+        <li><a href="/post/2018-22-26-dtedit/">Editable DataTables for Shiny Applications</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jbryer" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2020 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+      <br/>Some <a href="http://www.bryer.org/tags/r-bloggers/">posts</a> generously redistributed by <a href="https://www.r-bloggers.com/" target="_blank">R-Bloggers</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

@@ -75,7 +75,7 @@
   <meta property="og:description" content="Assistant Professor &amp; Associate Director">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2013-01-24T21:13:14-05:00">
+  <meta property="og:updated_time" content="2013-01-30T21:13:14-05:00">
   
 
   
@@ -247,6 +247,15 @@
   
   
   <div>
+    <h2><a href="/post/2013-01-30-converting_a_list_to_a_data_frame/">Converting a list to a data frame</a></h2>
+    <div class="article-style">
+      
+      There are many situations in R where you have a list of vectors that you need to convert to a data.frame. This question has been addressed over at StackOverflow and it turns out there are many different approaches to completing this task. Since I encounter this situation relatively frequently, I wanted my own S3 method for as.data.frame that takes a list as its parameter. I should note that it only works with atomic vectors (i.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/post/2013-01-24-comparing_two_data_frames/">Comparing two data frames with different number of rows</a></h2>
     <div class="article-style">
       
@@ -325,15 +334,6 @@ require(ggplot2) grey50 &lt;- data.frame( x = rep(1:10, 5), y = rep(1:5, each=10
       
       There are several graphics available for visualizing missing data including the VIM package. However, I wanted a plot specifically for looking at the nature of missingness across variables and a clustering variable of interest to support data preparation in multilevel propensity score models (see the multilevelPSA package). The following examples uses data from the Programme of International Student Assessment (PISA; see pisa package).
 The required packages can be downloaded from github.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/post/2012-08-13-user-input-using-tcltk/">User Input using tcl/tk</a></h2>
-    <div class="article-style">
-      
-      I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time to make it a bit more generic. What I wanted is a function that takes a vector (of variable names) of arbitrary length, create a dialog box for an input for each, and return the values in a list.
       
     </div>
   </div>
