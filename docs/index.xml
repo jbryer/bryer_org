@@ -143,15 +143,18 @@ play_war &amp;lt;- function(cards = rep(1:13, 4),
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can now play a single game of war. Here &lt;code&gt;print = 25&lt;/code&gt; so the function will print the card status every 25 rounds.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;play_war(print = 25)$games&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 37;  Player 2 cards: 15&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 23;  Player 2 cards: 29&amp;quot;
 ## [1] &amp;quot;Game 50: Player 1 cards: 30;  Player 2 cards: 22&amp;quot;
-## [1] &amp;quot;Game 75: Player 1 cards: 21;  Player 2 cards: 31&amp;quot;
-## [1] &amp;quot;Game 100: Player 1 cards: 20;  Player 2 cards: 32&amp;quot;
-## [1] &amp;quot;Game 125: Player 1 cards: 9;  Player 2 cards: 43&amp;quot;
-## [1] &amp;quot;Game 150: Player 1 cards: 10;  Player 2 cards: 42&amp;quot;
-## [1] &amp;quot;Game 175: Player 1 cards: 11;  Player 2 cards: 41&amp;quot;
-## [1] &amp;quot;Game 200: Player 1 cards: 8;  Player 2 cards: 44&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 206&lt;/code&gt;&lt;/pre&gt;
+## [1] &amp;quot;Game 75: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
+## [1] &amp;quot;Game 100: Player 1 cards: 30;  Player 2 cards: 22&amp;quot;
+## [1] &amp;quot;Game 125: Player 1 cards: 19;  Player 2 cards: 33&amp;quot;
+## [1] &amp;quot;Game 150: Player 1 cards: 16;  Player 2 cards: 36&amp;quot;
+## [1] &amp;quot;Game 175: Player 1 cards: 17;  Player 2 cards: 35&amp;quot;
+## [1] &amp;quot;Game 200: Player 1 cards: 6;  Player 2 cards: 46&amp;quot;
+## [1] &amp;quot;Game 225: Player 1 cards: 21;  Player 2 cards: 31&amp;quot;
+## [1] &amp;quot;Game 250: Player 1 cards: 22;  Player 2 cards: 30&amp;quot;
+## [1] &amp;quot;Game 275: Player 1 cards: 13;  Player 2 cards: 39&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 287&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;	n_games &amp;lt;- 10000
 	war_games &amp;lt;- list()
@@ -769,6 +772,15 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
     </item>
     
     <item>
+      <title>IRRsim</title>
+      <link>/project/irrsim/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/irrsim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>PSA</title>
       <link>/project/psa/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
@@ -784,25 +796,6 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
       
       <guid>/project/shinyqda/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Intro to Predictive Modeling</title>
-      <link>/talk/2019-01-22-intro_to_predictive_modeling/</link>
-      <pubDate>Sun, 01 Jan 2017 18:00:00 -0500</pubDate>
-      
-      <guid>/talk/2019-01-22-intro_to_predictive_modeling/</guid>
-      <description>&lt;p&gt;This workshop will introduce the basic concepts and procedures for predictive modeling in R including:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to evaluate the quality of predictive models using confusion matrices and ROC curves&lt;/li&gt;
-&lt;li&gt;Classification and regression trees (CART methods)&lt;/li&gt;
-&lt;li&gt;Ensemble methods (e.g. random forests, boosting, bagging)&lt;/li&gt;
-&lt;li&gt;Discussion of issues and limitations of &amp;ldquo;black box&amp;rdquo; predictive modeling&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-</description>
     </item>
     
   </channel>

@@ -134,15 +134,18 @@ play_war &lt;- function(cards = rep(1:13, 4),
 }</code></pre>
 <p>We can now play a single game of war. Here <code>print = 25</code> so the function will print the card status every 25 rounds.</p>
 <pre class="r"><code>play_war(print = 25)$games</code></pre>
-<pre><code>## [1] &quot;Game 25: Player 1 cards: 37;  Player 2 cards: 15&quot;
+<pre><code>## [1] &quot;Game 25: Player 1 cards: 23;  Player 2 cards: 29&quot;
 ## [1] &quot;Game 50: Player 1 cards: 30;  Player 2 cards: 22&quot;
-## [1] &quot;Game 75: Player 1 cards: 21;  Player 2 cards: 31&quot;
-## [1] &quot;Game 100: Player 1 cards: 20;  Player 2 cards: 32&quot;
-## [1] &quot;Game 125: Player 1 cards: 9;  Player 2 cards: 43&quot;
-## [1] &quot;Game 150: Player 1 cards: 10;  Player 2 cards: 42&quot;
-## [1] &quot;Game 175: Player 1 cards: 11;  Player 2 cards: 41&quot;
-## [1] &quot;Game 200: Player 1 cards: 8;  Player 2 cards: 44&quot;</code></pre>
-<pre><code>## [1] 206</code></pre>
+## [1] &quot;Game 75: Player 1 cards: 29;  Player 2 cards: 23&quot;
+## [1] &quot;Game 100: Player 1 cards: 30;  Player 2 cards: 22&quot;
+## [1] &quot;Game 125: Player 1 cards: 19;  Player 2 cards: 33&quot;
+## [1] &quot;Game 150: Player 1 cards: 16;  Player 2 cards: 36&quot;
+## [1] &quot;Game 175: Player 1 cards: 17;  Player 2 cards: 35&quot;
+## [1] &quot;Game 200: Player 1 cards: 6;  Player 2 cards: 46&quot;
+## [1] &quot;Game 225: Player 1 cards: 21;  Player 2 cards: 31&quot;
+## [1] &quot;Game 250: Player 1 cards: 22;  Player 2 cards: 30&quot;
+## [1] &quot;Game 275: Player 1 cards: 13;  Player 2 cards: 39&quot;</code></pre>
+<pre><code>## [1] 287</code></pre>
 <p>Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.</p>
 <pre class="r"><code>	n_games &lt;- 10000
 	war_games &lt;- list()
