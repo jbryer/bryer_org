@@ -20,9 +20,9 @@ selected = false
 
 # Links (optional).
 url_pdf = ""
-url_slides = ""
-url_video = ""
-url_code = ""
+url_slides = "https://github.com/jbryer/psa/raw/master/Slides/Intro_PSA.pdf"
+url_video = "https://youtu.be/Rq_od5KwqEA"
+url_code = "https://github.com/jbryer/psa"
 
 # Does the content use math formatting?
 math = true
@@ -40,7 +40,6 @@ highlight = true
 
 The CUNY School of Professional Studies, Data Science and Information Systems department, is hosting a talk by Jason Bryer titled Estimating Causality from Observation Data. You can attend the talk in person at 119 West 31st Street, NY, New York, 10001 or watch the live stream. Please complete this form indicating your interest. Details on attending live or getting the Zoom link will be sent to the email address provided. Light refreshments will be provided for those attending in person.
 
-Registration link: https://forms.gle/oaz9mJrQFggQhi2p8
 
 **Abstract**
 
