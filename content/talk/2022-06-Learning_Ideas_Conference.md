@@ -21,7 +21,7 @@ selected = false
 # Links (optional).
 url_pdf = ""
 url_slides = ""
-url_video = ""
+url_video = "https://www.youtube.com/watch?v=S-2f99fRZUU"
 url_code = ""
 
 # Does the content use math formatting?

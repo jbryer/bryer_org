@@ -143,18 +143,9 @@ play_war &amp;lt;- function(cards = rep(1:13, 4),
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can now play a single game of war. Here &lt;code&gt;print = 25&lt;/code&gt; so the function will print the card status every 25 rounds.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;play_war(print = 25)$games&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 23;  Player 2 cards: 29&amp;quot;
-## [1] &amp;quot;Game 50: Player 1 cards: 30;  Player 2 cards: 22&amp;quot;
-## [1] &amp;quot;Game 75: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
-## [1] &amp;quot;Game 100: Player 1 cards: 30;  Player 2 cards: 22&amp;quot;
-## [1] &amp;quot;Game 125: Player 1 cards: 19;  Player 2 cards: 33&amp;quot;
-## [1] &amp;quot;Game 150: Player 1 cards: 16;  Player 2 cards: 36&amp;quot;
-## [1] &amp;quot;Game 175: Player 1 cards: 17;  Player 2 cards: 35&amp;quot;
-## [1] &amp;quot;Game 200: Player 1 cards: 6;  Player 2 cards: 46&amp;quot;
-## [1] &amp;quot;Game 225: Player 1 cards: 21;  Player 2 cards: 31&amp;quot;
-## [1] &amp;quot;Game 250: Player 1 cards: 22;  Player 2 cards: 30&amp;quot;
-## [1] &amp;quot;Game 275: Player 1 cards: 13;  Player 2 cards: 39&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 287&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
+## [1] &amp;quot;Game 50: Player 1 cards: 20;  Player 2 cards: 32&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 73&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;	n_games &amp;lt;- 10000
 	war_games &amp;lt;- list()
