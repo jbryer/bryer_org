@@ -8,6 +8,7 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 During a recent class a student asked whether bootstrap confidence intervals were more robust than confidence intervals estimated using the standard error (i.e. $SE = \frac{s}{\sqrt{n}}$). In order to answer this question I wrote a function to simulate taking a bunch of random samples from a population, calculate the confidence interval for that sample using the standard error approach (the *t* distribution is used by default, see the `cv` parameter. To use the normal distribution, for example, set `cv = 1.96`.), and then also calculating a confidence interval using the boostrap.
 
 ```{r simulation-function, message=FALSE, warning=FALSE}

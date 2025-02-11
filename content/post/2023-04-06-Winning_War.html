@@ -134,27 +134,10 @@ play_war &lt;- function(cards = rep(1:13, 4),
 }</code></pre>
 <p>We can now play a single game of war. Here <code>print = 25</code> so the function will print the card status every 25 rounds.</p>
 <pre class="r"><code>play_war(print = 25)$games</code></pre>
-<pre><code>## [1] &quot;Game 25: Player 1 cards: 29;  Player 2 cards: 23&quot;
-## [1] &quot;Game 50: Player 1 cards: 26;  Player 2 cards: 26&quot;
-## [1] &quot;Game 75: Player 1 cards: 29;  Player 2 cards: 23&quot;
-## [1] &quot;Game 100: Player 1 cards: 38;  Player 2 cards: 14&quot;
-## [1] &quot;Game 125: Player 1 cards: 41;  Player 2 cards: 11&quot;
-## [1] &quot;Game 150: Player 1 cards: 44;  Player 2 cards: 8&quot;
-## [1] &quot;Game 175: Player 1 cards: 47;  Player 2 cards: 5&quot;
-## [1] &quot;Game 200: Player 1 cards: 44;  Player 2 cards: 8&quot;
-## [1] &quot;Game 225: Player 1 cards: 33;  Player 2 cards: 19&quot;
-## [1] &quot;Game 250: Player 1 cards: 34;  Player 2 cards: 18&quot;
-## [1] &quot;Game 275: Player 1 cards: 41;  Player 2 cards: 11&quot;
-## [1] &quot;Game 300: Player 1 cards: 26;  Player 2 cards: 26&quot;
-## [1] &quot;Game 325: Player 1 cards: 27;  Player 2 cards: 25&quot;
-## [1] &quot;Game 350: Player 1 cards: 26;  Player 2 cards: 26&quot;
-## [1] &quot;Game 375: Player 1 cards: 19;  Player 2 cards: 33&quot;
-## [1] &quot;Game 400: Player 1 cards: 26;  Player 2 cards: 26&quot;
-## [1] &quot;Game 425: Player 1 cards: 25;  Player 2 cards: 27&quot;
-## [1] &quot;Game 450: Player 1 cards: 22;  Player 2 cards: 30&quot;
-## [1] &quot;Game 475: Player 1 cards: 21;  Player 2 cards: 31&quot;
-## [1] &quot;Game 500: Player 1 cards: 2;  Player 2 cards: 50&quot;</code></pre>
-<pre><code>## [1] 503</code></pre>
+<pre><code>## [1] &quot;Game 25: Player 1 cards: 25;  Player 2 cards: 27&quot;
+## [1] &quot;Game 50: Player 1 cards: 28;  Player 2 cards: 24&quot;
+## [1] &quot;Game 75: Player 1 cards: 11;  Player 2 cards: 41&quot;</code></pre>
+<pre><code>## [1] 76</code></pre>
 <p>Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.</p>
 <pre class="r"><code>	n_games &lt;- 10000
 	war_games &lt;- list()
