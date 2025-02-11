@@ -11,6 +11,278 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Bootstrap vs Standard Error Confidence Intervals</title>
+      <link>/post/2025-02-11-bootstrap_vs_se_ci/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2025-02-11-bootstrap_vs_se_ci/</guid>
+      <description>
+
+
+&lt;p&gt;During a recent class a student asked whether bootstrap confidence intervals were more robust than confidence intervals estimated using the standard error (i.e. &lt;span class=&#34;math inline&#34;&gt;\(SE = \frac{s}{\sqrt{n}}\)&lt;/span&gt;). In order to answer this question I wrote a function to simulate taking a bunch of random samples from a population, calculate the confidence interval for that sample using the standard error approach (the &lt;em&gt;t&lt;/em&gt; distribution is used by default, see the &lt;code&gt;cv&lt;/code&gt; parameter. To use the normal distribution, for example, set &lt;code&gt;cv = 1.96&lt;/code&gt;.), and then also calculating a confidence interval using the boostrap.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(ggplot2)
+
+#&amp;#39; Simulate random samples to estimate confidence intervals and bootstrap
+#&amp;#39; estimates.
+#&amp;#39;
+#&amp;#39; @param pop a numeric vector representing the population.
+#&amp;#39; @param n sample size for each random sample from the population.
+#&amp;#39; @param n_samples the number of random samples.
+#&amp;#39; @param n_boot number of bootstrap samples to take for each sample.
+#&amp;#39; @param seed a seed to use for the random process.
+#&amp;#39; @param cv critical value to use for calculating confidence intervals.
+#&amp;#39; @return a data.frame with the sample and bootstrap mean and confidence
+#&amp;#39;        intervals along with a logical variable indicating whether a Type I
+#&amp;#39;        error would have occurred with that sample.
+bootstrap_clt_simulation &amp;lt;- function(
+		pop,
+		n = 30,
+		n_samples = 500,
+		n_boot = 500,
+		cv = abs(qt(0.025, df = n - 1)),
+		seed,
+		verbose = interactive()
+) {
+	if(missing(seed)) {
+		seed &amp;lt;- sample(100000)
+	}
+	results &amp;lt;- data.frame(
+		seed = 1:n_samples,
+		samp_mean = numeric(n_samples),
+		samp_se = numeric(n_samples),
+		samp_ci_low = numeric(n_samples),
+		samp_ci_high = numeric(n_samples),
+		samp_type1 = logical(n_samples),
+		boot_mean = numeric(n_samples),
+		boot_ci_low = numeric(n_samples),
+		boot_ci_high = numeric(n_samples),
+		boot_type1 = logical(n_samples)
+	)
+	if(verbose) {
+		pb &amp;lt;- txtProgressBar(min = 0, max = n_samples, style = 3)
+	}
+	for(i in 1:n_samples) {
+		if(verbose) {
+			setTxtProgressBar(pb, i)
+		}
+		set.seed(seed + i)
+		samp &amp;lt;- sample(pop, size = n)
+		boot_samp &amp;lt;- numeric(n_boot)
+		for(j in 1:n_boot) {
+			boot_samp[j] &amp;lt;- sample(samp, size = length(samp), replace = TRUE) |&amp;gt;
+				mean()
+		}
+		results[i,]$seed &amp;lt;- seed + i
+		results[i,]$samp_mean &amp;lt;- mean(samp)
+		results[i,]$samp_se &amp;lt;- sd(samp) / sqrt(length(samp))
+		results[i,]$samp_ci_low &amp;lt;- mean(samp) - cv * results[i,]$samp_se
+		results[i,]$samp_ci_high &amp;lt;- mean(samp) + cv * results[i,]$samp_se
+		results[i,]$samp_type1 &amp;lt;- results[i,]$samp_ci_low &amp;gt; mean(pop) |
+			mean(pop) &amp;gt; results[i,]$samp_ci_high
+		results[i,]$boot_mean &amp;lt;- mean(boot_samp)
+		results[i,]$boot_ci_low &amp;lt;- mean(boot_samp) - cv * sd(boot_samp)
+		results[i,]$boot_ci_high &amp;lt;- mean(boot_samp) + cv * sd(boot_samp)
+		results[i,]$boot_type1 &amp;lt;- results[i,]$boot_ci_low &amp;gt; mean(pop) |
+			mean(pop) &amp;gt; results[i,]$boot_ci_high
+	}
+	if(verbose) {
+		close(pb)
+	}
+	return(results)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Uniform distribution for the population&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let’s start with a uniform distribution for our population.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pop_unif &amp;lt;- runif(1e5, 0, 1)
+ggplot(data.frame(x = pop_unif), aes(x = x)) + geom_density()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The mean of the population is 0.4999484. We can now simulate samples and their corresponding bootstrap estimates.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_unif &amp;lt;- bootstrap_clt_simulation(pop = pop_unif, seed = 42, verbose = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;4% of our samples did not contain the population mean in the confidence interval (i.e. Type I error rate) compared to &lt;code&gt;r&lt;/code&gt;mean(results_unif$boot_type1) * 100`% of the bootstrap estimates. The following table compares the Type I errors for each sample compared to the bootstrap estiamted from that sample.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tab &amp;lt;- table(results_unif$samp_type1, results_unif$boot_type1, useNA = &amp;#39;ifany&amp;#39;)
+tab&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        
+##         FALSE TRUE
+##   FALSE   477    3
+##   TRUE      0   20&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In general committing a type I error is the same regardless of method, though there were 3 instances where the bootstrap would have led to a type I error rate where the standard error approach would not.&lt;/p&gt;
+&lt;p&gt;The following plots show the relationship between the estimated mean (left) and condifence interval width (right) for each sample and its corresponding bootstrap.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_unif |&amp;gt;
+	ggplot(aes(x = samp_mean, y = boot_mean)) +
+	geom_vline(xintercept = mean(pop_unif), color = &amp;#39;blue&amp;#39;) +
+	geom_hline(yintercept = mean(pop_unif), color = &amp;#39;blue&amp;#39;) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&amp;quot;Sample mean vs bootstrap mean&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_unif |&amp;gt;
+	dplyr::mutate(samp_ci_width = samp_ci_high - samp_ci_low,
+				  boot_ci_width = boot_ci_high - boot_ci_low) |&amp;gt;
+	ggplot(aes(x = samp_ci_width, y = boot_ci_width)) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&amp;#39;Sample vs boostrap confidence interval width&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Skewed distribution for the population&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We will repeat the same analysis using a positively skewed distribution.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pop_skewed &amp;lt;- rnbinom(1e5, 3, .5)
+ggplot(data.frame(x = pop_skewed), aes(x = x)) + geom_density(bw = 0.75)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The mean of the population for this distribution is 2.99792&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_skewed &amp;lt;- bootstrap_clt_simulation(pop = pop_skewed, seed = 42, verbose = FALSE)
+mean(results_skewed$samp_type1) # Percent of samples with Type I error&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(results_skewed$boot_type1) # Percent of bootstrap estimates with Type I error&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.052&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# CLT vs Bootstrap Type I error rate
+table(results_skewed$samp_type1, results_skewed$boot_type1, useNA = &amp;#39;ifany&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        
+##         FALSE TRUE
+##   FALSE   473    2
+##   TRUE      1   24&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_skewed |&amp;gt;
+	ggplot(aes(x = samp_mean, y = boot_mean)) +
+	geom_vline(xintercept = mean(pop_skewed), color = &amp;#39;blue&amp;#39;) +
+	geom_hline(yintercept = mean(pop_skewed), color = &amp;#39;blue&amp;#39;) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&amp;quot;Sample mean vs bootstrap mean&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_skewed |&amp;gt;
+	dplyr::mutate(samp_ci_width = samp_ci_high - samp_ci_low,
+				  boot_ci_width = boot_ci_high - boot_ci_low) |&amp;gt;
+	ggplot(aes(x = samp_ci_width, y = boot_ci_width)) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&amp;#39;Sample vs boostrap confidence interval width&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-7-2.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can see the results are very similar to that of the uniform distirubtion. Exploring the one case where the bootstrap would have resulted in a Type I error where the standard error approach would not reveals that it is very close with the difference being less than 0.1.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results_differ &amp;lt;- results_skewed |&amp;gt;
+	dplyr::filter(!samp_type1 &amp;amp; boot_type1)
+results_differ&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   seed samp_mean   samp_se samp_ci_low samp_ci_high samp_type1 boot_mean
+## 1  443  3.866667 0.4516466    2.942946     4.790388      FALSE  3.924733
+## 2  474  3.933333 0.4816956    2.948155     4.918511      FALSE  3.956800
+##   boot_ci_low boot_ci_high boot_type1
+## 1    3.044802     4.804665       TRUE
+## 2    3.018549     4.895051       TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(results_differ[1,]$seed)
+samp &amp;lt;- sample(pop_skewed, size = 30)
+boot_samp &amp;lt;- numeric(500)
+for(j in 1:500) {
+	boot_samp[j] &amp;lt;- sample(samp, size = length(samp), replace = TRUE) |&amp;gt;
+		mean()
+}
+cv = abs(qt(0.025, df = 30 - 1))
+mean(pop_skewed)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.99792&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci &amp;lt;- c(mean(samp) - cv * sd(samp) / sqrt(30), mean(samp) + cv * sd(samp) / sqrt(30))
+ci&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.942946 4.790388&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(pop_skewed) &amp;lt; ci[1] | mean(pop_skewed) &amp;gt; ci[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] FALSE&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_boot &amp;lt;- c(mean(boot_samp) - cv * sd(boot_samp), mean(boot_samp) + cv * sd(boot_samp))
+ci_boot&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.044802 4.804665&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(pop_skewed) &amp;lt; ci_boot[1] | mean(pop_skewed) &amp;gt; ci_boot[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;adding-an-outlier&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding an outlier&lt;/h3&gt;
+&lt;p&gt;Let’s consider a sample that forces the largest value from the population to be in the sample.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2112)
+samp_outlier &amp;lt;- c(sample(pop_skewed, size = 29), max(pop_skewed))
+boot_samp &amp;lt;- numeric(500)
+for(j in 1:500) {
+	boot_samp[j] &amp;lt;- sample(samp, size = length(samp), replace = TRUE) |&amp;gt;
+		mean()
+}
+
+ci &amp;lt;- c(mean(samp_outlier) - cv * sd(samp_outlier) / sqrt(30), mean(samp_outlier) + cv * sd(samp_outlier) / sqrt(30))
+ci&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.647006 4.952994&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(pop_skewed) &amp;lt; ci[1] | mean(pop_skewed) &amp;gt; ci[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] FALSE&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ci_boot &amp;lt;- c(mean(boot_samp) - cv * sd(boot_samp), mean(boot_samp) + cv * sd(boot_samp))
+ci_boot&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.905153 4.781381&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(pop_skewed) &amp;lt; ci_boot[1] | mean(pop_skewed) &amp;gt; ci_boot[2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] FALSE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this example we do see that the presense of the outlier does have a bigger impact on the confidence interval with the bootstrap confidence interval being much smaller.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sample-and-bootstrap-size-related-to-standard-error&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Sample and bootstrap size related to standard error&lt;/h3&gt;
+&lt;p&gt;Let’s also explore the relationship of &lt;em&gt;n&lt;/em&gt;, number of bootstrap samples, and standard error. Recall the formula for the standard error is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ SE = \frac{\sigma}{\sqrt{n}} \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The figure below plots the standard error against the standard error assuming sigma (standard deviation) is one. As you can see, simply increasing the sample size will decrease the standard error (and therefore the confidence interval).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;se &amp;lt;- function(n, sigma = 1) {
+	sigma / sqrt(n)
+}
+ggplot() + stat_function(fun = se) + xlim(c(0, 100)) +
+	ylab(&amp;#39;Standard Error&amp;#39;) + xlab(&amp;#39;Sample Size (n)&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Considering again a population with a uniform distribution, the following code will draw random samples with &lt;em&gt;n&lt;/em&gt; ranging from 30 to 50 in increments of 15. For each of those random samples, we will also estimate boostrap standard errors with the number of bootstrap samples ranging from 50 to 1,000 in increments of 50.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- seq(30, 500, by = 15)
+n_boots &amp;lt;- seq(50, 1000, by = 50)
+
+results &amp;lt;- expand.grid(n, n_boots)
+attributes(results) &amp;lt;- NULL
+results &amp;lt;- as.data.frame(results)
+names(results) &amp;lt;- c(&amp;#39;n&amp;#39;, &amp;#39;n_boots&amp;#39;)
+results$samp_mean &amp;lt;- NA
+results$samp_se &amp;lt;- NA
+results$boot_mean &amp;lt;- NA
+results$boot_se &amp;lt;- NA
+
+for(i in seq_len(nrow(results))) {
+	samp &amp;lt;- sample(pop_unif, size = results[i,]$n)
+	results[i,]$samp_mean &amp;lt;- mean(samp)
+	results[i,]$samp_se &amp;lt;- sd(samp) / sqrt(length(samp))
+	boot_samp_dist &amp;lt;- numeric(results[i,]$n_boots)
+	for(j in seq_len(results[i,]$n_boots)) {
+		boot_samp_dist[j] &amp;lt;- sample(samp, size = length(samp), replace = TRUE) |&amp;gt; mean()
+	}
+	results[i,]$boot_mean &amp;lt;- mean(boot_samp_dist)
+	results[i,]$boot_se &amp;lt;- sd(boot_samp_dist)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The figure to the left plots the sample size against the standard error which, like above, shows that as the sample size increases the standard error decreases. On the right is a plot of the number of bootstrap samples against the standard error where the point colors correspond to the sample size. Here we see the standard error is constant. That is, the number of bootstrap samples is not related to the standard error. The variability in standard error is accounted for by the sample size.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y_limits &amp;lt;- c(0, 0.075)
+p_samp_size_se &amp;lt;- ggplot(results, aes(x = n, y = samp_se)) + 
+	geom_point(fill = &amp;#39;#9ecae1&amp;#39;, color = &amp;#39;grey50&amp;#39;, shape = 21) + 
+	geom_smooth(color = &amp;#39;darkgreen&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;, formula = y ~ x) +
+	ylim(y_limits) +
+	ylab(&amp;#39;Standard Error&amp;#39;) +
+	xlab(&amp;#39;Sample size (n)&amp;#39;) +
+	ggtitle(latex2exp::TeX(&amp;quot;Standard Error (SE = \\frac{\\sigma}{\\sqrt{n}})&amp;quot;)) +
+	scale_fill_gradient(low = &amp;#39;#deebf7&amp;#39;, high = &amp;#39;#3182bd&amp;#39;) +
+	theme(legend.position = &amp;#39;bottom&amp;#39;)
+
+p_boot_size_se &amp;lt;- 
+	ggplot(results, aes(x = n_boots, y = boot_se)) + 
+	geom_point(aes(fill = n), color = &amp;#39;grey50&amp;#39;, shape = 21) +
+	geom_smooth(color = &amp;#39;darkgreen&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;, formula = y ~ x) +
+	ylim(y_limits) +
+	ylab(&amp;#39;Standard Error&amp;#39;) +
+	xlab(&amp;#39;Number of Bootstrap Samples&amp;#39;) +
+	ggtitle(&amp;#39;Bootstrap Standard Error&amp;#39;,
+			subtitle = &amp;#39;(i.e. standard deviation of the bootstrap sample)&amp;#39;) +
+	scale_fill_gradient(low = &amp;#39;#deebf7&amp;#39;, high = &amp;#39;#3182bd&amp;#39;) #+ theme(legend.position = &amp;#39;none&amp;#39;)
+
+cowplot::plot_grid(p_samp_size_se, p_boot_size_se)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Lastly we can plot the relationship between the two standard error estimates; the correlation of which is extremely high with r = 1.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(results, aes(x = samp_se, y = boot_se)) +
+	geom_abline() +
+	geom_point() +
+	xlab(&amp;#39;Sample Standard Error&amp;#39;) +
+	ylab(&amp;#39;Boostrap Standard Error&amp;#39;) +
+	ggtitle(paste0(&amp;#39;Correlation between standard errors = &amp;#39;, round(cor(results$samp_se, results$boot_se), digits = 2))) +
+	coord_equal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>How Long Does it Take to Win War?</title>
       <link>/post/2023-04-06-winning_war/</link>
       <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
@@ -143,16 +415,27 @@ play_war &amp;lt;- function(cards = rep(1:13, 4),
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can now play a single game of war. Here &lt;code&gt;print = 25&lt;/code&gt; so the function will print the card status every 25 rounds.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;play_war(print = 25)$games&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 19;  Player 2 cards: 33&amp;quot;
-## [1] &amp;quot;Game 50: Player 1 cards: 18;  Player 2 cards: 34&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Game 25: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
+## [1] &amp;quot;Game 50: Player 1 cards: 26;  Player 2 cards: 26&amp;quot;
 ## [1] &amp;quot;Game 75: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
-## [1] &amp;quot;Game 100: Player 1 cards: 34;  Player 2 cards: 18&amp;quot;
-## [1] &amp;quot;Game 125: Player 1 cards: 29;  Player 2 cards: 23&amp;quot;
-## [1] &amp;quot;Game 150: Player 1 cards: 28;  Player 2 cards: 24&amp;quot;
-## [1] &amp;quot;Game 175: Player 1 cards: 9;  Player 2 cards: 43&amp;quot;
-## [1] &amp;quot;Game 200: Player 1 cards: 18;  Player 2 cards: 34&amp;quot;
-## [1] &amp;quot;Game 225: Player 1 cards: 43;  Player 2 cards: 9&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 229&lt;/code&gt;&lt;/pre&gt;
+## [1] &amp;quot;Game 100: Player 1 cards: 38;  Player 2 cards: 14&amp;quot;
+## [1] &amp;quot;Game 125: Player 1 cards: 41;  Player 2 cards: 11&amp;quot;
+## [1] &amp;quot;Game 150: Player 1 cards: 44;  Player 2 cards: 8&amp;quot;
+## [1] &amp;quot;Game 175: Player 1 cards: 47;  Player 2 cards: 5&amp;quot;
+## [1] &amp;quot;Game 200: Player 1 cards: 44;  Player 2 cards: 8&amp;quot;
+## [1] &amp;quot;Game 225: Player 1 cards: 33;  Player 2 cards: 19&amp;quot;
+## [1] &amp;quot;Game 250: Player 1 cards: 34;  Player 2 cards: 18&amp;quot;
+## [1] &amp;quot;Game 275: Player 1 cards: 41;  Player 2 cards: 11&amp;quot;
+## [1] &amp;quot;Game 300: Player 1 cards: 26;  Player 2 cards: 26&amp;quot;
+## [1] &amp;quot;Game 325: Player 1 cards: 27;  Player 2 cards: 25&amp;quot;
+## [1] &amp;quot;Game 350: Player 1 cards: 26;  Player 2 cards: 26&amp;quot;
+## [1] &amp;quot;Game 375: Player 1 cards: 19;  Player 2 cards: 33&amp;quot;
+## [1] &amp;quot;Game 400: Player 1 cards: 26;  Player 2 cards: 26&amp;quot;
+## [1] &amp;quot;Game 425: Player 1 cards: 25;  Player 2 cards: 27&amp;quot;
+## [1] &amp;quot;Game 450: Player 1 cards: 22;  Player 2 cards: 30&amp;quot;
+## [1] &amp;quot;Game 475: Player 1 cards: 21;  Player 2 cards: 31&amp;quot;
+## [1] &amp;quot;Game 500: Player 1 cards: 2;  Player 2 cards: 50&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 503&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s find out how many rounds it takes to win. Here we will play 10,000 games of war.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;	n_games &amp;lt;- 10000
 	war_games &amp;lt;- list()
@@ -784,15 +1067,6 @@ Please RSVP Here: &lt;a href=&#34;https://opendatadayalbany.splashthat.com/&#34;
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/project/psa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ShinyQDA</title>
-      <link>/project/shinyqda/</link>
-      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/project/shinyqda/</guid>
       <description></description>
     </item>
     

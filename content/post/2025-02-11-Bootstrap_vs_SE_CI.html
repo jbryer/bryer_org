@@ -1,0 +1,272 @@
+---
+title: "Bootstrap vs Standard Error Confidence Intervals"
+author: "Jason Bryer"
+date: 2025-02-11
+categories: ["R"]
+tags: ["R", "R-Bloggers", "Statistics", "bootstrapping"]
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>During a recent class a student asked whether bootstrap confidence intervals were more robust than confidence intervals estimated using the standard error (i.e. <span class="math inline">\(SE = \frac{s}{\sqrt{n}}\)</span>). In order to answer this question I wrote a function to simulate taking a bunch of random samples from a population, calculate the confidence interval for that sample using the standard error approach (the <em>t</em> distribution is used by default, see the <code>cv</code> parameter. To use the normal distribution, for example, set <code>cv = 1.96</code>.), and then also calculating a confidence interval using the boostrap.</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+
+#&#39; Simulate random samples to estimate confidence intervals and bootstrap
+#&#39; estimates.
+#&#39;
+#&#39; @param pop a numeric vector representing the population.
+#&#39; @param n sample size for each random sample from the population.
+#&#39; @param n_samples the number of random samples.
+#&#39; @param n_boot number of bootstrap samples to take for each sample.
+#&#39; @param seed a seed to use for the random process.
+#&#39; @param cv critical value to use for calculating confidence intervals.
+#&#39; @return a data.frame with the sample and bootstrap mean and confidence
+#&#39;        intervals along with a logical variable indicating whether a Type I
+#&#39;        error would have occurred with that sample.
+bootstrap_clt_simulation &lt;- function(
+		pop,
+		n = 30,
+		n_samples = 500,
+		n_boot = 500,
+		cv = abs(qt(0.025, df = n - 1)),
+		seed,
+		verbose = interactive()
+) {
+	if(missing(seed)) {
+		seed &lt;- sample(100000)
+	}
+	results &lt;- data.frame(
+		seed = 1:n_samples,
+		samp_mean = numeric(n_samples),
+		samp_se = numeric(n_samples),
+		samp_ci_low = numeric(n_samples),
+		samp_ci_high = numeric(n_samples),
+		samp_type1 = logical(n_samples),
+		boot_mean = numeric(n_samples),
+		boot_ci_low = numeric(n_samples),
+		boot_ci_high = numeric(n_samples),
+		boot_type1 = logical(n_samples)
+	)
+	if(verbose) {
+		pb &lt;- txtProgressBar(min = 0, max = n_samples, style = 3)
+	}
+	for(i in 1:n_samples) {
+		if(verbose) {
+			setTxtProgressBar(pb, i)
+		}
+		set.seed(seed + i)
+		samp &lt;- sample(pop, size = n)
+		boot_samp &lt;- numeric(n_boot)
+		for(j in 1:n_boot) {
+			boot_samp[j] &lt;- sample(samp, size = length(samp), replace = TRUE) |&gt;
+				mean()
+		}
+		results[i,]$seed &lt;- seed + i
+		results[i,]$samp_mean &lt;- mean(samp)
+		results[i,]$samp_se &lt;- sd(samp) / sqrt(length(samp))
+		results[i,]$samp_ci_low &lt;- mean(samp) - cv * results[i,]$samp_se
+		results[i,]$samp_ci_high &lt;- mean(samp) + cv * results[i,]$samp_se
+		results[i,]$samp_type1 &lt;- results[i,]$samp_ci_low &gt; mean(pop) |
+			mean(pop) &gt; results[i,]$samp_ci_high
+		results[i,]$boot_mean &lt;- mean(boot_samp)
+		results[i,]$boot_ci_low &lt;- mean(boot_samp) - cv * sd(boot_samp)
+		results[i,]$boot_ci_high &lt;- mean(boot_samp) + cv * sd(boot_samp)
+		results[i,]$boot_type1 &lt;- results[i,]$boot_ci_low &gt; mean(pop) |
+			mean(pop) &gt; results[i,]$boot_ci_high
+	}
+	if(verbose) {
+		close(pb)
+	}
+	return(results)
+}</code></pre>
+<p><strong>Uniform distribution for the population</strong></p>
+<p>Let’s start with a uniform distribution for our population.</p>
+<pre class="r"><code>pop_unif &lt;- runif(1e5, 0, 1)
+ggplot(data.frame(x = pop_unif), aes(x = x)) + geom_density()</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>The mean of the population is 0.4999484. We can now simulate samples and their corresponding bootstrap estimates.</p>
+<pre class="r"><code>results_unif &lt;- bootstrap_clt_simulation(pop = pop_unif, seed = 42, verbose = FALSE)</code></pre>
+<p>4% of our samples did not contain the population mean in the confidence interval (i.e. Type I error rate) compared to <code>r</code>mean(results_unif$boot_type1) * 100`% of the bootstrap estimates. The following table compares the Type I errors for each sample compared to the bootstrap estiamted from that sample.</p>
+<pre class="r"><code>tab &lt;- table(results_unif$samp_type1, results_unif$boot_type1, useNA = &#39;ifany&#39;)
+tab</code></pre>
+<pre><code>##        
+##         FALSE TRUE
+##   FALSE   477    3
+##   TRUE      0   20</code></pre>
+<p>In general committing a type I error is the same regardless of method, though there were 3 instances where the bootstrap would have led to a type I error rate where the standard error approach would not.</p>
+<p>The following plots show the relationship between the estimated mean (left) and condifence interval width (right) for each sample and its corresponding bootstrap.</p>
+<pre class="r"><code>results_unif |&gt;
+	ggplot(aes(x = samp_mean, y = boot_mean)) +
+	geom_vline(xintercept = mean(pop_unif), color = &#39;blue&#39;) +
+	geom_hline(yintercept = mean(pop_unif), color = &#39;blue&#39;) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&quot;Sample mean vs bootstrap mean&quot;)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-4-1.png" width="100%" /></p>
+<pre class="r"><code>results_unif |&gt;
+	dplyr::mutate(samp_ci_width = samp_ci_high - samp_ci_low,
+				  boot_ci_width = boot_ci_high - boot_ci_low) |&gt;
+	ggplot(aes(x = samp_ci_width, y = boot_ci_width)) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&#39;Sample vs boostrap confidence interval width&#39;)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-4-2.png" width="100%" /></p>
+<p><strong>Skewed distribution for the population</strong></p>
+<p>We will repeat the same analysis using a positively skewed distribution.</p>
+<pre class="r"><code>pop_skewed &lt;- rnbinom(1e5, 3, .5)
+ggplot(data.frame(x = pop_skewed), aes(x = x)) + geom_density(bw = 0.75)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The mean of the population for this distribution is 2.99792</p>
+<pre class="r"><code>results_skewed &lt;- bootstrap_clt_simulation(pop = pop_skewed, seed = 42, verbose = FALSE)
+mean(results_skewed$samp_type1) # Percent of samples with Type I error</code></pre>
+<pre><code>## [1] 0.05</code></pre>
+<pre class="r"><code>mean(results_skewed$boot_type1) # Percent of bootstrap estimates with Type I error</code></pre>
+<pre><code>## [1] 0.052</code></pre>
+<pre class="r"><code># CLT vs Bootstrap Type I error rate
+table(results_skewed$samp_type1, results_skewed$boot_type1, useNA = &#39;ifany&#39;)</code></pre>
+<pre><code>##        
+##         FALSE TRUE
+##   FALSE   473    2
+##   TRUE      1   24</code></pre>
+<pre class="r"><code>results_skewed |&gt;
+	ggplot(aes(x = samp_mean, y = boot_mean)) +
+	geom_vline(xintercept = mean(pop_skewed), color = &#39;blue&#39;) +
+	geom_hline(yintercept = mean(pop_skewed), color = &#39;blue&#39;) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&quot;Sample mean vs bootstrap mean&quot;)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-7-1.png" width="100%" /></p>
+<pre class="r"><code>results_skewed |&gt;
+	dplyr::mutate(samp_ci_width = samp_ci_high - samp_ci_low,
+				  boot_ci_width = boot_ci_high - boot_ci_low) |&gt;
+	ggplot(aes(x = samp_ci_width, y = boot_ci_width)) +
+	geom_abline() +
+	geom_point() +
+	ggtitle(&#39;Sample vs boostrap confidence interval width&#39;)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-7-2.png" width="100%" /></p>
+<p>We can see the results are very similar to that of the uniform distirubtion. Exploring the one case where the bootstrap would have resulted in a Type I error where the standard error approach would not reveals that it is very close with the difference being less than 0.1.</p>
+<pre class="r"><code>results_differ &lt;- results_skewed |&gt;
+	dplyr::filter(!samp_type1 &amp; boot_type1)
+results_differ</code></pre>
+<pre><code>##   seed samp_mean   samp_se samp_ci_low samp_ci_high samp_type1 boot_mean
+## 1  443  3.866667 0.4516466    2.942946     4.790388      FALSE  3.924733
+## 2  474  3.933333 0.4816956    2.948155     4.918511      FALSE  3.956800
+##   boot_ci_low boot_ci_high boot_type1
+## 1    3.044802     4.804665       TRUE
+## 2    3.018549     4.895051       TRUE</code></pre>
+<pre class="r"><code>set.seed(results_differ[1,]$seed)
+samp &lt;- sample(pop_skewed, size = 30)
+boot_samp &lt;- numeric(500)
+for(j in 1:500) {
+	boot_samp[j] &lt;- sample(samp, size = length(samp), replace = TRUE) |&gt;
+		mean()
+}
+cv = abs(qt(0.025, df = 30 - 1))
+mean(pop_skewed)</code></pre>
+<pre><code>## [1] 2.99792</code></pre>
+<pre class="r"><code>ci &lt;- c(mean(samp) - cv * sd(samp) / sqrt(30), mean(samp) + cv * sd(samp) / sqrt(30))
+ci</code></pre>
+<pre><code>## [1] 2.942946 4.790388</code></pre>
+<pre class="r"><code>mean(pop_skewed) &lt; ci[1] | mean(pop_skewed) &gt; ci[2]</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>ci_boot &lt;- c(mean(boot_samp) - cv * sd(boot_samp), mean(boot_samp) + cv * sd(boot_samp))
+ci_boot</code></pre>
+<pre><code>## [1] 3.044802 4.804665</code></pre>
+<pre class="r"><code>mean(pop_skewed) &lt; ci_boot[1] | mean(pop_skewed) &gt; ci_boot[2]</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div id="adding-an-outlier" class="section level3">
+<h3>Adding an outlier</h3>
+<p>Let’s consider a sample that forces the largest value from the population to be in the sample.</p>
+<pre class="r"><code>set.seed(2112)
+samp_outlier &lt;- c(sample(pop_skewed, size = 29), max(pop_skewed))
+boot_samp &lt;- numeric(500)
+for(j in 1:500) {
+	boot_samp[j] &lt;- sample(samp, size = length(samp), replace = TRUE) |&gt;
+		mean()
+}
+
+ci &lt;- c(mean(samp_outlier) - cv * sd(samp_outlier) / sqrt(30), mean(samp_outlier) + cv * sd(samp_outlier) / sqrt(30))
+ci</code></pre>
+<pre><code>## [1] 1.647006 4.952994</code></pre>
+<pre class="r"><code>mean(pop_skewed) &lt; ci[1] | mean(pop_skewed) &gt; ci[2]</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>ci_boot &lt;- c(mean(boot_samp) - cv * sd(boot_samp), mean(boot_samp) + cv * sd(boot_samp))
+ci_boot</code></pre>
+<pre><code>## [1] 2.905153 4.781381</code></pre>
+<pre class="r"><code>mean(pop_skewed) &lt; ci_boot[1] | mean(pop_skewed) &gt; ci_boot[2]</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>In this example we do see that the presense of the outlier does have a bigger impact on the confidence interval with the bootstrap confidence interval being much smaller.</p>
+</div>
+<div id="sample-and-bootstrap-size-related-to-standard-error" class="section level3">
+<h3>Sample and bootstrap size related to standard error</h3>
+<p>Let’s also explore the relationship of <em>n</em>, number of bootstrap samples, and standard error. Recall the formula for the standard error is:</p>
+<p><span class="math display">\[ SE = \frac{\sigma}{\sqrt{n}} \]</span></p>
+<p>The figure below plots the standard error against the standard error assuming sigma (standard deviation) is one. As you can see, simply increasing the sample size will decrease the standard error (and therefore the confidence interval).</p>
+<pre class="r"><code>se &lt;- function(n, sigma = 1) {
+	sigma / sqrt(n)
+}
+ggplot() + stat_function(fun = se) + xlim(c(0, 100)) +
+	ylab(&#39;Standard Error&#39;) + xlab(&#39;Sample Size (n)&#39;)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Considering again a population with a uniform distribution, the following code will draw random samples with <em>n</em> ranging from 30 to 50 in increments of 15. For each of those random samples, we will also estimate boostrap standard errors with the number of bootstrap samples ranging from 50 to 1,000 in increments of 50.</p>
+<pre class="r"><code>n &lt;- seq(30, 500, by = 15)
+n_boots &lt;- seq(50, 1000, by = 50)
+
+results &lt;- expand.grid(n, n_boots)
+attributes(results) &lt;- NULL
+results &lt;- as.data.frame(results)
+names(results) &lt;- c(&#39;n&#39;, &#39;n_boots&#39;)
+results$samp_mean &lt;- NA
+results$samp_se &lt;- NA
+results$boot_mean &lt;- NA
+results$boot_se &lt;- NA
+
+for(i in seq_len(nrow(results))) {
+	samp &lt;- sample(pop_unif, size = results[i,]$n)
+	results[i,]$samp_mean &lt;- mean(samp)
+	results[i,]$samp_se &lt;- sd(samp) / sqrt(length(samp))
+	boot_samp_dist &lt;- numeric(results[i,]$n_boots)
+	for(j in seq_len(results[i,]$n_boots)) {
+		boot_samp_dist[j] &lt;- sample(samp, size = length(samp), replace = TRUE) |&gt; mean()
+	}
+	results[i,]$boot_mean &lt;- mean(boot_samp_dist)
+	results[i,]$boot_se &lt;- sd(boot_samp_dist)
+}</code></pre>
+<p>The figure to the left plots the sample size against the standard error which, like above, shows that as the sample size increases the standard error decreases. On the right is a plot of the number of bootstrap samples against the standard error where the point colors correspond to the sample size. Here we see the standard error is constant. That is, the number of bootstrap samples is not related to the standard error. The variability in standard error is accounted for by the sample size.</p>
+<pre class="r"><code>y_limits &lt;- c(0, 0.075)
+p_samp_size_se &lt;- ggplot(results, aes(x = n, y = samp_se)) + 
+	geom_point(fill = &#39;#9ecae1&#39;, color = &#39;grey50&#39;, shape = 21) + 
+	geom_smooth(color = &#39;darkgreen&#39;, se = FALSE, method = &#39;loess&#39;, formula = y ~ x) +
+	ylim(y_limits) +
+	ylab(&#39;Standard Error&#39;) +
+	xlab(&#39;Sample size (n)&#39;) +
+	ggtitle(latex2exp::TeX(&quot;Standard Error (SE = \\frac{\\sigma}{\\sqrt{n}})&quot;)) +
+	scale_fill_gradient(low = &#39;#deebf7&#39;, high = &#39;#3182bd&#39;) +
+	theme(legend.position = &#39;bottom&#39;)
+
+p_boot_size_se &lt;- 
+	ggplot(results, aes(x = n_boots, y = boot_se)) + 
+	geom_point(aes(fill = n), color = &#39;grey50&#39;, shape = 21) +
+	geom_smooth(color = &#39;darkgreen&#39;, se = FALSE, method = &#39;loess&#39;, formula = y ~ x) +
+	ylim(y_limits) +
+	ylab(&#39;Standard Error&#39;) +
+	xlab(&#39;Number of Bootstrap Samples&#39;) +
+	ggtitle(&#39;Bootstrap Standard Error&#39;,
+			subtitle = &#39;(i.e. standard deviation of the bootstrap sample)&#39;) +
+	scale_fill_gradient(low = &#39;#deebf7&#39;, high = &#39;#3182bd&#39;) #+ theme(legend.position = &#39;none&#39;)
+
+cowplot::plot_grid(p_samp_size_se, p_boot_size_se)</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Lastly we can plot the relationship between the two standard error estimates; the correlation of which is extremely high with r = 1.</p>
+<pre class="r"><code>ggplot(results, aes(x = samp_se, y = boot_se)) +
+	geom_abline() +
+	geom_point() +
+	xlab(&#39;Sample Standard Error&#39;) +
+	ylab(&#39;Boostrap Standard Error&#39;) +
+	ggtitle(paste0(&#39;Correlation between standard errors = &#39;, round(cor(results$samp_se, results$boot_se), digits = 2))) +
+	coord_equal()</code></pre>
+<p><img src="/post/2025-02-11-Bootstrap_vs_SE_CI_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>

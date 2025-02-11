@@ -10,6 +10,7 @@ library(blogdown)
 # 				   file = NULL,
 # 				   date = Sys.Date())
 
+
 options(blogdown.hugo.version = "0.54.0")
 
 blogdown::serve_site(port = 2112)
@@ -21,6 +22,7 @@ blogdown::build_site(build_rmd = TRUE)
 
 blogdown::find_hugo('all')
 blogdown::install_hugo(version = '0.54.0', use_brew = FALSE, extended = TRUE)
+blogdown::install_hugo(version = "0.54.0", extended = TRUE, os = 'macOS', arch = '64bit')
 
 blogdown::hugo_version()
 devtools::install_github('rstudio/blogdown')

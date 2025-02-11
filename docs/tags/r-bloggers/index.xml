@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2020</copyright>
-    <lastBuildDate>Thu, 06 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2025 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-bloggers/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bootstrap vs Standard Error Confidence Intervals</title>
+      <link>/post/2025-02-11-bootstrap_vs_se_ci/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2025-02-11-bootstrap_vs_se_ci/</guid>
+      <description>During a recent class a student asked whether bootstrap confidence intervals were more robust than confidence intervals estimated using the standard error (i.e. \(SE = \frac{s}{\sqrt{n}}\)). In order to answer this question I wrote a function to simulate taking a bunch of random samples from a population, calculate the confidence interval for that sample using the standard error approach (the t distribution is used by default, see the cv parameter.</description>
+    </item>
     
     <item>
       <title>How Long Does it Take to Win War?</title>
