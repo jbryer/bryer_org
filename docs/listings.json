@@ -1,22 +1,12 @@
 [
   {
-    "listing": "/talks.html",
-    "items": [
-      "/posts/2025-04-11-ShinyConf2025.html",
-      "/posts/2025-02-19-Github_Portfolio.html",
-      "/posts/2023-11-14-Intro_to_PSA.html",
-      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
-      "/posts/2022-03-01_R_Package_Development.html",
-      "/posts/2021-11-30-Intro_to_Shiny.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/posts/2025-04-11-ShinyConf2025.html",
       "/posts/2025-03-04-chi_squared_sample_sizes.html",
       "/posts/2025-02-19-Github_Portfolio.html",
       "/posts/2025-02-06-Waiting_to_pass_exam.html",
+      "/posts/2024-04-17-ShinyConf2024.html",
       "/posts/2023-11-14-Intro_to_PSA.html",
       "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
       "/posts/2022-03-01_R_Package_Development.html",
@@ -75,6 +65,7 @@
       "/projects/brickset.html",
       "/projects/ipeds.html",
       "/projects/likert.html",
+      "/projects/login.html",
       "/projects/mldash.html",
       "/projects/multilevelPSA.html",
       "/projects/naep.html",
@@ -83,6 +74,18 @@
       "/projects/ruca.html",
       "/projects/sqlutils.html",
       "/projects/timeline.html"
+    ]
+  },
+  {
+    "listing": "/talks.html",
+    "items": [
+      "/posts/2025-04-11-ShinyConf2025.html",
+      "/posts/2025-02-19-Github_Portfolio.html",
+      "/posts/2024-04-17-ShinyConf2024.html",
+      "/posts/2023-11-14-Intro_to_PSA.html",
+      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
+      "/posts/2022-03-01_R_Package_Development.html",
+      "/posts/2021-11-30-Intro_to_Shiny.html"
     ]
   }
 ]

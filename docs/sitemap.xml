@@ -13,40 +13,44 @@
     <lastmod>2025-03-06T14:44:26.070Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2012-11-27-FIfty_Shades_of_Grey.html</loc>
-    <lastmod>2025-03-06T14:36:54.357Z</lastmod>
+    <loc>https://bryer.org/posts/2024-04-17-ShinyConf2024.html</loc>
+    <lastmod>2025-03-06T14:58:51.034Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</loc>
-    <lastmod>2025-03-05T17:13:17.988Z</lastmod>
+    <loc>https://bryer.org/projects/ipeds.html</loc>
+    <lastmod>2025-02-19T12:43:15.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</loc>
-    <lastmod>2025-03-06T14:26:12.660Z</lastmod>
+    <loc>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</loc>
+    <lastmod>2025-03-05T17:14:43.912Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</loc>
-    <lastmod>2025-03-05T17:22:24.110Z</lastmod>
+    <loc>https://bryer.org/posts/2022-03-01_R_Package_Development.html</loc>
+    <lastmod>2025-03-05T17:15:56.685Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/talks.html</loc>
-    <lastmod>2025-03-05T17:12:15.442Z</lastmod>
+    <loc>https://bryer.org/teaching.html</loc>
+    <lastmod>2025-03-06T14:31:34.169Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/sqlutils.html</loc>
-    <lastmod>2025-02-19T13:11:10.000Z</lastmod>
+    <loc>https://bryer.org/projects/timeline.html</loc>
+    <lastmod>2025-02-19T12:53:30.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/qualtrics.html</loc>
-    <lastmod>2025-02-19T13:10:51.000Z</lastmod>
+    <loc>https://bryer.org/projects/ruca.html</loc>
+    <lastmod>2025-02-19T12:51:45.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/pisa.html</loc>
-    <lastmod>2025-02-19T13:10:39.000Z</lastmod>
+    <loc>https://bryer.org/projects/psa.html</loc>
+    <lastmod>2025-02-19T12:56:01.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/multilevelPSA.html</loc>
-    <lastmod>2025-02-19T12:45:56.000Z</lastmod>
+    <loc>https://bryer.org/projects/naep.html</loc>
+    <lastmod>2025-02-19T12:46:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/mldash.html</loc>
+    <lastmod>2025-02-19T12:45:12.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/likert.html</loc>
@@ -221,40 +225,44 @@
     <lastmod>2025-02-19T13:26:55.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/mldash.html</loc>
-    <lastmod>2025-02-19T12:45:12.000Z</lastmod>
+    <loc>https://bryer.org/projects/login.html</loc>
+    <lastmod>2025-03-06T15:02:00.756Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/naep.html</loc>
-    <lastmod>2025-02-19T12:46:27.000Z</lastmod>
+    <loc>https://bryer.org/projects/multilevelPSA.html</loc>
+    <lastmod>2025-02-19T12:45:56.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/psa.html</loc>
-    <lastmod>2025-02-19T12:56:01.000Z</lastmod>
+    <loc>https://bryer.org/projects/pisa.html</loc>
+    <lastmod>2025-02-19T13:10:39.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/ruca.html</loc>
-    <lastmod>2025-02-19T12:51:45.000Z</lastmod>
+    <loc>https://bryer.org/projects/qualtrics.html</loc>
+    <lastmod>2025-02-19T13:10:51.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/timeline.html</loc>
-    <lastmod>2025-02-19T12:53:30.000Z</lastmod>
+    <loc>https://bryer.org/projects/sqlutils.html</loc>
+    <lastmod>2025-02-19T13:11:10.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/teaching.html</loc>
-    <lastmod>2025-03-06T14:31:34.169Z</lastmod>
+    <loc>https://bryer.org/talks.html</loc>
+    <lastmod>2025-03-05T17:12:15.442Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2022-03-01_R_Package_Development.html</loc>
-    <lastmod>2025-03-05T17:15:56.685Z</lastmod>
+    <loc>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</loc>
+    <lastmod>2025-03-05T17:22:24.110Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</loc>
-    <lastmod>2025-03-05T17:14:43.912Z</lastmod>
+    <loc>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</loc>
+    <lastmod>2025-03-06T14:26:12.660Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/projects/ipeds.html</loc>
-    <lastmod>2025-02-19T12:43:15.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</loc>
+    <lastmod>2025-03-05T17:13:17.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-11-27-FIfty_Shades_of_Grey.html</loc>
+    <lastmod>2025-03-06T14:36:54.357Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</loc>

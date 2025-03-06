@@ -1,0 +1,27 @@
+---
+title: "login: User Authentication for Shiny Applications"
+author: "Jason Bryer"
+date: 2024-04-17
+draft: false
+description: ""
+categories: ["R", "Talk"]
+image: "2024-04-17-ShinyConf2024.jpeg"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r banner, eval=FALSE, include=FALSE}
+source('../resources/banner.R')
+banner_image(rmarkdown::metadata$title,
+			 date = format(as.Date(rmarkdown::metadata$date), "%B %d, %Y"),
+			 out_file = paste0(rmarkdown::metadata$date), '-banner.png')
+```
+
+```{r setup, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```
+
+The `login` package provides a framework for adding user authentication to Shiny applications. This is unique to other authentication frameworks such as ShinyManager and shinyauthr in that it provides tools for users to create their own accounts and reset passwords. This is particularly useful for Shiny applications used to collect data without a pre-existing user management system. User credentials are stored in any database that supports the DBI interface. Passwords are hashed using MD5 in the browser so that unencrypted passwords are never available to the Shiny server. For an extra layer of security, you can salt the password before storing it in the database. Cookie support is provided so that users do not have to re-enter their credentials when revisiting the application and user `login` and logout actives are logged to the database. Examples of how this package is used for collecting data from students will be presented.
+
+[Download slides](https://github.com/jbryer/login/tree/main/inst/slides/login.pdf)
+
+For more information about the project, visit: [https://github.com/jbryer/login](https://github.com/jbryer/login)

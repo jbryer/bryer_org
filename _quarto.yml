@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!resources/"
+  # post-render:
+  #   - "cp -rnv resources/. docs/resources/"
+
+website:
+  title: "Jason Bryer"
+  site-url: https://bryer.org
+  description: "Personal website for Jason Bryer"
+  open-graph:
+    locale: en_US
+  twitter-card:
+    creator: "@jbryer"
+  navbar:
+    right:
+      - text: "Home"
+        href: index.html
+      - text: "Projects"
+        href: projects.html
+      - text: "Talks"
+        href: talks.html
+      - text: "Teaching"
+        href: teaching.html
+      - text: "Blog"
+        href: blog.html
+      - icon: rss
+        href: blog.xml
+  page-footer:
+    left: "Site created with Quarto by Jason Bryer."
+
+format:
+  html:
+    theme: yeti # See for available themes: https://bootswatch.com
+    css: styles.css
+    toc: false
+
+
+
