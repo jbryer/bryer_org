@@ -1,0 +1,12 @@
+---
+title: "A Visual Introduction to Propensity Score Analysis"
+author: "Jason Bryer"
+description: "Recording of A Visual Introduction to Propensity Score Analysis given for the nyhackr meetup group."
+date: "2023-11-14"
+categories: ["R", "Talk"]
+image: 2023-11-14-Intro_to_PSA.jpeg
+---
+
+
+{{< video https://www.youtube.com/watch?v=JLV4mtFhRMM >}}
+

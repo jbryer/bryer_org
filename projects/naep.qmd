@@ -1,0 +1,8 @@
+---
+title: "naep"
+description: "An R package to interface with the National Assessment of Educational Progress (NAEP) restricted use databases. This includes access any analyzing data using the replicate weights and multiple plausible values."
+categories: ["r-package"]
+image: naep.png
+---
+
+Github: [https://github.com/jbryer/naep](https://github.com/jbryer/naep)

@@ -1,0 +1,12 @@
+---
+title: "R Package Development"
+author: "Jason Bryer"
+description: "Recording for an introduction to R package development."
+date: "2022-03-01"
+categories: ["R", "Talk"]
+image: 2022-03-01_R_Package_Development.png
+---
+
+
+{{< video https://youtu.be/vlyVKGSVCsk >}}
+

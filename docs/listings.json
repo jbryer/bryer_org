@@ -1,0 +1,88 @@
+[
+  {
+    "listing": "/talks.html",
+    "items": [
+      "/posts/2025-04-11-ShinyConf2025.html",
+      "/posts/2025-02-19-Github_Portfolio.html",
+      "/posts/2023-11-14-Intro_to_PSA.html",
+      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
+      "/posts/2022-03-01_R_Package_Development.html",
+      "/posts/2021-11-30-Intro_to_Shiny.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/2025-04-11-ShinyConf2025.html",
+      "/posts/2025-03-04-chi_squared_sample_sizes.html",
+      "/posts/2025-02-19-Github_Portfolio.html",
+      "/posts/2025-02-06-Waiting_to_pass_exam.html",
+      "/posts/2023-11-14-Intro_to_PSA.html",
+      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
+      "/posts/2022-03-01_R_Package_Development.html",
+      "/posts/2021-11-30-Intro_to_Shiny.html",
+      "/posts/2021-02-15-Map_my_run_in_R.html",
+      "/posts/2021-02-12-Shiny_Apps_in_R_Packages.html",
+      "/posts/2018-22-26-DTedit.html",
+      "/posts/2016-02-22-Assessments_with_Shiny.html",
+      "/posts/2016-02-21-Bayes_Billiards_Shiny.html",
+      "/posts/2014-07-29-Data_Caching.html",
+      "/posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html",
+      "/posts/2014-07-03-useR_2014_PSAboot_Slides.html",
+      "/posts/2014-06-05-str_Implementation_for_Data_Frames.html",
+      "/posts/2014-04-22-Rgitbook_Package.html",
+      "/posts/2014-03-20-Albany_R_Users_Group.html",
+      "/posts/2014-02-20-Loading_and_Installing_Packages.html",
+      "/posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html",
+      "/posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html",
+      "/posts/2013-05-08-Gamblers_Run_With_Shiny.html",
+      "/posts/2013-04-18-Cut_Dates_Into_Quarters.html",
+      "/posts/2013-03-26-i_Before_e_Except_After_c.html",
+      "/posts/2013-01-30-Converting_a_list_to_a_data_frame.html",
+      "/posts/2013-01-24-Comparing_Two_Data_Frames.html",
+      "/posts/2013-01-15-Version_1_sqlutils.html",
+      "/posts/2013-01-12-Interactive_SQL_in_R.html",
+      "/posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html",
+      "/posts/2013-01-04-xtable_with_aligned_decimals.html",
+      "/posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html",
+      "/posts/2012-11-27-FIfty_Shades_of_Grey.html",
+      "/posts/2012-11-17-visualizing-missing-data.html",
+      "/posts/2012-08-13-User-Input-using-tcltk.html",
+      "/posts/2012-04-27-Graphic_Parameters.html",
+      "/posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html",
+      "/posts/2012-01-20-object-oriented-programming-in-r.html",
+      "/posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html",
+      "/posts/2011-11-11-visualizing-likert-items.html"
+    ]
+  },
+  {
+    "listing": "/categories/r/index.html",
+    "items": []
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/daacs.html",
+      "/projects/DTedit.html",
+      "/projects/DataCache.html",
+      "/projects/IRRsim.html",
+      "/projects/psa.html",
+      "/projects/PSAboot.html",
+      "/projects/PSAgraphics.html",
+      "/projects/ShinyQDA.html",
+      "/projects/TriMatch.html",
+      "/projects/VisualStats.html",
+      "/projects/brickset.html",
+      "/projects/ipeds.html",
+      "/projects/likert.html",
+      "/projects/mldash.html",
+      "/projects/multilevelPSA.html",
+      "/projects/naep.html",
+      "/projects/pisa.html",
+      "/projects/qualtrics.html",
+      "/projects/ruca.html",
+      "/projects/sqlutils.html",
+      "/projects/timeline.html"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+---
+title: "PSAboot"
+description: "R Package and Shiny Application for the Analysis of Qualitative Data."
+categories: ["r-package", "psa"]
+image: PSAboot.png
+---
+
+<img src='http://www.r-pkg.org/badges/version/PSAboot' alt='CRAN Version' />
+
+Github: [https://github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)

@@ -1,0 +1,8 @@
+---
+title: "timeline"
+description: "An R package to create timeline figures.  <img src='http://www.r-pkg.org/badges/version/timeline' alt='CRAN Version' />"
+categories: ["r-package"]
+image: timeline.png
+---
+
+Github: [https://github.com/jbryer/timeline](https://github.com/jbryer/timeline)

@@ -1,0 +1,8 @@
+---
+title: "PSAgraphics"
+description: "An R Package to Support Propensity Score Analysis. <img src='http://www.r-pkg.org/badges/version/PSAgraphics' alt='CRAN Version' />"
+categories: ["r-package", "psa"]
+image: PSAgraphics.png
+---
+
+Github: [https://github.com/jbryer/PSAgraphics](https://github.com/jbryer/PSAgraphics)

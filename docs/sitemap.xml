@@ -1,999 +1,271 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-    
-    
-    <url>
-    
-      <loc>/post/2025-02-11-bootstrap_vs_se_ci/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2023-04-06-winning_war/</loc>
-      <lastmod>2023-04-06T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2022-04-25-shiny_posters/</loc>
-      <lastmod>2022-04-25T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2022-04-07-sftp_in_r_on_mac/</loc>
-      <lastmod>2022-04-07T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2021-02-15-map_my_run_in_r/</loc>
-      <lastmod>2021-02-15T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2021-02-12-shiny_apps_in_r_packages/</loc>
-      <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/brickset/</loc>
-      <lastmod>2021-02-11T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/visualmle/</loc>
-      <lastmod>2021-02-11T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2018-22-26-dtedit/</loc>
-      <lastmod>2018-11-26T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/daacs/</loc>
-      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/pbis/</loc>
-      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/likert/</loc>
-      <lastmod>2018-01-07T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/</loc>
-      <lastmod>2018-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/stickmenplay/</loc>
-      <lastmod>2018-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2018-03-03-open_data_day/</loc>
-      <lastmod>2017-03-03T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/irrsim/</loc>
-      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/psa/</loc>
-      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/shinyqda/</loc>
-      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2019-01-22-intro_to_predictive_modeling/</loc>
-      <lastmod>2017-01-01T18:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2019-03-28-intro_to_psa/</loc>
-      <lastmod>2017-01-01T18:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2023-05-society_for_causal_inference/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2017-nera/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2022-04-aera/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2019-aera-efficacy/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2023-04-intro_to_psa/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2018-sigwriting/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2021-11-intro_to_shiny/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2022-06-learning_ideas_conference/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2022-03-r_package_development/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2019-ncme-irrsim/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2018-innovations/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2018-dtl/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/2019-ncme-writing/</loc>
-      <lastmod>2017-01-01T00:00:00-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/academic/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/publication/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/talk/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/dtedit/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/datacache/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/psaboot/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/psagraphics/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/trimatch/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/ipeds/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/mldash/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/multilevelpsa/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/naep/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/pisa/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/qualtrics/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/ruca/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/sqlutils/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/timeline/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2016-02-22-assessments_with_shiny/</loc>
-      <lastmod>2016-02-22T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2016-02-21-bayes_billiards_shiny/</loc>
-      <lastmod>2016-02-21T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-07-29-data_caching/</loc>
-      <lastmod>2014-07-29T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-07-04-women_graduates_in_math_stats_cis/</loc>
-      <lastmod>2014-07-04T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-07-03-user_2014_psaboot_slides/</loc>
-      <lastmod>2014-07-03T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-06-05-str_implementation_for_data_frames/</loc>
-      <lastmod>2014-06-05T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-04-22-rgitbook_package/</loc>
-      <lastmod>2014-04-22T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-03-20-albany_r_users_group/</loc>
-      <lastmod>2014-03-20T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2014-02-20-loading_and_installing_packages/</loc>
-      <lastmod>2014-02-20T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-11-26-bootstrapping_for_propensity_score_analysis/</loc>
-      <lastmod>2013-11-26T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-11-12-workshop_and_talk_slides_from_neair/</loc>
-      <lastmod>2013-11-12T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-05-08-gamblers_run_with_shiny/</loc>
-      <lastmod>2013-05-08T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-04-18-cut_dates_into_quarters/</loc>
-      <lastmod>2013-04-18T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-03-26-i_before_e_except_after_c/</loc>
-      <lastmod>2013-03-26T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-30-converting_a_list_to_a_data_frame/</loc>
-      <lastmod>2013-01-30T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-24-comparing_two_data_frames/</loc>
-      <lastmod>2013-01-24T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-15-version_1_sqlutils/</loc>
-      <lastmod>2013-01-15T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-12-interactive_sql_in_r/</loc>
-      <lastmod>2013-01-12T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-10-function_for_reading_codebooks_in_r/</loc>
-      <lastmod>2013-01-10T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2013-01-04-xtable_with_aligned_decimals/</loc>
-      <lastmod>2013-01-04T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-12-10-markdown_jekyll_r_for_blogging/</loc>
-      <lastmod>2012-12-10T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-11-27-fifty_shades_of_grey/</loc>
-      <lastmod>2012-11-27T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-11-21-fun-with-coins/</loc>
-      <lastmod>2012-11-21T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-11-17-visualizing-missing-data/</loc>
-      <lastmod>2012-11-17T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-08-13-user-input-using-tcltk/</loc>
-      <lastmod>2012-08-13T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/publication/2012-measuringsrl/</loc>
-      <lastmod>2012-07-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-04-27-graphic_parameters/</loc>
-      <lastmod>2012-04-27T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday/</loc>
-      <lastmod>2012-01-31T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-01-20-object-oriented-programming-in-r/</loc>
-      <lastmod>2012-01-20T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2012-01-13-retrieving-rss-feeds-using-google-reader/</loc>
-      <lastmod>2012-01-13T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2011-11-11-visualizing-likert-items/</loc>
-      <lastmod>2011-11-11T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2011-04-16-comparing-public-and-private-schools/</loc>
-      <lastmod>2011-04-16T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2011-01-21-relationship-between-sat-college-retention/</loc>
-      <lastmod>2011-01-21T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/2011-01-11-recreating-gapminder-world-map-with-r-ggplot2/</loc>
-      <lastmod>2011-01-11T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/publication_types/2/</loc>
-      <lastmod>2012-07-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/curl/</loc>
-      <lastmod>2022-04-07T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/categories/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/education/</loc>
-      <lastmod>2014-07-04T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/</loc>
-      <lastmod>2018-01-31T00:00:00-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/psa/</loc>
-      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/project/</loc>
-      <lastmod>2021-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/publication_types/</loc>
-      <lastmod>2012-07-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/r/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/categories/r/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/r-packages/</loc>
-      <lastmod>2021-02-15T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/r-bloggers/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/shiny/</loc>
-      <lastmod>2023-04-06T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/statistics/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/teaching/</loc>
-      <lastmod>2016-02-21T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/bootstrapping/</loc>
-      <lastmod>2025-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/daacs/</loc>
-      <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/data/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/education/</loc>
-      <lastmod>2014-07-04T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/inter-rater-reliability/</loc>
-      <lastmod>2017-01-31T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/machine-learning/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/r-packages/</loc>
-      <lastmod>2021-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/shiny/</loc>
-      <lastmod>2021-02-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bryer.org/posts/2025-02-06-Waiting_to_pass_exam.html</loc>
+    <lastmod>2025-03-05T23:48:47.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-03-04-chi_squared_sample_sizes.html</loc>
+    <lastmod>2025-03-05T23:45:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-04-27-Graphic_Parameters.html</loc>
+    <lastmod>2025-03-06T14:44:26.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-11-27-FIfty_Shades_of_Grey.html</loc>
+    <lastmod>2025-03-06T14:36:54.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</loc>
+    <lastmod>2025-03-05T17:13:17.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</loc>
+    <lastmod>2025-03-06T14:26:12.660Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</loc>
+    <lastmod>2025-03-05T17:22:24.110Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/talks.html</loc>
+    <lastmod>2025-03-05T17:12:15.442Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/sqlutils.html</loc>
+    <lastmod>2025-02-19T13:11:10.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/qualtrics.html</loc>
+    <lastmod>2025-02-19T13:10:51.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/pisa.html</loc>
+    <lastmod>2025-02-19T13:10:39.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/multilevelPSA.html</loc>
+    <lastmod>2025-02-19T12:45:56.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/likert.html</loc>
+    <lastmod>2025-02-19T12:44:28.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/brickset.html</loc>
+    <lastmod>2025-02-19T12:35:46.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/TriMatch.html</loc>
+    <lastmod>2025-02-19T13:08:04.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/PSAgraphics.html</loc>
+    <lastmod>2025-02-19T12:50:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/IRRsim.html</loc>
+    <lastmod>2025-02-19T12:43:50.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/DTedit.html</loc>
+    <lastmod>2025-03-05T17:41:45.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2018-22-26-DTedit.html</loc>
+    <lastmod>2018-12-06T13:58:37.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2016-02-21-Bayes_Billiards_Shiny.html</loc>
+    <lastmod>2025-03-06T14:12:06.177Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html</loc>
+    <lastmod>2018-02-01T21:13:13.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-06-05-str_Implementation_for_Data_Frames.html</loc>
+    <lastmod>2018-02-01T21:14:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-03-20-Albany_R_Users_Group.html</loc>
+    <lastmod>2018-02-01T21:25:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html</loc>
+    <lastmod>2025-03-06T14:13:25.045Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-05-08-Gamblers_Run_With_Shiny.html</loc>
+    <lastmod>2018-02-01T21:27:10.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-03-26-i_Before_e_Except_After_c.html</loc>
+    <lastmod>2025-03-06T14:14:20.398Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-24-Comparing_Two_Data_Frames.html</loc>
+    <lastmod>2018-02-01T21:28:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-12-Interactive_SQL_in_R.html</loc>
+    <lastmod>2025-03-06T14:14:54.929Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-04-xtable_with_aligned_decimals.html</loc>
+    <lastmod>2025-03-06T14:15:37.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-11-17-visualizing-missing-data.html</loc>
+    <lastmod>2018-02-01T21:32:08.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html</loc>
+    <lastmod>2018-02-01T21:33:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html</loc>
+    <lastmod>2018-02-01T21:34:22.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/index.html</loc>
+    <lastmod>2025-03-06T14:29:55.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/blog.html</loc>
+    <lastmod>2025-03-06T14:28:19.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/categories/r/index.html</loc>
+    <lastmod>2025-02-18T14:21:37.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2011-11-11-visualizing-likert-items.html</loc>
+    <lastmod>2018-02-01T21:34:42.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-20-object-oriented-programming-in-r.html</loc>
+    <lastmod>2018-02-01T21:33:50.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-08-13-User-Input-using-tcltk.html</loc>
+    <lastmod>2018-02-01T21:32:33.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html</loc>
+    <lastmod>2018-02-01T21:31:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html</loc>
+    <lastmod>2018-02-01T21:30:07.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-15-Version_1_sqlutils.html</loc>
+    <lastmod>2018-02-01T21:29:20.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-30-Converting_a_list_to_a_data_frame.html</loc>
+    <lastmod>2018-02-01T21:28:23.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-04-18-Cut_Dates_Into_Quarters.html</loc>
+    <lastmod>2018-02-01T21:27:30.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html</loc>
+    <lastmod>2018-02-01T21:26:44.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-02-20-Loading_and_Installing_Packages.html</loc>
+    <lastmod>2018-02-01T21:25:53.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-04-22-Rgitbook_Package.html</loc>
+    <lastmod>2018-02-01T21:24:46.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-07-03-useR_2014_PSAboot_Slides.html</loc>
+    <lastmod>2018-02-01T21:13:43.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-07-29-Data_Caching.html</loc>
+    <lastmod>2018-02-01T21:12:32.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2016-02-22-Assessments_with_Shiny.html</loc>
+    <lastmod>2018-02-01T18:51:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects.html</loc>
+    <lastmod>2025-03-05T22:38:58.924Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/DataCache.html</loc>
+    <lastmod>2025-02-19T12:37:49.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/PSAboot.html</loc>
+    <lastmod>2025-02-19T13:07:43.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/ShinyQDA.html</loc>
+    <lastmod>2025-02-19T12:52:24.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/VisualStats.html</loc>
+    <lastmod>2025-02-19T12:55:28.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/daacs.html</loc>
+    <lastmod>2025-02-19T13:26:55.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/mldash.html</loc>
+    <lastmod>2025-02-19T12:45:12.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/naep.html</loc>
+    <lastmod>2025-02-19T12:46:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/psa.html</loc>
+    <lastmod>2025-02-19T12:56:01.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/ruca.html</loc>
+    <lastmod>2025-02-19T12:51:45.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/timeline.html</loc>
+    <lastmod>2025-02-19T12:53:30.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/teaching.html</loc>
+    <lastmod>2025-03-06T14:31:34.169Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2022-03-01_R_Package_Development.html</loc>
+    <lastmod>2025-03-05T17:15:56.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</loc>
+    <lastmod>2025-03-05T17:14:43.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/projects/ipeds.html</loc>
+    <lastmod>2025-02-19T12:43:15.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</loc>
+    <lastmod>2025-03-06T14:46:25.271Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</loc>
+    <lastmod>2021-02-13T21:24:02.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2021-02-15-Map_my_run_in_R.html</loc>
+    <lastmod>2025-03-06T14:09:43.482Z</lastmod>
+  </url>
 </urlset>

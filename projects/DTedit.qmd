@@ -1,0 +1,9 @@
+---
+title: "DTedit"
+description: "Editable DataTables for shiny apps."
+categories: ["r-package"]
+image: DTedit.png
+---
+
+Github: [https://github.com/jbryer/DTedit](https://github.com/jbryer/DTedit)
+

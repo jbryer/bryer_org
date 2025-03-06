@@ -40,3 +40,7 @@ vignettes/*.pdf
 docs/multilevelPSA/cache
 static/multilevelPSA/cache
 
+archive/
+
+
+/.quarto/

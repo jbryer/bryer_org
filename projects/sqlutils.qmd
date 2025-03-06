@@ -1,0 +1,8 @@
+---
+title: "sqlutils"
+description: "The sqlutils package provides a set of utility functions to help manage a library of structured query language (SQL) files."
+categories: ["r-package"]
+image: sqlutils.png
+---
+
+Github: [http://github.com/jbryer/sqlutils](http://github.com/jbryer/sqlutils)

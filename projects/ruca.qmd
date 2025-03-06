@@ -1,0 +1,8 @@
+---
+title: "ruca"
+description: "An R package to get Rural-Urban Commuting Area (RUCA) Codes from zip codes."
+categories: ["r-package"]
+image: ruca.png
+---
+
+Github: [https://github.com/jbryer/ruca](https://github.com/jbryer/ruca)

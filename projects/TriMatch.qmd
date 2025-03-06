@@ -1,0 +1,11 @@
+---
+title: "TriMatch"
+description: "Propensity score matching for non-binary treatments."
+categories: ["r-package", "psa"]
+image: TriMatch.png
+---
+
+<img src='http://www.r-pkg.org/badges/version/TriMatch' alt='CRAN Version' />
+
+Github: [https://github.com/jbryer/TriMatch](https://github.com/jbryer/TriMatch)
+

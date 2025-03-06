@@ -1,0 +1,52 @@
+---
+title: "ipeds"
+description: "An R package to interface with the Integrated Postsecondary Education Data System."
+categories: ["r-package"]
+image: ipeds.png
+---
+
+Github: [https://github.com/jbryer/ipeds](https://github.com/jbryer/ipeds)
+
+The following R script will download all available IPEDS data files.
+
+```{r, eval=FALSE}
+library(xml2)
+library(rvest)
+
+out_dir <- '~/Downloads/IPEDS/' # Location to put the downloaded files
+
+years <- 2023:1980
+
+ipeds_base <- 'https://nces.ed.gov/ipeds/datacenter/'
+ipeds_url <- 'https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx?year='
+
+error_links <- c() # Save any links that could not be downloaded.
+for(year in years) {
+	cat(paste0('Downloading year ', year, '...\n'))
+	dir.create(paste0(out_dir, '/', year), showWarnings = FALSE, recursive = TRUE)
+
+	page <- read_html(paste0(ipeds_url, year))
+	tables <- page |> html_nodes("table") |> html_table(convert = FALSE)
+	# Guessing the one with the most rows is the one we want to keep as the index
+	tab_index <- lapply(tables, nrow) |> unlist() |> which.max()
+	write.csv(tables[[tab_index]],
+			  file = paste0(out_dir, year, '/_TOC_', year, '.csv'),
+			  row.names = FALSE)
+
+	links <- html_attr(html_nodes(page, "a"), "href")
+	zip_files <- links[grep("*.zip", links)]
+	for(i in zip_files) {
+		dest <- paste0(out_dir, '/', year, '/', basename(i))
+		if(!file.exists(dest)) {
+			cat(paste0('Downloading ', basename(i), '...\n'))
+			tryCatch({
+				download.file(url = paste0(ipeds_base, i), dest = dest)
+			}, error = function(e) {
+				error_links <<- c(error_links, paste0(ipeds_base, i))
+				print(e)
+			})
+		}
+	}
+}
+error_links # Print any links that could not download
+```

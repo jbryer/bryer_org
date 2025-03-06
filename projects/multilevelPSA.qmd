@@ -1,0 +1,8 @@
+---
+title: "multilevelPSA"
+description: "An R package for estimating and visualizing multilevel propensity score models. <img src='http://www.r-pkg.org/badges/version/multilevelPSA' alt='CRAN Version' />"
+categories: ["r-package", "psa"]
+image: multilevelPSA.png
+---
+
+Github: [https://github.com/jbryer/multilevelPSA](https://github.com/jbryer/multilevelPSA)

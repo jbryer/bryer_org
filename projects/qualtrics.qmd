@@ -1,0 +1,8 @@
+---
+title: "qualtrics"
+description: "An R package to interface with the Qualtrics.com survey system."
+categories: ["r-package"]
+image: qualtrics.png
+---
+
+Github: [https://github.com/jbryer/qualtrics](https://github.com/jbryer/qualtrics)

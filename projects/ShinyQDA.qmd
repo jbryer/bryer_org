@@ -1,0 +1,8 @@
+---
+title: "ShinyQDA"
+description: "The ShinyQDA package is designed to assist researchers with the analysis of qualitative data."
+categories: ["r-package"]
+image: ShinyQDA.png
+---
+
+Github: [https://github.com/jbryer/ShinyQDA](https://github.com/jbryer/ShinyQDA)

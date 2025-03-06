@@ -1,0 +1,10 @@
+---
+title: "PSA"
+description: "Propensity Score Analysis (PSA) is a statistical approach for estimating causal effects from observational studies. This project includes materials from workshops taught, an Shiny application for conducting PSA, and an early draft of a PSA book."
+categories: ["r-package", "book"]
+image: psa.png
+---
+
+Github: [github.com/jbryer/psa](https://github.com/jbryer/psa)
+
+Website: [psa.bryer.org](https://psa.bryer.org)

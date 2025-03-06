@@ -1,0 +1,9 @@
+---
+title: "brickset"
+description: "An R package to interface with the Brickset.com API for getting data about LEGO sets <img src='http://www.r-pkg.org/badges/version/brickset' alt='CRAN Version' />"
+categories: ["r-package"]
+image: brickset.png
+---
+
+
+Github: [https://github.com/jbryer/brickset](https://github.com/jbryer/brickset)

@@ -1,0 +1,16 @@
+---
+title: "DAACS"
+description: "Diagnostic Assessment and Achievement of College Skills"
+categories: ["Research"]
+image: daacs.png
+---
+
+The Diagnostic Assessment and Achievement of College Skills (DAACS) is a  suite of technological and social supports to optimize student learning. DAACS  provides personalized feedback about students’ strengths and weaknesses in  terms of key academic and self-regulated learning skills, linking them to the  resources to help them be successful students.
+
+DAACS Websites:
+
+* [daacs.net](https://daacs.net) - General information about the project.
+* [my.daacs.net](https://my.daacs.net) - Public version of DAACS. Create an account, take the assessments, and view the feedback.
+* [srl.daacs.net](https://srl.daacs.net) - Self-Regulated Learning open education resource.
+* [docs.daacs.net](https://docs.daacs.net) - This site is fir administrators, instructors, or anyone who is intereted in using DAACS with their students. Site contains training materials and technical information.
+* [github.com/daacs](https://github.com/daacs) - Github organization where source code is hosted.

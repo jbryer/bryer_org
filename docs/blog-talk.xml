@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Jason Bryer</title>
+<link>https://bryer.org/blog.html#category=Talk</link>
+<atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
+<description>Personal website for Jason Bryer</description>
+<generator>quarto-1.5.56</generator>
+<lastBuildDate>Thu, 06 Mar 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>The <code>ShinyQDA</code> R package is designed to assist researchers with the analysis of qualitative data. As the name suggests, the premise is that much of the interaction with the package will be done through a Shiny application. However, all the functionality in the Shiny application is accessible through R commands. The core functionality of <code>ShinyQDA</code> allows researchers to highlight passages and code passages. The application also allows for scoring text documents using rubrics. Tools for conducting validity analysis using co-occurrence plots and code frequency is provided. In addition to traditional qualitative data analysis, <code>ShinyQDA</code> utilizes natural language processing to conduct sentiment analysis, topic modeling, and text encoding (i.e.&nbsp;tokenization). <code>ShinyQDA</code> can be used locally by a single researcher or be deployed to a Shiny server so that multiple researchers can access the application to code and/or score documents.</p>
+<p>To register for the (free) conference, go to <a href="https://www.shinyconf.com">https://www.shinyconf.com</a></p>
+<p>For more information about the project, visit: <a href="https://github.com/jbryer/ShinyQDA">https://github.com/jbryer/ShinyQDA</a></p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</guid>
+  <pubDate>Thu, 06 Mar 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-04-11-ShinyConf2025.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
+<item>
+  <title>Building a portfolio with Github and Quarto</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed <a href="https://jbryer.github.io/portfoliotalk">here</a> and the repository containing the code to generate the website is <a href="https://github.com/jbryer/portfoliotalk">here</a>.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bHpQqvlvBk0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+    <p><a href="../resources/portfoliotalk/Portfolio_Talk.html" target="_blank">View slides in full screen</a></p>
+       <div class="ratio ratio-16x9">
+      <iframe class="slide-deck" src="../resources/portfoliotalk/Portfolio_Talk.html" height="500px"></iframe>
+    </div>
+  
+<p><strong>NOTE:</strong> I am using the a Quarto extension to add the <code>revealjs</code> shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console:</p>
+<pre><code>quarto add coatless-quarto/embedio</code></pre>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <category>Github</category>
+  <category>Quarto</category>
+  <guid>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</guid>
+  <pubDate>Wed, 19 Feb 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-02-19-Github_Portfolio.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>A Visual Introduction to Propensity Score Analysis</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/JLV4mtFhRMM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</guid>
+  <pubDate>Tue, 14 Nov 2023 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2023-11-14-Intro_to_PSA.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Estimating Causality from Observational Data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Rq_od5KwqEA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><a href="https://github.com/jbryer/psa/raw/master/Slides/Intro_PSA.pdf">Download slides</a></p>
+<p>The use of propensity score methods (Rosenbaum &amp; Rubin, 1983) for estimating causal effects in observational studies or certain kinds of quasi-experiments has been increasing in the social sciences (Thoemmes &amp; Kim, 2011) and in medical research (Austin, 2008) in the last decade. Propensity score analysis (PSA) attempts to adjust selection bias that occurs due to the lack of randomization. Analysis is typically conducted in three phases where in phase I, the probability of placement in the treatment is estimated to identify matched pairs or clusters so that in phase II, comparisons on the dependent variable can be made between matched pairs or within clusters, and phase III, robustness to unobserved covariates is estimated. R (R Core Team, 2023) is ideal for conducting PSA given its wide availability of the most current statistical methods vis-à-vis add-on packages as well as its superior graphics capabilities.</p>
+<p>This talk will provide participants with a theoretical overview of propensity score methods as well as illustrations and discussion of PSA applications. Methods used in phase I of PSA (i.e.&nbsp;models or methods for estimating propensity scores) include logistic regression, classification trees, and matching. Discussions on appropriate comparisons and estimations of effect size and confidence intervals in phase II will also be covered. The use of graphics for diagnosing covariate balance as well as summarizing overall results will be emphasized.</p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <category>PSA</category>
+  <guid>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</guid>
+  <pubDate>Mon, 24 Apr 2023 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>R Package Development</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2022-03-01_R_Package_Development.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vlyVKGSVCsk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2022-03-01_R_Package_Development.html</guid>
+  <pubDate>Tue, 01 Mar 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2022-03-01_R_Package_Development.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Introduction to Shiny</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/W-DrXHqeqz8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>Shiny is an R package designed to create web based applications using the R programming language. This talk will introduce the basic framework for creating interactive Shiny applications including user inputs, dynamic plots and tables, reactive programming, and creating data dashboards.</p>
+<p>Slides can be viewed here: https://r.bryer.org/shiny/Intro_to_Shiny/</p>
+<p>Source code and resources are on Github here: https://github.com/jbryer/AlbanyRUsers/tree/main/meetups/2021-11-30-Intro_to_Shiny</p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</guid>
+  <pubDate>Tue, 30 Nov 2021 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2021-11-30-Intro_to_Shiny.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+</channel>
+</rss>

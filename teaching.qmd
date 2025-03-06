@@ -1,0 +1,40 @@
+---
+title: "Teaching"
+# page-layout: full
+title-block-banner: false
+---
+
+## Current courses
+
+* **DATA606 - Statistics and Probability** - [City University of New York, School of Professional Studies](https://sps.cuny.edu). Website for the most recent course is available at http://data606.net. See also the [DATA606](https://github.com/jbryer/DATA606) R package to support this course.
+
+* **DAV5300 - Computational Math and Statistics** - Yeshiva University. Website for the most recent course is available at [http://dav5300.net](http://dav5300.net).
+
+The [VisualStats](https://visualstats.bryer.org) website contains articles and Shiny applications to support the teaching of statistics.
+
+## Past courses
+
+* Fall 2022 - **DATA 661 Benchmarking Predictive Models**, CUNY School of Professional
+Studies. Developed an R package with students to benchmark predictive models. Package website: [https://github.com/jbryer/mldash](https://github.com/jbryer/mldash)
+
+* Spring 2022 - **DATA 661 Independent Study**, CUNY School of Professional Studies. Worked with students on mapping data in R, sentiment analysis, topic modeling, and creating Shiny modules for data import and analysis.
+
+* Spring 2020, 2021 - **EPSY 630 Statistics II**, University at Albany. Emphasis is on statistical inference. Topics include one- and two-way analysis of variance, multiple comparison tests, correlation and regression techniques, chi square, and nonparametric statistics. Course website: [https://epsy630.bryer.org](https://epsy630.bryer.org)
+
+* Fall 2019 - **EPSY 887 Intro to R for Academic Researchers**, University at Albany. This course will explore the skills and tools necessary for conducting data preparation and analysis with R. The first third of the course will focus on learning R. The middle third will explore some of the more common statistical procedures in R including: classification and regression trees; logistic regression; propensity score analysis; missing data imputation; and other topics as time permits. The final third of the class will be left for topics of special interest to 
+
+* Fall 2013, 2014, 2015 - **EPSY 530 Statistics I**, University at Albany. Descriptive statistics including measures of central tendency and variability, correlation and regression. Introduction to statistical inference, including sampling distributions, significance tests, confidence intervals, and power of tests of significance. Course website: [https://github.com/jbryer/EPSY530Summer2015](https://github.com/jbryer/EPSY530Summer2015)
+
+* Fall 2014 - **EPSY 887 Data Science Institute**, University at Albany. Data Science is the intersection of statistics, computer science, and research. This seminar will introduce the key concepts of data science with an emphasis on data science in education. We will cover the important statistical and programming concepts necessary for conducting reproducible research on large datasets. The open source program R will be used throughout the course. No programming experience is required but at least two semesters of graduate statistics is highly recommended. Course website: [https://github.com/jbryer/EPSY887DataScience](https://github.com/jbryer/EPSY887DataScience)
+
+* Spring 2013 - **EPSY 887 Institute in Education: Computational Statistics**, University at Albany. This seminar will provide an introduction to statistical programming for data analysis with an emphasis on the analysis of large datasets. With the increased availability of large national and international datasets (e.g. PISA, TIMMS, NAEP, ECLS) there is a great opportunity and potential for researchers to address important questions. However, the analysis of large datasets requires special analytical procedures not found in commercial statistics software. Utilizing the open source statistical software R, students will be introduced to the tools and procedures for analyzing large datasets with an emphasis on conducting transparent and reproducible research. Course website: [https://github.com/jbryer/CompStats](https://github.com/jbryer/CompStats)
+
+* Spring 2009, Fall 2008 - **EPSY 420 Child & Adolescent Development**, University at Albany. This course covers theory and research in social, emotional, physical, and intellectual development and its application to instruction with an emphasis on late childhood through middle adolescence.
+
+## Workshops
+
+* April/May 2014 - **Applied Propensity Score Analysis with R**, Workshop given at the University at Albany. This two day workshop provided an introduction to propensity score methods using R as well as more advanced topics including multilevel PSA, non-binary treatmentmatching, and bootstrap- ping. Workshop website: [http://psa.bryer.org](http://psa.bryer.org)
+
+* July 2013 - **Introduction to Propensity Score Methods with R**, useR! 2013 Pre-Conference Workshop. This workshop will provide participants with a theoretical overview of propensity score methods as well as illustrations and discussion of PSA applications using R.
+
+* 2011, 2012, 2013, 2015, 2016 - **Introduction to R and LaTeX for Institutional Research**, Workshop given at the Northeast Association for Institutional Research. This workshop provides an overview as well as hands-on exercises for using R and LaTeX to perform data analysis and report generation. Participants learn to perform basic statistical analyses in R and to generate reports with LaTeX in spreadsheet, presentation, and document formats.

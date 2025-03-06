@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Blog – Jason Bryer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-date','listing-description','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="alternate" type="application/rss+xml" title="Jason Bryer" href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Jason Bryer">
+<meta property="og:site_name" content="Jason Bryer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="Blog – Jason Bryer">
+<meta name="twitter:creator" content="@jbryer">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Jason Bryer</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./talks.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="./blog.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Blog</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="column-page">
+
+</div>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="R,Talk" data-listing-date-sort="1741237200000" data-listing-file-modified-sort="1741272385271" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="172">
+<div class="thumbnail">
+<p><a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external"></a></p><a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external">
+<p><img loading="lazy" src="./posts/2025-04-11-ShinyConf2025.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external">ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external">I will be giving a talk at ShinyConf 2025 on a Shiny application desiged for doing qualitative data analysis.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-04-11-ShinyConf2025.html" class="no-external">
+<div class="listing-date">
+Mar 6, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="R,Statistics" data-listing-date-sort="1741064400000" data-listing-file-modified-sort="1741218301000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="909">
+<div class="thumbnail">
+<p><a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external"></a></p><a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external">
+<p><img loading="lazy" src="./posts/2025-03-04-chi_squared_sample_sizes.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external">Sample size and statistical significance for chi-squared tests</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external">In this post we are going to explore the relationship between sample size (<em>n</em>) and statistical significance for the chi-squared (<span class="math inline">\(\chi^2\)</span>) test. Recall that from the normal…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-03-04-chi_squared_sample_sizes.html" class="no-external">
+<div class="listing-date">
+Mar 4, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="R,Talk,Github,Quarto" data-listing-date-sort="1739941200000" data-listing-file-modified-sort="1741194797988" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
+<div class="thumbnail">
+<p><a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external"></a></p><a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">
+<p><img loading="lazy" src="./posts/2025-02-19-Github_Portfolio.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">Building a portfolio with Github and Quarto</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">Slides for a talk on how to build a portfolio website using Github</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">
+<div class="listing-date">
+Feb 19, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="R,Statistics" data-listing-date-sort="1738818000000" data-listing-file-modified-sort="1741218527000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="909">
+<div class="thumbnail">
+<p><a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external"></a></p><a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external">
+<p><img loading="lazy" src="./posts/2025-02-06-Waiting_to_pass_exam.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external">How many times do I need to take a test to randomly get all questions correct?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external">Darrin Rogers asked on Mastadon what are the “number of tries it would take, guessing randomly, to get 100% on a quiz if you had unlimited retries.” Here we will outline two…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-02-06-Waiting_to_pass_exam.html" class="no-external">
+<div class="listing-date">
+Feb 6, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="R,Talk" data-listing-date-sort="1699938000000" data-listing-file-modified-sort="1741194883912" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="thumbnail">
+<p><a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external"></a></p><a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external">
+<p><img loading="lazy" src="./posts/2023-11-14-Intro_to_PSA.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external">A Visual Introduction to Propensity Score Analysis</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external">Recording of A Visual Introduction to Propensity Score Analysis given for the nyhackr meetup group.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2023-11-14-Intro_to_PSA.html" class="no-external">
+<div class="listing-date">
+Nov 14, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="R,Talk,PSA" data-listing-date-sort="1682308800000" data-listing-file-modified-sort="1741271172660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="227">
+<div class="thumbnail">
+<p><a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external"></a></p><a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external">
+<p><img loading="lazy" src="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external">Estimating Causality from Observational Data</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external">The CUNY School of Professional Studies, Data Science and Information Systems department, is hosting a talk by Jason Bryer titled Estimating Causality from Observation Data. You can attend the talk in person at 119 West 31st Street, NY, New York, 10001 or watch the live stream. Please complete this form indicating your interest. Details on attending live or getting the Zoom link will be sent to the email address provided. Light refreshments will be provided for those attending in person.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="no-external">
+<div class="listing-date">
+Apr 24, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="R,Talk" data-listing-date-sort="1646110800000" data-listing-file-modified-sort="1741194956685" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="thumbnail">
+<p><a href="./posts/2022-03-01_R_Package_Development.html" class="no-external"></a></p><a href="./posts/2022-03-01_R_Package_Development.html" class="no-external">
+<p><img loading="lazy" src="./posts/2022-03-01_R_Package_Development.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2022-03-01_R_Package_Development.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2022-03-01_R_Package_Development.html" class="no-external">R Package Development</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2022-03-01_R_Package_Development.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2022-03-01_R_Package_Development.html" class="no-external">Recording for an introduction to R package development.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2022-03-01_R_Package_Development.html" class="no-external">
+<div class="listing-date">
+Mar 1, 2022
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="R,Talk" data-listing-date-sort="1638248400000" data-listing-file-modified-sort="1741195344110" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
+<div class="thumbnail">
+<p><a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external"></a></p><a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-11-30-Intro_to_Shiny.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external">Introduction to Shiny</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external">Recording for an introduction to Shiny application development.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2021-11-30-Intro_to_Shiny.html" class="no-external">
+<div class="listing-date">
+Nov 30, 2021
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="R" data-listing-date-sort="1613365200000" data-listing-file-modified-sort="1741270183482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1406">
+<div class="thumbnail">
+<p><a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external"></a></p><a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-02-15-Map_my_run_in_R.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external">Map my run in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external">First, I want to give a plug to the RStats Strava Running Club. If you are into running, it is a great group that provides lots of support.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2021-02-15-Map_my_run_in_R.html" class="no-external">
+<div class="listing-date">
+Feb 15, 2021
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="R" data-listing-date-sort="1613106000000" data-listing-file-modified-sort="1613251442000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1042">
+<div class="thumbnail">
+<p><a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external"></a></p><a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external">Framework for Shiny Apps in R Packages</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external"><strong>TL;DR:</strong> You can test this approach using this Github Gist.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2021-02-12-Shiny_Apps_in_R_Packages.html" class="no-external">
+<div class="listing-date">
+Feb 12, 2021
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="R" data-listing-date-sort="1543284794000" data-listing-file-modified-sort="1544104717000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="420">
+<div class="thumbnail">
+<p><a href="./posts/2018-22-26-DTedit.html" class="no-external"></a></p><a href="./posts/2018-22-26-DTedit.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2018-22-26-DTedit.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2018-22-26-DTedit.html" class="no-external">Editable DataTables for Shiny Applications</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2018-22-26-DTedit.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2018-22-26-DTedit.html" class="no-external">RStudio recently updated Shiny to allow for editable <code>DataTables</code>. Their implementations allows for editing cells direclty with in the <code>DataTable</code> view. This is fine for many…<code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2018-22-26-DTedit.html" class="no-external">
+<div class="listing-date">
+Nov 26, 2018
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="R" data-listing-date-sort="1456193594000" data-listing-file-modified-sort="1517511091000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="831">
+<div class="thumbnail">
+<p><a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external"></a></p><a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external">Conducting Assessments and Surveys with Shiny</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external">This post describes a framework for using Shiny for conducting, grading, and providing feedback for assessments. This framework supports any multiple choice format including…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2016-02-22-Assessments_with_Shiny.html" class="no-external">
+<div class="listing-date">
+Feb 22, 2016
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="R" data-listing-date-sort="1456107194000" data-listing-file-modified-sort="1741270326177" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="150">
+<div class="thumbnail">
+<p><a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external"></a></p><a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external">
+<p><img loading="lazy" src="./posts/2016-02-21-Bayes_Billiards_Shiny.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external">Shiny App for Bayes Billiards Problem</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external">Consider a pool table of length one. An 8-ball is thrown such that the likelihood of its stopping point is uniform across the entire table (i.e.&nbsp;the table is perfectly…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2016-02-21-Bayes_Billiards_Shiny.html" class="no-external">
+<div class="listing-date">
+Feb 21, 2016
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="R" data-listing-date-sort="1406686394000" data-listing-file-modified-sort="1517519552000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1255">
+<div class="thumbnail">
+<p><a href="./posts/2014-07-29-Data_Caching.html" class="no-external"></a></p><a href="./posts/2014-07-29-Data_Caching.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-07-29-Data_Caching.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-07-29-Data_Caching.html" class="no-external">Data Caching</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-07-29-Data_Caching.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-07-29-Data_Caching.html" class="no-external">Data caching is not new. It is often necessary to save intermediate data files when the process of loading and/or manipulating data takes a considerable amount of time. This…<code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-07-29-Data_Caching.html" class="no-external">
+<div class="listing-date">
+Jul 29, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="R" data-listing-date-sort="1404526394000" data-listing-file-modified-sort="1517519593000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="343">
+<div class="thumbnail">
+<p><a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external"></a></p><a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external">Women Graduates in Math, Statistics, and Computer Information Systems</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external">One of the more interesting talks at this year’s useR! Conference was the heR Panel discussing the role of women in the R community. They estimate that fewer than 15% of…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html" class="no-external">
+<div class="listing-date">
+Jul 4, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-categories="R" data-listing-date-sort="1404439994000" data-listing-file-modified-sort="1517519623000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
+<div class="thumbnail">
+<p><a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external"></a></p><a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external">useR 2014 Slides for PSAboot and version 1.1. on CRAN</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external"><code>PSAboot</code> is an R package to assist with bootstrapping propensity score methods. I gave a talk today at the useR! 2014 Conference. The slides can be downloaded from the…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-07-03-useR_2014_PSAboot_Slides.html" class="no-external">
+<div class="listing-date">
+Jul 3, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-categories="R" data-listing-date-sort="1402020794000" data-listing-file-modified-sort="1517519667000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1858">
+<div class="thumbnail">
+<p><a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external"></a></p><a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external">str Implementation for Data Frames</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external">The <code>str</code> function is perhaps the most useful function in R. It provides great information about the structure of some object. When I teach R, especially for those coming from…<code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-06-05-str_Implementation_for_Data_Frames.html" class="no-external">
+<div class="listing-date">
+Jun 5, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-categories="R" data-listing-date-sort="1398219194000" data-listing-file-modified-sort="1517520286000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="86">
+<div class="thumbnail">
+<p><a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external"></a></p><a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external">Rgitbook Package for Using R Markdown with Gitbook</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external">Last week I published an R script to interface with Gitbook. I received some positive feedback and decided to include all the code in an R package. This also allowed me to…<code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-04-22-Rgitbook_Package.html" class="no-external">
+<div class="listing-date">
+Apr 22, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="18" data-categories="R" data-listing-date-sort="1395367994000" data-listing-file-modified-sort="1517520327000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="67">
+<div class="thumbnail">
+<p><a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external"></a></p><a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external">Albany, NY R Users Group</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external">I have started an R Users Group for the Albany, NY area. Hopefully we get enough interest that we can host a meeting in the next couple of months. Please feel free to share…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-03-20-Albany_R_Users_Group.html" class="no-external">
+<div class="listing-date">
+Mar 20, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="19" data-categories="R" data-listing-date-sort="1392948794000" data-listing-file-modified-sort="1517520353000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="530">
+<div class="thumbnail">
+<p><a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external"></a></p><a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external">Function to Simplify Loading and Installing Packages</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external">One of the more tedious parts of working with R is maintaining my R library. To make my R scripts reproducible and sharable, I will install packages if they are not…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2014-02-20-Loading_and_Installing_Packages.html" class="no-external">
+<div class="listing-date">
+Feb 20, 2014
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="20" data-categories="R" data-listing-date-sort="1385518394000" data-listing-file-modified-sort="1741270405045" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1503">
+<div class="thumbnail">
+<p><a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external"></a></p><a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external">
+<p class="card-img-top"><img src="images/figure/tutoringplot.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external">Bootstrapping for Propensity Score Analysis</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external">I am happy to announce that version 1.0 of the <code>PSAboot</code> package has been released to CRAN. This package implements bootstrapping for propensity score analysis. This deviates…<code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html" class="no-external">
+<div class="listing-date">
+Nov 26, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="21" data-categories="R" data-listing-date-sort="1384308794000" data-listing-file-modified-sort="1517520404000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="217">
+<div class="thumbnail">
+<p><a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external"></a></p><a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external">Workshop and Talk Slides from NEAIR Conference</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external">I am about to head home from my fifth time attending the North East Association for Institutional Research (NEAIR), this year in Newport, RI, which was just fantastic.…<em></em></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html" class="no-external">
+<div class="listing-date">
+Nov 12, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="22" data-categories="R" data-listing-date-sort="1368065594000" data-listing-file-modified-sort="1517520430000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281">
+<div class="thumbnail">
+<p><a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external"></a></p><a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external">Gambler’s Run with Shiny</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external">I finally had an opportunity to play with Shiny, and I am very impressed. I have created a Github Project so head over there for the source code. There are a number of ways…<code></code><code></code><code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-05-08-Gamblers_Run_With_Shiny.html" class="no-external">
+<div class="listing-date">
+May 8, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="23" data-categories="R" data-listing-date-sort="1366337594000" data-listing-file-modified-sort="1517520450000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="797">
+<div class="thumbnail">
+<p><a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external"></a></p><a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external">Cut Dates into Quarters</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external">Frequently I need to recode a date column to quarters. For example, at Excelsior College we have continuous enrollment so we report new enrollments per quarter. To…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-04-18-Cut_Dates_Into_Quarters.html" class="no-external">
+<div class="listing-date">
+Apr 18, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="24" data-categories="R" data-listing-date-sort="1364350394000" data-listing-file-modified-sort="1741270460398" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2057">
+<div class="thumbnail">
+<p><a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external"></a></p><a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external">
+<p><img loading="lazy" src="./posts/default_image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external">i Before e Except After c</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external">When I went to school we were always taught the “i before e, except after c” rule for spelling. But how accurate is this rule? Kevin Marks tweeted today the following:</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-03-26-i_Before_e_Except_After_c.html" class="no-external">
+<div class="listing-date">
+Mar 26, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="25" data-categories="R" data-listing-date-sort="1359598394000" data-listing-file-modified-sort="1517520503000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="595">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external"></a></p><a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external">Converting a list to a data frame</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external">There are many situations in R where you have a <code>list</code> of <code>vector</code>s that you need to convert to a <code>data.frame</code>. This question has been addressed over at StackOverflow and it turns…<code></code><code></code><code></code><code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-30-Converting_a_list_to_a_data_frame.html" class="no-external">
+<div class="listing-date">
+Jan 30, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="26" data-categories="R" data-listing-date-sort="1359079994000" data-listing-file-modified-sort="1517520534000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="843">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external"></a></p><a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external">Comparing two data frames with different number of rows</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external">I posted a question over on StackOverflow on an efficient way of comparing two data frames with the same column structure, but with different rows. What I would like to end…<em></em><em></em><em></em><em></em><em></em><em></em><em></em><em></em><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-24-Comparing_Two_Data_Frames.html" class="no-external">
+<div class="listing-date">
+Jan 24, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="27" data-categories="R" data-listing-date-sort="1358302394000" data-listing-file-modified-sort="1517520560000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="268">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external"></a></p><a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external">Version 1.0 of sqlutils available on CRAN</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external">Version 1.0 of <code>sqlutils</code> has been released to CRAN. The <code>sqlutils</code> package is designed to manage a library of SQL files. This package grew out of the needs of an Office of…<code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-15-Version_1_sqlutils.html" class="no-external">
+<div class="listing-date">
+Jan 15, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="28" data-categories="R" data-listing-date-sort="1358043194000" data-listing-file-modified-sort="1741270494929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="514">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external"></a></p><a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external">
+<p><img loading="lazy" src="./posts/default_image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external">Interactive SQL in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external">I recently taught a very basic introduction to SQL workshop and needed a way to have participants interact with SQL statements. Obviously there are lots of tools to…<code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-12-Interactive_SQL_in_R.html" class="no-external">
+<div class="listing-date">
+Jan 12, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="29" data-categories="R" data-listing-date-sort="1357870394000" data-listing-file-modified-sort="1517520607000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3126">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external"></a></p><a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external">Reading Codebook Files in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external">One issue I continuously encounter when starting to work with a new dataset is that of the codebook. In general, I prefer to load a codebook into R like any other data…<code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html" class="no-external">
+<div class="listing-date">
+Jan 10, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="30" data-categories="R" data-listing-date-sort="1357351994000" data-listing-file-modified-sort="1741270537534" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="881">
+<div class="thumbnail">
+<p><a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external"></a></p><a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external">
+<p><img loading="lazy" src="./posts/default_image.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external">Function for Generating LaTeX Tables with Decimal Aligned Numbers</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external">The <code>xtable</code> package is tremendously useful for generating LaTeX tables from data frames. It is also pretty easy to customize the output to handle some special cases of LaTeX…<code></code><code></code><code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2013-01-04-xtable_with_aligned_decimals.html" class="no-external">
+<div class="listing-date">
+Jan 4, 2013
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="31" data-categories="R" data-listing-date-sort="1355191994000" data-listing-file-modified-sort="1517520666000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1798">
+<div class="thumbnail">
+<p><a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external"></a></p><a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external">Using (R) Markdown, Jekyll, &amp; Github for a Website</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external">Markdown has been growing in popularity for writing documents on the web. With the introduction of R Markdown (see also Jeromy Anglim’s post on getting started with R…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html" class="no-external">
+<div class="listing-date">
+Dec 10, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="32" data-categories="R" data-listing-date-sort="1353992400000" data-listing-file-modified-sort="1741271814357" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="105">
+<div class="thumbnail">
+<p><a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external"></a></p><a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external">
+<p><img loading="lazy" src="./posts/2012-11-27-Fifty_Shades_of_Grey_in_R.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external">Fifty Shades of Grey in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external">My wife went out to her book group tonight and their book of the month was <em>50 Shades of Grey</em>. Sadly, I could think of is that plotting 50 shades in R would be a neat exercise.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-11-27-FIfty_Shades_of_Grey.html" class="no-external">
+<div class="listing-date">
+Nov 27, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="33" data-categories="R" data-listing-date-sort="1353204794000" data-listing-file-modified-sort="1517520728000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="170">
+<div class="thumbnail">
+<p><a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external"></a></p><a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external">Visualizing Missing Data</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external">There are several graphics available for visualizing missing data including the <code>VIM</code> package. However, I wanted a plot specifically for looking at the nature of missingness…<code></code><code></code></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-11-17-visualizing-missing-data.html" class="no-external">
+<div class="listing-date">
+Nov 17, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="34" data-categories="R" data-listing-date-sort="1344910394000" data-listing-file-modified-sort="1517520753000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="352">
+<div class="thumbnail">
+<p><a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external"></a></p><a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external">User Input using tcl/tk</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external">I was inspired by Kay Cichini recent post on creating a a tcl/tk dialog box for users to enter variable values. I am going to have a use for this very soon so took some time…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-08-13-User-Input-using-tcltk.html" class="no-external">
+<div class="listing-date">
+Aug 13, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="35" data-categories="R" data-listing-date-sort="1335499200000" data-listing-file-modified-sort="1741272266070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="223">
+<div class="thumbnail">
+<p><a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external"></a></p><a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external">
+<p><img loading="lazy" src="./posts/2012-04-27-Graphical_Parameters.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external">Graphic Parameters (symbols, line types, and colors) for ggplot2</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external">Following up on John Mount’s post on remembering symbol parameters in ggplot2, I decided to give it a try and included symbols, line types, and colors (based upon Earl…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-04-27-Graphic_Parameters.html" class="no-external">
+<div class="listing-date">
+Apr 27, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="36" data-categories="R" data-listing-date-sort="1328062394000" data-listing-file-modified-sort="1517520811000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96">
+<div class="thumbnail">
+<p><a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external"></a></p><a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external">Given a room with n people in it, what is the probability any two will have the same birthday?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external">Revisiting a fun puzzle I remember first encountering as an undergraduate. Nice example of creating a plot in R using ggplot2. I also plot the probability of someone in the…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html" class="no-external">
+<div class="listing-date">
+Jan 31, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="37" data-categories="R" data-listing-date-sort="1327111994000" data-listing-file-modified-sort="1517520830000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="317">
+<div class="thumbnail">
+<p><a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external"></a></p><a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external">Object Oriented Programming in R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external">As someone who was a Java programmer for many years learning R’s object oriented programming framework has been frustrating to say the least. I like the simplicity of S3 but…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-01-20-object-oriented-programming-in-r.html" class="no-external">
+<div class="listing-date">
+Jan 20, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="38" data-categories="R" data-listing-date-sort="1326507194000" data-listing-file-modified-sort="1517520862000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="652">
+<div class="thumbnail">
+<p><a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external"></a></p><a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external">Retrieving RSS Feeds Using Google Reader</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external">I have been working on a new package makeR to help manage Sweave projects where you wish to create multiple versions of documents that are based on a single source. For…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html" class="no-external">
+<div class="listing-date">
+Jan 13, 2012
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="39" data-categories="R" data-listing-date-sort="1321063994000" data-listing-file-modified-sort="1517520882000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="264">
+<div class="thumbnail">
+<p><a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external"></a></p><a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external">Visualizing Likert Items</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external">I have become quite a big fan of graphics that combine the features of&nbsp;traditional&nbsp;figures (e.g.&nbsp;bar charts, histograms, etc.) with tables. That is, the combination of…<span style="font-family: 'courier new', courier;"></span></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2011-11-11-visualizing-likert-items.html" class="no-external">
+<div class="listing-date">
+Nov 11, 2011
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/bryer\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Site created with Quarto by Jason Bryer.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

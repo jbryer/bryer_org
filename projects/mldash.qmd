@@ -1,0 +1,8 @@
+---
+title: "mldash"
+description: "Mashine learning dashboard"
+categories: ["r-package"]
+image: mldash.png
+---
+
+Github: [https://github.com/jbryer/mldash](https://github.com/jbryer/mldash)

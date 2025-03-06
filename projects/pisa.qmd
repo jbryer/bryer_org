@@ -1,0 +1,8 @@
+---
+title: "pisa"
+description: "A data-only R package for the 2009 Programme of International Student Assessment (PISA) conducted by Organisation for Economic Co-operation and Development (OECD)."
+categories: ["r-package"]
+image: pisa.png
+---
+
+Github: [https://github.com/jbryer/pisa](https://github.com/jbryer/pisa)

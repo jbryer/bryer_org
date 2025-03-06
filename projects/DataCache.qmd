@@ -1,0 +1,8 @@
+---
+title: "DataCache"
+description: "An R package to maintain data caches."
+categories: ["r-package"]
+image: DataCache.png
+---
+
+Github: [https://github.com/jbryer/DataCache](https://github.com/jbryer/DataCache")

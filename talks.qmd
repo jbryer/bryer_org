@@ -1,0 +1,18 @@
+---
+title: "Talks"
+listing:
+  contents: posts
+  include:
+    categories: "{Talk}"
+  sort: "date desc"
+  type: grid # Options include default, grid, table
+  categories: false
+  sort-ui: true
+  filter-ui: true
+  page-size: 100
+  feed: false
+  image-height: "600"
+  # fields: [title, description]
+# page-layout: full
+title-block-banner: false
+---

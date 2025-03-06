@@ -1,0 +1,142 @@
+---
+title: "Sample size and statistical significance for chi-squared tests"
+author: "Jason Bryer"
+date: 2025-03-04
+draft: false
+description: ""
+categories: ["R", "Statistics"]
+image: "2025-03-04-chi_squared_sample_sizes.png"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, eval=FALSE, include=FALSE}
+source('../resources/banner.R')
+banner_image('Sample size and statistical significance for chi-squared tests',
+			 date = 'March 4, 2025',
+			 out_file = '2025-03-04-chi_squared_sample_sizes.png')
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+library(ggplot2)
+set.seed(2112)
+ggplot2::theme_set(ggplot2::theme_minimal())
+```
+
+In this post we are going to explore the relationship between sample size (*n*) and statistical significance for the chi-squared ($\chi^2$) test. Recall that from the normal distribution, we construct a confidence interval using:
+
+$$ CI = \bar{x} \pm z \cdot SE$$
+
+where *z* is the test statistic and:
+
+$$ SE =  \frac{s}{\sqrt{n}} $$
+
+where *s* is the sample standard deviation. Typically our *null* is zero in which case we reject the *null* hypothesis when the confidence does not span zero. If we wish to construct a 95% confidence interval, then $z = 1.96$. Assuming the sample standard deviation is constant regardless of sample size (a fair assumption), then as *n* increases the standard error decreases. The following calculates the confidence interval for *n* ranging from 10 to 400 assuming a sample standard deviation of 0.15 and 95% confidence level. When $n > 171$ then $p < 0.05$.
+
+
+```{r}
+# Define some parameters
+sig_level <- .95  # Significance level, 95% here
+es <- 0.15        # Effect size in standard units
+null_val <- 0     # null value
+
+#' Calculate the standard error
+#' 
+#' This function will calculate the standard error from a vector of observations or with a given
+#' sample standard deviation and sample size.
+#' 
+#' @param x numeric vector of observations.
+#' @param sigma the sample standard deviation.
+#' @param n sample size.
+standard_error <- function(x, sigma = sd(x), n = length(x)) {
+	if(!missing(x)) { # Some basic error checking
+		if(sigma != sd(x)) { warning('The sample standard deviation (sigma) is not equal to sd(x)')}
+		if(n != length(x)) { warning('The sample size (n) is not equal to length(x).' )}
+	}
+	return(sigma / sqrt(n))
+}
+# Create a data.frame with varying sample sizes and the corresponding standard error
+df <- data.frame(
+	n = 10:400,
+	se = standard_error(sigma = 1, n = 10:400)
+)
+cv <- abs(qnorm((1 - sig_level) / 2)) # Critical value (z test statistic)
+df$ci_low <- es - cv * df$se
+df$ci_high <- es + cv * df$se
+df$sig <- null_val < df$ci_low | null_val > df$ci_high
+min_n <- df$n[df$sig] |> min()
+ggplot(df, aes(x = n, y = se, color = sig)) + 
+	geom_path() +
+	geom_point() +
+	scale_color_brewer(paste0('p < ', (1 - sig_level)), type = 'qual', palette = 6) +
+	ggtitle(paste0('Minumum n for p < ', (1 - sig_level), ': ', min_n),
+			subtitle = paste0('effect size: ', es, '; null value: ', null_val))
+
+```
+
+The chi-squared ($\chi^2$) test statistic is defined as:
+
+$$ \chi^2 = \sum{\frac{(O - E)^2}{E}} $$
+
+where *O* is the observed count and *E* is the expected count. Unlike the standard error for numerical data, *n* is not explicitly in the formula and therefore makes it a bit more challenging to determine the impact sample size has rejecting the *null* hypothesis. Moreover, since the chi-squared is calculated from the cell counts in a table of varying length and dimension (one- or two-dimensions specifically) determining how *n* impacts rejecting the *null* or not requires more parameters. 
+
+Answering the question of how large does *n* need to be to detect a statistically significant result (i.e. to reject the *null* hypothesis) is refereed to as [power](https://en.wikipedia.org/wiki/Power_(statistics)). Whereas for calculating the power for numerical data had one parameter, the sample standard deviation, here we need to consider the proportion of observations within different cells. For example, consider we have a variable with three levels and we expect the proportion of observations in the three groups to be 33%, 25%, and 42%, respectively. If our sample size is 100 then we expect there to be 33, 25, and 42 and observations for the three categories. This function will, for varying sample sizes, calculate the counts for the categories to achieve that sample size, estimate the chi-squared statistic and record the *p*-value. There are other parameters that are documented below. A `plot` function is also defined using the [S3 objected oriented framework](http://adv-r.had.co.nz/S3.html).
+
+
+```{r, file = "chi_squared_power.R"}
+
+```
+
+
+Returning to our example above where the cell proportions are 33%, 25%, and 42%, we would need $n \ge 130$ to reject the *null* hypothesis.
+
+```{r}
+csp1 <- chi_squared_power(probs =  c(.33, .25, .42))
+csp1[csp1$sig,]$n |> min(na.rm = TRUE) # Smallest n that results in p < 0.05
+plot(csp1)
+```
+
+In the next example we have much smaller differences between the cells with 25%, 25%, 24%, and 26%. In this example $n \ge 9,710$ before rejecting the *null* hypothesis.
+
+```{r}
+csp3 <- chi_squared_power(probs = c(.25, .25, .24, .26), max_n = 20000)
+csp3[csp3$sig,]$n |> min(na.rm = TRUE) # Smallest n that results in p < 0.05
+plot(csp3)
+```
+
+This function will work with two-dimensional data as well (i.e. across two variables). The following example from Agresti (2007) looks at the political affiliation across sex (see the help documentation for `chisq.test()`.).
+
+```{r}
+M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
+dimnames(M) <- list(gender = c("Femal", "Male"),
+					party = c("Democrat", "Independent", "Republican"))
+M
+sum(M)
+```
+
+The chi-squared test suggests we should reject the *null* hypothesis test.
+
+```{r}
+chisq.test(M)
+DescTools::CramerV(M) # Effect size
+DescTools::power.chisq.test(n = sum(M),
+							w = DescTools::CramerV(M),
+							df = min(dim(M)) - 1,
+							sig.level = 1 - sig_level)
+```
+
+Agresti had a sample size of `r sum(M)`, but we can ask the question what is the minimum sample size would they need to detect statistical significance? First, we convert the counts to proportions, then we can use the `chi_squared_power()` function to find the minimum sample size to reject the *null* hypothesis test.
+
+```{r}
+M_prob <- M / sum(M) # Convert the counts to percentages
+csp4 <- chi_squared_power(probs = M_prob)
+plot(csp4)
+```
+
+For a more robust application for estimating power for many statistical tests, check out the [pwsrr R package](https://cran.r-project.org/web/packages/pwrss/index.html) and corresponding [Shiny application](https://pwrss.shinyapps.io/index/).
+
+```{r, include=FALSE}
+ggsave(plot(csp4, title =''), 
+	   filename = '2025-03-04-chi_squared_sample_sizes.png',
+	   width = 900, height = 600, units = 'px')
+```

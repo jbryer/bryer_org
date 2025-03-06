@@ -1,0 +1,8 @@
+---
+title: "likert"
+description: "An R package designed to help analyzing and visualizing Likert type items. <img src='http://www.r-pkg.org/badges/version/likert' alt='CRAN Version' />"
+categories: ["r-package"]
+image: likert.png
+---
+
+Github: [https://github.com/jbryer/likert](https://github.com/jbryer/likert)

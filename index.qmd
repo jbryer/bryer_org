@@ -1,0 +1,49 @@
+---
+title: "Jason Bryer, Ph.D."
+subtitle: "Assistant Professor & Associate Director<br/>Data Science and Information Systems<br/>CUNY School of Professional Studies"
+about: # More info about this page type: https://quarto.org/docs/websites/website-about.html
+  template: trestles # Options include: jolla, trestles, solana, marquee, broadside
+  image: Headshot_Cartoon.jpg
+  links:
+    - text: Mastodon
+      icon: mastodon
+      url: "https://vis.social/@jbryer"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/jbryer"
+    - text: LinkedIn
+      icon: linkedin
+      url: "https://www.linkedin.com/in/jasonbryer/"
+    - text: Email
+      icon: envelope
+      url: "mailto:jason@bryer.org"
+    - text: CV
+      icon: file-pdf
+      url: "https://github.com/jbryer/CV/blob/master/Bryer_CV.pdf?raw=true"
+comments: false
+---
+::: {.column-page}
+
+
+Dr. Jason Bryer is currently an Assistant Professor and Associate Director in the [Data Science and Information Systems](https://sps.cuny.edu/academics/graduate/master-science-data-science-ms) department at the [City University of New York](https://sps.cunuy.edu). He is currently the Principal Investigator of the FIPSE ($3 million #P116F150077) and IES funded ($3.8 million R305A210269) [Diagnostic Assessment and Achievement of College Skills (DAACS)](https://daacs.net), which is a suite of technological and social supports designed to optimize student learning. Dr. Bryer’s other research interests include quasi-experimental designs with an emphasis on propensity score analysis, data systems to support formative assessment, and the use of open source software for conducting reproducible research. He is the author of over a dozen [R packages](https://github.com/jbryer?tab=repositories), including three related to conducting [propensity score analyses](https://psa.bryer.org). When not crunching numbers, Jason is a [wedding photographer](https://bryerphotography.com) and proud dad to three boys.
+
+
+## Education
+
+{{< fa graduation-cap >}} Ph.D. in Educational Psychology & Methodology, 2014, University at Albany
+
+{{< fa graduation-cap >}} M.S. in Educational Psychology & Methodology, 2009, University at Albany
+
+{{< fa graduation-cap >}} B.S. in Mathematics, 1999, The College of Saint Rose
+
+
+## Interests
+
+* Propensity Score Analysis
+* Formative and Diagnostic Assessments
+* Predictive Analytics
+* Teaching Statistics
+* Data Visualization
+* R, Shiny
+
+:::

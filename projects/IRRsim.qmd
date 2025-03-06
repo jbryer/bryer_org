@@ -1,0 +1,8 @@
+---
+title: "IRRsim"
+description: "This package provides functions and a shiny application to simulate inter-rater reliability statistics based on various scoring and response models. The initial motivation for this package is to understand the relationship between percent rater agreement and intraclass correlation."
+categories: ["r-package"]
+image: IRRsim.png
+---
+
+Github: [https://github.com/jbryer/IRRsim](https://github.com/jbryer/IRRsim)

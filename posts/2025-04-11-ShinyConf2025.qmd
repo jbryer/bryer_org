@@ -1,0 +1,28 @@
+---
+title: "ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data"
+author: "Jason Bryer"
+date: 2025-03-06
+draft: false
+description: "I will be giving a talk at ShinyConf 2025 on a Shiny application desiged for doing qualitative data analysis."
+categories: ["R", "Talk"]
+image: "2025-04-11-ShinyConf2025.png"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r banner, eval=FALSE, include=FALSE}
+source('../resources/banner.R')
+banner_image(rmarkdown::metadata$title,
+			 date = format(as.Date(rmarkdown::metadata$date), "%B %d, %Y"),
+			 out_file = paste0(rmarkdown::metadata$date), '-banner.png')
+```
+
+```{r setup, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```
+
+
+The `ShinyQDA` R package is designed to assist researchers with the analysis of qualitative data. As the name suggests, the premise is that much of the interaction with the package will be done through a Shiny application. However, all the functionality in the Shiny application is accessible through R commands. The core functionality of `ShinyQDA` allows researchers to highlight passages and code passages. The application also allows for scoring text documents using rubrics. Tools for conducting validity analysis using co-occurrence plots and code frequency is provided. In addition to traditional qualitative data analysis, `ShinyQDA` utilizes natural language processing to conduct sentiment analysis, topic modeling, and text encoding (i.e. tokenization). `ShinyQDA` can be used locally by a single researcher or be deployed to a Shiny server so that multiple researchers can access the application to code and/or score documents.
+
+To register for the (free) conference, go to [https://www.shinyconf.com](https://www.shinyconf.com)
+
+For more information about the project, visit: [https://github.com/jbryer/ShinyQDA](https://github.com/jbryer/ShinyQDA)

@@ -1,0 +1,26 @@
+---
+title: ""
+author: "Jason Bryer"
+date: 2025-03-04
+draft: true
+description: ""
+categories: ["R", "Talk"]
+image: "2025-03-04-banner.png"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r banner, eval=FALSE, include=FALSE}
+source('../resources/banner.R')
+banner_image(rmarkdown::metadata$title,
+			 date = format(as.Date(rmarkdown::metadata$date), "%B %d, %Y"),
+			 out_file = paste0(rmarkdown::metadata$date), '-banner.png')
+```
+
+```{r setup, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```
+
+
+```{r}
+
+```

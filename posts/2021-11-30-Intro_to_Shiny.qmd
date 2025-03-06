@@ -1,0 +1,17 @@
+---
+title: "Introduction to Shiny"
+author: "Jason Bryer"
+description: "Recording for an introduction to Shiny application development."
+date: "2021-11-30"
+categories: ["R", "Talk"]
+image: 2021-11-30-Intro_to_Shiny.png
+---
+
+
+{{< video https://youtu.be/W-DrXHqeqz8 >}}
+
+Shiny is an R package designed to create web based applications using the R programming language. This talk will introduce the basic framework for creating interactive Shiny applications including user inputs, dynamic plots and tables, reactive programming, and creating data dashboards.
+
+Slides can be viewed here: https://r.bryer.org/shiny/Intro_to_Shiny/
+
+Source code and resources are on Github here: https://github.com/jbryer/AlbanyRUsers/tree/main/meetups/2021-11-30-Intro_to_Shiny

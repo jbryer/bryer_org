@@ -1,0 +1,10 @@
+---
+title: "VisualStats"
+description: "Visual Statistics package and book."
+categories: ["r-package", "book"]
+image: VisualStats.png
+---
+
+Github: [github.com/jbryer/VisualStats](https://github.com/jbryer/VisualStats)
+
+Website: [visualstats.bryer.org](https://visualstats.bryer.org)
