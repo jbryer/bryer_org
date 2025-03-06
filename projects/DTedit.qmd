@@ -5,5 +5,7 @@ categories: ["r-package"]
 image: DTedit.png
 ---
 
+<a href='https://github.com/jbryer/DTedit'><img src='DTedit.png' align="right" width="200" /></a> 
+
 Github: [https://github.com/jbryer/DTedit](https://github.com/jbryer/DTedit)
 

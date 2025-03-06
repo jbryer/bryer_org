@@ -5,4 +5,6 @@ categories: ["r-package"]
 image: ShinyQDA.png
 ---
 
+<a href='https://github.com/jbryer/ShinyQDA'><img src='ShinyQDA.png' align="right" width="200" /></a> 
+
 Github: [https://github.com/jbryer/ShinyQDA](https://github.com/jbryer/ShinyQDA)

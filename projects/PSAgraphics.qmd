@@ -5,4 +5,6 @@ categories: ["r-package", "psa"]
 image: PSAgraphics.png
 ---
 
+<a href='https://github.com/jbryer/PSAgraphics'><img src='PSAgraphics.png' align="right" width="200" /></a> 
+
 Github: [https://github.com/jbryer/PSAgraphics](https://github.com/jbryer/PSAgraphics)

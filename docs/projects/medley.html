@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="R Package and Shiny Application for the Analysis of Qualitative Data.">
+<meta name="description" content="Predictive Modeling with Missing Data">
 
-<title>PSAboot – Jason Bryer</title>
+<title>medley – Jason Bryer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,16 +70,16 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="PSAboot – Jason Bryer">
-<meta property="og:description" content="R Package and Shiny Application for the Analysis of Qualitative Data.">
-<meta property="og:image" content="https://bryer.org/projects/PSAboot.png">
+<meta property="og:title" content="medley – Jason Bryer">
+<meta property="og:description" content="Predictive Modeling with Missing Data">
+<meta property="og:image" content="https://bryer.org/projects/medley.png">
 <meta property="og:site_name" content="Jason Bryer">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="600">
 <meta property="og:image:width" content="518">
-<meta name="twitter:title" content="PSAboot – Jason Bryer">
-<meta name="twitter:description" content="R Package and Shiny Application for the Analysis of Qualitative Data.">
-<meta name="twitter:image" content="https://bryer.org/projects/PSAboot.png">
+<meta name="twitter:title" content="medley – Jason Bryer">
+<meta name="twitter:description" content="Predictive Modeling with Missing Data">
+<meta name="twitter:image" content="https://bryer.org/projects/medley.png">
 <meta name="twitter:creator" content="@jbryer">
 <meta name="twitter:image-height" content="600">
 <meta name="twitter:image-width" content="518">
@@ -145,16 +145,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">PSAboot</h1>
+<h1 class="title">medley</h1>
   <div class="quarto-categories">
     <div class="quarto-category">r-package</div>
-    <div class="quarto-category">psa</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R Package and Shiny Application for the Analysis of Qualitative Data.
+    Predictive Modeling with Missing Data
   </div>
 </div>
 
@@ -171,9 +170,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="https://github.com/jbryer/PSAboot"><img src="PSAboot.png" align="right" width="200"></a></p>
-<p><img src="http://www.r-pkg.org/badges/version/PSAboot" alt="CRAN Version"></p>
-<p>Github: <a href="https://github.com/jbryer/PSAboot">https://github.com/jbryer/PSAboot</a></p>
+<p><a href="https://github.com/jbryer/medley"><img src="medley.png" align="right" width="200"></a></p>
+<p>Github: <a href="https://github.com/jbryer/medley">https://github.com/jbryer/medley</a></p>
+<p>Most predictive modeling strategies require there to be no missing data for model estimation. When there is missing data, there are generally two strategies for working with missing data: 1.) exclude the variables (columns) or observations (rows) where there is missing data; or 2.) impute the missing data. However, data is often missing in systematic ways. Excluding data from training is ignoring potentially predictive information and for many imputation procedures the missing completely at random (MCAR) assumption is violated.</p>
+<p>The <code>medley</code> package implements a solution to modeling when there are systematic patterns of missingness. A working example of predicting student retention from a larger study of the Diagnostic Assessment and Achievement of College Skills (DAACS) will be explored. In this study, demographic data was collected at enrollment from all students and then students completed diagnostic assessments in self-regulated learning (SRL), writing, mathematics, and reading during their first few weeks of the semester. Although all students were expected to complete DAACS, there were no consequence and therefore a large percentage of student completed none or only some of the assessments. The resulting dataset has three predominate response patterns: 1.) students who completed all four assessments, 2.) students who completed only the SRL assessment, and 3). students who did not complete any of the assessments.</p>
+<p>The goal of the <code>medley</code> algorithm is to take advantage of missing data patterns. For this example, the medley algorithm trained three predictive models: 1.) demographics plus all four assessments, 2.) demographics plus SRL assessment, and 3.) demographics only. For both training and prediction, the model used for each student is based upon what data is available. That is, if a student only completed SRL, model 2 would be used. The <code>medley</code> algorithm can be used with most statistical models. For this study, both logistic regression and random forest are used. The accuracy of the <code>medley</code> algorithm was 3.5% better than using only the complete data and 3.1% better than using a dataset where missing data was imputed using the <code>mice</code> package.</p>
+<p>The <code>medley</code> package provides an approach for predictive modeling using the same training and prediction framework R users are accustomed to using. There are numerous parameters that can be modified including what underlying statistical models are used for training. Additional diagnostic functions are available to explore missing data patterns.</p>
 
 
 

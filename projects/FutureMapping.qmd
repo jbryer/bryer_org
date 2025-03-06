@@ -1,0 +1,15 @@
+---
+title: "FutureMapping"
+description: "Amplify Youth Ask Youth Survey Data Dashboard and Mapping Project."
+categories: ["r-package"]
+image: FutureMapping.png
+---
+
+<a href='https://github.com/jbryer/DTedit'><img src='FutureMapping.png' align="right" width="200" /></a> 
+
+FutureMapping: [https://futuremapping.org](https://futuremapping.org)  
+Amplify Dashboard: [https://amplifydata.org](https://amplifydata.org)
+Amplify Website: [https://amplifyapp.org/](https://amplifyapp.org/)
+
+Amplify was made by and for youth. Take our surveys, earn points and enter raffles to win big. Your ideas, along with others, will help shape policy and spark action.
+

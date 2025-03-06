@@ -5,4 +5,6 @@ categories: ["r-package"]
 image: mldash.png
 ---
 
+<a href='https://github.com/jbryer/mldash'><img src='mldash.png' align="right" width="200" /></a> 
+
 Github: [https://github.com/jbryer/mldash](https://github.com/jbryer/mldash)

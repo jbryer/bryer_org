@@ -5,6 +5,8 @@ categories: ["r-package", "psa"]
 image: PSAboot.png
 ---
 
+<a href='https://github.com/jbryer/PSAboot'><img src='PSAboot.png' align="right" width="200" /></a> 
+
 <img src='http://www.r-pkg.org/badges/version/PSAboot' alt='CRAN Version' />
 
 Github: [https://github.com/jbryer/PSAboot](https://github.com/jbryer/PSAboot)

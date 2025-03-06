@@ -98,39 +98,46 @@
     "text": "Github: https://github.com/jbryer/mldash"
   },
   {
-    "objectID": "projects/likert.html",
-    "href": "projects/likert.html",
-    "title": "likert",
+    "objectID": "projects/login.html",
+    "href": "projects/login.html",
+    "title": "login",
     "section": "",
-    "text": "Github: https://github.com/jbryer/likert"
+    "text": "Github: https://github.com/jbryer/login"
   },
   {
-    "objectID": "projects/brickset.html",
-    "href": "projects/brickset.html",
-    "title": "brickset",
+    "objectID": "projects/daacs.html",
+    "href": "projects/daacs.html",
+    "title": "DAACS",
     "section": "",
-    "text": "Github: https://github.com/jbryer/brickset"
+    "text": "The Diagnostic Assessment and Achievement of College Skills (DAACS) is a suite of technological and social supports to optimize student learning. DAACS provides personalized feedback about students’ strengths and weaknesses in terms of key academic and self-regulated learning skills, linking them to the resources to help them be successful students.\nDAACS Websites:\n\ndaacs.net - General information about the project.\nmy.daacs.net - Public version of DAACS. Create an account, take the assessments, and view the feedback.\nsrl.daacs.net - Self-Regulated Learning open education resource.\ndocs.daacs.net - This site is fir administrators, instructors, or anyone who is intereted in using DAACS with their students. Site contains training materials and technical information.\ngithub.com/daacs - Github organization where source code is hosted."
   },
   {
-    "objectID": "projects/TriMatch.html",
-    "href": "projects/TriMatch.html",
-    "title": "TriMatch",
+    "objectID": "projects/VisualStats.html",
+    "href": "projects/VisualStats.html",
+    "title": "VisualStats",
     "section": "",
-    "text": "Github: https://github.com/jbryer/TriMatch"
+    "text": "Github: github.com/jbryer/VisualStats\nWebsite: visualstats.bryer.org"
   },
   {
-    "objectID": "projects/PSAgraphics.html",
-    "href": "projects/PSAgraphics.html",
-    "title": "PSAgraphics",
+    "objectID": "projects/ShinyQDA.html",
+    "href": "projects/ShinyQDA.html",
+    "title": "ShinyQDA",
     "section": "",
-    "text": "Github: https://github.com/jbryer/PSAgraphics"
+    "text": "Github: https://github.com/jbryer/ShinyQDA"
   },
   {
-    "objectID": "projects/IRRsim.html",
-    "href": "projects/IRRsim.html",
-    "title": "IRRsim",
+    "objectID": "projects/PSAboot.html",
+    "href": "projects/PSAboot.html",
+    "title": "PSAboot",
     "section": "",
-    "text": "Github: https://github.com/jbryer/IRRsim"
+    "text": "Github: https://github.com/jbryer/PSAboot"
+  },
+  {
+    "objectID": "projects/FutureMapping.html",
+    "href": "projects/FutureMapping.html",
+    "title": "FutureMapping",
+    "section": "",
+    "text": "FutureMapping: https://futuremapping.org\nAmplify Dashboard: https://amplifydata.org Amplify Website: https://amplifyapp.org/\nAmplify was made by and for youth. Take our surveys, earn points and enter raffles to win big. Your ideas, along with others, will help shape policy and spark action."
   },
   {
     "objectID": "projects/DTedit.html",
@@ -382,7 +389,7 @@
     "href": "projects.html",
     "title": "Jason Bryer",
     "section": "",
-    "text": "This is a list of some of the projects I have worked on over the years. Most of these link to either the project website or Github. The vast majority of my projects are hosted on Github.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDAACS\n\n\n\nResearch\n\n\n\nDiagnostic Assessment and Achievement of College Skills\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDTedit\n\n\n\nr-package\n\n\n\nEditable DataTables for shiny apps.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataCache\n\n\n\nr-package\n\n\n\nAn R package to maintain data caches.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIRRsim\n\n\n\nr-package\n\n\n\nThis package provides functions and a shiny application to simulate inter-rater reliability statistics based on various scoring and response models. The initial motivation…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSA\n\n\n\nr-package\n\n\nbook\n\n\n\nPropensity Score Analysis (PSA) is a statistical approach for estimating causal effects from observational studies. This project includes materials from workshops taught, an…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSAboot\n\n\n\nr-package\n\n\npsa\n\n\n\nR Package and Shiny Application for the Analysis of Qualitative Data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSAgraphics\n\n\n\nr-package\n\n\npsa\n\n\n\nAn R Package to Support Propensity Score Analysis. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShinyQDA\n\n\n\nr-package\n\n\n\nThe ShinyQDA package is designed to assist researchers with the analysis of qualitative data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTriMatch\n\n\n\nr-package\n\n\npsa\n\n\n\nPropensity score matching for non-binary treatments.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualStats\n\n\n\nr-package\n\n\nbook\n\n\n\nVisual Statistics package and book.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbrickset\n\n\n\nr-package\n\n\n\nAn R package to interface with the Brickset.com API for getting data about LEGO sets \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nipeds\n\n\n\nr-package\n\n\n\nAn R package to interface with the Integrated Postsecondary Education Data System.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlikert\n\n\n\nr-package\n\n\n\nAn R package designed to help analyzing and visualizing Likert type items. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlogin\n\n\n\nr-package\n\n\nshiny\n\n\n\nThis package provides a framework for adding user authentication to Shiny applications. This is unique to other authentication frameworks such as ShinyManager and shinyauthr…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmldash\n\n\n\nr-package\n\n\n\nMashine learning dashboard\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmultilevelPSA\n\n\n\nr-package\n\n\npsa\n\n\n\nAn R package for estimating and visualizing multilevel propensity score models. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnaep\n\n\n\nr-package\n\n\n\nAn R package to interface with the National Assessment of Educational Progress (NAEP) restricted use databases. This includes access any analyzing data using the replicate…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npisa\n\n\n\nr-package\n\n\n\nA data-only R package for the 2009 Programme of International Student Assessment (PISA) conducted by Organisation for Economic Co-operation and Development (OECD).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nqualtrics\n\n\n\nr-package\n\n\n\nAn R package to interface with the Qualtrics.com survey system.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nruca\n\n\n\nr-package\n\n\n\nAn R package to get Rural-Urban Commuting Area (RUCA) Codes from zip codes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsqlutils\n\n\n\nr-package\n\n\n\nThe sqlutils package provides a set of utility functions to help manage a library of structured query language (SQL) files.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntimeline\n\n\n\nr-package\n\n\n\nAn R package to create timeline figures. \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "This is a list of some of the projects I have worked on over the years. Most of these link to either the project website or Github. The vast majority of my projects are hosted on Github.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDAACS\n\n\n\nResearch\n\n\n\nDiagnostic Assessment and Achievement of College Skills\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDTedit\n\n\n\nr-package\n\n\n\nEditable DataTables for shiny apps.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataCache\n\n\n\nr-package\n\n\n\nAn R package to maintain data caches.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFutureMapping\n\n\n\nr-package\n\n\n\nAmplify Youth Ask Youth Survey Data Dashboard and Mapping Project.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIRRsim\n\n\n\nr-package\n\n\n\nThis package provides functions and a shiny application to simulate inter-rater reliability statistics based on various scoring and response models. The initial motivation…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSA\n\n\n\nr-package\n\n\nbook\n\n\n\nPropensity Score Analysis (PSA) is a statistical approach for estimating causal effects from observational studies. This project includes materials from workshops taught, an…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSAboot\n\n\n\nr-package\n\n\npsa\n\n\n\nR Package and Shiny Application for the Analysis of Qualitative Data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPSAgraphics\n\n\n\nr-package\n\n\npsa\n\n\n\nAn R Package to Support Propensity Score Analysis. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShinyQDA\n\n\n\nr-package\n\n\n\nThe ShinyQDA package is designed to assist researchers with the analysis of qualitative data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTriMatch\n\n\n\nr-package\n\n\npsa\n\n\n\nPropensity score matching for non-binary treatments.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualStats\n\n\n\nr-package\n\n\nbook\n\n\n\nVisual Statistics package and book.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbrickset\n\n\n\nr-package\n\n\n\nAn R package to interface with the Brickset.com API for getting data about LEGO sets \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nipeds\n\n\n\nr-package\n\n\n\nAn R package to interface with the Integrated Postsecondary Education Data System.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlikert\n\n\n\nr-package\n\n\n\nAn R package designed to help analyzing and visualizing Likert type items. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlogin\n\n\n\nr-package\n\n\nshiny\n\n\n\nThis package provides a framework for adding user authentication to Shiny applications. This is unique to other authentication frameworks such as ShinyManager and shinyauthr…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmedley\n\n\n\nr-package\n\n\n\nPredictive Modeling with Missing Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmldash\n\n\n\nr-package\n\n\n\nMashine learning dashboard\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmultilevelPSA\n\n\n\nr-package\n\n\npsa\n\n\n\nAn R package for estimating and visualizing multilevel propensity score models. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnaep\n\n\n\nr-package\n\n\n\nAn R package to interface with the National Assessment of Educational Progress (NAEP) restricted use databases. This includes access any analyzing data using the replicate…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npisa\n\n\n\nr-package\n\n\n\nA data-only R package for the 2009 Programme of International Student Assessment (PISA) conducted by Organisation for Economic Co-operation and Development (OECD).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nqualtrics\n\n\n\nr-package\n\n\n\nAn R package to interface with the Qualtrics.com survey system.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nruca\n\n\n\nr-package\n\n\n\nAn R package to get Rural-Urban Commuting Area (RUCA) Codes from zip codes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsqlutils\n\n\n\nr-package\n\n\n\nThe sqlutils package provides a set of utility functions to help manage a library of structured query language (SQL) files.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntimeline\n\n\n\nr-package\n\n\n\nAn R package to create timeline figures. \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/DataCache.html",
@@ -392,39 +399,46 @@
     "text": "Github: https://github.com/jbryer/DataCache"
   },
   {
-    "objectID": "projects/PSAboot.html",
-    "href": "projects/PSAboot.html",
-    "title": "PSAboot",
+    "objectID": "projects/IRRsim.html",
+    "href": "projects/IRRsim.html",
+    "title": "IRRsim",
     "section": "",
-    "text": "Github: https://github.com/jbryer/PSAboot"
+    "text": "Github: https://github.com/jbryer/IRRsim\nInter-rater reliability (IRR) is a critical component of establishing the reliability of measures when more than one rater is necessary. There are numerous IRR statistics available to researchers including percent rater agreement, Cohen’s Kappa, and several types of intraclass correlations (ICC). Several methodologists suggest using ICC over percent rater agreement (Hallgren, 2012; Koo & Li, 2016; McGraw & Wong, 1996; Shrout & Fleiss, 1979). However, the literature provides little guidance on the interpretation of ICC results. This article explores the relationship between ICC and percent rater agreement using simulations. Results suggest that ICC and percent rater agreement are highly correlated (R² &gt; 0.9) for most designs used in education. When raters are involved in scoring procedures, inter-rater reliability (IRR) measures are used to establish the reliability of instruments. Commonly used IRR measures include Percent Agreement, Intraclass Correlation Coefficient (ICC) and Cohen’s Kappa (see Table 1). Several researchers recommend using ICC and Cohen’s Kappa over Percent Agreement (Hallgren, 2012; Koo & Li, 2016; McGraw & Wong, 1996; Shrout & Fleiss, 1979). Although it may appear that IRR measures are interchangeable, they reflect different information (AERA, NCME, & APA, 2014). For instance, Cohen’s Kappa and Percent Agreement reflect absolute agreement, while ICC (3, 1) reflect consistency between the raters (see Table XX). Inter-rater reliability is defined differently in terms of either consistency, agreement, or a combination of both. Yet, there are misconceptions and inconsistencies when it comes to proper application, interpretation and reporting of these measures (Kottner et al., 2011; Trevethan, 2017). In addition, researchers tend to recommend different thresholds for poor, moderate and good level of reliability (see Table 2). These inconsistencies, and the paucity of detailed reports of test methods, research designs and results perpetuate the misconceptions in the application and interpretation of IRR measures."
   },
   {
-    "objectID": "projects/ShinyQDA.html",
-    "href": "projects/ShinyQDA.html",
-    "title": "ShinyQDA",
+    "objectID": "projects/PSAgraphics.html",
+    "href": "projects/PSAgraphics.html",
+    "title": "PSAgraphics",
     "section": "",
-    "text": "Github: https://github.com/jbryer/ShinyQDA"
+    "text": "Github: https://github.com/jbryer/PSAgraphics"
   },
   {
-    "objectID": "projects/VisualStats.html",
-    "href": "projects/VisualStats.html",
-    "title": "VisualStats",
+    "objectID": "projects/TriMatch.html",
+    "href": "projects/TriMatch.html",
+    "title": "TriMatch",
     "section": "",
-    "text": "Github: github.com/jbryer/VisualStats\nWebsite: visualstats.bryer.org"
+    "text": "Github: https://github.com/jbryer/TriMatch"
   },
   {
-    "objectID": "projects/daacs.html",
-    "href": "projects/daacs.html",
-    "title": "DAACS",
+    "objectID": "projects/brickset.html",
+    "href": "projects/brickset.html",
+    "title": "brickset",
     "section": "",
-    "text": "The Diagnostic Assessment and Achievement of College Skills (DAACS) is a suite of technological and social supports to optimize student learning. DAACS provides personalized feedback about students’ strengths and weaknesses in terms of key academic and self-regulated learning skills, linking them to the resources to help them be successful students.\nDAACS Websites:\n\ndaacs.net - General information about the project.\nmy.daacs.net - Public version of DAACS. Create an account, take the assessments, and view the feedback.\nsrl.daacs.net - Self-Regulated Learning open education resource.\ndocs.daacs.net - This site is fir administrators, instructors, or anyone who is intereted in using DAACS with their students. Site contains training materials and technical information.\ngithub.com/daacs - Github organization where source code is hosted."
+    "text": "Github: https://github.com/jbryer/brickset"
   },
   {
-    "objectID": "projects/login.html",
-    "href": "projects/login.html",
-    "title": "login",
+    "objectID": "projects/likert.html",
+    "href": "projects/likert.html",
+    "title": "likert",
     "section": "",
-    "text": "Github: https://github.com/jbryer/login"
+    "text": "Github: https://github.com/jbryer/likert"
+  },
+  {
+    "objectID": "projects/medley.html",
+    "href": "projects/medley.html",
+    "title": "medley",
+    "section": "",
+    "text": "Github: https://github.com/jbryer/medley\nMost predictive modeling strategies require there to be no missing data for model estimation. When there is missing data, there are generally two strategies for working with missing data: 1.) exclude the variables (columns) or observations (rows) where there is missing data; or 2.) impute the missing data. However, data is often missing in systematic ways. Excluding data from training is ignoring potentially predictive information and for many imputation procedures the missing completely at random (MCAR) assumption is violated.\nThe medley package implements a solution to modeling when there are systematic patterns of missingness. A working example of predicting student retention from a larger study of the Diagnostic Assessment and Achievement of College Skills (DAACS) will be explored. In this study, demographic data was collected at enrollment from all students and then students completed diagnostic assessments in self-regulated learning (SRL), writing, mathematics, and reading during their first few weeks of the semester. Although all students were expected to complete DAACS, there were no consequence and therefore a large percentage of student completed none or only some of the assessments. The resulting dataset has three predominate response patterns: 1.) students who completed all four assessments, 2.) students who completed only the SRL assessment, and 3). students who did not complete any of the assessments.\nThe goal of the medley algorithm is to take advantage of missing data patterns. For this example, the medley algorithm trained three predictive models: 1.) demographics plus all four assessments, 2.) demographics plus SRL assessment, and 3.) demographics only. For both training and prediction, the model used for each student is based upon what data is available. That is, if a student only completed SRL, model 2 would be used. The medley algorithm can be used with most statistical models. For this study, both logistic regression and random forest are used. The accuracy of the medley algorithm was 3.5% better than using only the complete data and 3.1% better than using a dataset where missing data was imputed using the mice package.\nThe medley package provides an approach for predictive modeling using the same training and prediction framework R users are accustomed to using. There are numerous parameters that can be modified including what underlying statistical models are used for training. Additional diagnostic functions are available to explore missing data patterns."
   },
   {
     "objectID": "projects/multilevelPSA.html",

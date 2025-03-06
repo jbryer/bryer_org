@@ -30,7 +30,7 @@ website:
       - icon: rss
         href: blog.xml
   page-footer:
-    left: "Site created with Quarto by Jason Bryer."
+    left: "Site created with [Quarto](https://quarto.org) by Jason Bryer."
 
 format:
   html:
