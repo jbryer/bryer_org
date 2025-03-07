@@ -30,7 +30,7 @@ website:
       - icon: rss
         href: blog.xml
   page-footer:
-    left: "Site created with [Quarto](https://quarto.org) by Jason Bryer. Blog posts are cross posted to [R-Bloggers.com](https://www.r-bloggers.com/)"
+    left: "Site created with [Quarto](https://quarto.org) by Jason Bryer.<br/>Blog posts are cross posted to [R-Bloggers.com](https://www.r-bloggers.com/)"
 
 # https://quarto.org/docs/projects/code-execution.html
 execute:
