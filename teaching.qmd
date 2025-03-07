@@ -2,6 +2,7 @@
 title: "Teaching"
 # page-layout: full
 title-block-banner: false
+page-layout: full
 ---
 
 ## Current courses

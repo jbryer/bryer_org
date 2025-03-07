@@ -1,0 +1,15 @@
+{
+  "hash": "fd35078269c95abbad59f468303b2bf8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data\"\nauthor: \"Jason Bryer\"\ndate: 2025-03-06\ndraft: false\ndescription: \"I will be giving a talk at ShinyConf 2025 on a Shiny application desiged for doing qualitative data analysis.\"\ncategories: [\"R\", \"Talk\"]\nimage: \"2025-04-11-ShinyConf2025.png\"\neditor_options: \n  chunk_output_type: console\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\nThe `ShinyQDA` R package is designed to assist researchers with the analysis of qualitative data. As the name suggests, the premise is that much of the interaction with the package will be done through a Shiny application. However, all the functionality in the Shiny application is accessible through R commands. The core functionality of `ShinyQDA` allows researchers to highlight passages and code passages. The application also allows for scoring text documents using rubrics. Tools for conducting validity analysis using co-occurrence plots and code frequency is provided. In addition to traditional qualitative data analysis, `ShinyQDA` utilizes natural language processing to conduct sentiment analysis, topic modeling, and text encoding (i.e. tokenization). `ShinyQDA` can be used locally by a single researcher or be deployed to a Shiny server so that multiple researchers can access the application to code and/or score documents.\n\nTo register for the (free) conference, go to [https://www.shinyconf.com](https://www.shinyconf.com)\n\nFor more information about the project, visit: [https://github.com/jbryer/ShinyQDA](https://github.com/jbryer/ShinyQDA)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

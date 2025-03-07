@@ -1,0 +1,15 @@
+{
+  "hash": "62a1ab6cc899201710bbac2afe29d31e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Fifty Shades of Grey in R\"\nauthor: \"Jason Bryer\"\ndate: 2012-11-27\ncategories: [\"R\"]\ntags: [\"R\", \"R-Bloggers\"]\nimage: \"2012-11-27-Fifty_Shades_of_Grey_in_R.png\"\n---\n\n\n\n\nMy wife went out to her book group tonight and their book of the month was *50 Shades of Grey*. Sadly, I could think of is that plotting 50 shades in R would be a neat exercise.\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nrequire(ggplot2)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nLoading required package: ggplot2\n```\n\n\n:::\n\n```{.r .cell-code}\ngrey50 <- data.frame(\n\tx = rep(1:10, 5),\n\ty = rep(1:5, each=10),\n\tc = unlist(lapply(seq(10,255,5), FUN=function(x) { rgb(x,x,x, max=255) })),\n\tt = unlist(lapply(seq(10,255,5), FUN=function(x) { ifelse(x > 255/2, 'black', 'white') }))\n)\nggplot(grey50, aes(x=x, y=y, fill=c, label=c, color=t)) +\n\tgeom_tile() + \n\tgeom_text(size=3) +\n\tscale_fill_identity() + scale_color_identity() + ylab(NULL) + xlab(NULL) +\n\ttheme_void()\n```\n\n::: {.cell-output-display}\n![](2012-11-27-FIfty_Shades_of_Grey_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

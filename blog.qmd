@@ -12,9 +12,6 @@ listing:
   fields: [title, date, description, image]
   feed:
     categories: ["R", "Talk"]
-# page-layout: full
+page-layout: article
 title-block-banner: false
 ---
-::: {.column-page}
-
-:::

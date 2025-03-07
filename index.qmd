@@ -21,6 +21,7 @@ about: # More info about this page type: https://quarto.org/docs/websites/websit
       icon: file-pdf
       url: "https://github.com/jbryer/CV/blob/master/Bryer_CV.pdf?raw=true"
 comments: false
+page-layout: article
 ---
 ::: {.column-page}
 

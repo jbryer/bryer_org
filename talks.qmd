@@ -13,6 +13,6 @@ listing:
   feed: false
   image-height: "600"
   # fields: [title, description]
-# page-layout: full
+page-layout: article
 title-block-banner: false
 ---

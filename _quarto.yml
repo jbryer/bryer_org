@@ -32,9 +32,15 @@ website:
   page-footer:
     left: "Site created with [Quarto](https://quarto.org) by Jason Bryer."
 
+# https://quarto.org/docs/projects/code-execution.html
+execute:
+  freeze: auto
+  cache: true
+
 format:
   html:
     theme: yeti # See for available themes: https://bootswatch.com
+    # page-layout: full
     css: styles.css
     toc: false
 
