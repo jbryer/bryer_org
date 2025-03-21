@@ -25,3 +25,5 @@ The `login` package provides a framework for adding user authentication to Shiny
 [Download slides](https://github.com/jbryer/login/tree/main/inst/slides/login.pdf)
 
 For more information about the project, visit: [https://github.com/jbryer/login](https://github.com/jbryer/login)
+
+{{< video https://www.youtube.com/watch?v=VjbhraZhYNg >}}
