@@ -8,11 +8,11 @@ banner_image <- function(
 		width = 900,
 		height = 600
 ) {
-	course_logo <- png::readPNG("~/Dropbox (Personal)/Projects/Bryer_org/v2/website_hex.png") |>
+	course_logo <- png::readPNG("~/Dropbox (Personal)/Projects/Bryer_org/website_hex.png") |>
 		grid::rasterGrob(interpolate = TRUE)
 
 	p <- ggplot2::ggplot() +
-		ggplot2::annotate(geom = 'text', label = likert:::label_wrap_mod(title, width = 40),
+		ggplot2::annotate(geom = 'text', label = likert:::label_wrap_mod(title, width = 35),
 						  x = 0, y = 6.0, color = '#0033A1',
 						  hjust = 0, size = 30, size.unit = 'pt', fontface = 'bold') +
 		ggplot2::annotate(geom = 'text', label = date, x = 0, y = 3.5, color = '#0033A1',
