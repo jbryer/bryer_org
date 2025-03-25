@@ -4,7 +4,8 @@ project:
   render:
     - "*.qmd"
     - "!resources/"
-  # post-render:
+  post-render:
+    - "cp -rnv images/. docs/images/"
   #   - "cp -rnv resources/. docs/resources/"
 
 website:

@@ -1,7 +1,3 @@
-/blogdown/*
-themes/starter-academic/
-shiny_do/
-
 # History files
 .Rhistory
 .Rapp.history
@@ -41,6 +37,4 @@ docs/multilevelPSA/cache
 static/multilevelPSA/cache
 
 archive/
-
-
 /.quarto/
