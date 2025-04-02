@@ -1,0 +1,10 @@
+---
+title: "clav"
+description: "Cluster Analysis Validation"
+categories: ["r-package"]
+image: clav.png
+---
+
+Github: [https://github.com/jbryer/clav](https://github.com/jbryer/clav)
+
+The clav package provides utilities for conducting cluster (profile) analysis with an emphasis on the validating the stability of the profiles both within a given data set as well as across data sets. Unlike supervised models where the known class is measured, validation of unsupervised models where there is no known class can be challenging. The approach implemented here attempts to compare the cluster results across many random samples.
