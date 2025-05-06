@@ -38,3 +38,5 @@ static/multilevelPSA/cache
 
 archive/
 /.quarto/
+# Big files in here
+posts/2025-05-06-Downsampling_cache/

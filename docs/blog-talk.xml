@@ -9,7 +9,7 @@
 <link>https://bryer.org/blog.html#category=Talk</link>
 <atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.5.56</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Thu, 06 Mar 2025 05:00:00 GMT</lastBuildDate>
 <item>
   <title>ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data</title>
