@@ -10,7 +10,54 @@
 <atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Thu, 06 Mar 2025 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 09 Aug 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Predictive Modeling with Missing Data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-08-09-useR2025.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Most predictive modeling strategies require there to be no missing data for model estimation. When there is missing data, there are generally two strategies for working with missing data: 1.) exclude the variables (columns) or observations (rows) where there is missing data; or 2.) impute the missing data. However, data is often missing in systematic ways. Excluding data from training is ignoring potentially predictive information and for many imputation procedures the missing completely at random (MCAR) assumption is violated. The medley package implements a solution to modeling when there are systematic patterns of missingness. A working example of predicting student retention from a larger study of the Diagnostic Assessment and Achievement of College Skills (DAACS) will be explored. In this study, demographic data was collected at enrollment from all students and then students completed diagnostic assessments in self-regulated learning (SRL), writing, mathematics, and reading during their first few weeks of the semester. Although all students were expected to complete DAACS, there were no consequence and therefore a large percentage of student completed none or only some of the assessments. The resulting dataset has three predominate response patterns: 1.) students who completed all four assessments, 2.) students who completed only the SRL assessment, and 3). students who did not complete any of the assessments. The goal of the medley algorithm is to take advantage of missing data patterns. For this example, the medley algorithm trained three predictive models: 1.) demographics plus all four assessments, 2.) demographics plus SRL assessment, and 3.) demographics only. For both training and prediction, the model used for each student is based upon what data is available. That is, if a student only completed SRL, model 2 would be used. The medley algorithm can be used with most statistical models. For this study, both logistic regression and random forest are used. The accuracy of the medley algorithm was 3.5% better than using only the complete data and 3.1% better than using a dataset where missing data was imputed using the mice package. The medley package provides an approach for predictive modeling using the same training and prediction framework R users are accustomed to using. There are numerous parameters that can be modified including what underlying statistical models are used for training. Additional diagnostic functions are available to explore missing data patterns.</p>
+<p>To register for the conference, go to <a href="https://user2025.r-project.org">https://user2025.r-project.org</a></p>
+<p>Session schedule: <a href="https://user2025.r-project.org/program/in-person/">https://user2025.r-project.org/program/in-person/</a></p>
+<p>For more information about the project, visit: <a href="https://github.com/jbryer/medley">https://github.com/jbryer/medley</a></p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2025-08-09-useR2025.html</guid>
+  <pubDate>Sat, 09 Aug 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-08-09-useR2025.png" medium="image" type="image/png" height="62" width="144"/>
+</item>
+<item>
+  <title>clav: R package and Shiny application for cluster analysis validation</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-08-05-JSM025.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centric approaches (e.g.&nbsp;PCA, factor analysis). Whether a preprocessing step for predictive modeling or the primary analysis, validation is critical for determining generalizability across datasets. Theodoridis and Koutroumbas (2008) identified three broad types of validation for cluster analysis: 1) Internal cluster validation, 2) Relative cluster validation, and 3) External cluster validation. Strategies for steps 1 and 2 are well established, however cluster analysis is typically an unsupervised learning method where there is no observed outcome. Ullman et al (2021) proposed an approach to validating a cluster solution by visually inspecting the cluster solutions across a training and validation dataset. This talk introduces the clav R package that implements and expands this approach by generating multiple random samples (using either a simple random split or bootstrap samples). Visualizations of both the cluster profiles as well as distributions of the cluster means are provided along with a Shiny application to assist the researcher.</p>
+<p>For more information about the project, visit: <a href="https://github.com/jbryer/clav">https://github.com/jbryer/clav</a></p>
+<p>A student will also be presenting <em>AI-Generated Text Detection in the Context of Domain- and Prompt-Specific Essays</em></p>
+<p>The widespread adoption of Large Language Models has made distinguishing between human- and AI-generated essays more challenging. This study explores AI detection methods for domain- and prompt-specific essays within the Diagnostic Assessment and Achievement of College Skills (DAACS) framework, applying both random forest and fine-tuned ModernBERT classifiers. Our approach incorporates pre-chatGPT essays, likely human-generated, alongside synthetic datasets of essays generated and modified by AI. The random forest classifier was trained with open-source embeddings such as miniLM, RoBERTa, and a low-cost OpenAI model, using a one-versus-one strategy. The ModernBERT method employed a novel two-level fine-tuning strategy, incorporating essay-level and sentence-pair classifications that combines global text features with detailed sentence transitions through coherence scoring and style consistency detection. Together, these methods effectively identify whether essays have been altered by AI. Our approach provides a cost-effective solution for specific domains and serves as a robust alternative to generic AI detection tools, all while enabling local execution on consumer-grade hardware.</p>
+<p>To register for the conference, go to <a href="https://ww2.amstat.org/meetings/jsm/2025/">https://ww2.amstat.org/meetings/jsm/2025/</a></p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <guid>https://bryer.org/posts/2025-08-05-JSM025.html</guid>
+  <pubDate>Tue, 05 Aug 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-08-05-JSM2025.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
 <item>
   <title>ShinyQDA: R Package and Shiny Application for the Analysis of Qualitative Data</title>
   <dc:creator>Jason Bryer</dc:creator>

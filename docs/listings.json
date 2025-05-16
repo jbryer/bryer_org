@@ -1,37 +1,24 @@
 [
   {
-    "listing": "/projects.html",
+    "listing": "/talks.html",
     "items": [
-      "/projects/daacs.html",
-      "/projects/DTedit.html",
-      "/projects/DataCache.html",
-      "/projects/FutureMapping.html",
-      "/projects/IRRsim.html",
-      "/projects/psa.html",
-      "/projects/PSAboot.html",
-      "/projects/PSAgraphics.html",
-      "/projects/ShinyQDA.html",
-      "/projects/TriMatch.html",
-      "/projects/VisualStats.html",
-      "/projects/brickset.html",
-      "/projects/clav.html",
-      "/projects/ipeds.html",
-      "/projects/likert.html",
-      "/projects/login.html",
-      "/projects/medley.html",
-      "/projects/mldash.html",
-      "/projects/multilevelPSA.html",
-      "/projects/naep.html",
-      "/projects/pisa.html",
-      "/projects/qualtrics.html",
-      "/projects/ruca.html",
-      "/projects/sqlutils.html",
-      "/projects/timeline.html"
+      "/posts/2025-08-09-useR2025.html",
+      "/posts/2025-08-05-JSM025.html",
+      "/posts/2025-04-11-ShinyConf2025.html",
+      "/posts/2025-02-19-Github_Portfolio.html",
+      "/posts/2024-04-17-ShinyConf2024.html",
+      "/posts/2023-11-14-Intro_to_PSA.html",
+      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
+      "/posts/2022-03-01_R_Package_Development.html",
+      "/posts/2021-11-30-Intro_to_Shiny.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2025-08-09-useR2025.html",
+      "/posts/2025-08-05-JSM025.html",
+      "/posts/2025-05-16-User_params_for_shiny.html",
       "/posts/2025-05-06-Downsampling.html",
       "/posts/2025-03-23-Bootstrap_vs_Standard_Error.html",
       "/posts/2025-04-11-ShinyConf2025.html",
@@ -78,15 +65,33 @@
     ]
   },
   {
-    "listing": "/talks.html",
+    "listing": "/projects.html",
     "items": [
-      "/posts/2025-04-11-ShinyConf2025.html",
-      "/posts/2025-02-19-Github_Portfolio.html",
-      "/posts/2024-04-17-ShinyConf2024.html",
-      "/posts/2023-11-14-Intro_to_PSA.html",
-      "/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html",
-      "/posts/2022-03-01_R_Package_Development.html",
-      "/posts/2021-11-30-Intro_to_Shiny.html"
+      "/projects/daacs.html",
+      "/projects/DTedit.html",
+      "/projects/DataCache.html",
+      "/projects/FutureMapping.html",
+      "/projects/IRRsim.html",
+      "/projects/psa.html",
+      "/projects/PSAboot.html",
+      "/projects/PSAgraphics.html",
+      "/projects/ShinyQDA.html",
+      "/projects/TriMatch.html",
+      "/projects/VisualStats.html",
+      "/projects/brickset.html",
+      "/projects/clav.html",
+      "/projects/ipeds.html",
+      "/projects/likert.html",
+      "/projects/login.html",
+      "/projects/medley.html",
+      "/projects/mldash.html",
+      "/projects/multilevelPSA.html",
+      "/projects/naep.html",
+      "/projects/pisa.html",
+      "/projects/qualtrics.html",
+      "/projects/ruca.html",
+      "/projects/sqlutils.html",
+      "/projects/timeline.html"
     ]
   }
 ]
