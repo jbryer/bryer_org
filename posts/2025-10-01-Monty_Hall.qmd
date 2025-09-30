@@ -93,7 +93,7 @@ Selection: 1
 You win!
 ```
 
-Let's not simulate 1,000 games. We will use two vectors, `mh_switch` and `mh_no_switch`, to store the results after switching doors or not, respectively. For each iteration, the initial door pick is randomly selected.
+Let's now simulate 1,000 games. We will use two vectors, `mh_switch` and `mh_no_switch`, to store the results after switching doors or not, respectively. For each iteration, the initial door pick is randomly selected.
 
 ```{r}
 n_games <- 1000
