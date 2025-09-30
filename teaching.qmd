@@ -9,6 +9,8 @@ page-layout: full
 
 * **DATA606 - Statistics and Probability** - [City University of New York, School of Professional Studies](https://sps.cuny.edu). Website for the most recent course is available at http://data606.net. See also the [DATA606](https://github.com/jbryer/DATA606) R package to support this course.
 
+* **IS381 - Statistics and Probability with R** - [City University of New York, School of Professional Studies](https://sps.cuny.edu). Website for the most recent course is available at [http://is381.net](http://is381.net).
+
 * **DAV5300 - Computational Math and Statistics** - Yeshiva University. Website for the most recent course is available at [http://dav5300.net](http://dav5300.net).
 
 The [VisualStats](https://visualstats.bryer.org) website contains articles and Shiny applications to support the teaching of statistics.
