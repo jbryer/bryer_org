@@ -9,8 +9,168 @@
 <link>https://bryer.org/blog.html</link>
 <atom:link href="https://bryer.org/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.5.57</generator>
-<lastBuildDate>Sat, 09 Aug 2025 04:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Tue, 30 Sep 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Plotting Distributions in R</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-09-30-distributions.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>When working with distributions in R, each distribution has four functions, namely:</p>
+<ul>
+<li><code>dXXX</code> - density function.</li>
+<li><code>rXXX</code> - generate random number from this distribution.</li>
+<li><code>pXXX</code> - returns the area to the left of the given value.</li>
+<li><code>qXXX</code> - returns the quantile for the given value/area.</li>
+</ul>
+<p>Where <code>XXX</code> is the distribution name (e.g.&nbsp;<code>norm</code>, <code>binom</code>, <code>t</code>, etc.).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'jbryer/VisualStats'</span>)</span></code></pre></div>
+</div>
+<p>The <code>VisualStats::plot_distributions()</code> function will generate four plots representing the four R distribution functions. For each subplot points correspond to the first parameter of the corresponding function (note the subplot for the random <code>rXXX</code> function does not have points since this simply returns random values from that distribution). The arrows correspond to what that function will return.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(VisualStats)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'VisualStats'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    simulate</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'distributions'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">package =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'VisualStats'</span>)</span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_distributions</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dist =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'norm'</span>,</span>
+<span id="cb5-3">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xvals =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>),</span>
+<span id="cb5-4">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,</span>
+<span id="cb5-5">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+ℹ The deprecated feature was likely used in the VisualStats package.
+  Please report the issue at &lt;https://github.com/jbryer/VisualStats/issues&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://bryer.org/posts/2025-09-30-distributions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The top two plots (<code>dXXX</code> and <code>rXXX</code>) plot the distribution. The bottom two plots are the cumulative density function for the given distribution. The CDF describes the probability that a random variable (X) will be less than or equal to a specific value (<code>x</code>), written as F(x) = P(X ≤ x). The CDF provides a complete view of a random variable’s distribution by accumulating probabilities up to that point.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_distributions</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dist =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'binom'</span>,</span>
+<span id="cb7-2">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xvals =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>),</span>
+<span id="cb7-3">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb7-4">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb7-5">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">args =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prob =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://bryer.org/posts/2025-09-30-distributions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>VisualStats</code> package also has a Shiny application that allows you to interactively plot the 17 distributions available in base R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://bryer.org/posts/distributions_shiny_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the distributions Shiny application</figcaption>
+</figure>
+</div>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <guid>https://bryer.org/posts/2025-09-30-distributions.html</guid>
+  <pubDate>Tue, 30 Sep 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-09-30-banner.png" medium="image" type="image/png"/>
+</item>
 <item>
   <title>Predictive Modeling with Missing Data</title>
   <dc:creator>Jason Bryer</dc:creator>
@@ -1436,7 +1596,6 @@ Specificity: 83.31%</code></pre>
 <tr>
 <th colspan="3" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
 </tbody></table>
-
 </div>
 </div>
 
@@ -7378,213 +7537,6 @@ saveResults &lt;- function(results) {
   <guid>https://bryer.org/posts/2016-02-21-Bayes_Billiards_Shiny.html</guid>
   <pubDate>Mon, 22 Feb 2016 02:13:14 GMT</pubDate>
   <media:content url="https://bryer.org/posts/2016-02-21-Bayes_Billiards_Shiny.png" medium="image" type="image/png" height="104" width="144"/>
-</item>
-<item>
-  <title>Data Caching</title>
-  <dc:creator>Jason Bryer</dc:creator>
-  <link>https://bryer.org/posts/2014-07-29-Data_Caching.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Data caching is not new. It is often necessary to save intermediate data files when the process of loading and/or manipulating data takes a considerable amount of time. This problem is further complicated when working with dynamic data that changes regularly. In these situations it often sufficient to use data that is current with in some time frame (e.g.&nbsp;hourly, daily, weekly, monthly). One solution is to use a time-based job scheduler such as <code>cron</code>. However, that requires access and knowledge of Unix systems. The alternative, is to check for the “freshness” of a cached dataset each time it is requested. If is “stale,” then the data cached is refreshed with more up-to-date data. The <code>DataCache</code> package implements this approach in R. Moreover, on Unix systems (including Mac OS X), the refreshing will be done in the background. That is, when requesting data from the cache, if it is stale, the function will return the latest available data while the cache is updated in the background. This is particularly useful when using R in a web environment (e.g.&nbsp;<a href="http://shiny.rstudio.com">Shiny Apps</a>) where it is not ideal to have the user wait for data be loaded to begin interacting with the app.</p>
-<p>The latest version of the <code>DataCache</code> package can be downloaded from Github using the <code>devtools</code> package.</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">devtools<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'jbryer/DataCache'</span>)</span></code></pre></div>
-<p>For this example, we wish to periodically load weather data using the <code>weatherData</code> package. The <code>getDetailedWeather</code> function provides hourly temperature updates. To start, we will load the <code>DataCache</code> and <code>weatherData</code> packages.</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'DataCache'</span>)</span>
-<span id="cb2-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'weatherData'</span>)</span></code></pre></div>
-<p>The only required parameter for the <code>data.cache</code> function is the <code>FUN</code> parameter which defines the data to be loaded. This function should return a named <code>list</code> where each element of the list will be assigned to specified environment when loaded. That is, if the function returns <code>list(foo='bar')</code> then the object <code>foo</code> will be assigned in the working envirnoment (note that this can be modified using the <code>envir</code> parameter).</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' Load data for a single day for the given airport.</span></span>
-<span id="cb3-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param station_id three letter airport code.</span></span>
-<span id="cb3-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @return a list with a data frame names `weather.XXX` where `XXX` is the three</span></span>
-<span id="cb3-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#'         letter airport code.</span></span>
-<span id="cb3-5">loadWeatherData <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">station_id=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'ALB'</span>) {</span>
-<span id="cb3-6">    results <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">list</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">getDetailedWeather</span>(station_id, <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">Sys.Date</span>()))</span>
-<span id="cb3-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">names</span>(results) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'weather.'</span>, station_id)</span>
-<span id="cb3-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(results)</span>
-<span id="cb3-9">}</span></code></pre></div>
-<p>To get started, simply call <code>data.cache</code> with the data loading function. This function will block on the first execution (i.e.&nbsp;you will have to wait until the first dataset is loaded). On subsequent executions, the <code>data.cache</code> function will check to see if the most recent cached data is stale. If it is stale, it will start a new background process to load the data and return the most recent data. Once the background process completes, <code>data.cache</code> will start returning the updated data.</p>
-<p>Note for Windows users: Forking is not available on Windows systems using the <code>parallel</code> package. Therefore data cannot be loaded in the background. As a result, the <code>data.cache</code> function will wait for the refreshed data to load each time it becomes stale.</p>
-<p>The <code>data.cache</code> returns invisibly (i.e.&nbsp;will not be printed if not assinged to a variable, see <code>?invisible</code> for more details) the timestamp of the data returned.</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">(cache.date1 <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.cache</span>(loadWeatherData))</span></code></pre></div>
-<pre><code>No cached data found. Loading intial data...</code></pre>
-<pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">head</span>(weather.ALB)</span></code></pre></div>
-<pre><code>                 Time TemperatureF
-1 2014-07-29 00:51:00         62.1
-2 2014-07-29 01:51:00         61.0
-3 2014-07-29 02:51:00         61.0
-4 2014-07-29 03:51:00         61.0
-5 2014-07-29 04:51:00         60.1
-6 2014-07-29 05:51:00         59.0</code></pre>
-<p>The <code>cache.info</code> function provides a summary of all the cached data files. It will also provide columns (which can be set using the <code>stale</code> parameter) indicating whether that data file is stale according to various time periods.</p>
-<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cache.info</span>()</span></code></pre></div>
-<pre><code>                          file             created age_mins hourly_stale
-1 Cache2014-07-29 18:03:53.rda 2014-07-29 18:03:53   0.1842        FALSE
-  daily_stale weekly_stale monthly_stale yearly_stale
-1       FALSE        FALSE         FALSE        FALSE</code></pre>
-<p>Old data caches can easily be loaded this way. For example, the following will load the first data cache created:</p>
-<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">cinfo <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cache.info</span>()</span>
-<span id="cb11-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">load</span>(cinfo[<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nrow</span>(cinfo),]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>file)</span></code></pre></div>
-<p>There are a number of frequencies available for defining when a dataset becomes stale. They are:</p>
-<ul>
-<li><code>hourly</code> - Data will become stale each hour. This uses the <code>hour</code> function from the <code>lubrdiate</code> package. Therefore, data will become stale at the top of each hour.</li>
-<li><code>daily</code> - Data will become stale each day (i.e.&nbsp;at midnight).</li>
-<li><code>weekly</code> - Data will become stale each week. The day of week will vary depending on what day of the week January 1st occurs.</li>
-<li><code>montly</code> - Data will become stale each month (i.e.&nbsp;on the 1st of the month).</li>
-<li><code>yearly</code> - Data will become stale each year (i.e.&nbsp;on January 1st).</li>
-<li><code>nMinutes</code> - Data will become stale if last loaded more than <em>n</em> minutes ago.</li>
-<li><code>nHours</code> - Data will become stale if last loaded more than <em>n</em> hours ago.</li>
-<li><code>nDays</code> - Data will become stale if last laoded more than <em>n</em> days ago.</li>
-</ul>
-<p>You can define your own frequency. Simply define a function that takes one parameter, <code>timestamp</code>, and returns a logical where <code>TRUE</code> indicates the data loaded at <code>timestamp</code> is stale.</p>
-<p>We can see that the <code>weather.ALB</code> data frame is now available in the working environent.</p>
-<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ls</span>()</span></code></pre></div>
-<pre><code>[1] "cache.date1"     "loadWeatherData" "package"         "weather.ALB"</code></pre>
-<p>We will wait 60 seconds so that the cache becomes stale. We will also call <code>data.cache</code> twice in a row to show that they will each return the same cached data, but the second call will not spawn a new background process to refresh the data.</p>
-<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">Sys.sleep</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">60</span>)</span>
-<span id="cb14-2">(cache.date2 <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.cache</span>(loadWeatherData, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">frequency=</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nMinutes</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)))</span></code></pre></div>
-<pre><code>Loading more recent data, returning lastest available.</code></pre>
-<pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
-<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">(cache.date3 <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.cache</span>(loadWeatherData, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">frequency=</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nMinutes</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)))</span></code></pre></div>
-<pre><code>Data is being loaded by another process. The process has been running for 0.121761083602905 seconds. If this is an error delete cache/Cache.lck
-Loading more recent data, returning lastest available.</code></pre>
-<pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
-<p>It is easy to have multiple data caches. Using the same <code>loadWeatherData</code> function we will create a spearate data cache for weather data from JFK.</p>
-<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data.cache</span>(loadWeatherData, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">cache.name=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'NRT'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">station_id=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'NRT'</span>)</span></code></pre></div>
-<pre><code>No cached data found. Loading intial data...</code></pre>
-<div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">head</span>(weather.NRT)</span></code></pre></div>
-<pre><code>                 Time TemperatureF
-1 2014-07-29 00:00:00         69.8
-2 2014-07-29 00:30:00         68.0
-3 2014-07-29 01:00:00         68.0
-4 2014-07-29 01:30:00         68.0
-5 2014-07-29 02:00:00         66.2
-6 2014-07-29 02:30:00         66.2</code></pre>
-<div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cache.info</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">cache.name=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'NRT'</span>)</span></code></pre></div>
-<pre><code>                        file             created age_mins hourly_stale
-1 NRT2014-07-29 18:05:04.rda 2014-07-29 18:05:04  0.03819        FALSE
-  daily_stale weekly_stale monthly_stale yearly_stale
-1       FALSE        FALSE         FALSE        FALSE</code></pre>
-
-
-
- ]]></description>
-  <category>R</category>
-  <guid>https://bryer.org/posts/2014-07-29-Data_Caching.html</guid>
-  <pubDate>Wed, 30 Jul 2014 02:13:14 GMT</pubDate>
 </item>
 </channel>
 </rss>

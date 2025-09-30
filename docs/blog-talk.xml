@@ -9,7 +9,7 @@
 <link>https://bryer.org/blog.html#category=Talk</link>
 <atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.5.57</generator>
+<generator>quarto-1.7.32</generator>
 <lastBuildDate>Sat, 09 Aug 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Predictive Modeling with Missing Data</title>
