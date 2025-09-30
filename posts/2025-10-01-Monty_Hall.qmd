@@ -1,0 +1,121 @@
+---
+title: "Simulating Monty Hall's Problem"
+author: "Jason Bryer"
+date: 2025-10-01
+draft: false
+description: "Simulation of Monty Hall's problem"
+categories: ["R"]
+image: "Monty_open_door.svg.png"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r banner, eval=FALSE, include=FALSE}
+source('../resources/banner.R')
+banner_image(rmarkdown::metadata$title,
+			 date = format(as.Date(rmarkdown::metadata$date), "%B %d, %Y"),
+			 out_file = paste0(rmarkdown::metadata$date), '-banner.png')
+```
+
+```{r setup, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```
+
+I find that when teaching statistics (and probability) it is often helpful to simulate data first in order to get an understanding of the problem. The Monty Hall problem recently came up in a class so I implemented a function to play the game.
+
+The Monty Hall problem results from a game show, [*Let's Make a Deal*](https://en.wikipedia.org/wiki/Let%27s_Make_a_Deal), hosted by Monty Hall. In this game, the player picks one of three doors. Behind one is a car, the other two are goats. After picking a door the player is shown the contents of one of the other two doors, which because the host knows the contents, is a goat. The question to the player: Do you switch your choice?
+
+For more information, be sure to see the [Wikipedia article](https://en.wikipedia.org/wiki/Monty_Hall_problem).
+
+Below we implement a function that will simulate a single play of this game. You can play interactively, or if you specify the `pick` and `switch` parameters this can be looped in order to simulate the results.
+
+
+```{r}
+monty_hall <- function(pick, switch) {
+	interactive <- FALSE
+	if(missing(pick)) {
+		interactive <- TRUE
+		cat('Pick your door:')
+		pick <- LETTERS[menu(c('A', 'B', 'C'))]
+	} else {
+		if(!pick %in% LETTERS[1:3]) {
+			stop('pick must be either A, B, or C')
+		}
+	}
+	doors <- c('win', 'lose', 'lose')
+	doors <- sample(doors) # Shuffle the doors
+	names(doors) <- LETTERS[1:3]
+	if(doors[pick] == 'win') {
+		show <- sample(names(doors[!names(doors) %in% pick]), size = 1)
+	} else {
+		show <- doors[!names(doors) %in% pick] == 'lose'
+		show <- names(which(show == TRUE))
+	}
+	if(missing(switch)) {
+		interactive <- TRUE
+		cat(paste0('Showing door ', show, '. Do you want to switch your choice?'))
+		switch <- menu(c('yes', 'no')) == 1
+	}
+	if(switch) {
+		pick <- names(doors)[!names(doors) %in% c(show, pick)]
+	}
+	win <- unname(doors[pick] == 'win')
+	if(interactive) {
+		if(win) {
+			cat('You win!')
+		} else {
+			cat('Sorry, you lost.')
+		}
+		invisible(win)
+	} else {
+		return(win)
+	}
+}
+```
+
+We can play a single game:
+
+```{r, eval=FALSE}
+monty_hall()
+```
+
+```
+Pick your door:
+1: A
+2: B
+3: C
+
+Selection: 2
+Showing door A. Do you want to switch your choice?
+1: yes
+2: no
+
+Selection: 1
+You win!
+```
+
+Let's not simulate 1,000 games. We will use two vectors, `mh_switch` and `mh_no_switch`, to store the results after switching doors or not, respectively. For each iteration, the initial door pick is randomly selected.
+
+```{r}
+n_games <- 1000
+mh_switch <- logical(n_games)
+mh_no_switch <- logical(n_games)
+for(i in 1:n_games) {
+	pick <- sample(LETTERS[1:3], size = 1)
+	mh_switch[i] <- monty_hall(pick = pick, switch = TRUE)
+	mh_no_switch[i] <- monty_hall(pick = pick, switch = FALSE)
+}
+```
+
+The probability of winning if we switch the door is:
+
+```{r}
+mean(mh_switch)
+```
+
+The probability of winning if we do not switch the door is:
+
+```{r}
+mean(mh_no_switch)
+```
+
+It should be noted that the theoretical probability of winning if you switch is 2/3, and is 1/3 if you don't switch.

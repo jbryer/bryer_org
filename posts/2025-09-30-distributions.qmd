@@ -39,7 +39,7 @@ corresponding function (note the subplot for the random `rXXX` function does not
 since this simply returns random values from that distribution). The arrows correspond to 
 what that function will return.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(VisualStats)
 data('distributions', package = 'VisualStats')
 plot_distributions(dist = 'norm',
