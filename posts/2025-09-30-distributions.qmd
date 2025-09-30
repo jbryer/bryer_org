@@ -3,7 +3,7 @@ title: "Plotting Distributions in R"
 author: "Jason Bryer"
 date: 2025-09-30
 draft: false
-description: ""
+description: "Function and Shiny application for working with distributions in R."
 categories: ["R"]
 image: "distributions_shiny_screenshot.png"
 editor_options: 
