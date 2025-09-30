@@ -5,7 +5,7 @@ date: 2025-09-30
 draft: false
 description: ""
 categories: ["R"]
-image: "2025-09-30-banner.png"
+image: "distributions_shiny_screenshot.png"
 editor_options: 
   chunk_output_type: console
 ---
