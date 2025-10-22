@@ -5,7 +5,7 @@ date: 2025-10-22
 draft: false
 description: "The post explores the changing landscape of using SAT/ACT for college admissions using the Integrated Postsecondary Education Data System (IPEDS)."
 categories: ["R"]
-image: "Monty_open_door.svg.png"
+image: "2025-10-22-SAT_ACT_Requirements.png"
 editor_options: 
   chunk_output_type: console
 ---
