@@ -10,7 +10,380 @@
 <atom:link href="https://bryer.org/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Wed, 01 Oct 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 22 Oct 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>The use of SAT/ACT for college admissions</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I have been working on a presentation regarding college readiness and the use of SAT/ACT for college admissions as part of the <a href="https://daacs.net">Diagnostic Assessment and Achievement of College Skills</a>. I wanted to see how the use of these high-stakes assessments have changed over the last decade. Turns out that I wrote a package years ago to work with the <a href="https://nces.ed.gov/ipeds">Integrated Postsecondary Education Data System</a>, <a href="https://github.com/jbryer/ipeds"><code>ipeds</code></a> and fortunately it still works! Currenlty, it is only on Github and can be installed using the <code>remotes</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'jbryer/ipeds'</span>)</span></code></pre></div>
+</div>
+<p>The <code>surveys</code> data frame included in the package provides metadata for the different data files available from the IPEDS website. The <code>HD</code> data file provides directory information for each institution in the United States.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data</span>(surveys, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">package =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ipeds'</span>)</span></code></pre></div>
+</div>
+<p>We are interested in the <code>admcon7</code> variable which has three levels indicating how each institution uses tests for admissions decisions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">levels <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'1'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Required'</span>,</span>
+<span id="cb3-2">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'5'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Test Optional'</span>,</span>
+<span id="cb3-3">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'3'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Test Blind'</span>)</span></code></pre></div>
+</div>
+<p>The following block will download the directory information for 2014 through 2023 (the latest year currently available).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">admissions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>()</span>
+<span id="cb4-2">years <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2014</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2023</span></span>
+<span id="cb4-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span>(i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> years) {</span>
+<span id="cb4-4">    adm <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">getIPEDSSurvey</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ADM'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">year =</span> i)</span>
+<span id="cb4-5">    adm<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>admcon7 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(adm<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>admcon7,</span>
+<span id="cb4-6">                          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(levels),</span>
+<span id="cb4-7">                          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> levels)</span>
+<span id="cb4-8">    adm<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> i</span>
+<span id="cb4-9">    admissions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(admissions, adm[,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'year'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'admcon7'</span>)])</span>
+<span id="cb4-10">}</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.
+Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
+and will be removed in a future version. Use ipeds_survey instead.</code></pre>
+</div>
+</div>
+<p>The figure below shows a pretty striking change in how institutions have used high stakes assessments like the SAT and ACT for admissions decisions around 2020 (not sure what happened that year 😉).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">tab <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(admissions<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>year, admissions<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>admcon7) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb6-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">prop.table</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb6-3">    reshape2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">melt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb6-4">    dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Year =</span> Var1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Test_Use =</span> Var2)</span>
+<span id="cb6-5"></span>
+<span id="cb6-6">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(tab, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> Year, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> value, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> Test_Use, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> Test_Use)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_path</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">shape =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'white'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">shape =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-10">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Test usage: '</span>, </span>
+<span id="cb6-11">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Required'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#7209B7'</span>, </span>
+<span id="cb6-12">                                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Test Optional'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#84DB8F'</span>, </span>
+<span id="cb6-13">                                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Test Blind'</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E2BD6B'</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> scales<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>percent) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-15">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(years, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(years) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb6-16">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(years, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(years) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb6-17">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(years), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(years) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-18">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-19">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># xlim(c(2014, 2024)) +</span></span>
+<span id="cb6-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bottom'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-21">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Use of high stakes assessments (SAT/ACT) for college admissions'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-22">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Percentage of Institutions'</span>)</span>
+<span id="cb6-23"></span>
+<span id="cb6-24">directlabels<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">direct.label</span>(p, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"last.qp"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <guid>https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements.html</guid>
+  <pubDate>Wed, 22 Oct 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/Monty_open_door.svg.png" medium="image" type="image/png" height="80" width="144"/>
+</item>
 <item>
   <title>Simulating Monty Hall’s Problem</title>
   <dc:creator>Jason Bryer</dc:creator>
@@ -7798,92 +8171,6 @@ my.delete.callback &lt;- function(data, row) {
   <category>R</category>
   <guid>https://bryer.org/posts/2018-22-26-DTedit.html</guid>
   <pubDate>Tue, 27 Nov 2018 02:13:14 GMT</pubDate>
-</item>
-<item>
-  <title>Conducting Assessments and Surveys with Shiny</title>
-  <dc:creator>Jason Bryer</dc:creator>
-  <link>https://bryer.org/posts/2016-02-22-Assessments_with_Shiny.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>This post describes a framework for using Shiny for conducting, grading, and providing feedback for assessments. This framework supports any multiple choice format including multiple choice tests or Likert type surveys. A demo is available at <a href="https://jbryer.shinyapps.io/ShinyAssessmentTest/">jbryer.shinyapps.io/ShinyAssessmentTest</a> or can be run locally as a <a href="https://gist.github.com/jbryer/a6fb5a3b1d5fd56cff64">Github Gist</a>:</p>
-<pre><code>runGist('a6fb5a3b1d5fd56cff64')</code></pre>
-<p>Key features of this framework include:</p>
-<ul>
-<li>Assessments take over the entire user interface for a distraction free assessment.</li>
-<li>Creating an assessment requires:
-<ul>
-<li>A vector of item stems.</li>
-<li>A data frame with item choices.</li>
-<li>A function that will process the results.</li>
-</ul></li>
-<li>Button or link to start the assessment.</li>
-</ul>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>Let’s walk through the statistics assessment example. The first step is to define the multiple choice items, here defined in a CSV file.</p>
-<pre><code>&gt; math.items &lt;- read.csv('items.csv', stringsAsFactors=FALSE)
-&gt; names(math.items)
-[1] "Item"   "Stem"   "Answer" "A"      "B"      "C"      "D"      "E"     </code></pre>
-<p>We will also define a function that will be called when the user completes the assessment. This function needs to have one parameter named <code>results</code>. This parameter is a character vector of the user responses. The values are either <code>NA</code> if there was no response, or the column name of the <code>item.choices</code> defined below (here A through E). In this example, the results will be stored in a <code>reactiveValues</code> object so that the UI will refresh with new results.</p>
-<pre><code>assmt.results &lt;- reactiveValues(
-    math = logical(),
-    mass = integer(),
-    reading = logical()
-)
-
-saveResults &lt;- function(results) {
-    assmt.results$math &lt;- results == math.items$Answer
-}</code></pre>
-<p>Next, we create an assessment by calling the <code>ShinyAssessment</code> function.</p>
-<pre><code>test &lt;- ShinyAssessment(input, output, session,
-        name = 'Statistics',
-        item.stems = math.items$Stem,
-        item.choices = math.items[,c(4:8)],
-        callback = saveResults,
-        start.label = 'Start the Statistics Assessment',
-        itemsPerPage = 1,
-        inline = FALSE)</code></pre>
-<p>The first three parameters, <code>input</code>, <code>output</code>, and <code>session</code> are simply passed from <code>shinyServer</code>. The other parameters you can set are:</p>
-<ul>
-<li><code>name</code> The name of the assessment. This should be a name that follows R’s naming rules (i.e.&nbsp;does not start with a number, no spaces, etc).</li>
-<li><code>callback</code> The function called when the user submits the assessment. Used for saving the results.</li>
-<li><code>item.stems</code> A character vector or list with the item stems. If a list, any valid Shiny UI output is allowed (e.g.&nbsp;<code>p</code>, <code>div</code>, <code>fluidRow</code>, etc.). For character vectors HTML is allowed.</li>
-<li><code>item.choices</code> A data frame with the item answers. For items that have fewer choices than the total number of columns, place in that column’s value. The results will be passed to the function as named list where the value is the name of the column selected.</li>
-<li><code>start.label</code> The label used for the link and button created to start the assessment.</li>
-<li><code>itemsPerPage</code> The number of items to display per page.</li>
-<li><code>inline</code> If <code>TRUE</code>, render the choices inline (i.e.&nbsp;horizontally).</li>
-<li><code>width</code> The width of the radio button input.</li>
-<li><code>cancelButton</code> Should a cancel button be displayed on the assessment.</li>
-</ul>
-<p>Users start an assessment with a link or button using <code>uiOutput(test$link.name)</code> or <code>uiOutput(test$button.name)</code>, respectively.</p>
-<p>In order for the assessment to take over the entire user interface, the UI must be built on the server side in the <code>server.R</code> file. In this case, the UI resides in the <code>output$ui</code> object:</p>
-<pre><code>output$ui &lt;- renderUI({
-    if(SHOW_ASSESSMENT$show) { # The assessment will take over the entire page.
-        fluidPage(width = 12, uiOutput(SHOW_ASSESSMENT$assessment))
-    } else { 
-        # This is the normal Shiny UI code here.
-    }
-})</code></pre>
-<p>As a result, the <code>ui.r</code> script has only one line of code.</p>
-<pre><code>shinyUI(fluidPage( uiOutput('ui') ))</code></pre>
-<p>This is one of two limitations of this approach. The other limitation is the creation of the <code>SHOW_ASSESSMENT</code> object. In order for the UI to know to show the assessment, a global variable must be set (i.e.&nbsp;<code>SHOW_ASSESSMENT$show</code>). To accomplish this, the <code>ShinyAssessment</code> function creates and sets the value of an object in the calling environment. This is generally considered bad practice (Note: if you know of another approach to avoid this behavior, please let me know in the comments below). Multiple assessments are supported as subsequent calls to <code>ShinyAssessment</code> first look to see if the <code>SHOW_ASSESSMENT</code> object has been created.</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>It is up to the developer to define the <code>callback</code> function is to score and save results. There are a lot of R packages that support databases including <a href="https://cran.r-project.org/web/packages/RODBC/index.html"><code>RODB</code></a>, <a href="http://cran.r-project.org/web/packages/RMySQL/index.html"><code>RMySQL</code></a>, <a href="http://cran.r-project.org/web/packages/ROracle/index.html"><code>ROracle</code></a>, <a href="http://cran.r-project.org/web/packages/RJDBC/index.html"><code>RJDBC</code></a>, <a href="https://cran.r-project.org/web/packages/RSQLite/index.html"><code>rsqlite</code></a>, and <a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html"><code>RPostgreSQL</code></a>). Be sure to check out <a href="http://shiny.rstudio.com/articles/persistent-data-storage.html">Dean Attali’s article about persisting data storage</a> in Shiny apps, especially if you plan to deploy to shinyapps.io.</p>
-<p>I have also modified <a href="http://withr.me/authentication-of-shiny-server-application-using-a-simple-method/">Huidong Tian’s</a> R script for adding user authentication to the open source version of Shiny to allow for users to create accounts. With authenticated user accounts users can retrieve their assessment results across different sessions. The source code is here: <a href="https://gist.github.com/jbryer/e17c5587a43188258ee5">gist.github.com/jbryer/e17c5587a43188258ee5</a></p>
-<p>This function represents the first version of an assessment framework for Shiny. Since this is in place that might be useful for other Shiny users, especially those using R and teaching, I wanted to share to get feedback and suggestions on improvement. For instance, currently this function only supports a fixed number of items presented in predefined order. In the future, this function will be modified to utilize IRT models and allow for computer adaptive testing.</p>
-
-
-</section>
-
- ]]></description>
-  <category>R</category>
-  <guid>https://bryer.org/posts/2016-02-22-Assessments_with_Shiny.html</guid>
-  <pubDate>Tue, 23 Feb 2016 02:13:14 GMT</pubDate>
 </item>
 </channel>
 </rss>
