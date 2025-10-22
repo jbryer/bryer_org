@@ -134,32 +134,10 @@ font-style: inherit;">'year'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'admcon7'</span>)])</span>
 <span id="cb4-10">}</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.
-Warning in getIPEDSSurvey("ADM", year = i): This function has been deprecated
-and will be removed in a future version. Use ipeds_survey instead.</code></pre>
-</div>
 </div>
 <p>The figure below shows a pretty striking change in how institutions have used high stakes assessments like the SAT and ACT for admissions decisions around 2020 (not sure what happened that year 😉).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">tab <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">tab <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -170,21 +148,21 @@ background-color: null;
 font-style: inherit;">$</span>admcon7) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb6-2">    <span class="fu" style="color: #4758AB;
+<span id="cb5-2">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">prop.table</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb6-3">    reshape2<span class="sc" style="color: #5E5E5E;
+<span id="cb5-3">    reshape2<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">melt</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb6-4">    dplyr<span class="sc" style="color: #5E5E5E;
+<span id="cb5-4">    dplyr<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -193,8 +171,8 @@ background-color: null;
 font-style: inherit;">Year =</span> Var1, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">Test_Use =</span> Var2)</span>
-<span id="cb6-5"></span>
-<span id="cb6-6">p <span class="ot" style="color: #003B4F;
+<span id="cb5-5"></span>
+<span id="cb5-6">p <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -211,7 +189,7 @@ background-color: null;
 font-style: inherit;">color =</span> Test_Use)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-7">    <span class="fu" style="color: #4758AB;
+<span id="cb5-7">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_path</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -220,7 +198,7 @@ background-color: null;
 font-style: inherit;">1.5</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-8">    <span class="fu" style="color: #4758AB;
+<span id="cb5-8">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -237,7 +215,7 @@ background-color: null;
 font-style: inherit;">'white'</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-9">    <span class="fu" style="color: #4758AB;
+<span id="cb5-9">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -250,12 +228,12 @@ background-color: null;
 font-style: inherit;">4</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-10">    <span class="fu" style="color: #4758AB;
+<span id="cb5-10">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_color_manual</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Test usage: '</span>, </span>
-<span id="cb6-11">                       <span class="at" style="color: #657422;
+<span id="cb5-11">                       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -266,14 +244,14 @@ background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#7209B7'</span>, </span>
-<span id="cb6-12">                                  <span class="st" style="color: #20794D;
+<span id="cb5-12">                                  <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Test Optional'</span> <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#84DB8F'</span>, </span>
-<span id="cb6-13">                                  <span class="st" style="color: #20794D;
+<span id="cb5-13">                                  <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Test Blind'</span> <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -282,7 +260,7 @@ background-color: null;
 font-style: inherit;">'#E2BD6B'</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-14">    <span class="fu" style="color: #4758AB;
+<span id="cb5-14">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -291,7 +269,7 @@ background-color: null;
 font-style: inherit;">::</span>percent) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-15">    <span class="fu" style="color: #4758AB;
+<span id="cb5-15">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -304,7 +282,7 @@ background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>),</span>
-<span id="cb6-16">                       <span class="at" style="color: #657422;
+<span id="cb5-16">                       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -315,7 +293,7 @@ background-color: null;
 font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>),</span>
-<span id="cb6-17">                       <span class="at" style="color: #657422;
+<span id="cb5-17">                       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -330,15 +308,15 @@ background-color: null;
 font-style: inherit;">1</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-18">    <span class="fu" style="color: #4758AB;
+<span id="cb5-18">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-19">    <span class="co" style="color: #5E5E5E;
+<span id="cb5-19">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># xlim(c(2014, 2024)) +</span></span>
-<span id="cb6-20">    <span class="fu" style="color: #4758AB;
+<span id="cb5-20">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -347,20 +325,20 @@ background-color: null;
 font-style: inherit;">'bottom'</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-21">    <span class="fu" style="color: #4758AB;
+<span id="cb5-21">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Use of high stakes assessments (SAT/ACT) for college admissions'</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb6-22">    <span class="fu" style="color: #4758AB;
+<span id="cb5-22">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ylab</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Percentage of Institutions'</span>)</span>
-<span id="cb6-23"></span>
-<span id="cb6-24">directlabels<span class="sc" style="color: #5E5E5E;
+<span id="cb5-23"></span>
+<span id="cb5-24">directlabels<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;

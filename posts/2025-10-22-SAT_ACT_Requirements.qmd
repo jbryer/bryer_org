@@ -45,7 +45,7 @@ levels <- c('1' = 'Required',
 
 The following block will download the directory information for 2014 through 2023 (the latest year currently available).
 
-```{r, cache=TRUE}
+```{r, cache=TRUE, warning=FALSE, message=FALSE}
 admissions <- data.frame()
 years <- 2014:2023
 for(i in years) {
