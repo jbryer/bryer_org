@@ -29,7 +29,7 @@ I have been working on a presentation regarding college readiness and the use of
 remotes::install_github('jbryer/ipeds')
 ```
 
-The `surveys` data frame included in the package provides metadata for the different data files available from the IPEDS website. The `HD` data file provides directory information for each institution in the United States.
+The `surveys` data frame included in the package provides metadata for the different data files available from the IPEDS website. The `AHD` data file provides directory information for each institution in the United States.
 
 ```{r, eval=TRUE}
 data(surveys, package = 'ipeds')
