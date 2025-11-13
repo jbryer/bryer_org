@@ -9,7 +9,7 @@
 <link>https://bryer.org/blog.html</link>
 <atom:link href="https://bryer.org/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.7.32</generator>
+<generator>quarto-1.6.42</generator>
 <lastBuildDate>Wed, 22 Oct 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>The use of SAT/ACT for college admissions</title>
@@ -903,9 +903,8 @@ font-style: inherit;">0.35</span>))</span></code></pre></div>
 
 
 <p>Most predictive modeling strategies require there to be no missing data for model estimation. When there is missing data, there are generally two strategies for working with missing data: 1.) exclude the variables (columns) or observations (rows) where there is missing data; or 2.) impute the missing data. However, data is often missing in systematic ways. Excluding data from training is ignoring potentially predictive information and for many imputation procedures the missing completely at random (MCAR) assumption is violated. The medley package implements a solution to modeling when there are systematic patterns of missingness. A working example of predicting student retention from a larger study of the Diagnostic Assessment and Achievement of College Skills (DAACS) will be explored. In this study, demographic data was collected at enrollment from all students and then students completed diagnostic assessments in self-regulated learning (SRL), writing, mathematics, and reading during their first few weeks of the semester. Although all students were expected to complete DAACS, there were no consequence and therefore a large percentage of student completed none or only some of the assessments. The resulting dataset has three predominate response patterns: 1.) students who completed all four assessments, 2.) students who completed only the SRL assessment, and 3). students who did not complete any of the assessments. The goal of the medley algorithm is to take advantage of missing data patterns. For this example, the medley algorithm trained three predictive models: 1.) demographics plus all four assessments, 2.) demographics plus SRL assessment, and 3.) demographics only. For both training and prediction, the model used for each student is based upon what data is available. That is, if a student only completed SRL, model 2 would be used. The medley algorithm can be used with most statistical models. For this study, both logistic regression and random forest are used. The accuracy of the medley algorithm was 3.5% better than using only the complete data and 3.1% better than using a dataset where missing data was imputed using the mice package. The medley package provides an approach for predictive modeling using the same training and prediction framework R users are accustomed to using. There are numerous parameters that can be modified including what underlying statistical models are used for training. Additional diagnostic functions are available to explore missing data patterns.</p>
-<p>To register for the conference, go to <a href="https://user2025.r-project.org">https://user2025.r-project.org</a></p>
-<p>Session schedule: <a href="https://user2025.r-project.org/program/in-person/">https://user2025.r-project.org/program/in-person/</a></p>
 <p>For more information about the project, visit: <a href="https://github.com/jbryer/medley">https://github.com/jbryer/medley</a></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/WXTFWZtZlfc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 
@@ -2318,6 +2317,7 @@ Specificity: 83.31%</code></pre>
 <tr>
 <th colspan="3" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
 </tbody></table>
+
 </div>
 </div>
 
