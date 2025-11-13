@@ -3,7 +3,7 @@ title: "Predictive Modeling with Missing Data"
 author: "Jason Bryer"
 date: 2025-08-09
 draft: false
-description: "I will be giving a talk at useR 2025 on predictive modeling with missing data."
+description: "This talk on predictive modeling with missing data was given at the useR 2025 conference."
 categories: ["R", "Talk"]
 image: "2025-08-09-useR2025.png"
 editor_options: 
