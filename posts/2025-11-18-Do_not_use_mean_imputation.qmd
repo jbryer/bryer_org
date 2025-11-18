@@ -5,7 +5,7 @@ date: 2025-11-18
 draft: false
 description: ""
 categories: ["R"]
-image: "2025-10-22-SAT_ACT_Requirements.png"
+image: "2025-11-18-Do_not_use_mean_imputation.png"
 editor_options: 
   chunk_output_type: console
 ---
