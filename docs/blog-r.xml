@@ -9,8 +9,529 @@
 <link>https://bryer.org/blog.html#category=R</link>
 <atom:link href="https://bryer.org/blog-r.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.6.42</generator>
-<lastBuildDate>Wed, 22 Oct 2025 04:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Tue, 18 Nov 2025 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Why you should not use mean imputation for missing data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2025-11-18-Do_not_use_mean_imputation.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>I encountered the question today of what to do with missing values when conducting null hypothesis testing or regression? I have seen many suggest doing mean imputation. That is, simply replace any missing values with the mean of the variable calculated from the observed values. I argue that mean imputation is worse than doing nothing. Let’s explore.</p>
+<p>To begin, let’s simulate a vector, <code>x</code>, from the random normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2112</span>)</span>
+<span id="cb1-2">x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-3">(mean1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01129628</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">(sd1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.032159</code></pre>
+</div>
+</div>
+<p>We can see that the mean and standard deviation aver fairly close to 0 and 1, respectively. In the next code chunk we are going to randomly select 20% of observations and set the value to <code>NA</code>. We can calculate the mean and standard deviation excluding the missing values (i.e.&nbsp;<code>NA</code>s) but setting <code>na.rm = TRUE</code>. The mean and standard deviation are relatively close.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">x[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span></span>
+<span id="cb5-2">(mean2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02136184</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">(sd2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.071757</code></pre>
+</div>
+</div>
+<p>Now we will replace the <code>NA</code>s we introduced above with the mean. We can see that the standard deviation is quite a bit smaller, hence reducing the variance of our estimate. Since many of our statistical tests rely on variance, reducing the variance may lead to spurious conclusions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">x[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(x)] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb9-2">(mean3 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02136184</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">(sd3 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9573977</code></pre>
+</div>
+</div>
+<p>To show this is not a random anomaly for our one random sample, let’s repeat the above 1,000 times.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">n_samples <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span></span>
+<span id="cb13-2">percent_missing <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.10</span></span>
+<span id="cb13-3">sd_diffs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sample =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span>n_samples,</span>
+<span id="cb13-4">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_drop_miss =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">numeric</span>(n_samples),</span>
+<span id="cb13-5">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd_impute_miss =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">numeric</span>(n_samples))</span>
+<span id="cb13-6"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span>(i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq_len</span>(n_samples)) {</span>
+<span id="cb13-7">    x2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x</span>
+<span id="cb13-8">    x2[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> percent_missing, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span></span>
+<span id="cb13-9">    sd_diffs[i,]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sd_drop_miss <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb13-10">    x2[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(x2)] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(x2, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb13-11">    sd_diffs[i,]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sd_impute_miss <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x2)</span>
+<span id="cb13-12">}</span>
+<span id="cb13-13"></span>
+<span id="cb13-14">sd_diffs <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb13-15">    reshape2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">melt</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id.vars =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sample'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">variable.name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'calculation_type'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">value.name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sd'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb13-16">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> sd, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> calculation_type)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-17">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(x)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-18">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_density</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-19">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Standard Deviation'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb13-20">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://bryer.org/posts/2025-11-18-Do_not_use_mean_imputation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As the figure above shows, there is a significant difference in the standard deviation estimates when calculated using only observed values and calculated with missing values imputed with the mean. The <em>t</em>-test below confirms this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t.test</span>(sd_diffs<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sd_drop_miss, sd_diffs<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sd_impute_miss)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  sd_diffs$sd_drop_miss and sd_diffs$sd_impute_miss
+t = 54.288, df = 1992.4, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.04782442 0.05140925
+sample estimates:
+mean of x mean of y 
+0.9569447 0.9073278 </code></pre>
+</div>
+</div>
+<p>Now let’s consider how mean imputation can impact the estimation of a correlation between two variables. We will simulate two variables with a population correlation of 0.18.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb16-2">mean_x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb16-3">mean_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb16-4">sd_x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb16-5">sd_y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb16-6">rho <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.18</span></span>
+<span id="cb16-7"></span>
+<span id="cb16-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2112</span>)</span>
+<span id="cb16-9">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> mvtnorm<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rmvnorm</span>(</span>
+<span id="cb16-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>,</span>
+<span id="cb16-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(mean_x, mean_y),</span>
+<span id="cb16-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sigma =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">matrix</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(sd_x<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, rho <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (sd_x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> sd_y),</span>
+<span id="cb16-13">                     rho <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (sd_x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> sd_y), sd_y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb16-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb16-15">    dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> V1, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> V2)</span>
+<span id="cb16-16"></span>
+<span id="cb16-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cor.test</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x, df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  df$x and df$y
+t = 1.8314, df = 98, p-value = 0.07008
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.01504323  0.36527878
+sample estimates:
+      cor 
+0.1819124 </code></pre>
+</div>
+</div>
+<p>We will now randomly select 20% of <code>x</code> values to set to <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">df_miss <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> df</span>
+<span id="cb18-2">df_miss[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> n, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>),]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span></span>
+<span id="cb18-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cor.test</span>(df_miss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x, df_miss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  df_miss$x and df_miss$y
+t = 1.8392, df = 78, p-value = 0.06969
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.01658176  0.40543327
+sample estimates:
+      cor 
+0.2038779 </code></pre>
+</div>
+</div>
+<p>Note that the <em>p</em>-value for both the correlation estimated using the complete dataset and estimated with observed values only is greater than 0.05 (i.e.&nbsp;we would fail to reject the null that the correlation is 0).</p>
+<p>Now we will impute the missing values with the mean and calcualte the correlation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">df_miss[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(df_miss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x),] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(df<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb20-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cor.test</span>(df_miss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x, df_miss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  df_miss$x and df_miss$y
+t = 2.0582, df = 98, p-value = 0.04223
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.007431517 0.384594022
+sample estimates:
+      cor 
+0.2035525 </code></pre>
+</div>
+</div>
+<p>We would now reject the null and conclude that there is a statistically significant correlation between <code>x</code> and <code>y</code> even though our original dataset from which this was simulated was not.</p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <guid>https://bryer.org/posts/2025-11-18-Do_not_use_mean_imputation.html</guid>
+  <pubDate>Tue, 18 Nov 2025 05:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>The use of SAT/ACT for college admissions</title>
   <dc:creator>Jason Bryer</dc:creator>
@@ -2317,7 +2838,6 @@ Specificity: 83.31%</code></pre>
 <tr>
 <th colspan="3" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</th></tr>
 </tbody></table>
-
 </div>
 </div>
 
@@ -8078,77 +8598,6 @@ font-style: inherit;">appDir =</span> out_dir)</span>
   <category>R</category>
   <guid>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</guid>
   <pubDate>Fri, 12 Feb 2021 05:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Editable DataTables for Shiny Applications</title>
-  <dc:creator>Jason Bryer</dc:creator>
-  <link>https://bryer.org/posts/2018-22-26-DTedit.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><a href="https://rstudio.com">RStudio</a> recently updated <a href="https://shiny.rstudio.com">Shiny</a> to allow for <a href="https://blog.rstudio.com/2018/03/29/dt-0-4/">editable <code>DataTables</code></a>. Their implementations allows for editing cells direclty with in the <code>DataTable</code> view. This is fine for many advanced applications, however, for many applications more fine tuned control of what the user can edit is necessary. For example, you may want to only allow a subset of columns to be editable. Or you want to view a subset of columns in a spreadsheet view but allow other columns to be editable. The <code>DTedit</code> package takes the editing out of the table view and instead presents the user with a <a href="https://shiny.rstudio.com/articles/modal-dialogs.html">modal dialog</a> for editing table contents (see screenshot below).</p>
-<p>To get started, use the <code>devtools</code> package to install the latest development version of <code>DTedit</code>:</p>
-<pre><code>devtools::install_github('jbryer/DTedit')</code></pre>
-<p>The <code>dtedit_demo</code> will run a sample <code>shiny</code> app with to editable data tables.</p>
-<pre><code>DTedit::dtedit_demo()</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://raw.githubusercontent.com/jbryer/DTedit/master/inst/screens/dtedit_books_edit.png" class="img-fluid figure-img"></p>
-<figcaption>DTedit Screen Shot</figcaption>
-</figure>
-</div>
-<section id="getting-started-with-dtedit" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started-with-dtedit">Getting Started with <code>DTedit</code></h2>
-<p>You can download a simple shiny app using <code>DTedit</code> <a href="https://github.com/jbryer/DTedit/blob/master/inst/template/app.R">from Github</a>.</p>
-<p>There are three steps to using <code>DTedit</code> in your shiny application.</p>
-<section id="define-callback-function-for-inserting-updating-and-deleting-data." class="level4">
-<h4 class="anchored" data-anchor-id="define-callback-function-for-inserting-updating-and-deleting-data.">1. Define callback function for inserting, updating, and deleting data.</h4>
-<p><em>NOTE: These callback functions assume that <code>mydata</code> is already defined somewhere outside the callback functions. See the <a href="https://github.com/jbryer/DTedit/blob/master/inst/template/app.R">template</a> for the complete example using <code>data.frames</code>, or <a href="https://github.com/jbryer/DTedit/tree/master/inst/shiny_demo">this demo</a> for an example using <code>RSQLite</code>.</em></p>
-<pre><code>my.insert.callback &lt;- function(data, row) {
-    mydata &lt;- rbind(data, mydata)
-    return(mydata)
-}
-
-my.update.callback &lt;- function(data, olddata, row) {
-    mydata[row,] &lt;- data[1,]
-    return(mydata)
-}
-
-my.delete.callback &lt;- function(data, row) {
-    mydata &lt;- mydata[-row,]
-    return(mydata)
-}</code></pre>
-<p>Typically these functions would interact with a database. As written here, the data would be lost between shiny sessions.</p>
-</section>
-<section id="create-the-dtedit-object-within-your-server-function." class="level4">
-<h4 class="anchored" data-anchor-id="create-the-dtedit-object-within-your-server-function.">2. Create the <code>dtedit</code> object within your <code>server</code> function.</h4>
-<pre><code>DTedit::dtedit(input, output,
-       name = 'mycontacts',
-       thedata = mydata,
-       edit.cols = c('name', 'email', 'useR', 'notes'),
-       edit.label.cols = c('Name', 'Email Address', 'Are they an R user?', 'Additional notes'),
-       input.types = c(notes='textAreaInput'),
-       view.cols = c('name', 'email', 'useR'),
-       callback.update = my.update.callback,
-       callback.insert = my.insert.callback,
-       callback.delete = my.delete.callback)</code></pre>
-<p>The <code>input</code> and <code>output</code> are passed from the <code>server</code> function. The <code>name</code> parameter will define the name of the object available to the <code>uiOutput</code>. The <code>thedata</code> is a <code>data.frame</code> for the initial view of the data table. This can be an empty (i.e.&nbsp;no rows) <code>data.frame</code>. The structure of the <code>data.frame</code> will define the inputs (e.g.&nbsp;<code>factor</code>s will be drop down, <code>Date</code> will use <code>dateInput</code>, <code>numeric</code>s will use <code>numericInput</code>, etc.). There are many other parameters to custom the behavior of <code>dtedit</code>, see <code>?dtedit</code> for the full list.</p>
-</section>
-<section id="use-uioutput-in-your-ui-to-display-the-editable-data-table." class="level4">
-<h4 class="anchored" data-anchor-id="use-uioutput-in-your-ui-to-display-the-editable-data-table.">3. Use <code>uiOutput</code> in your UI to display the editable data table.</h4>
-<p>The <code>name</code> you will pass to <code>uiOutput</code> is the name you passed to the <code>dtedit</code> created on the server side.</p>
-<pre><code>uiOutput('mycontacts')</code></pre>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>R</category>
-  <guid>https://bryer.org/posts/2018-22-26-DTedit.html</guid>
-  <pubDate>Tue, 27 Nov 2018 02:13:14 GMT</pubDate>
 </item>
 </channel>
 </rss>

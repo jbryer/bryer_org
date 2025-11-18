@@ -2,318 +2,322 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bryer.org/teaching.html</loc>
-    <lastmod>2025-09-30T14:29:58.000Z</lastmod>
+    <lastmod>2025-09-30T14:29:58.650Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/timeline.html</loc>
-    <lastmod>2025-02-19T12:53:30.000Z</lastmod>
+    <lastmod>2025-02-19T12:53:30.911Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/ruca.html</loc>
-    <lastmod>2025-02-19T12:51:45.000Z</lastmod>
+    <lastmod>2025-02-19T12:51:45.960Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/psa.html</loc>
-    <lastmod>2025-03-06T21:56:12.681Z</lastmod>
+    <lastmod>2025-03-06T21:56:12.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/naep.html</loc>
-    <lastmod>2025-02-19T12:46:27.000Z</lastmod>
+    <lastmod>2025-02-19T12:46:27.431Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/mldash.html</loc>
-    <lastmod>2025-03-06T21:56:41.654Z</lastmod>
+    <lastmod>2025-03-06T21:56:41.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/login.html</loc>
-    <lastmod>2025-03-06T21:48:00.989Z</lastmod>
+    <lastmod>2025-03-06T21:48:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/ipeds.html</loc>
-    <lastmod>2025-02-19T12:43:15.000Z</lastmod>
+    <lastmod>2025-02-19T12:43:15.074Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/clav.html</loc>
-    <lastmod>2025-04-02T23:11:58.306Z</lastmod>
+    <lastmod>2025-04-02T23:11:58.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/VisualStats.html</loc>
-    <lastmod>2025-02-19T12:55:28.000Z</lastmod>
+    <lastmod>2025-02-19T12:55:28.085Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/ShinyQDA.html</loc>
-    <lastmod>2025-03-06T21:57:30.658Z</lastmod>
+    <lastmod>2025-03-06T21:57:30.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/PSAboot.html</loc>
-    <lastmod>2025-03-06T21:57:02.350Z</lastmod>
+    <lastmod>2025-03-06T21:57:02.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/FutureMapping.html</loc>
-    <lastmod>2025-03-06T21:53:15.982Z</lastmod>
+    <lastmod>2025-03-06T21:53:15.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/DTedit.html</loc>
-    <lastmod>2025-03-06T21:47:29.589Z</lastmod>
+    <lastmod>2025-03-06T21:47:29.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements.html</loc>
-    <lastmod>2025-10-22T13:07:00.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-11-18-Do_not_use_mean_imputation.html</loc>
+    <lastmod>2025-11-18T22:58:23.493Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-09-30-distributions.html</loc>
-    <lastmod>2025-09-30T14:06:31.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-10-01-Monty_Hall.html</loc>
+    <lastmod>2025-09-30T14:25:39.094Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-08-05-JSM025.html</loc>
-    <lastmod>2025-05-07T01:19:30.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-08-09-useR2025.html</loc>
+    <lastmod>2025-11-18T20:08:11.997Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-05-06-Downsampling.html</loc>
-    <lastmod>2025-05-06T23:30:48.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-05-16-User_params_for_shiny.html</loc>
+    <lastmod>2025-05-16T03:44:59.518Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-03-23-Bootstrap_vs_Standard_Error.html</loc>
-    <lastmod>2025-03-23T22:05:45.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</loc>
+    <lastmod>2025-03-06T14:46:25.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</loc>
-    <lastmod>2025-03-05T17:13:17.988Z</lastmod>
+    <loc>https://bryer.org/posts/2025-03-04-chi_squared_sample_sizes.html</loc>
+    <lastmod>2025-03-05T23:45:01.254Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2024-04-17-ShinyConf2024.html</loc>
-    <lastmod>2025-03-21T14:12:31.000Z</lastmod>
+    <loc>https://bryer.org/posts/2025-02-06-Waiting_to_pass_exam.html</loc>
+    <lastmod>2025-03-05T23:48:47.821Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</loc>
-    <lastmod>2025-03-06T14:26:12.660Z</lastmod>
+    <loc>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</loc>
+    <lastmod>2025-03-05T17:14:43.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</loc>
-    <lastmod>2025-03-05T17:22:24.110Z</lastmod>
+    <loc>https://bryer.org/posts/2022-03-01_R_Package_Development.html</loc>
+    <lastmod>2025-03-05T17:15:56.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</loc>
-    <lastmod>2021-02-13T21:24:02.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2016-02-22-Assessments_with_Shiny.html</loc>
-    <lastmod>2018-02-01T18:51:31.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-07-29-Data_Caching.html</loc>
-    <lastmod>2018-02-01T21:12:32.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-07-03-useR_2014_PSAboot_Slides.html</loc>
-    <lastmod>2018-02-01T21:13:43.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-04-22-Rgitbook_Package.html</loc>
-    <lastmod>2018-02-01T21:24:46.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-02-20-Loading_and_Installing_Packages.html</loc>
-    <lastmod>2018-02-01T21:25:53.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html</loc>
-    <lastmod>2018-02-01T21:26:44.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-04-18-Cut_Dates_Into_Quarters.html</loc>
-    <lastmod>2018-02-01T21:27:30.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-30-Converting_a_list_to_a_data_frame.html</loc>
-    <lastmod>2018-02-01T21:28:23.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-15-Version_1_sqlutils.html</loc>
-    <lastmod>2018-02-01T21:29:20.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html</loc>
-    <lastmod>2018-02-01T21:30:07.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html</loc>
-    <lastmod>2018-02-01T21:31:06.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-11-17-visualizing-missing-data.html</loc>
-    <lastmod>2018-02-01T21:32:08.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-04-27-Graphic_Parameters.html</loc>
-    <lastmod>2025-03-06T14:44:26.070Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-01-20-object-oriented-programming-in-r.html</loc>
-    <lastmod>2018-02-01T21:33:50.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2011-11-11-visualizing-likert-items.html</loc>
-    <lastmod>2018-02-01T21:34:42.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/blog.html</loc>
-    <lastmod>2025-03-07T02:03:58.627Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/index.html</loc>
-    <lastmod>2025-03-07T01:58:27.744Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html</loc>
-    <lastmod>2018-02-01T21:34:22.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html</loc>
-    <lastmod>2018-02-01T21:33:31.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-08-13-User-Input-using-tcltk.html</loc>
-    <lastmod>2018-02-01T21:32:33.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2012-11-27-FIfty_Shades_of_Grey.html</loc>
-    <lastmod>2025-03-06T14:36:54.357Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-04-xtable_with_aligned_decimals.html</loc>
-    <lastmod>2025-03-06T14:15:37.534Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-12-Interactive_SQL_in_R.html</loc>
-    <lastmod>2025-03-06T14:14:54.929Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-01-24-Comparing_Two_Data_Frames.html</loc>
-    <lastmod>2018-02-01T21:28:54.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-03-26-i_Before_e_Except_After_c.html</loc>
-    <lastmod>2025-03-06T14:14:20.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-05-08-Gamblers_Run_With_Shiny.html</loc>
-    <lastmod>2018-02-01T21:27:10.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html</loc>
-    <lastmod>2025-03-06T14:13:25.045Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-03-20-Albany_R_Users_Group.html</loc>
-    <lastmod>2018-02-01T21:25:27.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-06-05-str_Implementation_for_Data_Frames.html</loc>
-    <lastmod>2018-02-01T21:14:27.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html</loc>
-    <lastmod>2018-02-01T21:13:13.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bryer.org/posts/2016-02-21-Bayes_Billiards_Shiny.html</loc>
-    <lastmod>2025-03-06T14:12:06.177Z</lastmod>
+    <loc>https://bryer.org/posts/2021-02-15-Map_my_run_in_R.html</loc>
+    <lastmod>2025-03-06T14:09:43.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/posts/2018-22-26-DTedit.html</loc>
     <lastmod>2018-12-06T13:58:37.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2021-02-15-Map_my_run_in_R.html</loc>
-    <lastmod>2025-03-06T14:09:43.482Z</lastmod>
+    <loc>https://bryer.org/posts/2016-02-21-Bayes_Billiards_Shiny.html</loc>
+    <lastmod>2025-03-06T14:12:06.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2022-03-01_R_Package_Development.html</loc>
-    <lastmod>2025-03-05T17:15:56.685Z</lastmod>
+    <loc>https://bryer.org/posts/2014-07-04-Women_Graduates_in_Math_Stats_CIS.html</loc>
+    <lastmod>2018-02-01T21:13:13.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2023-11-14-Intro_to_PSA.html</loc>
-    <lastmod>2025-03-05T17:14:43.912Z</lastmod>
+    <loc>https://bryer.org/posts/2014-06-05-str_Implementation_for_Data_Frames.html</loc>
+    <lastmod>2018-02-01T21:14:27.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-02-06-Waiting_to_pass_exam.html</loc>
-    <lastmod>2025-03-05T23:48:47.000Z</lastmod>
+    <loc>https://bryer.org/posts/2014-03-20-Albany_R_Users_Group.html</loc>
+    <lastmod>2018-02-01T21:25:27.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-03-04-chi_squared_sample_sizes.html</loc>
-    <lastmod>2025-03-05T23:45:01.000Z</lastmod>
+    <loc>https://bryer.org/posts/2013-11-26-Bootstrapping_for_Propensity_Score_Analysis.html</loc>
+    <lastmod>2025-03-06T14:13:25.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-04-11-ShinyConf2025.html</loc>
-    <lastmod>2025-03-06T14:46:25.271Z</lastmod>
+    <loc>https://bryer.org/posts/2013-05-08-Gamblers_Run_With_Shiny.html</loc>
+    <lastmod>2018-02-01T21:27:10.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-05-16-User_params_for_shiny.html</loc>
-    <lastmod>2025-05-16T03:44:59.000Z</lastmod>
+    <loc>https://bryer.org/posts/2013-03-26-i_Before_e_Except_After_c.html</loc>
+    <lastmod>2025-03-06T14:14:20.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-08-09-useR2025.html</loc>
-    <lastmod>2025-11-13T22:00:47.076Z</lastmod>
+    <loc>https://bryer.org/posts/2013-01-24-Comparing_Two_Data_Frames.html</loc>
+    <lastmod>2018-02-01T21:28:54.000Z</lastmod>
   </url>
   <url>
-    <loc>https://bryer.org/posts/2025-10-01-Monty_Hall.html</loc>
-    <lastmod>2025-09-30T14:25:39.000Z</lastmod>
+    <loc>https://bryer.org/posts/2013-01-12-Interactive_SQL_in_R.html</loc>
+    <lastmod>2025-03-06T14:14:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-04-xtable_with_aligned_decimals.html</loc>
+    <lastmod>2025-03-06T14:15:37.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-11-27-FIfty_Shades_of_Grey.html</loc>
+    <lastmod>2025-03-06T14:36:54.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-08-13-User-Input-using-tcltk.html</loc>
+    <lastmod>2018-02-01T21:32:33.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-31-given-a-room-with-n-people-in-it-what-is-the-probability-any-two-will-have-the-same-birthday.html</loc>
+    <lastmod>2018-02-01T21:33:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-13-retrieving-rss-feeds-using-google-reader.html</loc>
+    <lastmod>2018-02-01T21:34:22.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/index.html</loc>
+    <lastmod>2025-03-07T01:58:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/blog.html</loc>
+    <lastmod>2025-03-07T02:03:58.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2011-11-11-visualizing-likert-items.html</loc>
+    <lastmod>2018-02-01T21:34:42.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-01-20-object-oriented-programming-in-r.html</loc>
+    <lastmod>2018-02-01T21:33:50.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-04-27-Graphic_Parameters.html</loc>
+    <lastmod>2025-03-06T14:44:26.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-11-17-visualizing-missing-data.html</loc>
+    <lastmod>2018-02-01T21:32:08.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2012-12-10-Markdown_Jekyll_R_for_Blogging.html</loc>
+    <lastmod>2018-02-01T21:31:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-10-Function_for_Reading_Codebooks_in_R.html</loc>
+    <lastmod>2018-02-01T21:30:07.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-15-Version_1_sqlutils.html</loc>
+    <lastmod>2018-02-01T21:29:20.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-01-30-Converting_a_list_to_a_data_frame.html</loc>
+    <lastmod>2018-02-01T21:28:23.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-04-18-Cut_Dates_Into_Quarters.html</loc>
+    <lastmod>2018-02-01T21:27:30.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2013-11-12-Workshop_and_Talk_Slides_from_NEAIR.html</loc>
+    <lastmod>2018-02-01T21:26:44.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-02-20-Loading_and_Installing_Packages.html</loc>
+    <lastmod>2018-02-01T21:25:53.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-04-22-Rgitbook_Package.html</loc>
+    <lastmod>2018-02-01T21:24:46.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-07-03-useR_2014_PSAboot_Slides.html</loc>
+    <lastmod>2018-02-01T21:13:43.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2014-07-29-Data_Caching.html</loc>
+    <lastmod>2018-02-01T21:12:32.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2016-02-22-Assessments_with_Shiny.html</loc>
+    <lastmod>2018-02-01T18:51:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</loc>
+    <lastmod>2021-02-13T21:24:02.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2021-11-30-Intro_to_Shiny.html</loc>
+    <lastmod>2025-03-05T17:22:24.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html</loc>
+    <lastmod>2025-03-06T14:26:12.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2024-04-17-ShinyConf2024.html</loc>
+    <lastmod>2025-03-21T14:12:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-02-19-Github_Portfolio.html</loc>
+    <lastmod>2025-03-05T17:13:17.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-03-23-Bootstrap_vs_Standard_Error.html</loc>
+    <lastmod>2025-03-23T22:05:45.162Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-05-06-Downsampling.html</loc>
+    <lastmod>2025-05-06T23:30:48.561Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-08-05-JSM025.html</loc>
+    <lastmod>2025-05-07T01:19:30.088Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-09-30-distributions.html</loc>
+    <lastmod>2025-09-30T14:06:31.223Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bryer.org/posts/2025-10-22-SAT_ACT_Requirements.html</loc>
+    <lastmod>2025-10-22T13:07:00.554Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects.html</loc>
-    <lastmod>2025-03-07T02:00:02.652Z</lastmod>
+    <lastmod>2025-03-07T02:00:02.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/DataCache.html</loc>
-    <lastmod>2025-03-06T21:54:16.006Z</lastmod>
+    <lastmod>2025-03-06T21:47:08.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/IRRsim.html</loc>
-    <lastmod>2025-03-06T21:55:38.859Z</lastmod>
+    <lastmod>2025-03-06T21:55:38.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/PSAgraphics.html</loc>
-    <lastmod>2025-03-06T21:57:16.023Z</lastmod>
+    <lastmod>2025-03-06T21:57:16.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/TriMatch.html</loc>
-    <lastmod>2025-04-03T16:48:31.232Z</lastmod>
+    <lastmod>2025-04-03T16:48:31.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/brickset.html</loc>
-    <lastmod>2025-03-06T21:46:38.312Z</lastmod>
+    <lastmod>2025-03-06T21:46:38.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/daacs.html</loc>
-    <lastmod>2025-03-06T21:46:56.264Z</lastmod>
+    <lastmod>2025-03-06T21:46:56.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/likert.html</loc>
-    <lastmod>2025-03-06T21:56:26.918Z</lastmod>
+    <lastmod>2025-03-06T21:56:26.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/medley.html</loc>
-    <lastmod>2025-03-06T21:44:08.902Z</lastmod>
+    <lastmod>2025-03-06T21:44:08.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/multilevelPSA.html</loc>
-    <lastmod>2025-04-02T21:56:13.729Z</lastmod>
+    <lastmod>2025-04-02T21:56:13.000Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/pisa.html</loc>
-    <lastmod>2025-02-19T13:10:39.000Z</lastmod>
+    <lastmod>2025-02-19T13:10:39.091Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/qualtrics.html</loc>
-    <lastmod>2025-02-19T13:10:51.000Z</lastmod>
+    <lastmod>2025-02-19T13:10:51.577Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/projects/sqlutils.html</loc>
-    <lastmod>2025-02-19T13:11:10.000Z</lastmod>
+    <lastmod>2025-02-19T13:11:10.603Z</lastmod>
   </url>
   <url>
     <loc>https://bryer.org/talks.html</loc>
-    <lastmod>2025-03-07T02:04:33.868Z</lastmod>
+    <lastmod>2025-03-07T02:04:33.000Z</lastmod>
   </url>
 </urlset>
