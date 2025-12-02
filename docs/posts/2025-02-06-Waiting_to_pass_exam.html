@@ -336,7 +336,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>The probability of getting all 5 questions on this test is 0.0009766. We can now treat each test attempt as a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli trial</a> where the probability of success is 0.0009766. The <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a> gives us the number of Bernoulli trials we need to get one success. The mean for the geometric distribution are:</p>
+<p>The probability of getting all 5 questions on this test is 9.765625^{-4}. We can now treat each test attempt as a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli trial</a> where the probability of success is 9.765625^{-4}. The <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a> gives us the number of Bernoulli trials we need to get one success. The mean for the geometric distribution are:</p>
 <p><span class="math display">\[ \mu = \frac{1}{p} \]</span></p>
 <p>Therefore, it will take an average of 1024 test attempts before getting all questions correct on the attempt.</p>
 <div class="cell">
@@ -349,7 +349,7 @@ window.Quarto = {
 <pre><code>[1] 1024</code></pre>
 </div>
 </div>
-<p>However, the geometric distribution is not symmetrical so using the mean not be desirable. Here is the geometric distribution for where the probability of success is 0.0009766.</p>
+<p>However, the geometric distribution is not symmetrical so using the mean not be desirable. Here is the geometric distribution for where the probability of success is 9.765625^{-4}.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>geom_dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">5000</span>,</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">y =</span> <span class="fu">dgeom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5000</span>, <span class="at">prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> size, <span class="at">size =</span> size, <span class="at">prob =</span> p)))</span>

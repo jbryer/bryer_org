@@ -225,28 +225,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To install the development version of the <code>medley</code> package, use the following command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'jbryer/medley'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using GitHub PAT from the git credential store.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Skipping install of 'medley' from a github remote, the SHA1 (f3afe472) has not changed since last install.
+  Use `force = TRUE` to force installation</code></pre>
+</div>
 </div>
 <p>One of the challenges in predictive modeling occurs when the dependent variable is imbalanced (i.e.&nbsp;the ratio of one class to the other is high, generally greater than 80-to-20). Several strategies have been proposed to address the imbalance including upsampling and downsampling. Upsampling involves duplicating data from the smaller class to better match the number of observations from the larger class. The disadvantage of upsampling is that new data is being created that could potentially cause overfitting. Additionally, by artificially increasing the sample size standard errors will also be artificially decreased. Downsampling involves randomly selecting from the larger class to achieve better balance. The disadvantage of downsampling is that some data, and sometimes a lot of data, is excluded from the model.</p>
 <p>This paper introduces a procedure that downsamples while using all available data by training multiple models. For example, consider a dataset with 1,000 observations, 900 are of class A and 100 are of class B. Assuming we wish to have perfect balance between A and B, we would randomly assign the 900 class A observations to one of nine models. We can then pool the predictions across the nine models.</p>
 <section id="working-example" class="level2">
 <h2 class="anchored" data-anchor-id="working-example">Working Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(medley)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">'pisa'</span>, <span class="at">package =</span> <span class="st">'medley'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">'pisa_variables'</span>, <span class="at">package =</span> <span class="st">'medley'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(medley)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">'pisa'</span>, <span class="at">package =</span> <span class="st">'medley'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">'pisa_variables'</span>, <span class="at">package =</span> <span class="st">'medley'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <a href="https://www.oecd.org/en/about/programmes/pisa.html">Programme of International Student Assessment</a> (PISA) is international study conducted by the <a href="https://www.oecd.org/en.html">Organisation for Economic Co-operation and Development</a> (OECD) every three years. It assesses 15-year-old students in mathematics, science, and reading while collecting information about the students and their schools. The <code>pisa</code> dataset included in the <code>medley</code> package comes from the 2009 administration and is used to demonstrate predicting private versus public school attendance. There are 5,233 observations across 44 variables with 93.4% public school students and 6.6% private school students.</p>
 <p>To begin, we will split the data into a training and validation set using the <a href="https://search.r-project.org/CRAN/refmans/splitstackshape/html/stratified.html"><code>splitstackshape::stratified()</code></a> function to ensure that the ratio of public-to-private school students is the same in both datasets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pisa_formu <span class="ot">&lt;-</span> Public <span class="sc">~</span> .</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pisa) <span class="ot">&lt;-</span> pisa_variables[<span class="fu">names</span>(pisa)]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pisa_splits <span class="ot">&lt;-</span> splitstackshape<span class="sc">::</span><span class="fu">stratified</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    pisa, <span class="at">group =</span> <span class="st">"Public"</span>, <span class="at">size =</span> <span class="fl">0.75</span>, <span class="at">bothSets =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pisa_train <span class="ot">&lt;-</span> pisa_splits[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pisa_valid <span class="ot">&lt;-</span> pisa_splits[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pisa_formu <span class="ot">&lt;-</span> Public <span class="sc">~</span> .</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pisa) <span class="ot">&lt;-</span> pisa_variables[<span class="fu">names</span>(pisa)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pisa_splits <span class="ot">&lt;-</span> splitstackshape<span class="sc">::</span><span class="fu">stratified</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    pisa, <span class="at">group =</span> <span class="st">"Public"</span>, <span class="at">size =</span> <span class="fl">0.75</span>, <span class="at">bothSets =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pisa_train <span class="ot">&lt;-</span> pisa_splits[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pisa_valid <span class="ot">&lt;-</span> pisa_splits[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -257,7 +264,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06592777 0.93407223 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa_train<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa_train<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -268,7 +275,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06598726 0.93401274 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa_valid<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pisa_valid<span class="sc">$</span>Public, <span class="at">useNA =</span> <span class="st">'ifany'</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -282,27 +289,15 @@ FALSE  TRUE
 </div>
 <p>We can estimate a logistic regression model and get the predicted probabilities for the validation dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pisa_lr_out <span class="ot">&lt;-</span> <span class="fu">glm</span>(pisa_formu, <span class="at">data =</span> pisa_train, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pisa_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(pisa_lr_out, <span class="at">newdata =</span> pisa_valid, <span class="at">type =</span> <span class="st">'response'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pisa_lr_out <span class="ot">&lt;-</span> <span class="fu">glm</span>(pisa_formu, <span class="at">data =</span> pisa_train, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pisa_predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(pisa_lr_out, <span class="at">newdata =</span> pisa_valid, <span class="at">type =</span> <span class="st">'response'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The figure below shows the distribution of predicted probabilities for the validation dataset. There is some separation between public and private school students, but the densities are clearly centered to the right side of the range.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Public =</span> pisa_valid<span class="sc">$</span>Public, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Prediction =</span> pisa_predictions), </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Prediction, <span class="at">color =</span> Public)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The figure below provides a receiver operator characteristic (ROC) curve along with a plot of the accuracy, sensitivity, and specificity.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_roc</span>(<span class="at">predictions =</span> pisa_predictions, </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public) <span class="sc">|&gt;</span> <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Public =</span> pisa_valid<span class="sc">$</span>Public, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Prediction =</span> pisa_predictions), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Prediction, <span class="at">color =</span> Public)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -311,10 +306,22 @@ FALSE  TRUE
 </div>
 </div>
 </div>
+<p>The figure below provides a receiver operator characteristic (ROC) curve along with a plot of the accuracy, sensitivity, and specificity.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_roc</span>(<span class="at">predictions =</span> pisa_predictions, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public) <span class="sc">|&gt;</span> <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>The confusion matrix below, splitting at 0.5, indicates that this model is no better than the null model (i.e percent public school students is 93.4%). Of course we could adjust that cut value to optimize either the <em>specificity</em> or <em>sensitivity</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusion_matrix</span>(<span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">predicted =</span> pisa_predictions <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusion_matrix</span>(<span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">predicted =</span> pisa_predictions <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           predicted              
   observed     FALSE          TRUE
@@ -333,7 +340,7 @@ Specificity: 99.67%</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -343,7 +350,7 @@ Specificity: 99.67%</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -353,23 +360,42 @@ Specificity: 99.67%</code></pre>
 <h2 class="anchored" data-anchor-id="downsampling">Downsampling</h2>
 <p>As discussed above one of the key disadvantages of downsampling is that in situations where there is significant imbalance we are excluding a lot of data from analysis. The <code>downsample()</code> function will first determine how many models need to be estimated such that each observation from the larger class is used exactly once. For this example we are using a public-to-private student ratio of 2-to-1 so that for each model estimated there are 259 private and 518 public student observations. Given there are 3925 observations in our training set, the <code>dowmsample()</code> function will estimate 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pisa_ds_out <span class="ot">&lt;-</span> <span class="fu">downsample</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formu =</span> pisa_formu,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> pisa_train,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fun =</span> glm,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ratio =</span> <span class="dv">2</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pisa_ds_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pisa_ds_out <span class="ot">&lt;-</span> <span class="fu">downsample</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formu =</span> pisa_formu,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> pisa_train,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_fun =</span> glm,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ratio =</span> <span class="dv">2</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |==========                                                            |  14%
+  |                                                                            
+  |====================                                                  |  29%
+  |                                                                            
+  |==============================                                        |  43%
+  |                                                                            
+  |========================================                              |  57%
+  |                                                                            
+  |==================================================                    |  71%
+  |                                                                            
+  |============================================================          |  86%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pisa_ds_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
 <p>We can use the <code>predict()</code> function to get a data frame of predictions. Each column corresponds to the predicted value for each of the 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pisa_predictions_ds <span class="ot">&lt;-</span> <span class="fu">predict</span>(pisa_ds_out,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">newdata =</span> pisa_valid, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">type =</span> <span class="st">'response'</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pisa_predictions_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pisa_predictions_ds <span class="ot">&lt;-</span> <span class="fu">predict</span>(pisa_ds_out,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">newdata =</span> pisa_valid, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">type =</span> <span class="st">'response'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pisa_predictions_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     model1    model2    model3    model4    model5    model6    model7
 1 0.8511828 0.7437341 0.8921605 0.8424369 0.7347052 0.8697531 0.6928875
@@ -382,27 +408,14 @@ Specificity: 99.67%</code></pre>
 </div>
 <p>We can average the predictions to get a single vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pisa_predictions_ds2 <span class="ot">&lt;-</span> pisa_predictions_ds <span class="sc">|&gt;</span> <span class="fu">apply</span>(<span class="dv">1</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pisa_predictions_ds2 <span class="ot">&lt;-</span> pisa_predictions_ds <span class="sc">|&gt;</span> <span class="fu">apply</span>(<span class="dv">1</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The density distributions are provided below. These distributions are more like the distributions we expect when we have balanced data even though we did use all the observations to get these predicted probabilities.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Public =</span> pisa_valid<span class="sc">$</span>Public, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Prediction =</span> pisa_predictions_ds2), </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Prediction, <span class="at">color =</span> Public)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Although the <code>downsample()</code> function appears to address the issue of shrinking and off centered fitted values, the model performance metrics provided below suggest that it did not improve the overall performance of the model predictions.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>roc <span class="ot">&lt;-</span> <span class="fu">calculate_roc</span>(<span class="at">predictions =</span> pisa_predictions_ds2, </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Public =</span> pisa_valid<span class="sc">$</span>Public, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Prediction =</span> pisa_predictions_ds2), </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Prediction, <span class="at">color =</span> Public)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -411,9 +424,22 @@ Specificity: 99.67%</code></pre>
 </div>
 </div>
 </div>
+<p>Although the <code>downsample()</code> function appears to address the issue of shrinking and off centered fitted values, the model performance metrics provided below suggest that it did not improve the overall performance of the model predictions.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>roc <span class="ot">&lt;-</span> <span class="fu">calculate_roc</span>(<span class="at">predictions =</span> pisa_predictions_ds2, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2025-05-06-Downsampling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusion_matrix</span>(<span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public, </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">predicted =</span> pisa_predictions_ds2 <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusion_matrix</span>(<span class="at">observed =</span> pisa_valid<span class="sc">$</span>Public, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">predicted =</span> pisa_predictions_ds2 <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              predicted              
   observed        FALSE          TRUE

@@ -1,0 +1,15 @@
+{
+  "hash": "b47ca4c6aab476d784b6c2a54ed20465",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"ipeds\"\ndescription: \"An R package to interface with the Integrated Postsecondary Education Data System.\"\ncategories: [\"r-package\"]\nimage: ipeds.png\n---\n\nGithub: [https://github.com/jbryer/ipeds](https://github.com/jbryer/ipeds)\n\nThe following R script will download all available IPEDS data files.\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(xml2)\nlibrary(rvest)\n\nout_dir <- '~/Downloads/IPEDS/' # Location to put the downloaded files\n\nyears <- 2023:1980\n\nipeds_base <- 'https://nces.ed.gov/ipeds/datacenter/'\nipeds_url <- 'https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx?year='\n\nerror_links <- c() # Save any links that could not be downloaded.\nfor(year in years) {\n\tcat(paste0('Downloading year ', year, '...\\n'))\n\tdir.create(paste0(out_dir, '/', year), showWarnings = FALSE, recursive = TRUE)\n\n\tpage <- read_html(paste0(ipeds_url, year))\n\ttables <- page |> html_nodes(\"table\") |> html_table(convert = FALSE)\n\t# Guessing the one with the most rows is the one we want to keep as the index\n\ttab_index <- lapply(tables, nrow) |> unlist() |> which.max()\n\twrite.csv(tables[[tab_index]],\n\t\t\t  file = paste0(out_dir, year, '/_TOC_', year, '.csv'),\n\t\t\t  row.names = FALSE)\n\n\tlinks <- html_attr(html_nodes(page, \"a\"), \"href\")\n\tzip_files <- links[grep(\"*.zip\", links)]\n\tfor(i in zip_files) {\n\t\tdest <- paste0(out_dir, '/', year, '/', basename(i))\n\t\tif(!file.exists(dest)) {\n\t\t\tcat(paste0('Downloading ', basename(i), '...\\n'))\n\t\t\ttryCatch({\n\t\t\t\tdownload.file(url = paste0(ipeds_base, i), dest = dest)\n\t\t\t}, error = function(e) {\n\t\t\t\terror_links <<- c(error_links, paste0(ipeds_base, i))\n\t\t\t\tprint(e)\n\t\t\t})\n\t\t}\n\t}\n}\nerror_links # Print any links that could not download\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -14,11 +14,11 @@ editor_options:
 
 To install the development version of the `medley` package, use the following command:
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 remotes::install_github('jbryer/medley')
 ```
 
-```{r banner, eval=TRUE, echo=FALSE}
+```{r banner, eval=FALSE, echo=FALSE}
 source('../resources/banner.R')
 banner_image(rmarkdown::metadata$title,
 			 date = format(as.Date(rmarkdown::metadata$date), "%B %d, %Y"),
@@ -43,10 +43,16 @@ This paper introduces a procedure that downsamples while using all available dat
 
 ## Working Example
 
-```{r}
+```{r, eval=FALSE}
 library(medley)
 data('pisa', package = 'medley')
 data('pisa_variables', package = 'medley')
+```
+
+```{r, echo=FALSE}
+# NOTE: Not sure why I'm getting a corrupt data file from the medley package.
+library(medley)
+load('pisa.Rda')
 ```
 
 The [Programme of International Student Assessment](https://www.oecd.org/en/about/programmes/pisa.html) (PISA) is international study conducted by the [Organisation for Economic Co-operation and Development](https://www.oecd.org/en.html) (OECD) every three years. It assesses 15-year-old students in mathematics, science, and reading while collecting information about the students and their schools. The `pisa` dataset included in the `medley` package comes from the 2009 administration and is used to demonstrate predicting private versus public school attendance. There are `r prettyNum(nrow(pisa), big.mark=',')` observations across `r ncol(pisa)` variables with `r round(100 * sum(pisa$Public) / nrow(pisa), digits = 1)`% public school students and `r round(100 * sum(!pisa$Public) / nrow(pisa), digits = 1)`% private school students.

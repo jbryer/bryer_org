@@ -2225,16 +2225,23 @@ background-color: null;
 font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'jbryer/medley'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using GitHub PAT from the git credential store.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Skipping install of 'medley' from a github remote, the SHA1 (f3afe472) has not changed since last install.
+  Use `force = TRUE` to force installation</code></pre>
+</div>
 </div>
 <p>One of the challenges in predictive modeling occurs when the dependent variable is imbalanced (i.e.&nbsp;the ratio of one class to the other is high, generally greater than 80-to-20). Several strategies have been proposed to address the imbalance including upsampling and downsampling. Upsampling involves duplicating data from the smaller class to better match the number of observations from the larger class. The disadvantage of upsampling is that new data is being created that could potentially cause overfitting. Additionally, by artificially increasing the sample size standard errors will also be artificially decreased. Downsampling involves randomly selecting from the larger class to achieve better balance. The disadvantage of downsampling is that some data, and sometimes a lot of data, is excluded from the model.</p>
 <p>This paper introduces a procedure that downsamples while using all available data by training multiple models. For example, consider a dataset with 1,000 observations, 900 are of class A and 100 are of class B. Assuming we wish to have perfect balance between A and B, we would randomly assign the 900 class A observations to one of nine models. We can then pool the predictions across the nine models.</p>
 <section id="working-example" class="level2">
 <h2 class="anchored" data-anchor-id="working-example">Working Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(medley)</span>
-<span id="cb2-2"><span class="fu" style="color: #4758AB;
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">data</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -2243,7 +2250,7 @@ background-color: null;
 font-style: inherit;">package =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'medley'</span>)</span>
-<span id="cb2-3"><span class="fu" style="color: #4758AB;
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">data</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -2256,26 +2263,26 @@ font-style: inherit;">'medley'</span>)</span></code></pre></div>
 <p>The <a href="https://www.oecd.org/en/about/programmes/pisa.html">Programme of International Student Assessment</a> (PISA) is international study conducted by the <a href="https://www.oecd.org/en.html">Organisation for Economic Co-operation and Development</a> (OECD) every three years. It assesses 15-year-old students in mathematics, science, and reading while collecting information about the students and their schools. The <code>pisa</code> dataset included in the <code>medley</code> package comes from the 2009 administration and is used to demonstrate predicting private versus public school attendance. There are 5,233 observations across 44 variables with 93.4% public school students and 6.6% private school students.</p>
 <p>To begin, we will split the data into a training and validation set using the <a href="https://search.r-project.org/CRAN/refmans/splitstackshape/html/stratified.html"><code>splitstackshape::stratified()</code></a> function to ensure that the ratio of public-to-private school students is the same in both datasets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">pisa_formu <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pisa_formu <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> Public <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">~</span> .</span>
-<span id="cb3-2"><span class="fu" style="color: #4758AB;
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">names</span>(pisa) <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> pisa_variables[<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">names</span>(pisa)]</span>
-<span id="cb3-3">pisa_splits <span class="ot" style="color: #003B4F;
+<span id="cb5-3">pisa_splits <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> splitstackshape<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">stratified</span>(</span>
-<span id="cb3-4">    pisa, <span class="at" style="color: #657422;
+<span id="cb5-4">    pisa, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">group =</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -2288,7 +2295,7 @@ background-color: null;
 font-style: inherit;">bothSets =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>)</span>
-<span id="cb3-5">pisa_train <span class="ot" style="color: #003B4F;
+<span id="cb5-5">pisa_train <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> pisa_splits[[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2297,7 +2304,7 @@ background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">as.data.frame</span>()</span>
-<span id="cb3-6">pisa_valid <span class="ot" style="color: #003B4F;
+<span id="cb5-6">pisa_valid <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> pisa_splits[[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2308,7 +2315,7 @@ background-color: null;
 font-style: inherit;">as.data.frame</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2335,7 +2342,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06592777 0.93407223 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa_train<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2362,7 +2369,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06598726 0.93401274 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2392,7 +2399,7 @@ FALSE  TRUE
 </div>
 <p>We can estimate a logistic regression model and get the predicted probabilities for the validation dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">pisa_lr_out <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">pisa_lr_out <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2407,7 +2414,7 @@ background-color: null;
 font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'logit'</span>))</span>
-<span id="cb13-2">pisa_predictions <span class="ot" style="color: #003B4F;
+<span id="cb15-2">pisa_predictions <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2421,7 +2428,7 @@ font-style: inherit;">'response'</span>)</span></code></pre></div>
 </div>
 <p>The figure below shows the distribution of predicted probabilities for the validation dataset. There is some separation between public and private school students, but the densities are clearly centered to the right side of the range.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2430,10 +2437,10 @@ background-color: null;
 font-style: inherit;">Public =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>Public, </span>
-<span id="cb14-2">                  <span class="at" style="color: #657422;
+<span id="cb16-2">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">Prediction =</span> pisa_predictions), </span>
-<span id="cb14-3">       <span class="fu" style="color: #4758AB;
+<span id="cb16-3">       <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2442,25 +2449,25 @@ background-color: null;
 font-style: inherit;">color =</span> Public)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb14-4">  <span class="fu" style="color: #4758AB;
+<span id="cb16-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_density</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The figure below provides a receiver operator characteristic (ROC) curve along with a plot of the accuracy, sensitivity, and specificity.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">calculate_roc</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">predictions =</span> pisa_predictions, </span>
-<span id="cb15-2">              <span class="at" style="color: #657422;
+<span id="cb17-2">              <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">observed =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2472,21 +2479,21 @@ font-style: inherit;">plot</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The confusion matrix below, splitting at 0.5, indicates that this model is no better than the null model (i.e percent public school students is 93.4%). Of course we could adjust that cut value to optimize either the <em>specificity</em> or <em>sensitivity</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">confusion_matrix</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">observed =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>Public, </span>
-<span id="cb16-2">                 <span class="at" style="color: #657422;
+<span id="cb18-2">                 <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">predicted =</span> pisa_predictions <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2511,7 +2518,7 @@ Specificity: 99.67%</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -2521,7 +2528,7 @@ Specificity: 99.67%</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -2531,26 +2538,26 @@ Specificity: 99.67%</code></pre>
 <h2 class="anchored" data-anchor-id="downsampling">Downsampling</h2>
 <p>As discussed above one of the key disadvantages of downsampling is that in situations where there is significant imbalance we are excluding a lot of data from analysis. The <code>downsample()</code> function will first determine how many models need to be estimated such that each observation from the larger class is used exactly once. For this example we are using a public-to-private student ratio of 2-to-1 so that for each model estimated there are 259 private and 518 public student observations. Given there are 3925 observations in our training set, the <code>dowmsample()</code> function will estimate 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">pisa_ds_out <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">pisa_ds_out <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">downsample</span>(</span>
-<span id="cb18-2">  <span class="at" style="color: #657422;
+<span id="cb20-2">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">formu =</span> pisa_formu,</span>
-<span id="cb18-3">  <span class="at" style="color: #657422;
+<span id="cb20-3">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">data =</span> pisa_train,</span>
-<span id="cb18-4">  <span class="at" style="color: #657422;
+<span id="cb20-4">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">model_fun =</span> glm,</span>
-<span id="cb18-5">  <span class="at" style="color: #657422;
+<span id="cb20-5">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">ratio =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>,</span>
-<span id="cb18-6">  <span class="at" style="color: #657422;
+<span id="cb20-6">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2558,8 +2565,27 @@ font-style: inherit;">binomial</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'logit'</span>))</span>
-<span id="cb18-7"><span class="fu" style="color: #4758AB;
+font-style: inherit;">'logit'</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |==========                                                            |  14%
+  |                                                                            
+  |====================                                                  |  29%
+  |                                                                            
+  |==============================                                        |  43%
+  |                                                                            
+  |========================================                              |  57%
+  |                                                                            
+  |==================================================                    |  71%
+  |                                                                            
+  |============================================================          |  86%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">length</span>(pisa_ds_out)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2568,20 +2594,20 @@ font-style: inherit;">length</span>(pisa_ds_out)</span></code></pre></div>
 </div>
 <p>We can use the <code>predict()</code> function to get a data frame of predictions. Each column corresponds to the predicted value for each of the 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">pisa_predictions_ds <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">pisa_predictions_ds <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">predict</span>(pisa_ds_out,</span>
-<span id="cb20-2">                               <span class="at" style="color: #657422;
+<span id="cb24-2">                               <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">newdata =</span> pisa_valid, </span>
-<span id="cb20-3">                               <span class="at" style="color: #657422;
+<span id="cb24-3">                               <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'response'</span>)</span>
-<span id="cb20-4"><span class="fu" style="color: #4758AB;
+<span id="cb24-4"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">head</span>(pisa_predictions_ds)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2596,7 +2622,7 @@ font-style: inherit;">head</span>(pisa_predictions_ds)</span></code></pre></div>
 </div>
 <p>We can average the predictions to get a single vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">pisa_predictions_ds2 <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1">pisa_predictions_ds2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> pisa_predictions_ds <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2608,7 +2634,7 @@ font-style: inherit;">1</span>, mean)</span></code></pre></div>
 </div>
 <p>The density distributions are provided below. These distributions are more like the distributions we expect when we have balanced data even though we did use all the observations to get these predicted probabilities.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2617,10 +2643,10 @@ background-color: null;
 font-style: inherit;">Public =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>Public, </span>
-<span id="cb23-2">                  <span class="at" style="color: #657422;
+<span id="cb27-2">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">Prediction =</span> pisa_predictions_ds2), </span>
-<span id="cb23-3">       <span class="fu" style="color: #4758AB;
+<span id="cb27-3">       <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2629,34 +2655,9 @@ background-color: null;
 font-style: inherit;">color =</span> Public)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb23-4">  <span class="fu" style="color: #4758AB;
+<span id="cb27-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_density</span>()</span></code></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Although the <code>downsample()</code> function appears to address the issue of shrinking and off centered fitted values, the model performance metrics provided below suggest that it did not improve the overall performance of the model predictions.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">roc <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">calculate_roc</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">predictions =</span> pisa_predictions_ds2, </span>
-<span id="cb24-2">                     <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">observed =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>Public)</span>
-<span id="cb24-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">plot</span>(roc)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2665,15 +2666,40 @@ font-style: inherit;">plot</span>(roc)</span></code></pre></div>
 </div>
 </div>
 </div>
+<p>Although the <code>downsample()</code> function appears to address the issue of shrinking and off centered fitted values, the model performance metrics provided below suggest that it did not improve the overall performance of the model predictions.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1">roc <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">calculate_roc</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">predictions =</span> pisa_predictions_ds2, </span>
+<span id="cb28-2">                     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">observed =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Public)</span>
+<span id="cb28-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(roc)</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://bryer.org/posts/2025-05-06-Downsampling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">confusion_matrix</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">observed =</span> pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>Public, </span>
-<span id="cb25-2">                 <span class="at" style="color: #657422;
+<span id="cb29-2">                 <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">predicted =</span> pisa_predictions_ds2 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -6638,7 +6664,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
-<p>The probability of getting all 5 questions on this test is 0.0009766. We can now treat each test attempt as a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli trial</a> where the probability of success is 0.0009766. The <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a> gives us the number of Bernoulli trials we need to get one success. The mean for the geometric distribution are:</p>
+<p>The probability of getting all 5 questions on this test is 9.765625^{-4}. We can now treat each test attempt as a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli trial</a> where the probability of success is 9.765625^{-4}. The <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a> gives us the number of Bernoulli trials we need to get one success. The mean for the geometric distribution are:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%20%5Cmu%20=%20%5Cfrac%7B1%7D%7Bp%7D%20"></p>
 <p>Therefore, it will take an average of 1024 test attempts before getting all questions correct on the attempt.</p>
 <div class="cell">
@@ -6665,7 +6691,7 @@ font-style: inherit;">/</span> p_all_correct</span></code></pre></div>
 <pre><code>[1] 1024</code></pre>
 </div>
 </div>
-<p>However, the geometric distribution is not symmetrical so using the mean not be desirable. Here is the geometric distribution for where the probability of success is 0.0009766.</p>
+<p>However, the geometric distribution is not symmetrical so using the mean not be desirable. Here is the geometric distribution for where the probability of success is 9.765625^{-4}.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">geom_dist <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -7092,80 +7118,83 @@ font-style: inherit;">library</span>(tmaptools)</span>
 <span id="cb1-4"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(XML)</span>
-<span id="cb1-5"></span>
-<span id="cb1-6">palette.nyc <span class="ot" style="color: #003B4F;
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">palette.nyc <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">c</span>(</span>
-<span id="cb1-7">    <span class="at" style="color: #657422;
+<span id="cb1-8">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">background =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#0850A4'</span>,</span>
-<span id="cb1-8">    <span class="at" style="color: #657422;
+<span id="cb1-9">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">water =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#0850A4'</span>,</span>
-<span id="cb1-9">    <span class="at" style="color: #657422;
+<span id="cb1-10">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">streets =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#3D88C7'</span>,</span>
-<span id="cb1-10">    <span class="at" style="color: #657422;
+<span id="cb1-11">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">small_streets =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#3D88C7'</span>,</span>
-<span id="cb1-11">    <span class="at" style="color: #657422;
+<span id="cb1-12">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">rivers =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#0850A4'</span>,</span>
-<span id="cb1-12">    <span class="at" style="color: #657422;
+<span id="cb1-13">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">route =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#1B295A'</span>,</span>
-<span id="cb1-13">    <span class="at" style="color: #657422;
+<span id="cb1-14">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">labels =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#3D88C7'</span>,</span>
-<span id="cb1-14">    <span class="at" style="color: #657422;
+<span id="cb1-15">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'#A8BACA'</span></span>
-<span id="cb1-15">)</span>
-<span id="cb1-16"></span>
-<span id="cb1-17">gpx.file <span class="ot" style="color: #003B4F;
+<span id="cb1-16">)</span>
+<span id="cb1-17"></span>
+<span id="cb1-18">gpx.file <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'2019-11-03-NYC-Marathon.gpx'</span></span>
-<span id="cb1-18">palette <span class="ot" style="color: #003B4F;
+<span id="cb1-19">palette <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> palette.nyc</span>
-<span id="cb1-19">title <span class="ot" style="color: #003B4F;
+<span id="cb1-20">title <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'NYC Marathon'</span></span>
-<span id="cb1-20">subtitle <span class="ot" style="color: #003B4F;
+<span id="cb1-21">subtitle <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'November 3, 2009'</span></span>
-<span id="cb1-21">title.hjust <span class="ot" style="color: #003B4F;
+<span id="cb1-22">title.hjust <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># 0 = left align; 1 = right aling</span></span>
-<span id="cb1-22">distance <span class="ot" style="color: #003B4F;
+<span id="cb1-23">distance <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
