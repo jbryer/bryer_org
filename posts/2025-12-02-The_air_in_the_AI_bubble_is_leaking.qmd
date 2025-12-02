@@ -21,6 +21,7 @@ banner_image('The air in the AI bubble may be leaking',
 )
 ```
 
+
 ```{r setup, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
 ```
 
