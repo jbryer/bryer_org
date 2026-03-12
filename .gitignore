@@ -40,3 +40,5 @@ archive/
 /.quarto/
 # Big files in here
 posts/*_cache/
+
+**/*.quarto_ipynb

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cf3f2c26eef976f46b51aa29f3e196e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -131,16 +132,16 @@ window.Quarto = {
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Talks – Jason Bryer">
-<meta property="og:image" content="https://bryer.org/posts/2025-08-09-useR2025.png">
+<meta property="og:image" content="https://bryer.org/posts/2026-03-10-Special_k.png">
 <meta property="og:site_name" content="Jason Bryer">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="432">
-<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="675">
+<meta property="og:image:width" content="1200">
 <meta name="twitter:title" content="Talks – Jason Bryer">
-<meta name="twitter:image" content="https://bryer.org/posts/2025-08-09-useR2025.png">
+<meta name="twitter:image" content="https://bryer.org/posts/2026-03-10-Special_k.png">
 <meta name="twitter:creator" content="@jbryer">
-<meta name="twitter:image-height" content="432">
-<meta name="twitter:image-width" content="1000">
+<meta name="twitter:image-height" content="675">
+<meta name="twitter:image-width" content="1200">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -151,6 +152,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Jason Bryer</span>
     </a>
@@ -251,7 +254,31 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1754712000000" data-listing-file-modified-sort="1763071247000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413">
+<div class="g-col-1" data-index="0" data-categories="UiUyQ1RhbGslMkNDbHVzdGVyJTIwQW5hbHlzaXM=" data-listing-date-sort="1773115200000" data-listing-file-modified-sort="1773331652000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="97">
+<a href="./posts/2026-03-10-Special_k.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/2026-03-10-Special_k.png" class="thumbnail-image card-img" style="height: 600;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Estimating Causality from Observational Data
+</h5>
+<div class="card-text listing-description delink">
+<p>Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor…</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Jason Bryer
+</div>
+<div class="listing-date">
+Mar 10, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1754712000000" data-listing-file-modified-sort="1763071247000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413">
 <a href="./posts/2025-08-09-useR2025.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -275,7 +302,7 @@ Aug 9, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1754366400000" data-listing-file-modified-sort="1746580770088" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373">
+<div class="g-col-1" data-index="2" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1754366400000" data-listing-file-modified-sort="1746580770000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373">
 <a href="./posts/2025-08-05-JSM025.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -299,7 +326,7 @@ Aug 5, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1741237200000" data-listing-file-modified-sort="1741272385000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="172">
+<div class="g-col-1" data-index="3" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1741237200000" data-listing-file-modified-sort="1741272385000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="172">
 <a href="./posts/2025-04-11-ShinyConf2025.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -323,7 +350,7 @@ Mar 6, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="UiUyQ1RhbGslMkNHaXRodWIlMkNRdWFydG8=" data-listing-date-sort="1739941200000" data-listing-file-modified-sort="1741194797000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
+<div class="g-col-1" data-index="4" data-categories="UiUyQ1RhbGslMkNHaXRodWIlMkNRdWFydG8=" data-listing-date-sort="1739941200000" data-listing-file-modified-sort="1741194797000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
 <a href="./posts/2025-02-19-Github_Portfolio.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -347,7 +374,7 @@ Feb 19, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1713326400000" data-listing-file-modified-sort="1742566351000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="179">
+<div class="g-col-1" data-index="5" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1713326400000" data-listing-file-modified-sort="1742566351000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="179">
 <a href="./posts/2024-04-17-ShinyConf2024.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -371,7 +398,7 @@ Apr 17, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1699938000000" data-listing-file-modified-sort="1741194883000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="g-col-1" data-index="6" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1699938000000" data-listing-file-modified-sort="1741194883000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
 <a href="./posts/2023-11-14-Intro_to_PSA.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -395,7 +422,7 @@ Nov 14, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="UiUyQ1RhbGslMkNQU0E=" data-listing-date-sort="1682308800000" data-listing-file-modified-sort="1741271172000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="227">
+<div class="g-col-1" data-index="7" data-categories="UiUyQ1RhbGslMkNQU0E=" data-listing-date-sort="1682308800000" data-listing-file-modified-sort="1741271172000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="227">
 <a href="./posts/2023-04-24-Estimating_Causailty_from_Observational_Data.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -419,7 +446,7 @@ Apr 24, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1646110800000" data-listing-file-modified-sort="1741194956000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="g-col-1" data-index="8" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1646110800000" data-listing-file-modified-sort="1741194956000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
 <a href="./posts/2022-03-01_R_Package_Development.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -443,7 +470,7 @@ Mar 1, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1638248400000" data-listing-file-modified-sort="1741195344000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
+<div class="g-col-1" data-index="9" data-categories="UiUyQ1RhbGs=" data-listing-date-sort="1638248400000" data-listing-file-modified-sort="1741195344000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
 <a href="./posts/2021-11-30-Intro_to_Shiny.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -521,13 +548,14 @@ Nov 30, 2021
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

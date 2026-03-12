@@ -9,8 +9,31 @@
 <link>https://bryer.org/blog.html#category=Talk</link>
 <atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.7.32</generator>
-<lastBuildDate>Sat, 09 Aug 2025 04:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Tue, 10 Mar 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Estimating Causality from Observational Data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2026-03-10-Special_k.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/B4MU7ORbCWI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><a href="https://github.com/jbryer/clav/blob/master/slides/clav_nyhackr_2026.pdf">Download slides</a></p>
+<p>Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.</p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <category>Cluster Analysis</category>
+  <guid>https://bryer.org/posts/2026-03-10-Special_k.html</guid>
+  <pubDate>Tue, 10 Mar 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2026-03-10-Special_k.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
 <item>
   <title>Predictive Modeling with Missing Data</title>
   <dc:creator>Jason Bryer</dc:creator>

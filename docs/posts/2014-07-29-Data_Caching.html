@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cf3f2c26eef976f46b51aa29f3e196e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,6 +125,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jason Bryer</span>
     </a>
@@ -210,12 +213,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Data caching is not new. It is often necessary to save intermediate data files when the process of loading and/or manipulating data takes a considerable amount of time. This problem is further complicated when working with dynamic data that changes regularly. In these situations it often sufficient to use data that is current with in some time frame (e.g.&nbsp;hourly, daily, weekly, monthly). One solution is to use a time-based job scheduler such as <code>cron</code>. However, that requires access and knowledge of Unix systems. The alternative, is to check for the “freshness” of a cached dataset each time it is requested. If is “stale,” then the data cached is refreshed with more up-to-date data. The <code>DataCache</code> package implements this approach in R. Moreover, on Unix systems (including Mac OS X), the refreshing will be done in the background. That is, when requesting data from the cache, if it is stale, the function will return the latest available data while the cache is updated in the background. This is particularly useful when using R in a web environment (e.g.&nbsp;<a href="http://shiny.rstudio.com">Shiny Apps</a>) where it is not ideal to have the user wait for data be loaded to begin interacting with the app.</p>
 <p>The latest version of the <code>DataCache</code> package can be downloaded from Github using the <code>devtools</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'jbryer/DataCache'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'jbryer/DataCache'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For this example, we wish to periodically load weather data using the <code>weatherData</code> package. The <code>getDetailedWeather</code> function provides hourly temperature updates. To start, we will load the <code>DataCache</code> and <code>weatherData</code> packages.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'DataCache'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'weatherData'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'DataCache'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'weatherData'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The only required parameter for the <code>data.cache</code> function is the <code>FUN</code> parameter which defines the data to be loaded. This function should return a named <code>list</code> where each element of the list will be assigned to specified environment when loaded. That is, if the function returns <code>list(foo='bar')</code> then the object <code>foo</code> will be assigned in the working envirnoment (note that this can be modified using the <code>envir</code> parameter).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Load data for a single day for the given airport.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Load data for a single day for the given airport.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param station_id three letter airport code.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return a list with a data frame names `weather.XXX` where `XXX` is the three</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'         letter airport code.</span></span>
@@ -223,14 +226,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">getDetailedWeather</span>(station_id, <span class="fu">Sys.Date</span>()))</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(results) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'weather.'</span>, station_id)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(results)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To get started, simply call <code>data.cache</code> with the data loading function. This function will block on the first execution (i.e.&nbsp;you will have to wait until the first dataset is loaded). On subsequent executions, the <code>data.cache</code> function will check to see if the most recent cached data is stale. If it is stale, it will start a new background process to load the data and return the most recent data. Once the background process completes, <code>data.cache</code> will start returning the updated data.</p>
 <p>Note for Windows users: Forking is not available on Windows systems using the <code>parallel</code> package. Therefore data cannot be loaded in the background. As a result, the <code>data.cache</code> function will wait for the refreshed data to load each time it becomes stale.</p>
 <p>The <code>data.cache</code> returns invisibly (i.e.&nbsp;will not be printed if not assinged to a variable, see <code>?invisible</code> for more details) the timestamp of the data returned.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(cache.date1 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(cache.date1 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>No cached data found. Loading intial data...</code></pre>
 <pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weather.ALB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weather.ALB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>                 Time TemperatureF
 1 2014-07-29 00:51:00         62.1
 2 2014-07-29 01:51:00         61.0
@@ -239,14 +242,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 2014-07-29 04:51:00         60.1
 6 2014-07-29 05:51:00         59.0</code></pre>
 <p>The <code>cache.info</code> function provides a summary of all the cached data files. It will also provide columns (which can be set using the <code>stale</code> parameter) indicating whether that data file is stale according to various time periods.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cache.info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cache.info</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>                          file             created age_mins hourly_stale
 1 Cache2014-07-29 18:03:53.rda 2014-07-29 18:03:53   0.1842        FALSE
   daily_stale weekly_stale monthly_stale yearly_stale
 1       FALSE        FALSE         FALSE        FALSE</code></pre>
 <p>Old data caches can easily be loaded this way. For example, the following will load the first data cache created:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cinfo <span class="ot">&lt;-</span> <span class="fu">cache.info</span>()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(cinfo[<span class="fu">nrow</span>(cinfo),]<span class="sc">$</span>file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cinfo <span class="ot">&lt;-</span> <span class="fu">cache.info</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(cinfo[<span class="fu">nrow</span>(cinfo),]<span class="sc">$</span>file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are a number of frequencies available for defining when a dataset becomes stale. They are:</p>
 <ul>
 <li><code>hourly</code> - Data will become stale each hour. This uses the <code>hour</code> function from the <code>lubrdiate</code> package. Therefore, data will become stale at the top of each hour.</li>
@@ -260,21 +263,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>You can define your own frequency. Simply define a function that takes one parameter, <code>timestamp</code>, and returns a logical where <code>TRUE</code> indicates the data loaded at <code>timestamp</code> is stale.</p>
 <p>We can see that the <code>weather.ALB</code> data frame is now available in the working environent.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>[1] "cache.date1"     "loadWeatherData" "package"         "weather.ALB"</code></pre>
 <p>We will wait 60 seconds so that the cache becomes stale. We will also call <code>data.cache</code> twice in a row to show that they will each return the same cached data, but the second call will not spawn a new background process to refresh the data.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.sleep</span>(<span class="dv">60</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(cache.date2 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData, <span class="at">frequency=</span><span class="fu">nMinutes</span>(<span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.sleep</span>(<span class="dv">60</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(cache.date2 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData, <span class="at">frequency=</span><span class="fu">nMinutes</span>(<span class="dv">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>Loading more recent data, returning lastest available.</code></pre>
 <pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(cache.date3 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData, <span class="at">frequency=</span><span class="fu">nMinutes</span>(<span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(cache.date3 <span class="ot">&lt;-</span> <span class="fu">data.cache</span>(loadWeatherData, <span class="at">frequency=</span><span class="fu">nMinutes</span>(<span class="dv">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>Data is being loaded by another process. The process has been running for 0.121761083602905 seconds. If this is an error delete cache/Cache.lck
 Loading more recent data, returning lastest available.</code></pre>
 <pre><code>[1] "2014-07-29 18:03:53 EDT"</code></pre>
 <p>It is easy to have multiple data caches. Using the same <code>loadWeatherData</code> function we will create a spearate data cache for weather data from JFK.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.cache</span>(loadWeatherData, <span class="at">cache.name=</span><span class="st">'NRT'</span>, <span class="at">station_id=</span><span class="st">'NRT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.cache</span>(loadWeatherData, <span class="at">cache.name=</span><span class="st">'NRT'</span>, <span class="at">station_id=</span><span class="st">'NRT'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>No cached data found. Loading intial data...</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weather.NRT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weather.NRT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>                 Time TemperatureF
 1 2014-07-29 00:00:00         69.8
 2 2014-07-29 00:30:00         68.0
@@ -282,7 +285,7 @@ Loading more recent data, returning lastest available.</code></pre>
 4 2014-07-29 01:30:00         68.0
 5 2014-07-29 02:00:00         66.2
 6 2014-07-29 02:30:00         66.2</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cache.info</span>(<span class="at">cache.name=</span><span class="st">'NRT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cache.info</span>(<span class="at">cache.name=</span><span class="st">'NRT'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>                        file             created age_mins hourly_stale
 1 NRT2014-07-29 18:05:04.rda 2014-07-29 18:05:04  0.03819        FALSE
   daily_stale weekly_stale monthly_stale yearly_stale
@@ -342,13 +345,14 @@ Loading more recent data, returning lastest available.</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

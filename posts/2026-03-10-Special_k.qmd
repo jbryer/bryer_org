@@ -1,0 +1,15 @@
+---
+title: "Estimating Causality from Observational Data"
+author: "Jason Bryer"
+description: "Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g. PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples. "
+date: "2026-03-10"
+categories: ["R", "Talk", "Cluster Analysis"]
+image: 2026-03-10-Special_k.png
+---
+
+
+{{< video https://www.youtube.com/watch?v=B4MU7ORbCWI >}}
+
+[Download slides](https://github.com/jbryer/clav/blob/master/slides/clav_nyhackr_2026.pdf)
+
+Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g. PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples. 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cf3f2c26eef976f46b51aa29f3e196e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a26f3680889bc016604be2101547878f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -119,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -159,6 +160,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jason Bryer</span>
     </a>
@@ -250,7 +253,7 @@ window.Quarto = {
 <p><span class="math display">\[ SE =  \frac{s}{\sqrt{n}} \]</span></p>
 <p>where <em>s</em> is the sample standard deviation. Typically our <em>null</em> is zero in which case we reject the <em>null</em> hypothesis when the confidence does not span zero. If we wish to construct a 95% confidence interval, then <span class="math inline">\(z = 1.96\)</span>. Assuming the sample standard deviation is constant regardless of sample size (a fair assumption), then as <em>n</em> increases the standard error decreases. The following calculates the confidence interval for <em>n</em> ranging from 10 to 400 assuming a sample standard deviation of 0.15 and 95% confidence level. When <span class="math inline">\(n &gt; 171\)</span> then <span class="math inline">\(p &lt; 0.05\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define some parameters</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define some parameters</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sig_level <span class="ot">&lt;-</span> .<span class="dv">95</span>  <span class="co"># Significance level, 95% here</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>es <span class="ot">&lt;-</span> <span class="fl">0.15</span>        <span class="co"># Effect size in standard units</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>null_val <span class="ot">&lt;-</span> <span class="dv">0</span>     <span class="co"># null value</span></span>
@@ -285,7 +288,7 @@ window.Quarto = {
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="fu">paste0</span>(<span class="st">'p &lt; '</span>, (<span class="dv">1</span> <span class="sc">-</span> sig_level)), <span class="at">type =</span> <span class="st">'qual'</span>, <span class="at">palette =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">'Minumum n for p &lt; '</span>, (<span class="dv">1</span> <span class="sc">-</span> sig_level), <span class="st">': '</span>, min_n),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">'effect size: '</span>, es, <span class="st">'; null value: '</span>, null_val))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">'effect size: '</span>, es, <span class="st">'; null value: '</span>, null_val))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -299,7 +302,7 @@ window.Quarto = {
 <p>where <em>O</em> is the observed count and <em>E</em> is the expected count. Unlike the standard error for numerical data, <em>n</em> is not explicitly in the formula and therefore makes it a bit more challenging to determine the impact sample size has rejecting the <em>null</em> hypothesis. Moreover, since the chi-squared is calculated from the cell counts in a table of varying length and dimension (one- or two-dimensions specifically) determining how <em>n</em> impacts rejecting the <em>null</em> or not requires more parameters.</p>
 <p>Answering the question of how large does <em>n</em> need to be to detect a statistically significant result (i.e.&nbsp;to reject the <em>null</em> hypothesis) is refereed to as <a href="https://en.wikipedia.org/wiki/Power_(statistics)">power</a>. Whereas for calculating the power for numerical data had one parameter, the sample standard deviation, here we need to consider the proportion of observations within different cells. For example, consider we have a variable with three levels and we expect the proportion of observations in the three groups to be 33%, 25%, and 42%, respectively. If our sample size is 100 then we expect there to be 33, 25, and 42 and observations for the three categories. This function will, for varying sample sizes, calculate the counts for the categories to achieve that sample size, estimate the chi-squared statistic and record the <em>p</em>-value. There are other parameters that are documented below. A <code>plot</code> function is also defined using the <a href="http://adv-r.had.co.nz/S3.html">S3 objected oriented framework</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Calculate p-value from a chi-squared test with varying sample sizes</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Calculate p-value from a chi-squared test with varying sample sizes</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' This algorithm will start with an initial sample size (`n_start`) and perform a chi-squared test</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' with a vector of counts equal to `n * probs`. This will repeat increasing the sample size by</span></span>
@@ -499,16 +502,16 @@ window.Quarto = {
 <span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">'Probabilities: '</span>, <span class="fu">paste0</span>(<span class="fu">round</span>(<span class="fu">attr</span>(x, <span class="st">'probs'</span>), <span class="at">digits =</span> digits), <span class="at">collapse =</span> <span class="st">', '</span>)))</span>
 <span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(p)</span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Returning to our example above where the cell proportions are 33%, 25%, and 42%, we would need <span class="math inline">\(n \ge 130\)</span> to reject the <em>null</em> hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>csp1 <span class="ot">&lt;-</span> <span class="fu">chi_squared_power</span>(<span class="at">probs =</span>  <span class="fu">c</span>(.<span class="dv">33</span>, .<span class="dv">25</span>, .<span class="dv">42</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csp1[csp1<span class="sc">$</span>sig,]<span class="sc">$</span>n <span class="sc">|&gt;</span> <span class="fu">min</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># Smallest n that results in p &lt; 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>csp1 <span class="ot">&lt;-</span> <span class="fu">chi_squared_power</span>(<span class="at">probs =</span>  <span class="fu">c</span>(.<span class="dv">33</span>, .<span class="dv">25</span>, .<span class="dv">42</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csp1[csp1<span class="sc">$</span>sig,]<span class="sc">$</span>n <span class="sc">|&gt;</span> <span class="fu">min</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 130</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -519,12 +522,12 @@ window.Quarto = {
 </div>
 <p>In the next example we have much smaller differences between the cells with 25%, 25%, 24%, and 26%. In this example <span class="math inline">\(n \ge 9,710\)</span> before rejecting the <em>null</em> hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>csp3 <span class="ot">&lt;-</span> <span class="fu">chi_squared_power</span>(<span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">25</span>, .<span class="dv">24</span>, .<span class="dv">26</span>), <span class="at">max_n =</span> <span class="dv">20000</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>csp3[csp3<span class="sc">$</span>sig,]<span class="sc">$</span>n <span class="sc">|&gt;</span> <span class="fu">min</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># Smallest n that results in p &lt; 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>csp3 <span class="ot">&lt;-</span> <span class="fu">chi_squared_power</span>(<span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">25</span>, .<span class="dv">24</span>, .<span class="dv">26</span>), <span class="at">max_n =</span> <span class="dv">20000</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>csp3[csp3<span class="sc">$</span>sig,]<span class="sc">$</span>n <span class="sc">|&gt;</span> <span class="fu">min</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9710</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -535,24 +538,24 @@ window.Quarto = {
 </div>
 <p>This function will work with two-dimensional data as well (i.e.&nbsp;across two variables). The following example from Agresti (2007) looks at the political affiliation across sex (see the help documentation for <code>chisq.test()</code>.).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.table</span>(<span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">327</span>, <span class="dv">468</span>), <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">239</span>, <span class="dv">477</span>)))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">as.table</span>(<span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">762</span>, <span class="dv">327</span>, <span class="dv">468</span>), <span class="fu">c</span>(<span class="dv">484</span>, <span class="dv">239</span>, <span class="dv">477</span>)))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(M) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">gender =</span> <span class="fu">c</span>(<span class="st">"Femal"</span>, <span class="st">"Male"</span>),</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">party =</span> <span class="fu">c</span>(<span class="st">"Democrat"</span>, <span class="st">"Independent"</span>, <span class="st">"Republican"</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       party
 gender  Democrat Independent Republican
   Femal      762         327        468
   Male       484         239        477</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(M)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2757</code></pre>
 </div>
 </div>
 <p>The chi-squared test suggests we should reject the <em>null</em> hypothesis test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(M)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -560,14 +563,14 @@ gender  Democrat Independent Republican
 data:  M
 X-squared = 30.07, df = 2, p-value = 2.954e-07</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">CramerV</span>(M) <span class="co"># Effect size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">CramerV</span>(M) <span class="co"># Effect size</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1044358</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">power.chisq.test</span>(<span class="at">n =</span> <span class="fu">sum</span>(M),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">power.chisq.test</span>(<span class="at">n =</span> <span class="fu">sum</span>(M),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">w =</span> DescTools<span class="sc">::</span><span class="fu">CramerV</span>(M),</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">df =</span> <span class="fu">min</span>(<span class="fu">dim</span>(M)) <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sig.level =</span> <span class="dv">1</span> <span class="sc">-</span> sig_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sig.level =</span> <span class="dv">1</span> <span class="sc">-</span> sig_level)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      Chi squared power calculation 
@@ -583,9 +586,9 @@ NOTE: n is the number of observations</code></pre>
 </div>
 <p>Agresti had a sample size of 2757, but we can ask the question what is the minimum sample size would they need to detect statistical significance? First, we convert the counts to proportions, then we can use the <code>chi_squared_power()</code> function to find the minimum sample size to reject the <em>null</em> hypothesis test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>M_prob <span class="ot">&lt;-</span> M <span class="sc">/</span> <span class="fu">sum</span>(M) <span class="co"># Convert the counts to percentages</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>M_prob <span class="ot">&lt;-</span> M <span class="sc">/</span> <span class="fu">sum</span>(M) <span class="co"># Convert the counts to percentages</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>csp4 <span class="ot">&lt;-</span> <span class="fu">chi_squared_power</span>(<span class="at">probs =</span> M_prob)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(csp4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -650,13 +653,14 @@ NOTE: n is the number of observations</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

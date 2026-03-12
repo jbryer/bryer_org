@@ -9,8 +9,31 @@
 <link>https://bryer.org/blog.html#category=R</link>
 <atom:link href="https://bryer.org/blog-r.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.7.32</generator>
-<lastBuildDate>Tue, 18 Nov 2025 05:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Tue, 10 Mar 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Estimating Causality from Observational Data</title>
+  <dc:creator>Jason Bryer</dc:creator>
+  <link>https://bryer.org/posts/2026-03-10-Special_k.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/B4MU7ORbCWI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><a href="https://github.com/jbryer/clav/blob/master/slides/clav_nyhackr_2026.pdf">Download slides</a></p>
+<p>Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.</p>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>Talk</category>
+  <category>Cluster Analysis</category>
+  <guid>https://bryer.org/posts/2026-03-10-Special_k.html</guid>
+  <pubDate>Tue, 10 Mar 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://bryer.org/posts/2026-03-10-Special_k.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
 <item>
   <title>Why you should not use mean imputation for missing data</title>
   <dc:creator>Jason Bryer</dc:creator>
@@ -23,7 +46,7 @@
 <p>I encountered the question today of what to do with missing values when conducting null hypothesis testing or regression? I have seen many suggest doing mean imputation. That is, simply replace any missing values with the mean of the variable calculated from the observed values. I argue that mean imputation is worse than doing nothing. Let’s explore.</p>
 <p>To begin, let’s simulate a vector, <code>x</code>, from the random normal distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -47,22 +70,22 @@ font-style: inherit;">1</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(x))</span></code></pre></div>
+font-style: inherit;">mean</span>(x))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01129628</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">(sd1 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">(sd1 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sd</span>(x))</span></code></pre></div>
+font-style: inherit;">sd</span>(x))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.032159</code></pre>
 </div>
 </div>
 <p>We can see that the mean and standard deviation aver fairly close to 0 and 1, respectively. In the next code chunk we are going to randomly select 20% of observations and set the value to <code>NA</code>. We can calculate the mean and standard deviation excluding the missing values (i.e.&nbsp;<code>NA</code>s) but setting <code>na.rm = TRUE</code>. The mean and standard deviation are relatively close.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">x[<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">x[<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -89,11 +112,11 @@ font-style: inherit;">mean</span>(x, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">TRUE</span>))</span></code></pre></div>
+font-style: inherit;">TRUE</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02136184</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">(sd2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">(sd2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -101,14 +124,14 @@ font-style: inherit;">sd</span>(x, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">TRUE</span>))</span></code></pre></div>
+font-style: inherit;">TRUE</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.071757</code></pre>
 </div>
 </div>
 <p>Now we will replace the <code>NA</code>s we introduced above with the mean. We can see that the standard deviation is quite a bit smaller, hence reducing the variance of our estimate. Since many of our statistical tests rely on variance, reducing the variance may lead to spurious conclusions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">x[<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">x[<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(x)] <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -123,22 +146,22 @@ font-style: inherit;">TRUE</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(x))</span></code></pre></div>
+font-style: inherit;">mean</span>(x))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02136184</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">(sd3 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">(sd3 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sd</span>(x))</span></code></pre></div>
+font-style: inherit;">sd</span>(x))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9573977</code></pre>
 </div>
 </div>
 <p>To show this is not a random anomaly for our one random sample, let’s repeat the above 1,000 times.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">n_samples <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">n_samples <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -285,7 +308,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb13-20">        <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_minimal</span>()</span></code></pre></div>
+font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -296,13 +319,13 @@ font-style: inherit;">theme_minimal</span>()</span></code></pre></div>
 </div>
 <p>As the figure above shows, there is a significant difference in the standard deviation estimates when calculated using only observed values and calculated with missing values imputed with the mean. The <em>t</em>-test below confirms this.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">t.test</span>(sd_diffs<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>sd_drop_miss, sd_diffs<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>sd_impute_miss)</span></code></pre></div>
+font-style: inherit;">$</span>sd_impute_miss)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -319,7 +342,7 @@ mean of x mean of y
 </div>
 <p>Now let’s consider how mean imputation can impact the estimation of a correlation between two variables. We will simulate two variables with a population correlation of 0.18.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">n <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">n <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -423,7 +446,7 @@ font-style: inherit;">cor.test</span>(df<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>x, df<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>y)</span></code></pre></div>
+font-style: inherit;">$</span>y)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -440,7 +463,7 @@ sample estimates:
 </div>
 <p>We will now randomly select 20% of <code>x</code> values to set to <code>NA</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">df_miss <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">df_miss <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df</span>
 <span id="cb18-2">df_miss[<span class="fu" style="color: #4758AB;
@@ -468,7 +491,7 @@ font-style: inherit;">cor.test</span>(df_miss<span class="sc" style="color: #5E5
 background-color: null;
 font-style: inherit;">$</span>x, df_miss<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>y)</span></code></pre></div>
+font-style: inherit;">$</span>y)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -486,7 +509,7 @@ sample estimates:
 <p>Note that the <em>p</em>-value for both the correlation estimated using the complete dataset and estimated with observed values only is greater than 0.05 (i.e.&nbsp;we would fail to reject the null that the correlation is 0).</p>
 <p>Now we will impute the missing values with the mean and calcualte the correlation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">df_miss[<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">df_miss[<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(df_miss<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -507,7 +530,7 @@ font-style: inherit;">cor.test</span>(df_miss<span class="sc" style="color: #5E5
 background-color: null;
 font-style: inherit;">$</span>x, df_miss<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>y)</span></code></pre></div>
+font-style: inherit;">$</span>y)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -543,27 +566,27 @@ sample estimates:
 
 <p>I have been working on a presentation regarding college readiness and the use of SAT/ACT for college admissions as part of the <a href="https://daacs.net">Diagnostic Assessment and Achievement of College Skills</a>. I wanted to see how the use of these high-stakes assessments have changed over the last decade. Turns out that I wrote a package years ago to work with the <a href="https://nces.ed.gov/ipeds">Integrated Postsecondary Education Data System</a>, <a href="https://github.com/jbryer/ipeds"><code>ipeds</code></a> and fortunately it still works! Currenlty, it is only on Github and can be installed using the <code>remotes</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'jbryer/ipeds'</span>)</span></code></pre></div>
+font-style: inherit;">'jbryer/ipeds'</span>)</span></code></pre></div></div>
 </div>
 <p>The <code>surveys</code> data frame included in the package provides metadata for the different data files available from the IPEDS website. The <code>AHD</code> data file provides directory information for each institution in the United States.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">data</span>(surveys, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">package =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'ipeds'</span>)</span></code></pre></div>
+font-style: inherit;">'ipeds'</span>)</span></code></pre></div></div>
 </div>
 <p>We are interested in the <code>admcon7</code> variable which has three levels indicating how each institution uses tests for admissions decisions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">levels <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">levels <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -587,11 +610,11 @@ font-style: inherit;">'3'</span> <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Test Blind'</span>)</span></code></pre></div>
+font-style: inherit;">'Test Blind'</span>)</span></code></pre></div></div>
 </div>
 <p>The following block will download the directory information for 2014 through 2023 (the latest year currently available).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">admissions <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">admissions <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -654,11 +677,11 @@ background-color: null;
 font-style: inherit;">'year'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'admcon7'</span>)])</span>
-<span id="cb4-10">}</span></code></pre></div>
+<span id="cb4-10">}</span></code></pre></div></div>
 </div>
 <p>The figure below shows a pretty striking change in how institutions have used high stakes assessments like the SAT and ACT for admissions decisions around 2020 (not sure what happened that year 😉).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">tab <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">tab <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -865,7 +888,7 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">direct.label</span>(p, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"last.qp"</span>)</span></code></pre></div>
+font-style: inherit;">"last.qp"</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -897,7 +920,7 @@ font-style: inherit;">"last.qp"</span>)</span></code></pre></div>
 <p>For more information, be sure to see the <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia article</a>.</p>
 <p>Below we implement a function that will simulate a single play of this game. You can play interactively, or if you specify the <code>pick</code> and <code>switch</code> parameters this can be looped in order to simulate the results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">monty_hall <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">monty_hall <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
@@ -1154,13 +1177,13 @@ font-style: inherit;">else</span> {</span>
 background-color: null;
 font-style: inherit;">return</span>(win)</span>
 <span id="cb1-39">    }</span>
-<span id="cb1-40">}</span></code></pre></div>
+<span id="cb1-40">}</span></code></pre></div></div>
 </div>
 <p>We can play a single game:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">monty_hall</span>()</span></code></pre></div>
+font-style: inherit;">monty_hall</span>()</span></code></pre></div></div>
 </div>
 <pre><code>Pick your door:
 1: A
@@ -1176,7 +1199,7 @@ Selection: 1
 You win!</code></pre>
 <p>Let’s now simulate 1,000 games. We will use two vectors, <code>mh_switch</code> and <code>mh_no_switch</code>, to store the results after switching doors or not, respectively. For each iteration, the initial door pick is randomly selected.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">n_games <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">n_games <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1239,22 +1262,22 @@ background-color: null;
 font-style: inherit;">switch =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span>)</span>
-<span id="cb4-8">}</span></code></pre></div>
+<span id="cb4-8">}</span></code></pre></div></div>
 </div>
 <p>The probability of winning if we switch the door is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(mh_switch)</span></code></pre></div>
+font-style: inherit;">mean</span>(mh_switch)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.671</code></pre>
 </div>
 </div>
 <p>The probability of winning if we do not switch the door is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(mh_no_switch)</span></code></pre></div>
+font-style: inherit;">mean</span>(mh_no_switch)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.328</code></pre>
 </div>
@@ -1287,17 +1310,17 @@ font-style: inherit;">mean</span>(mh_no_switch)</span></code></pre></div>
 </ul>
 <p>Where <code>XXX</code> is the distribution name (e.g.&nbsp;<code>norm</code>, <code>binom</code>, <code>t</code>, etc.).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'jbryer/VisualStats'</span>)</span></code></pre></div>
+font-style: inherit;">'jbryer/VisualStats'</span>)</span></code></pre></div></div>
 </div>
 <p>The <code>VisualStats::plot_distributions()</code> function will generate four plots representing the four R distribution functions. For each subplot points correspond to the first parameter of the corresponding function (note the subplot for the random <code>rXXX</code> function does not have points since this simply returns random values from that distribution). The arrows correspond to what that function will return.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(VisualStats)</span>
 <span id="cb2-2"><span class="fu" style="color: #4758AB;
@@ -1340,7 +1363,7 @@ font-style: inherit;">4</span>,</span>
 background-color: null;
 font-style: inherit;">xmax =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>)</span></code></pre></div>
+font-style: inherit;">4</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1351,7 +1374,7 @@ font-style: inherit;">4</span>)</span></code></pre></div>
 </div>
 <p>The top two plots (<code>dXXX</code> and <code>rXXX</code>) plot the distribution. The bottom two plots are the cumulative density function for the given distribution. The CDF describes the probability that a random variable (X) will be less than or equal to a specific value (<code>x</code>), written as F(x) = P(X ≤ x). The CDF provides a complete view of a random variable’s distribution by accumulating probabilities up to that point.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot_distributions</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -1389,7 +1412,7 @@ font-style: inherit;">10</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">prob =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.35</span>))</span></code></pre></div>
+font-style: inherit;">0.35</span>))</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1483,7 +1506,7 @@ font-style: inherit;">0.35</span>))</span></code></pre></div>
 <p>Shiny is an incredible tool for interactive data analysis. For the vast majority of Shiny applications I have developed I make a choice regarding the default state of the application, but provide plenty of options for the user to change and/or customize the analysis. However, there are situations where the application would be better if the user was required to input certain parameters. Conceptually I often think of Shiny applications as an interactive version of a function, a function with many parameters, some of which the user needs to define the default parameters. This vignette describes a Shiny module where a given set of parameters must be set before the user engages with the main Shiny application, and those settings can be optionally saved as cookies to be used across sessions. Even though this is the main motivation for this Shiny module, it can also be used as a framework for saving user preferences where saving state on the Shiny server is not possible (e.g.&nbsp;when deployed to <a href="https://www.shinyapps.io">www.shinyapps.io</a>).</p>
 <p>The user parameter module is part of the <code>login</code> R package. The goal is to present the user with a set of parameters in a modal dialog as the Shiny application loads. The primary interface is through the <code>userParamServer()</code> function that can be included in the server code. The following is a basic example.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">params <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">params <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1527,7 +1550,7 @@ background-color: null;
 font-style: inherit;">'This is an example application that asks the user for two parameters.'</span>),</span>
 <span id="cb1-7">    validator <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=</span> my_validator</span></code></pre></div>
+font-style: inherit;">=</span> my_validator</span></code></pre></div></div>
 </div>
 <p>Like all <a href="https://mastering-shiny.org/scaling-modules.html">Shiny modules</a>, the <code>id</code> parameter is a unique identifier connected the server logic to the UI components. The <code>params</code> parameter is a character vector for the names of the parameters users need to input. These are the only two required parameters. By default all the parameters will assume to be characters using the <code>shiny::textInput()</code> function. However, the module supports multiple input types including:</p>
 <ul>
@@ -1568,7 +1591,7 @@ font-style: inherit;">=</span> my_validator</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="full-shiny-demo">Full Shiny Demo</h2>
 <p>The figures above are from the Shiny application provided below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(shiny)</span>
 <span id="cb2-2"><span class="fu" style="color: #4758AB;
@@ -1833,7 +1856,7 @@ font-style: inherit;">list</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">port =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2112</span>))</span></code></pre></div>
+font-style: inherit;">2112</span>))</span></code></pre></div></div>
 </div>
 </section>
 <section id="validation" class="level2">
@@ -1849,7 +1872,7 @@ font-style: inherit;">2112</span>))</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="customizing-the-shiny-inputs">Customizing the Shiny inputs</h3>
 <p>The <code>input_params</code> parameter allows for further customization of the various Shiny inputs. In particular, you can put any other <code>shiny::xxxInput</code> parameters into a list. For <code>select</code> input types the <code>choices</code> parameter is required. The following template provides the basic structure:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">input_params <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">input_params <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1886,7 +1909,7 @@ font-style: inherit;">stap =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>)) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># When numeric or integer is the type</span></span></code></pre></div>
+font-style: inherit;"># When numeric or integer is the type</span></span></code></pre></div></div>
 </div>
 </section>
 </section>
@@ -1894,7 +1917,7 @@ font-style: inherit;"># When numeric or integer is the type</span></span></code>
 <h2 class="anchored" data-anchor-id="file-input-example">File Input Example</h2>
 <p>The following Shiny application demonstrates how to use the file upload and drop down selection features.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(shiny)</span>
 <span id="cb4-2"><span class="fu" style="color: #4758AB;
@@ -2193,7 +2216,7 @@ font-style: inherit;">list</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">port =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2112</span>))</span></code></pre></div>
+font-style: inherit;">2112</span>))</span></code></pre></div></div>
 </div>
 
 
@@ -2218,13 +2241,13 @@ font-style: inherit;">2112</span>))</span></code></pre></div>
 <p><em>Note that this is cross posted with a vignette in the <a href="https://github.com/jbryer/medley"><code>medley</code></a> R package. For the most up-to-date version go here: <a href="https://jbryer.github.io/medley/articles/downsampling.html">https://jbryer.github.io/medley/articles/downsampling.html</a> Comments can be directed to me on Mastodon at <a href="https://vis.social/@jbryer"><span class="citation" data-cites="vis.social">@vis.social</span><span class="citation" data-cites="jbryer">@jbryer</span></a>.</em></p>
 <p>To install the development version of the <code>medley</code> package, use the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">remotes<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install_github</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'jbryer/medley'</span>)</span></code></pre></div>
+font-style: inherit;">'jbryer/medley'</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using GitHub PAT from the git credential store.</code></pre>
 </div>
@@ -2238,7 +2261,7 @@ font-style: inherit;">'jbryer/medley'</span>)</span></code></pre></div>
 <section id="working-example" class="level2">
 <h2 class="anchored" data-anchor-id="working-example">Working Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(medley)</span>
 <span id="cb4-2"><span class="fu" style="color: #4758AB;
@@ -2258,12 +2281,12 @@ font-style: inherit;">'pisa_variables'</span>, <span class="at" style="color: #6
 background-color: null;
 font-style: inherit;">package =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'medley'</span>)</span></code></pre></div>
+font-style: inherit;">'medley'</span>)</span></code></pre></div></div>
 </div>
 <p>The <a href="https://www.oecd.org/en/about/programmes/pisa.html">Programme of International Student Assessment</a> (PISA) is international study conducted by the <a href="https://www.oecd.org/en.html">Organisation for Economic Co-operation and Development</a> (OECD) every three years. It assesses 15-year-old students in mathematics, science, and reading while collecting information about the students and their schools. The <code>pisa</code> dataset included in the <code>medley</code> package comes from the 2009 administration and is used to demonstrate predicting private versus public school attendance. There are 5,233 observations across 44 variables with 93.4% public school students and 6.6% private school students.</p>
 <p>To begin, we will split the data into a training and validation set using the <a href="https://search.r-project.org/CRAN/refmans/splitstackshape/html/stratified.html"><code>splitstackshape::stratified()</code></a> function to ensure that the ratio of public-to-private school students is the same in both datasets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pisa_formu <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pisa_formu <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> Public <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2312,10 +2335,10 @@ font-style: inherit;">2</span>]] <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">as.data.frame</span>()</span></code></pre></div>
+font-style: inherit;">as.data.frame</span>()</span></code></pre></div></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2331,7 +2354,7 @@ font-style: inherit;">print</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">prop.table</span>()</span></code></pre></div>
+font-style: inherit;">prop.table</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -2342,7 +2365,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06592777 0.93407223 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa_train<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2358,7 +2381,7 @@ font-style: inherit;">print</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">prop.table</span>()</span></code></pre></div>
+font-style: inherit;">prop.table</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -2369,7 +2392,7 @@ FALSE  TRUE
      FALSE       TRUE 
 0.06598726 0.93401274 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">table</span>(pisa_valid<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2385,7 +2408,7 @@ font-style: inherit;">print</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">prop.table</span>()</span></code></pre></div>
+font-style: inherit;">prop.table</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -2399,7 +2422,7 @@ FALSE  TRUE
 </div>
 <p>We can estimate a logistic regression model and get the predicted probabilities for the validation dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">pisa_lr_out <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">pisa_lr_out <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2424,11 +2447,11 @@ font-style: inherit;">newdata =</span> pisa_valid, <span class="at" style="color
 background-color: null;
 font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'response'</span>)</span></code></pre></div>
+font-style: inherit;">'response'</span>)</span></code></pre></div></div>
 </div>
 <p>The figure below shows the distribution of predicted probabilities for the validation dataset. There is some separation between public and private school students, but the densities are clearly centered to the right side of the range.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2451,7 +2474,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb16-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_density</span>()</span></code></pre></div>
+font-style: inherit;">geom_density</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2462,7 +2485,7 @@ font-style: inherit;">geom_density</span>()</span></code></pre></div>
 </div>
 <p>The figure below provides a receiver operator characteristic (ROC) curve along with a plot of the accuracy, sensitivity, and specificity.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">calculate_roc</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2475,7 +2498,7 @@ font-style: inherit;">$</span>Public) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>()</span></code></pre></div>
+font-style: inherit;">plot</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2486,7 +2509,7 @@ font-style: inherit;">plot</span>()</span></code></pre></div>
 </div>
 <p>The confusion matrix below, splitting at 0.5, indicates that this model is no better than the null model (i.e percent public school students is 93.4%). Of course we could adjust that cut value to optimize either the <em>specificity</em> or <em>sensitivity</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">confusion_matrix</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2499,7 +2522,7 @@ font-style: inherit;">predicted =</span> pisa_predictions <span class="sc" style
 background-color: null;
 font-style: inherit;">&gt;</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span></code></pre></div>
+font-style: inherit;">0.5</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           predicted              
   observed     FALSE          TRUE
@@ -2538,7 +2561,7 @@ Specificity: 99.67%</code></pre>
 <h2 class="anchored" data-anchor-id="downsampling">Downsampling</h2>
 <p>As discussed above one of the key disadvantages of downsampling is that in situations where there is significant imbalance we are excluding a lot of data from analysis. The <code>downsample()</code> function will first determine how many models need to be estimated such that each observation from the larger class is used exactly once. For this example we are using a public-to-private student ratio of 2-to-1 so that for each model estimated there are 259 private and 518 public student observations. Given there are 3925 observations in our training set, the <code>dowmsample()</code> function will estimate 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">pisa_ds_out <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">pisa_ds_out <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2565,7 +2588,7 @@ font-style: inherit;">binomial</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'logit'</span>))</span></code></pre></div>
+font-style: inherit;">'logit'</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   |                                                                            
@@ -2585,16 +2608,16 @@ font-style: inherit;">'logit'</span>))</span></code></pre></div>
   |                                                                            
   |======================================================================| 100%</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">length</span>(pisa_ds_out)</span></code></pre></div>
+font-style: inherit;">length</span>(pisa_ds_out)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
 <p>We can use the <code>predict()</code> function to get a data frame of predictions. Each column corresponds to the predicted value for each of the 7 models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">pisa_predictions_ds <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1">pisa_predictions_ds <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2609,7 +2632,7 @@ background-color: null;
 font-style: inherit;">'response'</span>)</span>
 <span id="cb24-4"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">head</span>(pisa_predictions_ds)</span></code></pre></div>
+font-style: inherit;">head</span>(pisa_predictions_ds)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     model1    model2    model3    model4    model5    model6    model7
 1 0.8511828 0.7437341 0.8921605 0.8424369 0.7347052 0.8697531 0.6928875
@@ -2622,7 +2645,7 @@ font-style: inherit;">head</span>(pisa_predictions_ds)</span></code></pre></div>
 </div>
 <p>We can average the predictions to get a single vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1">pisa_predictions_ds2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1">pisa_predictions_ds2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> pisa_predictions_ds <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2630,11 +2653,11 @@ font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">apply</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>, mean)</span></code></pre></div>
+font-style: inherit;">1</span>, mean)</span></code></pre></div></div>
 </div>
 <p>The density distributions are provided below. These distributions are more like the distributions we expect when we have balanced data even though we did use all the observations to get these predicted probabilities.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2657,7 +2680,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb27-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_density</span>()</span></code></pre></div>
+font-style: inherit;">geom_density</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2668,7 +2691,7 @@ font-style: inherit;">geom_density</span>()</span></code></pre></div>
 </div>
 <p>Although the <code>downsample()</code> function appears to address the issue of shrinking and off centered fitted values, the model performance metrics provided below suggest that it did not improve the overall performance of the model predictions.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1">roc <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1">roc <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2682,7 +2705,7 @@ background-color: null;
 font-style: inherit;">$</span>Public)</span>
 <span id="cb28-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>(roc)</span></code></pre></div>
+font-style: inherit;">plot</span>(roc)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2692,7 +2715,7 @@ font-style: inherit;">plot</span>(roc)</span></code></pre></div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">confusion_matrix</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2705,7 +2728,7 @@ font-style: inherit;">predicted =</span> pisa_predictions_ds2 <span class="sc" s
 background-color: null;
 font-style: inherit;">&gt;</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span></code></pre></div>
+font-style: inherit;">0.5</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              predicted              
   observed        FALSE          TRUE
@@ -2888,7 +2911,7 @@ Specificity: 83.31%</code></pre>
 
 <p>A student recently asked whether bootstrap confidence intervals were more robust than confidence intervals estimated using the standard error (i.e.&nbsp;<img src="https://latex.codecogs.com/png.latex?SE%20=%20%5Cfrac%7Bs%7D%7B%5Csqrt%7Bn%7D%7D">). In order to answer this question I wrote a function to simulate taking a bunch of random samples from a population, calculate the confidence interval for that sample using the standard error approach (the <em>t</em> distribution is used by default, see the <code>cv</code> parameter. To use the normal distribution, for example, set <code>cv = 1.96</code>.), and then also calculating a confidence interval using the boostrap.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(dplyr)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -3271,12 +3294,12 @@ font-style: inherit;">close</span>(pb)</span>
 <span id="cb1-70">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">return</span>(results)</span>
-<span id="cb1-71">}</span></code></pre></div>
+<span id="cb1-71">}</span></code></pre></div></div>
 </div>
 <p><strong>Uniform distribution for the population</strong></p>
 <p>Let’s start with a uniform distribution for our population.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">pop_unif <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">pop_unif <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3301,7 +3324,7 @@ font-style: inherit;">x =</span> x)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_density</span>()</span></code></pre></div>
+font-style: inherit;">geom_density</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3312,7 +3335,7 @@ font-style: inherit;">geom_density</span>()</span></code></pre></div>
 </div>
 <p>The mean of the population is 0.5008915. We can now simulate samples and their corresponding bootstrap estimates.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">results_unif <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">results_unif <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3326,11 +3349,11 @@ font-style: inherit;">42</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">verbose =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">FALSE</span>)</span></code></pre></div>
+font-style: inherit;">FALSE</span>)</span></code></pre></div></div>
 </div>
 <p>5.8% of our samples did not contain the population mean in the confidence interval (i.e.&nbsp;Type I error rate) compared to <code>r</code>mean(results_unif$boot_type1) * 100`% of the bootstrap estimates. The following table compares the Type I errors for each sample compared to the bootstrap estiamted from that sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">tab <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">tab <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3343,7 +3366,7 @@ background-color: null;
 font-style: inherit;">useNA =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'ifany'</span>)</span>
-<span id="cb4-2">tab</span></code></pre></div>
+<span id="cb4-2">tab</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         FALSE TRUE
@@ -3353,7 +3376,7 @@ font-style: inherit;">'ifany'</span>)</span>
 </div>
 <p>In general committing a type I error is the same regardless of method, though there were 1 instances where the bootstrap would have led to a type I error rate where the standard error approach would not.</p>
 <p>The following plots show the relationship between the estimated mean (left) and condifence interval width (right) for each sample and its corresponding bootstrap.</p>
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">results_unif <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">results_unif <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
 <span id="cb6-2">    <span class="fu" style="color: #4758AB;
@@ -3452,7 +3475,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</span></code></pre></div>
+font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</span></code></pre></div></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -3466,7 +3489,7 @@ font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</sp
 <p><strong>Skewed distribution for the population</strong></p>
 <p>We will repeat the same analysis using a positively skewed distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">pop_skewed <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">pop_skewed <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3495,7 +3518,7 @@ font-style: inherit;">geom_density</span>(<span class="at" style="color: #657422
 background-color: null;
 font-style: inherit;">bw =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.75</span>)</span></code></pre></div>
+font-style: inherit;">0.75</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3506,7 +3529,7 @@ font-style: inherit;">0.75</span>)</span></code></pre></div>
 </div>
 <p>The mean of the population for this distribution is 2.99792</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">results_skewed <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">results_skewed <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3527,21 +3550,21 @@ font-style: inherit;">mean</span>(results_skewed<span class="sc" style="color: #
 background-color: null;
 font-style: inherit;">$</span>samp_type1) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Percent of samples with Type I error</span></span></code></pre></div>
+font-style: inherit;"># Percent of samples with Type I error</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.05</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mean</span>(results_skewed<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>boot_type1) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Percent of bootstrap estimates with Type I error</span></span></code></pre></div>
+font-style: inherit;"># Percent of bootstrap estimates with Type I error</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.052</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># CLT vs Bootstrap Type I error rate</span></span>
 <span id="cb12-2"><span class="fu" style="color: #4758AB;
@@ -3554,7 +3577,7 @@ font-style: inherit;">$</span>boot_type1, <span class="at" style="color: #657422
 background-color: null;
 font-style: inherit;">useNA =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'ifany'</span>)</span></code></pre></div>
+font-style: inherit;">'ifany'</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         FALSE TRUE
@@ -3562,7 +3585,7 @@ font-style: inherit;">'ifany'</span>)</span></code></pre></div>
   TRUE      1   24</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">results_skewed <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">results_skewed <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
 <span id="cb14-2">    <span class="fu" style="color: #4758AB;
@@ -3661,7 +3684,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</span></code></pre></div>
+font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</span></code></pre></div></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -3674,7 +3697,7 @@ font-style: inherit;">'Sample vs boostrap confidence interval width'</span>)</sp
 </div>
 <p>We can see the results are very similar to that of the uniform distirubtion. Exploring the one case where the bootstrap would have resulted in a Type I error where the standard error approach would not reveals that it is very close with the difference being less than 0.1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">results_differ <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">results_differ <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> results_skewed <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3688,7 +3711,7 @@ background-color: null;
 font-style: inherit;">!</span>samp_type1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&amp;</span> boot_type1)</span>
-<span id="cb15-3">results_differ</span></code></pre></div>
+<span id="cb15-3">results_differ</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  seed samp_mean   samp_se samp_ci_low samp_ci_high samp_type1 boot_mean
 1  443  3.866667 0.4516466    2.942946     4.790388      FALSE  3.924733
@@ -3699,7 +3722,7 @@ font-style: inherit;">&amp;</span> boot_type1)</span>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(results_differ[<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -3773,11 +3796,11 @@ background-color: null;
 font-style: inherit;">1</span>))</span>
 <span id="cb17-9"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(pop_skewed)</span></code></pre></div>
+font-style: inherit;">mean</span>(pop_skewed)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.99792</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">ci <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">ci <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3810,11 +3833,11 @@ background-color: null;
 font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">30</span>))</span>
-<span id="cb19-2">ci</span></code></pre></div>
+<span id="cb19-2">ci</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.942946 4.790388</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3828,11 +3851,11 @@ font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E
 background-color: null;
 font-style: inherit;">&gt;</span> ci[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>]</span></code></pre></div>
+font-style: inherit;">2</span>]</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">ci_boot <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">ci_boot <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3853,11 +3876,11 @@ background-color: null;
 font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd</span>(boot_samp))</span>
-<span id="cb23-2">ci_boot</span></code></pre></div>
+<span id="cb23-2">ci_boot</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.044802 4.804665</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3871,7 +3894,7 @@ font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E
 background-color: null;
 font-style: inherit;">&gt;</span> ci_boot[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>]</span></code></pre></div>
+font-style: inherit;">2</span>]</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -3880,7 +3903,7 @@ font-style: inherit;">2</span>]</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="adding-an-outlier">Adding an outlier</h3>
 <p>Let’s consider a sample that forces the largest value from the population to be in the sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -3971,11 +3994,11 @@ background-color: null;
 font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">30</span>))</span>
-<span id="cb27-10">ci</span></code></pre></div>
+<span id="cb27-10">ci</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.647006 4.952994</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3989,11 +4012,11 @@ font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E
 background-color: null;
 font-style: inherit;">&gt;</span> ci[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>]</span></code></pre></div>
+font-style: inherit;">2</span>]</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1">ci_boot <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1">ci_boot <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4014,11 +4037,11 @@ background-color: null;
 font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd</span>(boot_samp))</span>
-<span id="cb31-2">ci_boot</span></code></pre></div>
+<span id="cb31-2">ci_boot</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.905153 4.781381</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -4032,7 +4055,7 @@ font-style: inherit;">mean</span>(pop_skewed) <span class="sc" style="color: #5E
 background-color: null;
 font-style: inherit;">&gt;</span> ci_boot[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>]</span></code></pre></div>
+font-style: inherit;">2</span>]</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -4045,7 +4068,7 @@ font-style: inherit;">2</span>]</span></code></pre></div>
 <p><img src="https://latex.codecogs.com/png.latex?%20SE%20=%20%5Cfrac%7B%5Csigma%7D%7B%5Csqrt%7Bn%7D%7D%20"></p>
 <p>The figure below plots the standard error against the standard error assuming sigma (standard deviation) is one. As you can see, simply increasing the sample size will decrease the standard error (and therefore the confidence interval).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1">se <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1">se <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
@@ -4092,7 +4115,7 @@ font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Sample Size (n)'</span>)</span></code></pre></div>
+font-style: inherit;">'Sample Size (n)'</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4103,7 +4126,7 @@ font-style: inherit;">'Sample Size (n)'</span>)</span></code></pre></div>
 </div>
 <p>Considering again a population with a uniform distribution, the following code will draw random samples with <em>n</em> ranging from 30 to 50 in increments of 15. For each of those random samples, we will also estimate boostrap standard errors with the number of bootstrap samples ranging from 50 to 1,000 in increments of 50.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1">n <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1">n <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4277,11 +4300,11 @@ background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sd</span>(boot_samp_dist)</span>
-<span id="cb36-23">}</span></code></pre></div>
+<span id="cb36-23">}</span></code></pre></div></div>
 </div>
 <p>The figure to the left plots the sample size against the standard error which, like above, shows that as the sample size increases the standard error decreases. On the right is a plot of the number of bootstrap samples against the standard error where the point colors correspond to the sample size. Here we see the standard error is constant. That is, the number of bootstrap samples is not related to the standard error. The variability in standard error is accounted for by the sample size.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1">y_limits <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1">y_limits <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4505,7 +4528,7 @@ font-style: inherit;">#+ theme(legend.position = 'none')</span></span>
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot_grid</span>(p_samp_size_se, p_boot_size_se)</span></code></pre></div>
+font-style: inherit;">plot_grid</span>(p_samp_size_se, p_boot_size_se)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4516,7 +4539,7 @@ font-style: inherit;">plot_grid</span>(p_samp_size_se, p_boot_size_se)</span></c
 </div>
 <p>Lastly we can plot the relationship between the two standard error estimates; the correlation of which is extremely high with r = 0.99.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(results, <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4574,7 +4597,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb38-7">    <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">coord_equal</span>()</span></code></pre></div>
+font-style: inherit;">coord_equal</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4631,7 +4654,7 @@ font-style: inherit;">coord_equal</span>()</span></code></pre></div>
 <p><img src="https://latex.codecogs.com/png.latex?%20SE%20=%20%20%5Cfrac%7Bs%7D%7B%5Csqrt%7Bn%7D%7D%20"></p>
 <p>where <em>s</em> is the sample standard deviation. Typically our <em>null</em> is zero in which case we reject the <em>null</em> hypothesis when the confidence does not span zero. If we wish to construct a 95% confidence interval, then <img src="https://latex.codecogs.com/png.latex?z%20=%201.96">. Assuming the sample standard deviation is constant regardless of sample size (a fair assumption), then as <em>n</em> increases the standard error decreases. The following calculates the confidence interval for <em>n</em> ranging from 10 to 400 assuming a sample standard deviation of 0.15 and 95% confidence level. When <img src="https://latex.codecogs.com/png.latex?n%20%3E%20171"> then <img src="https://latex.codecogs.com/png.latex?p%20%3C%200.05">.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Define some parameters</span></span>
 <span id="cb1-2">sig_level <span class="ot" style="color: #003B4F;
@@ -4902,7 +4925,7 @@ font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'effect size: '</span>, es, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'; null value: '</span>, null_val))</span></code></pre></div>
+font-style: inherit;">'; null value: '</span>, null_val))</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4916,7 +4939,7 @@ font-style: inherit;">'; null value: '</span>, null_val))</span></code></pre></d
 <p>where <em>O</em> is the observed count and <em>E</em> is the expected count. Unlike the standard error for numerical data, <em>n</em> is not explicitly in the formula and therefore makes it a bit more challenging to determine the impact sample size has rejecting the <em>null</em> hypothesis. Moreover, since the chi-squared is calculated from the cell counts in a table of varying length and dimension (one- or two-dimensions specifically) determining how <em>n</em> impacts rejecting the <em>null</em> or not requires more parameters.</p>
 <p>Answering the question of how large does <em>n</em> need to be to detect a statistically significant result (i.e.&nbsp;to reject the <em>null</em> hypothesis) is refereed to as <a href="https://en.wikipedia.org/wiki/Power_(statistics)">power</a>. Whereas for calculating the power for numerical data had one parameter, the sample standard deviation, here we need to consider the proportion of observations within different cells. For example, consider we have a variable with three levels and we expect the proportion of observations in the three groups to be 33%, 25%, and 42%, respectively. If our sample size is 100 then we expect there to be 33, 25, and 42 and observations for the three categories. This function will, for varying sample sizes, calculate the counts for the categories to achieve that sample size, estimate the chi-squared statistic and record the <em>p</em>-value. There are other parameters that are documented below. A <code>plot</code> function is also defined using the <a href="http://adv-r.had.co.nz/S3.html">S3 objected oriented framework</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#' Calculate p-value from a chi-squared test with varying sample sizes</span></span>
 <span id="cb2-2"><span class="co" style="color: #5E5E5E;
@@ -6001,11 +6024,11 @@ font-style: inherit;">', '</span>)))</span>
 <span id="cb2-200">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">return</span>(p)</span>
-<span id="cb2-201">}</span></code></pre></div>
+<span id="cb2-201">}</span></code></pre></div></div>
 </div>
 <p>Returning to our example above where the cell proportions are 33%, 25%, and 42%, we would need <img src="https://latex.codecogs.com/png.latex?n%20%5Cge%20130"> to reject the <em>null</em> hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">csp1 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">csp1 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6034,13 +6057,13 @@ font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div>
+font-style: inherit;"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 130</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>(csp1)</span></code></pre></div>
+font-style: inherit;">plot</span>(csp1)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -6051,7 +6074,7 @@ font-style: inherit;">plot</span>(csp1)</span></code></pre></div>
 </div>
 <p>In the next example we have much smaller differences between the cells with 25%, 25%, 24%, and 26%. In this example <img src="https://latex.codecogs.com/png.latex?n%20%5Cge%209,710"> before rejecting the <em>null</em> hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">csp3 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">csp3 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6086,13 +6109,13 @@ font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div>
+font-style: inherit;"># Smallest n that results in p &lt; 0.05</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9710</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>(csp3)</span></code></pre></div>
+font-style: inherit;">plot</span>(csp3)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -6103,7 +6126,7 @@ font-style: inherit;">plot</span>(csp3)</span></code></pre></div>
 </div>
 <p>This function will work with two-dimensional data as well (i.e.&nbsp;across two variables). The following example from Agresti (2007) looks at the political affiliation across sex (see the help documentation for <code>chisq.test()</code>.).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">M <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">M <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6152,25 +6175,25 @@ background-color: null;
 font-style: inherit;">"Independent"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Republican"</span>))</span>
-<span id="cb9-4">M</span></code></pre></div>
+<span id="cb9-4">M</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       party
 gender  Democrat Independent Republican
   Femal      762         327        468
   Male       484         239        477</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sum</span>(M)</span></code></pre></div>
+font-style: inherit;">sum</span>(M)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2757</code></pre>
 </div>
 </div>
 <p>The chi-squared test suggests we should reject the <em>null</em> hypothesis test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">chisq.test</span>(M)</span></code></pre></div>
+font-style: inherit;">chisq.test</span>(M)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -6178,17 +6201,17 @@ font-style: inherit;">chisq.test</span>(M)</span></code></pre></div>
 data:  M
 X-squared = 30.07, df = 2, p-value = 2.954e-07</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">DescTools<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">DescTools<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">CramerV</span>(M) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Effect size</span></span></code></pre></div>
+font-style: inherit;"># Effect size</span></span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1044358</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">DescTools<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">DescTools<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6221,7 +6244,7 @@ font-style: inherit;">sig.level =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">-</span> sig_level)</span></code></pre></div>
+font-style: inherit;">-</span> sig_level)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      Chi squared power calculation 
@@ -6237,7 +6260,7 @@ NOTE: n is the number of observations</code></pre>
 </div>
 <p>Agresti had a sample size of 2757, but we can ask the question what is the minimum sample size would they need to detect statistical significance? First, we convert the counts to proportions, then we can use the <code>chi_squared_power()</code> function to find the minimum sample size to reject the <em>null</em> hypothesis test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">M_prob <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">M_prob <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> M <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -6255,7 +6278,7 @@ background-color: null;
 font-style: inherit;">probs =</span> M_prob)</span>
 <span id="cb19-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">plot</span>(csp4)</span></code></pre></div>
+font-style: inherit;">plot</span>(csp4)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -6316,7 +6339,7 @@ font-style: inherit;">plot</span>(csp4)</span></code></pre></div>
 
 <p><a href="https://fediscience.org/@DarrinLRogers/113952951823744486">Darrin Rogers asked on Mastadon</a> what are the “number of tries it would take, guessing randomly, to get 100% on a quiz if you had unlimited retries.” Here we will outline two ways to solve this problem: using a simulation and using a combination of the binomial and geometric distributions. Let’s consider an example of a 5 question test where each question has four options, hence the probability of getting any one question correct is 1/4.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">size <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">size <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -6333,11 +6356,11 @@ font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Probability of randomly getting correct answer</span></span></code></pre></div>
+font-style: inherit;"># Probability of randomly getting correct answer</span></span></code></pre></div></div>
 </div>
 <p>We can use the <code>sample</code> function to simulate on test attempt.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">test <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">test <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6362,14 +6385,14 @@ background-color: null;
 font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>)</span>
-<span id="cb2-2">test</span></code></pre></div>
+<span id="cb2-2">test</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <p>Next, let’s write a function that will simulate repeatedly take a test until all the questions are correct. I have added an additional parameter <code>stop_score</code> which specifies the mean score on the test before stopping. This will allow us to modify the question to answer how many tests do I need to take to pass. For now, <code>stop_score = 1</code> will continue until all questions are correct.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#' Simulate how long until a specified number of responses are correct</span></span>
 <span id="cb4-2"><span class="co" style="color: #5E5E5E;
@@ -6455,11 +6478,11 @@ font-style: inherit;">break</span></span>
 <span id="cb4-18">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">return</span>(n)</span>
-<span id="cb4-19">}</span></code></pre></div>
+<span id="cb4-19">}</span></code></pre></div></div>
 </div>
 <p>We can run one test to see how long we need to wait until all questions on the test were answered correctly.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">(num_tests <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">(num_tests <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6467,14 +6490,14 @@ font-style: inherit;">simulate_test</span>(<span class="at" style="color: #65742
 background-color: null;
 font-style: inherit;">size =</span> size, <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">p =</span> p))</span></code></pre></div>
+font-style: inherit;">p =</span> p))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 158</code></pre>
 </div>
 </div>
 <p>For this one simulation, it took 158 to randomly get all the questions correct. Let’s now run this simulation 1,000 times.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">simulations <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">simulations <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6506,20 +6529,20 @@ font-style: inherit;">p =</span> p)</span>
 <span id="cb7-4">}</span>
 <span id="cb7-5"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(simulations)</span></code></pre></div>
+font-style: inherit;">mean</span>(simulations)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 977.858</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">median</span>(simulations)</span></code></pre></div>
+font-style: inherit;">median</span>(simulations)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 687</code></pre>
 </div>
 </div>
 <p>For this simulation the average “wait time” until all questions were answered correctly is 977.858. Since the distribution is not symmetrical it may be more appropriate to use the median. Here, 50% of the simulations returned a perfect score in fewer than 687 attempts.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6562,7 +6585,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">ggtitle</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Distribution of simulation results'</span>)</span></code></pre></div>
+font-style: inherit;">'Distribution of simulation results'</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
 ℹ Please use `after_stat(density)` instead.</code></pre>
@@ -6577,7 +6600,7 @@ font-style: inherit;">'Distribution of simulation results'</span>)</span></code>
 </div>
 <p>Let’s return to a single test attempt. We can use the binomial distribution to calculate the probability of getting <em>k</em> questions correct on this 5 question test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">dist <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">dist <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6655,7 +6678,7 @@ font-style: inherit;">vjust =</span> <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span></code></pre></div>
+font-style: inherit;">0.5</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -6668,7 +6691,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <p><img src="https://latex.codecogs.com/png.latex?%20%5Cmu%20=%20%5Cfrac%7B1%7D%7Bp%7D%20"></p>
 <p>Therefore, it will take an average of 1024 test attempts before getting all questions correct on the attempt.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">(p_all_correct <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">(p_all_correct <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6678,22 +6701,22 @@ font-style: inherit;">x =</span> size, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> size, <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">prob =</span> p))</span></code></pre></div>
+font-style: inherit;">prob =</span> p))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0009765625</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="dv" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">/</span> p_all_correct</span></code></pre></div>
+font-style: inherit;">/</span> p_all_correct</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1024</code></pre>
 </div>
 </div>
 <p>However, the geometric distribution is not symmetrical so using the mean not be desirable. Here is the geometric distribution for where the probability of success is 9.765625^{-4}.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">geom_dist <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">geom_dist <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6858,7 +6881,7 @@ font-style: inherit;">'identity'</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'blue'</span>)</span></code></pre></div>
+font-style: inherit;">'blue'</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -6870,7 +6893,7 @@ font-style: inherit;">'blue'</span>)</span></code></pre></div>
 <p>The shaded area corresponds to 50% of the area. That is, if we conduct 709 tests we are 50% likely to get a test with all the answers correct. Want to be 95% sure to get a test with all answers correct, then administer 3066 tests.</p>
 <p>We can tweak the question slightly: What is the average number of tests I would have to take before passing if the answers are randomly selected? For this example, I am considering getting 4 or 5 questions correct passing. We can get the probability of getting 4 or 5 questions correct from the binomial distribution, which is 0.015625.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">p_pass <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">p_pass <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6895,14 +6918,14 @@ font-style: inherit;">sum</span>()</span>
 background-color: null;
 font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">/</span> p_pass</span></code></pre></div>
+font-style: inherit;">/</span> p_pass</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 64</code></pre>
 </div>
 </div>
 <p>To just pass, we have to wait much less. We can also calculate this using the <code>simulate_test</code> function defined above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">simulations2 <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">simulations2 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -6938,36 +6961,36 @@ font-style: inherit;">0.8</span>)</span>
 <span id="cb21-4">}</span>
 <span id="cb21-5"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mean</span>(simulations2)</span></code></pre></div>
+font-style: inherit;">mean</span>(simulations2)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 62.291</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">median</span>(simulations2)</span></code></pre></div>
+font-style: inherit;">median</span>(simulations2)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 44</code></pre>
 </div>
 </div>
 <p>Or using the geometric distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">qgeom</span>(<span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.50</span>, <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">prob =</span> p_pass)</span></code></pre></div>
+font-style: inherit;">prob =</span> p_pass)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 44</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">qgeom</span>(<span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.95</span>, <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">prob =</span> p_pass)</span></code></pre></div>
+font-style: inherit;">prob =</span> p_pass)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 190</code></pre>
 </div>
@@ -7106,7 +7129,7 @@ font-style: inherit;">prob =</span> p_pass)</span></code></pre></div>
 <p>The key for this to work is to get access to <a href="https://en.wikipedia.org/wiki/GPS_Exchange_Format">GPX</a> (GPS Exchange format) files. I use an Apple watch to track my runs and the <a href="https://apps.apple.com/bf/app/healthfit/id1202650514">HealthFit App</a> to sync my runs to <a href="https://www.strava.com/clubs/rstats">Strava</a> and Dropbox (note there are a lot of export options) where it will upload GPX files. For this post, I extracted two GPX files for when I ran the NYC Marathon in 2019 and the Disney Marathon in 2020.</p>
 <p>To begin, I load the necessary R packages and define some variables so that the script can easily be modified for other maps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -7200,11 +7223,11 @@ font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"mi"</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Distance unit, one of: "m", "km", "mi", and "ft"</span></span></code></pre></div>
+font-style: inherit;"># Distance unit, one of: "m", "km", "mi", and "ft"</span></span></code></pre></div></div>
 </div>
 <p>The following R code reads in the GPX file (which is an XML file) and converts it to a matrix of longitude and latitude coordinates. The <code>bb</code> variable defines the minimum bounding rectangle that encompasses the entire route. This will define the bounds of the street data we will download.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">gpx <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">gpx <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> XML<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -7301,7 +7324,7 @@ background-color: null;
 font-style: inherit;">'min'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'max'</span>)))</span>
-<span id="cb2-11">bb</span></code></pre></div>
+<span id="cb2-11">bb</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        min       max
 x -74.06163 -73.92439
@@ -7310,7 +7333,7 @@ y  40.60176  40.81475</code></pre>
 </div>
 <p>The next chunk calculates the distance between each coordinate and the cumulative sum/distance. Note that this is an inefficient chunk since I used a for loop to calculate the distances.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">path<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">path<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>distance <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -7376,11 +7399,11 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">cumsum</span>(path<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>distance)</span></code></pre></div>
+font-style: inherit;">$</span>distance)</span></code></pre></div></div>
 </div>
 <p>Next, we create a separate data frame for the mile markers. We could round up or down here. For NYC, my watch registered just under 26 miles so to ensure a 26 mile marker is shown, we will round up here. I presume the GPS lost accuracy when running on the lower level of bridges and/or through the buildings.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># markers &lt;- path[!duplicated(floor(path$cum_distance)),][-1,]</span></span>
 <span id="cb5-2">markers <span class="ot" style="color: #003B4F;
@@ -7401,11 +7424,11 @@ font-style: inherit;">TRUE</span>),][<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>,]</span></code></pre></div>
+font-style: inherit;">1</span>,]</span></code></pre></div></div>
 </div>
 <p>The next block of R code (which is largely copied from the ggplot2tutor tutorial) downloads map data from OpenStreet Map.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">streets <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">streets <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> bb <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -7538,11 +7561,11 @@ background-color: null;
 font-style: inherit;">%&gt;%</span></span>
 <span id="cb6-24">    <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">osmdata_sf</span>()</span></code></pre></div>
+font-style: inherit;">osmdata_sf</span>()</span></code></pre></div></div>
 </div>
 <p>Now that the data is downloaded, we can begin building the map using <code>ggplot2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">map <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">map <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -7876,11 +7899,11 @@ font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422
 background-color: null;
 font-style: inherit;">fill =</span> palette[<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'background'</span>]))</span></code></pre></div>
+font-style: inherit;">'background'</span>]))</span></code></pre></div></div>
 </div>
 <p>The last modifies the them and adds a title. For the poster I printed, I excluded the title and instead added the marathon logo in Photoshop.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">map <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">map <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -7988,7 +8011,7 @@ font-style: inherit;">12</span>,</span>
 background-color: null;
 font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'Helvetica'</span>))</span></code></pre></div>
+font-style: inherit;">'Helvetica'</span>))</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -7999,7 +8022,7 @@ font-style: inherit;">'Helvetica'</span>))</span></code></pre></div>
 </div>
 <p>The <code>ggsave</code> will save the map to a file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggsave</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8017,11 +8040,11 @@ font-style: inherit;">'.png'</span>), <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">8</span>)</span></code></pre></div>
+font-style: inherit;">8</span>)</span></code></pre></div></div>
 </div>
 <p>With a few modifications to the variables set above, we can easily create another map for another race.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">palette.disney <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">palette.disney <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -8099,7 +8122,7 @@ font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"mi"</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Distance unit, one of: "m", "km", "mi", and "ft"</span></span></code></pre></div>
+font-style: inherit;"># Distance unit, one of: "m", "km", "mi", and "ft"</span></span></code></pre></div></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -8118,515 +8141,6 @@ font-style: inherit;"># Distance unit, one of: "m", "km", "mi", and "ft"</span><
   <guid>https://bryer.org/posts/2021-02-15-Map_my_run_in_R.html</guid>
   <pubDate>Mon, 15 Feb 2021 05:00:00 GMT</pubDate>
   <media:content url="https://bryer.org/posts/2021-02-15-Map_my_run_in_R.png" medium="image" type="image/png" height="96" width="144"/>
-</item>
-<item>
-  <title>Framework for Shiny Apps in R Packages</title>
-  <dc:creator>Jason Bryer</dc:creator>
-  <link>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><strong>TL;DR:</strong> You can test this approach using this <a href="https://gist.github.com/jbryer/fc8834279189196ead710e89b56d7f88">Github Gist</a>.</p>
-<p><a href="https://shiny.rstudio.com">R Shiny Apps</a> have become a popular way of creating web applications in R. There are many ways of running Shiny Apps including locally in <a href="https://rstudio.com/products/rstudio/">RStudio</a>, on <a href="http://www.shinyapps.io/">Shinyapps.io</a> or <a href="https://www.rstudio.com/products/shiny/shiny-server/">installing the server software</a> on your own host. I have been increasingly using Shiny apps as a way to demonstrate and interact with R Packages, especially packages I write for teaching purposes. Adding a Shiny app to an R package is relatively easy. In my use cases, I first put the application files (<code>server.R</code>, <code>ui.R</code>, and <code>global.R</code>) in the <code>inst/shiny</code> directory of my R package. I can then write a package function to run the Shiny app from the installed package directory using a function like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' My Shiny App</span></span>
-<span id="cb1-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @export</span></span>
-<span id="cb1-3">my_shiny_app <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>() {</span>
-<span id="cb1-4">    shiny<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">runApp</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">appDir =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">system.file</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'shiny'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">package=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'MY_PACKAGE_NAME'</span>))</span>
-<span id="cb1-5">}</span></code></pre></div>
-</div>
-<p>This works very well when the entire app is self-contained. However, this does not work if you want to pass parameters to the Shiny app. In my situation, I want to be able to pass different data frames that I can interact with, but still have the Shiny app work if not parameters are passed. The first step to get this to work is to convert the <code>server.R</code> and <code>ui.R</code> scripts to functions within the R package. The code is largely the same, but instead of calling the functions we are going to assign them to <code>shiny_server</code> and <code>shiny_ui</code>, respectively. I have also included some minimal <a href="https://github.com/r-lib/roxygen2">roxygen2</a> documentation. In particular, the functions need to be in the package’s export file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' The Shiny App Server.</span></span>
-<span id="cb2-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param input input set by Shiny.</span></span>
-<span id="cb2-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param output output set by Shiny.</span></span>
-<span id="cb2-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param session session set by Shiny.</span></span>
-<span id="cb2-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @export</span></span>
-<span id="cb2-6">shiny_server <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(input, output, session) {</span>
-<span id="cb2-7">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">exists</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thedata'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">envir =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">parent.env</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">environment</span>()), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">inherits =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">FALSE</span>)) {</span>
-<span id="cb2-8">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">message</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thedata not available, using default faithful...'</span>)</span>
-<span id="cb2-9">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">data</span>(faithful, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">envir =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">environment</span>())</span>
-<span id="cb2-10">        thedata <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> faithful</span>
-<span id="cb2-11">    }</span>
-<span id="cb2-12"></span>
-<span id="cb2-13">    output<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>environment <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">renderPrint</span>(</span>
-<span id="cb2-14">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ls</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">envir =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">parent.env</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">environment</span>())))</span>
-<span id="cb2-15">    )</span>
-<span id="cb2-16"></span>
-<span id="cb2-17">    output<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>thedata <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">renderTable</span>({</span>
-<span id="cb2-18">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">return</span>(thedata)</span>
-<span id="cb2-19">    })</span>
-<span id="cb2-20">}</span>
-<span id="cb2-21"></span>
-<span id="cb2-22"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' The Shiny App UI.</span></span>
-<span id="cb2-23"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @export</span></span>
-<span id="cb2-24">shiny_ui <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>() {</span>
-<span id="cb2-25">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">fluidPage</span>(</span>
-<span id="cb2-26">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">titlePanel</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'Shiny Parameter Test'</span>),</span>
-<span id="cb2-27">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">verbatimTextOutput</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'environment'</span>),</span>
-<span id="cb2-28">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">tableOutput</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thedata'</span>)</span>
-<span id="cb2-29">    )</span>
-<span id="cb2-30">}</span></code></pre></div>
-</div>
-<p>This Shiny App doesn’t do a lot. It has one user variable, <code>thedata</code>, and the user interface includes the output of <code>ls</code> (i.e.&nbsp;what is in the executing environment) and the contents of <code>thedata</code> (presumed to be a data frame). The important feature here is the first five lines of the <code>shiny_server</code>. I first check to see if <code>thedata</code> exists using the <code>!exists('thedata', envir = parent.env(environment()), inherits = FALSE)</code> command. In short, if <code>thedata</code> is not present, I want to set it to a reasonable default value.</p>
-<p>When encapsulating the Shiny app in R scripts, using the <code>runApp</code> function with the <code>appDir</code> parameter is sufficient. In order to pass variables to the Shiny app, we need to control the environment the app is started in. Below, is a rewrite of the <code>my_shiny_app</code> app. First, we create a new environment that will contain all of our parameters. Since specifying the parameter is optional, we use the <code>missing</code> function to check to see if it has a value, and if so assign it to the new environment. We then set the environment to our server and ui functions the newly created environment that now contains our parameters. The rest is similar to creating Shiny apps in a single <code>app.R</code> file; create the app with the <code>shinyApp</code> function and start it with the <code>runApp</code> function, but with the app instead of a directory.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">my_shiny_app <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(thedata, ...) {</span>
-<span id="cb3-2">    shiny_env <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">new.env</span>()</span>
-<span id="cb3-3">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">missing</span>(thedata)) {</span>
-<span id="cb3-4">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'Setting parameters'</span>)</span>
-<span id="cb3-5">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">assign</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'thedata'</span>, thedata, shiny_env)</span>
-<span id="cb3-6">    }</span>
-<span id="cb3-7">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">environment</span>(shiny_ui) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> shiny_env</span>
-<span id="cb3-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">environment</span>(shiny_server) <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> shiny_env</span>
-<span id="cb3-9">    app <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> shiny<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">shinyApp</span>(</span>
-<span id="cb3-10">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">ui =</span> shiny_ui,</span>
-<span id="cb3-11">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">server =</span> shiny_server</span>
-<span id="cb3-12">    )</span>
-<span id="cb3-13">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">runApp</span>(app, ...)</span>
-<span id="cb3-14">}</span></code></pre></div>
-</div>
-<p>We can now start the Shiny app with the <code>my_shiny_app()</code> function call. In the first instance, no parameters are passed to the app so the <code>faithful</code> data frame will be printed. The second and third calls will use the <code>iris</code> and <code>mtcars</code> data frames, respectively.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">my_shiny_app</span>()</span>
-<span id="cb4-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">my_shiny_app</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">thedata =</span> iris)</span>
-<span id="cb4-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">my_shiny_app</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">thedata =</span> mtcars)</span></code></pre></div>
-</div>
-<section id="running-on-a-shiny-server" class="level4">
-<h4 class="anchored" data-anchor-id="running-on-a-shiny-server">Running on a Shiny server</h4>
-<p>The one disadvantage of this approach is that it is more difficult to run the Shiny app outside the package and maintaining the app in two formats is inconvenient. There are two approaches to this:</p>
-<p><strong>Option 1: A simple <code>app.R</code> script</strong></p>
-<p>When using a single R script for shiny (i.e.&nbsp;<code>app.R</code>) the key is that teh script must call <code>shiny::shinyApp</code>. Similar to the <code>my_shiny_app</code> function above, we can simply call the function with our UI and server functions. In this script we are sourcing the <code>shiny_param_test.R</code> script but when in a package you would replace that with loading the package and references the UI and shiny functions in the package when calling <code>shinyApp</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(shiny)</span>
-<span id="cb5-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">source</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'shiny_param_test.R'</span>)</span>
-<span id="cb5-3">shiny<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">shinyApp</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">ui =</span> shiny_ui,</span>
-<span id="cb5-4">                <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">server =</span> shiny_server)</span></code></pre></div>
-</div>
-<p><strong>Option 2: Generate R scripts</strong></p>
-<p>The <code>save_shiny_app</code> function below will save the server and ui functions in the package to a <code>server.R</code> and <code>ui.R</code> script files in the specified directory. Additionally, it will create a <code>global.R</code> file that loads the <code>shiny</code> package and any other required packages as specified in the <code>pkgs</code> parameter.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' Save the Shiny App to ui.R, server.R, and global.R file.</span></span>
-<span id="cb6-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#'</span></span>
-<span id="cb6-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' This function will create three files in the \code{out_dir}: \code{server.R},</span></span>
-<span id="cb6-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' \code{ui.R}, and \code{global.R}. The contents of \code{server.R} and</span></span>
-<span id="cb6-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' \code{ui.R} will be the source code of the \code{server_function} and</span></span>
-<span id="cb6-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' \code{ui_function}, respectively. The \code{global.R} file will only contain</span></span>
-<span id="cb6-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' \code{library} calls for \code{shiny} and any other packages specified in</span></span>
-<span id="cb6-8"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' the \code{pkgs} parameter.</span></span>
-<span id="cb6-9"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#'</span></span>
-<span id="cb6-10"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' If \code{run_app = TRUE} the function will start the Shiny app once the</span></span>
-<span id="cb6-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' files are written. This is recommended to ensure all the necessary packages</span></span>
-<span id="cb6-12"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' are loaded for the Shiny app to run.</span></span>
-<span id="cb6-13"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#'</span></span>
-<span id="cb6-14"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param ui_function the function for the UI.</span></span>
-<span id="cb6-15"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param server_function the function for the server.</span></span>
-<span id="cb6-16"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param pkgs any packages that need to be loaded for the app to work. At</span></span>
-<span id="cb6-17"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#'        minimum the package containing the shiny app should be included.</span></span>
-<span id="cb6-18"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param out_dir the directory to save the shiny app files.</span></span>
-<span id="cb6-19"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#' @param run_app whether to run the app once the files are saved.</span></span>
-<span id="cb6-20">save_shiny_app <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">function</span>(ui_function,</span>
-<span id="cb6-21">                           server_function,</span>
-<span id="cb6-22">                           pkgs,</span>
-<span id="cb6-23">                           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">out_dir =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'shiny'</span>,</span>
-<span id="cb6-24">                           <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">run_app =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">interactive</span>()) {</span>
-<span id="cb6-25">    server_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">capture.output</span>(server_function)</span>
-<span id="cb6-26">    ui_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">capture.output</span>(ui_function)</span>
-<span id="cb6-27">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Remove the bytecode and environment info</span></span>
-<span id="cb6-28">    server_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> server_txt[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(server_txt)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>)]</span>
-<span id="cb6-29">    ui_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> ui_txt[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(ui_txt)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>)]</span>
-<span id="cb6-30">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Fix the function assignment</span></span>
-<span id="cb6-31">    server_txt[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>] <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'shinyServer(function(input, output, session)'</span></span>
-<span id="cb6-32">    server_txt[<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">length</span>(server_txt)] <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'})'</span></span>
-<span id="cb6-33">    global_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"library('shiny')"</span>)</span>
-<span id="cb6-34">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">missing</span>(pkgs)) {</span>
-<span id="cb6-35">        global_txt <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(global_txt, <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">paste0</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"library('"</span>, pkgs, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"')"</span>))</span>
-<span id="cb6-36">    }</span>
-<span id="cb6-37">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Save the shiny app files</span></span>
-<span id="cb6-38">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cat</span>(server_txt, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">file =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">paste0</span>(out_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/server.R'</span>))</span>
-<span id="cb6-39">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cat</span>(ui_txt, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">file =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">paste0</span>(out_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/ui.R'</span>))</span>
-<span id="cb6-40">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">cat</span>(global_txt, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">\n</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">file =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">paste0</span>(out_dir, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/global.R'</span>))</span>
-<span id="cb6-41">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Start the app</span></span>
-<span id="cb6-42">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span>(run_app) {</span>
-<span id="cb6-43">        <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">runApp</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">appDir =</span> out_dir)</span>
-<span id="cb6-44">    }</span>
-<span id="cb6-45">}</span></code></pre></div>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>R</category>
-  <guid>https://bryer.org/posts/2021-02-12-Shiny_Apps_in_R_Packages.html</guid>
-  <pubDate>Fri, 12 Feb 2021 05:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

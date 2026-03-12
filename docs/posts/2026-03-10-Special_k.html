@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jason Bryer">
-<meta name="dcterms.date" content="2024-04-17">
+<meta name="dcterms.date" content="2026-03-10">
+<meta name="description" content="Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.">
 
-<title>login: User Authentication for Shiny Applications – Jason Bryer</title>
+<title>Estimating Causality from Observational Data – Jason Bryer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,15 +74,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="login: User Authentication for Shiny Applications – Jason Bryer">
-<meta property="og:description" content="Personal website for Jason Bryer">
-<meta property="og:image" content="https://bryer.org/posts/2024-04-17-ShinyConf2024.jpeg">
+<meta property="og:title" content="Estimating Causality from Observational Data – Jason Bryer">
+<meta property="og:description" content="Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.">
+<meta property="og:image" content="https://bryer.org/posts/2026-03-10-Special_k.png">
 <meta property="og:site_name" content="Jason Bryer">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="login: User Authentication for Shiny Applications – Jason Bryer">
-<meta name="twitter:description" content="Personal website for Jason Bryer">
-<meta name="twitter:image" content="https://bryer.org/posts/2024-04-17-ShinyConf2024.jpeg">
+<meta property="og:image:height" content="675">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="Estimating Causality from Observational Data – Jason Bryer">
+<meta name="twitter:description" content="Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.">
+<meta name="twitter:image" content="https://bryer.org/posts/2026-03-10-Special_k.png">
 <meta name="twitter:creator" content="@jbryer">
+<meta name="twitter:image-height" content="675">
+<meta name="twitter:image-width" content="1200">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -146,13 +151,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">login: User Authentication for Shiny Applications</h1>
+<h1 class="title">Estimating Causality from Observational Data</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
     <div class="quarto-category">Talk</div>
+    <div class="quarto-category">Cluster Analysis</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -167,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 17, 2024</p>
+      <p class="date">March 10, 2026</p>
     </div>
   </div>
   
@@ -179,10 +190,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The <code>login</code> package provides a framework for adding user authentication to Shiny applications. This is unique to other authentication frameworks such as ShinyManager and shinyauthr in that it provides tools for users to create their own accounts and reset passwords. This is particularly useful for Shiny applications used to collect data without a pre-existing user management system. User credentials are stored in any database that supports the DBI interface. Passwords are hashed using MD5 in the browser so that unencrypted passwords are never available to the Shiny server. For an extra layer of security, you can salt the password before storing it in the database. Cookie support is provided so that users do not have to re-enter their credentials when revisiting the application and user <code>login</code> and logout actives are logged to the database. Examples of how this package is used for collecting data from students will be presented.</p>
-<p><a href="https://github.com/jbryer/login/tree/main/inst/slides/login.pdf">Download slides</a></p>
-<p>For more information about the project, visit: <a href="https://github.com/jbryer/login">https://github.com/jbryer/login</a></p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/VjbhraZhYNg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/B4MU7ORbCWI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><a href="https://github.com/jbryer/clav/blob/master/slides/clav_nyhackr_2026.pdf">Download slides</a></p>
+<p>Cluster analysis is a statistical procedure for grouping observations using an observation-centered approach as compared to variable-centered approaches (e.g.&nbsp;PCA, factor analysis). As an unsupervised method true cluster membership is usually not known. Hence, determining the optimal number of clusters, or k, poses unique challenges. A review of six common metrics for determining k with several clustering methods using two data sets will be explored. An introduction to two bootstrapping fit statistics will be provided along with validation techniques for evaluating the validity and stability of the cluster results across bootstrap samples.</p>
 
 
 
