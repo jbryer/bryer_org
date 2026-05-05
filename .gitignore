@@ -42,3 +42,4 @@ archive/
 posts/*_cache/
 
 **/*.quarto_ipynb
+.positai

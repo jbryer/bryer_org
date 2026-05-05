@@ -9,7 +9,7 @@
 <link>https://bryer.org/blog.html#category=Talk</link>
 <atom:link href="https://bryer.org/blog-talk.xml" rel="self" type="application/rss+xml"/>
 <description>Personal website for Jason Bryer</description>
-<generator>quarto-1.8.25</generator>
+<generator>quarto-1.9.36</generator>
 <lastBuildDate>Tue, 10 Mar 2026 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Special k: The Science (or Art) of Finding the Optimal k in Clustering</title>
